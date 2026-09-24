@@ -1,0 +1,12 @@
+/**
+ * Tokens utilitaires MSK (complément @theme dans app.css).
+ * Source : docs/design/DESIGN_TOKENS.md
+ */
+:root {
+  --msk-section-gap: 96px;
+  --msk-accent-rule-width: 48px;
+  --msk-button-radius: 999px;
+  --msk-field-border-filled: rgb(255 255 255 / 0.3);
+  --msk-success-bg: rgb(255 255 255 / 0.04);
+  --msk-success-border: rgb(255 255 255 / 0.1);
+}

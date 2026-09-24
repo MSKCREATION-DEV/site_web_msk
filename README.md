@@ -27,6 +27,7 @@ npm start          # servir le build
 - [Inventaire Figma](./docs/design/FIGMA_INVENTORY.md)
 - [Tokens](./docs/design/DESIGN_TOKENS.md)
 - [Décisions](./docs/design/DESIGN_DECISIONS.md)
+- [Inventaire assets](./docs/design/ASSETS_INVENTORY.md)
 - [Brief mobile](./docs/design/MOBILE_BRIEF.md)
 - [Questions ouvertes](./docs/validation/FIGMA_OPEN_QUESTIONS.md)
 
