@@ -105,3 +105,4 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-09-24 | Phase 0 docs + Phase 1 bootstrap (RR 8.4, TW 4.3, daisyUI 5.7, Lucide) — typecheck/build OK |
 | 2026-09-24 | Phase 2 gouvernance Cursor + Phase 3 routes i18n `/fr|/en`, `/travaux` vs `/projects`, content FR+EN, `assetUrl` |
 | 2026-09-24 | Phase 4 primitives UI + Phase 5 inventaire assets (export MCP bloqué — dossiers convention prêts) |
+| 2026-09-24 | Phase 6 layout (Intro, Header, Footer, BackToTop) — pixels Nav/Footer PENDING MCP |

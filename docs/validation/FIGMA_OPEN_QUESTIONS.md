@@ -13,7 +13,7 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | Q03 | Options listes Service / Budget (annotations Dev) | Formulaire Contact | **PENDING** lecture annotations |
 | Q04 | Titles / descriptions SEO marketing absents de Figma | `meta` | **PENDING** validation contenu (dériver des H1/textes ou brief SEO) |
 | Q05 | Motion keyframes exacts (bandeaux, mot, diaporama) | Animations Hero | **PENDING** `get_motion_context` (rate limit) |
-| Q06 | Détail pixel sections Services / Approche / Footer / Nav | Implémentation | **PENDING** MCP sous-sections `2:14` |
+| Q06 | Détail pixel sections Services / Approche / Footer / Nav | Implémentation | **PENDING** MCP — Header/Footer structure minimale livrée Phase 6 |
 | Q08 | Export binaire assets (logo, hero, projets, équipe, CTA) | Phase 5 / UI | **BLOQUÉ MCP** — voir `ASSETS_INVENTORY.md` ; export manuel requis |
 
 ---

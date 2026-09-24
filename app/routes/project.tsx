@@ -1,5 +1,5 @@
 import type { Route } from "./+types/project";
-import { Link } from "react-router";
+import { CloseLink, NextProjectLink, BackToWorksLink, AccentRule } from "~/components/ui";
 import { loadProjectPage } from "~/server/site/loaders/project.server";
 import { projectMeta } from "~/lib/seo";
 import {
@@ -12,7 +12,6 @@ import {
 function segmentFromRequest(request: Request): string {
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/").filter(Boolean);
-  // /:lang/:segment/:slug
   return parts[1] ?? "";
 }
 
@@ -51,17 +50,14 @@ export function meta({ loaderData }: Route.MetaArgs) {
 
 /**
  * Shell fiche projet — UI Figma Phase 8.
- * Accessible dès qu’un projet `inWorksGrid` + copy locale existent.
  */
 export default function ProjectPage({ loaderData }: Route.ComponentProps) {
   const { copy, counter, locale, next, project } = loaderData;
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-8 px-6 py-16">
+    <div className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-8 px-6 py-16">
       <div className="flex items-center justify-between text-sm text-msk-text-muted">
-        <Link to={homePath(locale)} className="hover:text-msk-text">
-          ← {copy.closeLabel}
-        </Link>
+        <CloseLink to={homePath(locale)} label={copy.closeLabel} />
         <span className="font-mono-msk text-msk-text-subtle">
           {String(counter.current).padStart(2, "0")} /{" "}
           {String(counter.total).padStart(2, "0")}
@@ -75,33 +71,24 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
         <h1 className="font-display text-4xl font-extrabold tracking-tight uppercase">
           {copy.title}
         </h1>
+        <AccentRule />
         <p className="text-sm leading-relaxed text-msk-text-secondary">
           {copy.description}
         </p>
       </header>
 
-      <div className="h-px w-12 self-center bg-msk-blue" aria-hidden />
-
       {next ? (
-        <Link
+        <NextProjectLink
           to={next.href}
-          className="self-end text-right text-sm text-msk-text hover:text-msk-blue"
-        >
-          <span className="block text-[10px] tracking-[2px] uppercase">
-            {copy.nextLabel} →
-          </span>
-          <span className="font-display text-lg font-semibold uppercase">
-            {next.title}
-          </span>
-        </Link>
+          nextLabel={copy.nextLabel}
+          title={next.title}
+        />
       ) : null}
 
-      <Link
+      <BackToWorksLink
         to={`${homePath(locale)}#travaux`}
-        className="text-center text-[11px] tracking-[2.75px] text-msk-text uppercase"
-      >
-        ↑ {copy.backToWorksLabel}
-      </Link>
-    </main>
+        label={copy.backToWorksLabel}
+      />
+    </div>
   );
 }

@@ -3,6 +3,28 @@ export type PageMetaContent = {
   description: string;
 };
 
+export type NavLinkContent = {
+  href: string;
+  label: string;
+};
+
+export type NavContent = {
+  links: NavLinkContent[];
+  /** Lisez-moi Figma — scroll vers contact / brief */
+  ctaBrief: string;
+  /** Lisez-moi Figma — scroll vers travaux */
+  ctaWorks: string;
+  languageSwitchLabel: string;
+};
+
+export type FooterContent = {
+  /**
+   * Contenu footer complet = PENDING pixels Figma.
+   * WhatsApp repris du contact (confirmé).
+   */
+  pendingNote: string;
+};
+
 export type HomeContent = {
   meta: PageMetaContent;
   brandName: string;
@@ -28,6 +50,8 @@ export type ProjectCopy = {
 
 export type LocaleContent = {
   home: HomeContent;
+  nav: NavContent;
+  footer: FooterContent;
   contact: ContactContent;
   projectSheet: Omit<ProjectCopy, "title" | "description">;
   projects: Record<string, Pick<ProjectCopy, "title" | "description">>;

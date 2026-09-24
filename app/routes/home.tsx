@@ -1,8 +1,8 @@
 import type { Route } from "./+types/home";
-import { Link } from "react-router";
+import { AccentRule } from "~/components/ui";
 import { loadHomePage } from "~/server/site/loaders/home.server";
 import { homeMeta } from "~/lib/seo";
-import { alternateHomePath, isLocale, parseLocale } from "~/i18n";
+import { isLocale, parseLocale } from "~/i18n";
 
 export function loader({ params }: Route.LoaderArgs) {
   const locale = parseLocale(params.lang);
@@ -24,17 +24,16 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 /**
- * Placeholder home — UI Figma Phase 6–7.
- * Vérifie loaders + i18n + switch de langue.
+ * Home shell — sections Figma Phase 7+.
+ * id="hero" pour Retour en haut / CTAs.
  */
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { home, locale, worksCount } = loaderData;
-  const otherLocale = locale === "fr" ? "en" : "fr";
+  const { home, worksCount } = loaderData;
 
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6">
+    <div id="hero" className="flex min-h-[70dvh] flex-col items-center justify-center gap-6 px-6 py-24">
       <p className="font-mono-msk text-[10px] tracking-[2px] text-msk-text-muted uppercase">
-        Phase 3 — {locale.toUpperCase()}
+        Phase 6 — Layout
       </p>
       <h1 className="font-display text-center text-4xl font-extrabold tracking-tight uppercase md:text-5xl">
         {home.brandName}
@@ -42,16 +41,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <p className="max-w-md text-center text-sm leading-relaxed text-msk-text-muted">
         {home.bootstrapNote}
       </p>
-      <p className="font-mono-msk text-[10px] text-msk-text-subtle tracking-[1px]">
+      <p className="font-mono-msk text-[10px] tracking-[1px] text-msk-text-subtle">
         Works grid: {worksCount} (PENDING Q01)
       </p>
-      <div className="h-px w-12 bg-msk-blue" aria-hidden />
-      <Link
-        to={alternateHomePath(locale)}
-        className="text-sm text-msk-blue underline-offset-4 hover:underline"
-      >
-        {otherLocale === "en" ? "English" : "Français"}
-      </Link>
-    </main>
+      <AccentRule />
+      {/* Ancres sections — contenu Phase 7 */}
+      <div id="travaux" className="sr-only" />
+      <div id="services" className="sr-only" />
+      <div id="equipe" className="sr-only" />
+      <div id="approche" className="sr-only" />
+      <div id="contact" className="sr-only" />
+    </div>
   );
 }
