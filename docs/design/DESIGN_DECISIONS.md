@@ -46,6 +46,13 @@ Default locale : `fr`. Convention EN projets verrouillée : `/en/projects/:slug`
 
 ---
 
+## Cartes projet / équipe — survol
+
+`ProjectCard` / `TeamCard` : survol structurel (scale + titre).  
+Détail pixel overlay Figma (composants `58:2` / `58:28`) = **PENDING** jusqu’à réouverture MCP.
+
+---
+
 ## Accent / Ocre (choix expert)
 
 1. Priorité : variable Figma `Accent/Ocre` dès export MCP.
