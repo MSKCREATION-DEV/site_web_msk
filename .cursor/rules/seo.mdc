@@ -1,0 +1,12 @@
+---
+description: SEO SSR — meta depuis content uniquement
+alwaysApply: true
+---
+
+# SEO
+
+- SSR pour HTML initial indexable.
+- `meta` route depuis `app/content` — pas d’invention marketing.
+- Prévoir : title, description, canonical, lang, Open Graph, hreflang.
+- H1 unique cohérent avec Figma. Structure sémantique header/main/section/footer.
+- Images : `alt` depuis content. Sitemap/robots/JSON-LD = phase ultérieure validée.

@@ -1,0 +1,14 @@
+---
+description: Tests minimaux avant merge d’une phase
+alwaysApply: false
+---
+
+# Testing
+
+Avant de considérer une phase livrée :
+
+1. `npm run typecheck`
+2. `npm run build`
+3. Smoke manuel : `/` → `/fr`, `/en`, switch langue
+4. UI Figma : comparaison visuelle (skill `visual-regression`)
+5. Formulaire : états défaut/focus/erreur quand Contact livré

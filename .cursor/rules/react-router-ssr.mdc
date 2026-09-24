@@ -1,0 +1,13 @@
+---
+description: React Router Framework Mode SSR — loaders, pas de fetch client métier
+alwaysApply: true
+---
+
+# React Router SSR
+
+- `react-router.config.ts` : `ssr: true`.
+- Routes déclarées dans `app/routes.ts` (éventuellement composées via `app/router/`).
+- Loader = lectures. Action = mutations. Pas de fetch métier dans les composants UI.
+- `useFetcher` pour mutation sans navigation. `useNavigation` pour pending global.
+- CSR seulement : intro, filtres, overlays, animations, formulaire, APIs navigateur.
+- Erreurs : 404 catch-all ; messages génériques côté UI.

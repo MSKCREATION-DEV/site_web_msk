@@ -1,0 +1,11 @@
+---
+description: Pas de responsive inventé sans Figma mobile
+alwaysApply: true
+---
+
+# Responsive
+
+- Desktop 1440 = source actuelle.
+- Mobile / tablet : absents → voir `docs/design/MOBILE_BRIEF.md`.
+- Interdit : inventer colonnes, menu mobile, breakpoints ou réordonnancement sans frame Figma.
+- Fluidité mineure OK (`w-full`, `max-w`) si la composition Desktop reste intacte.

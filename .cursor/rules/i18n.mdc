@@ -1,0 +1,12 @@
+---
+description: i18n FR + EN — routes, content, meta
+alwaysApply: true
+---
+
+# i18n
+
+- Locales : `fr` (défaut), `en`.
+- Routes : `/fr`, `/en` ; projets `/fr/travaux/:slug`, `/en/projects/:slug`.
+- Contenu dupliqué dans `app/content/fr` et `app/content/en`.
+- Meta : title/description par locale + canonical + hreflang.
+- Ne pas mélanger les locales dans un même fichier de copy.

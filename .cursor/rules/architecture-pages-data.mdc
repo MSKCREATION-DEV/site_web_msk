@@ -1,0 +1,16 @@
+---
+description: Séparation pages, loaders, content, data, API server-only
+alwaysApply: true
+---
+
+# Architecture
+
+```
+UI ≠ content ≠ data ≠ traductions
+```
+
+- Contenu éditorial : `app/content/fr|en`
+- Données structurées : `app/data`
+- Loaders/actions serveur : `app/server/**` ou exports route minces
+- API externes : `app/server/api/*.server.ts` uniquement
+- Composants : props de contenu, zéro hardcode i18n

@@ -1,0 +1,13 @@
+---
+description: Assets Figma → locaux → R2 switchable
+alwaysApply: true
+---
+
+# Assets
+
+Pipeline : Figma → `public/assets` → `assetUrl()` → (plus tard) R2/CDN.
+
+- Toujours passer par `~/lib/assets` (`assetUrl`).
+- Préfixe CDN : `VITE_ASSET_BASE_URL` (jamais hardcoder le domaine CDN dans les composants).
+- Interdit : Unsplash, placeholders stock, images « similaires ».
+- Manquant : signaler explicitement, ne pas remplacer en silence.

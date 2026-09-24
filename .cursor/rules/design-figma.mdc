@@ -1,0 +1,20 @@
+---
+description: Fidélité Figma obligatoire — ne rien inventer
+alwaysApply: true
+---
+
+# Design Figma
+
+Figma est la seule source de vérité visuelle Desktop.
+
+Interdit sans validation écrite dans `docs/validation/FIGMA_OPEN_QUESTIONS.md` ou `docs/design/DESIGN_DECISIONS.md` :
+- sections, composants, boutons, textes, icônes, images, animations
+- layouts, interactions, couleurs, spacing, contenu
+
+Si manquant ou ambigu :
+1. ne pas deviner
+2. documenter
+3. demander validation
+4. implémenter ensuite
+
+Comparer chaque écran livré au frame Figma (layout, typo, couleurs, dimensions, assets).

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "figma": {
+      "comment": "Configurer le serveur Figma officiel via Cursor Settings → MCP (plugin Figma). Ce fichier documente l’intention V1."
+    },
+    "playwright": {
+      "comment": "Ajouter Playwright MCP quand la QA navigateur démarre (Phase 10)."
+    }
+  }
+}

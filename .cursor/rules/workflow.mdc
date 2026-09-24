@@ -1,0 +1,12 @@
+---
+description: Workflow pas à pas et validation
+alwaysApply: true
+---
+
+# Workflow
+
+1. Lire AGENTS.md + docs design concernés.
+2. Une phase / une section à la fois.
+3. Après UI : typecheck + comparaison Figma.
+4. Documenter décisions dans `docs/design/DESIGN_DECISIONS.md`.
+5. Commits atomiques si demandés (ne pas committer sans demande explicite).

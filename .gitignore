@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# Logs / OS
+*.log
+npm-debug.log*
+.vscode/
+.idea/

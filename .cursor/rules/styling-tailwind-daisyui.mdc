@@ -1,0 +1,12 @@
+---
+description: Tailwind v4 + daisyUI v5 — thème MSK prioritaire
+alwaysApply: true
+---
+
+# Styling
+
+- Tailwind v4 : `@import "tailwindcss"` + `@theme` (pas de `tailwind.config.js` legacy).
+- daisyUI v5 : `@plugin "daisyui"` — thème `msk` dans `app/app.css`.
+- Tokens MSK (`--color-msk-*`) > defaults daisyUI / Tailwind.
+- Ne pas utiliser couleurs/rayons daisyUI s’ils contredisent Figma.
+- Lucide OK pour icônes d’interaction.

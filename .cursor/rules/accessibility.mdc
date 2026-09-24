@@ -1,0 +1,12 @@
+---
+description: Accessibilité de base formulaires et navigation
+alwaysApply: true
+---
+
+# Accessibilité
+
+- Labels associés aux champs (`htmlFor` / `aria-*`).
+- Erreurs : `aria-invalid`, `aria-describedby`.
+- Succès formulaire : `role="status"` ou `aria-live="polite"`.
+- Focus visible (états Figma focus bleu).
+- Zones interactives utilisables clavier (Fermer, filtres, nav fiche).
