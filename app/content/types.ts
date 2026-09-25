@@ -55,4 +55,5 @@ export type LocaleContent = {
   contact: ContactContent;
   projectSheet: Omit<ProjectCopy, "title" | "description">;
   projects: Record<string, Pick<ProjectCopy, "title" | "description">>;
+  team: Record<string, { name: string; role: string }>;
 };

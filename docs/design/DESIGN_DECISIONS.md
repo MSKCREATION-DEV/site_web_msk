@@ -22,7 +22,7 @@ Décisions verrouillées avec le client (2026-09-24) + choix experts documentés
 
 | Décision | Choix |
 |----------|-------|
-| Projets | **Grille Travaux / APERÇU 6 uniquement** — fiches canvas supplémentaires = designer only |
+| Projets | **Grille Travaux 6** : Koundji Services, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
 | Avant/Après | Exactement le design : seulement si présent sur la fiche du projet |
 | Articles | Hors V1 |
 | WhatsApp | Reprendre les infos Figma telles quelles |
@@ -106,3 +106,4 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-09-24 | Phase 2 gouvernance Cursor + Phase 3 routes i18n `/fr|/en`, `/travaux` vs `/projects`, content FR+EN, `assetUrl` |
 | 2026-09-24 | Phase 4 primitives UI + Phase 5 inventaire assets (export MCP bloqué — dossiers convention prêts) |
 | 2026-09-24 | Phase 6 layout (Intro, Header, Footer, BackToTop) — pixels Nav/Footer PENDING MCP |
+| 2026-09-25 | Exports manuels validés ; grille 6 projets + équipe 10 ; CTA sans vidéo |

@@ -8,7 +8,7 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 
 | ID | Question | Impact | Statut |
 |----|----------|--------|--------|
-| Q01 | Liste exacte des projets de la grille Travaux (APERÇU 6) | Data + routes fiches | **PENDING** — relancer MCP / lecture manuelle Figma |
+| Q01 | Liste exacte des projets de la grille Travaux (APERÇU 6) | Data + routes fiches | **FERMÉE** — Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
 | Q02 | Hex final `Accent/Ocre` (variable Figma) | Tokens CSS | **PENDING MCP** — fallback `#C4A574` en place |
 | Q03 | Options listes Service / Budget (annotations Dev) | Formulaire Contact | **PENDING** lecture annotations |
 | Q04 | Titles / descriptions SEO marketing absents de Figma | `meta` | **PENDING** validation contenu (dériver des H1/textes ou brief SEO) |
@@ -30,7 +30,8 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | C06 | Avant/Après | Exactement le design par fiche |
 | C07 | Langues | FR + EN créés |
 | C08 | Flèches | Lucide autorisé |
-| C10 | Convention EN projets | `/en/projects/:slug` |
+| C11 | Grille Travaux 6 projets | Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
+| C12 | CTA vidéo | Absente dans Figma — poster seul |
 
 ---
 

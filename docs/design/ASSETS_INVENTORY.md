@@ -2,79 +2,61 @@
 
 Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.
 
-**Statut export MCP (2026-09-24) :** rate limit Figma MCP (seat View) — **aucun fichier binaire récupéré automatiquement**.  
-Les chemins ci-dessous sont la convention cible. Remplir par export manuel Figma ou relance MCP.
+**Dernière màj :** 2026-09-25 — exports manuels validés.
 
 ---
 
-## Convention de chemins
+## Statut
+
+| Asset | Local | Note |
+|-------|-------|------|
+| Logo MSK | OK `logo/msk-creation.svg` | |
+| Hero slides | OK `hero/slide-01.png`, `slide-02.png` | |
+| CTA poster | OK `cta/teaser-poster.png` | |
+| CTA vidéo | **Absente Figma** | Poster seul en V1 |
+| Works covers (grille 6) | OK | koundji, thoy-art, ecosol, bomoyi, akwaba, elvi-creation |
+| Galeries fiches | OK (grille + extras designer) | Extras hors grille non exposés en routes |
+| Avant/Après Koundji | OK before/after | |
+| Équipe (10) | OK | ⚠️ `issiaka-yacouba-traore.png` ~1,7 Ko — **re-exporter** si portrait cassé |
+
+---
+
+## Grille Travaux V1 (Q01 fermée)
+
+Ordre Figma :
+
+1. `koundji-services` (2025)
+2. `thoy-art` (2024)
+3. `ecosol` (2025)
+4. `bomoyi` (2025)
+5. `akwaba` (2024)
+6. `elvi-creation` (2025)
+
+---
+
+## Équipe (Figma 05)
+
+1. Mathieu Diarra — Fondateur  
+2. Isdalinia Boisseaux — Co-fondatrice  
+3. Andile Boussari — Responsable opérations  
+4. Yahe Bah — Commerciale (`yaye-bah.png`)  
+5. Amadou Samba Guiro — Lead développeur  
+6. Fatimatou Diallo — Graphiste  
+7. Lidaou Espoir Awesso — Vidéaste & graphiste  
+8. Assetou Mangara — Community manager  
+9. Madina Tall — Assistante de direction  
+10. Issiaka Yacouba Traoré — Comptable  
+
+---
+
+## Convention chemins
 
 ```
 public/assets/
-  logo/
-    msk-creation.svg          # Logo vecteur MSK (intro / header / fiche)
-  hero/
-    slide-01.webp             # Diaporama hero Photo=1
-    slide-02.webp             # Diaporama hero Photo=2
-  works/                      # Vignettes grille Travaux (slugs grille uniquement)
-    {slug}/cover.webp
-  projects/                   # Galeries fiches
-    {slug}/cover.webp
-    {slug}/gallery-01.webp
-    {slug}/before.webp        # si Avant/Après
-    {slug}/after.webp
-  team/
-    {member-slug}.webp        # Portraits Recadrer
-  cta/
-    teaser-poster.webp        # Image de secours CTA
-    teaser.mp4                # Vidéo si présente dans Figma
+  logo/msk-creation.svg
+  hero/slide-01.png | slide-02.png
+  cta/teaser-poster.png
+  works/{slug}/cover.png
+  projects/{slug}/cover.png | gallery-NN.png | before.png | after.png
+  team/{slug}.png
 ```
-
-Tous les `src` dans le code passent par `assetUrl("/assets/...")`.
-
----
-
-## Statut par asset
-
-| Asset | Présent Figma | Source locale | Note |
-|-------|---------------|---------------|------|
-| Logo MSK vecteur | Oui | **ABSENTE** | `Asset logo MSK présent dans Figma mais source non disponible.` (MCP rate limit) |
-| Hero slides | Oui | **ABSENTE** | Idem |
-| Vignettes Travaux | Oui | **ABSENTE** | Attendre liste grille Q01 |
-| Galeries projets | Oui | **ABSENTE** | Idem |
-| Avant/Après KOUNDJI | Oui (fiche) | **ABSENTE** | Seulement si dans grille |
-| Portraits équipe | Oui | **ABSENTE** | Mode Recadrer — ne pas re-cropper en « Remplir » |
-| CTA vidéo | Intention Figma | **ABSENTE** | Prendre tout depuis Figma quand export possible |
-| CTA poster / secours | Oui | **ABSENTE** | |
-
----
-
-## Export manuel (en attendant MCP)
-
-1. Figma → sélectionner calque `IMG · …` ou Logo vecteur.
-2. Export SVG (logo) / WebP ou PNG (photos), 2× si besoin.
-3. Placer dans le chemin convention ci-dessus **sans renommer le contenu visuel**.
-4. Cocher la ligne dans ce tableau.
-5. Commit assets séparément si volumineux.
-
-### Nodes utiles
-
-| Node | Contenu |
-|------|---------|
-| `24:8` / `25:36` | Logo intro |
-| `24:6` | Logo fiche |
-| `150:973` | Diaporama hero |
-| `9:14` + galeries | Visuels projets |
-| Grille Travaux | Covers cartes |
-
----
-
-## Interdits
-
-- Unsplash / images stock
-- Images « similaires »
-- Remplacer un asset manquant en silence
-
-Signalement type :
-
-> Asset X présent dans Figma mais source non disponible.
