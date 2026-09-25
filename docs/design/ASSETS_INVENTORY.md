@@ -17,7 +17,7 @@ Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.
 | Works covers (grille 6) | OK | koundji, thoy-art, ecosol, bomoyi, akwaba, elvi-creation |
 | Galeries fiches | OK (grille + extras designer) | Extras hors grille non exposés en routes |
 | Avant/Après Koundji | OK before/after | |
-| Équipe (10) | OK | ⚠️ `issiaka-yacouba-traore.png` ~1,7 Ko — **re-exporter** si portrait cassé |
+| Équipe (10) | OK | Portrait Issiaka re-exporté OK |
 
 ---
 
