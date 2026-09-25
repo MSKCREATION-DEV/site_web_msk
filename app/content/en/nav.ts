@@ -8,7 +8,7 @@ export const nav: NavContent = {
     { href: "#approche", label: "Approach" },
     { href: "#contact", label: "Contact" },
   ],
-  ctaBrief: "Brief a project",
+  ctaBrief: "Brief a project →",
   ctaWorks: "See our work",
   languageSwitchLabel: "FR",
 };

@@ -13,7 +13,7 @@ export const nav: NavContent = {
     { href: "#approche", label: "Approche" },
     { href: "#contact", label: "Contact" },
   ],
-  ctaBrief: "Briefer un projet",
+  ctaBrief: "Briefer un projet →",
   ctaWorks: "Voir nos travaux",
   languageSwitchLabel: "EN",
 };

@@ -56,3 +56,16 @@ body {
   @apply bg-msk-page text-msk-text antialiased;
   color-scheme: dark;
 }
+
+@keyframes msk-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.msk-marquee {
+  animation: msk-marquee 40s linear infinite;
+}

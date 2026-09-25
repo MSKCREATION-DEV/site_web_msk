@@ -10,18 +10,13 @@ export type NavLinkContent = {
 
 export type NavContent = {
   links: NavLinkContent[];
-  /** Lisez-moi Figma — scroll vers contact / brief */
+  /** Lisez-moi / Hero Figma */
   ctaBrief: string;
-  /** Lisez-moi Figma — scroll vers travaux */
   ctaWorks: string;
   languageSwitchLabel: string;
 };
 
 export type FooterContent = {
-  /**
-   * Contenu footer complet = PENDING pixels Figma.
-   * WhatsApp repris du contact (confirmé).
-   */
   pendingNote: string;
 };
 
@@ -32,17 +27,17 @@ export type HeroSlideContent = {
 
 export type HeroContent = {
   slides: HeroSlideContent[];
-  /**
-   * Titre autour du mot rotatif.
-   * Exact wording Figma = PENDING (MCP) — coller depuis Desktop 02 Hero.
-   */
-  titleBefore: string;
+  /** Figma Ligne 1 — Space Grotesk Light uppercase */
+  titleLine1: string;
+  /** Figma Ligne 2 — Instrument Serif italic bleu, rotation 3 s */
   rotatingWords: string[];
-  titleAfter: string;
-  /** Intervalle mot bleu — Lisez-moi : 3 s */
+  /** Figma Ligne 3 — Space Grotesk bold uppercase */
+  titleLine3: string;
+  /** Accroche sous le H1 */
+  subtitle: string;
+  /** Bandeau bas hero */
+  tickerItems: string[];
   rotateMs: number;
-  /** Lisez-moi prototype */
-  ctaStart: string;
 };
 
 export type HomeContent = {

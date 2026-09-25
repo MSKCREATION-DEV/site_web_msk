@@ -28,9 +28,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
   return (
     <>
-      <HeroSection hero={home.hero} nav={nav} brandName={home.brandName} />
+      <HeroSection hero={home.hero} nav={nav} />
 
-      {/* Ancres sections — contenu Phase 7.2+ */}
       <div id="travaux" className="scroll-mt-24" />
       <div id="services" className="scroll-mt-24" />
       <div id="equipe" className="scroll-mt-24" />
