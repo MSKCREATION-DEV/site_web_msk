@@ -1,8 +1,9 @@
 import type { HomeContent } from "../types";
 
 /**
- * Meta / copy home FR.
- * description = stub SEO (Q04) — ne pas inventer de pitch marketing.
+ * Meta / hero FR.
+ * rotatingWords + titleBefore/After : coller le texte exact Figma « 02 Hero »
+ * (MCP bloqué — ne pas inventer de pitch).
  */
 export const home: HomeContent = {
   meta: {
@@ -10,6 +11,21 @@ export const home: HomeContent = {
     description: "MSK Création",
   },
   brandName: "MSK Création",
-  bootstrapNote:
-    "Architecture i18n prête. Interface Figma à brancher section par section.",
+  hero: {
+    slides: [
+      {
+        src: "/assets/hero/slide-01.png",
+        alt: "MSK Création — visuel hero 1",
+      },
+      {
+        src: "/assets/hero/slide-02.png",
+        alt: "MSK Création — visuel hero 2",
+      },
+    ],
+    titleBefore: "",
+    rotatingWords: [],
+    titleAfter: "",
+    rotateMs: 3000,
+    ctaStart: "Démarrer",
+  },
 };

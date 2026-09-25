@@ -25,11 +25,30 @@ export type FooterContent = {
   pendingNote: string;
 };
 
+export type HeroSlideContent = {
+  src: string;
+  alt: string;
+};
+
+export type HeroContent = {
+  slides: HeroSlideContent[];
+  /**
+   * Titre autour du mot rotatif.
+   * Exact wording Figma = PENDING (MCP) — coller depuis Desktop 02 Hero.
+   */
+  titleBefore: string;
+  rotatingWords: string[];
+  titleAfter: string;
+  /** Intervalle mot bleu — Lisez-moi : 3 s */
+  rotateMs: number;
+  /** Lisez-moi prototype */
+  ctaStart: string;
+};
+
 export type HomeContent = {
   meta: PageMetaContent;
   brandName: string;
-  /** Placeholder bootstrap — sections Figma branchées en Phase 7. */
-  bootstrapNote: string;
+  hero: HeroContent;
 };
 
 export type ContactContent = {
