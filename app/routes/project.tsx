@@ -1,9 +1,8 @@
 import type { Route } from "./+types/project";
-import { CloseLink, NextProjectLink, BackToWorksLink, AccentRule } from "~/components/ui";
+import { ProjectSheetView } from "~/components/sections/project-sheet-view";
 import { loadProjectPage } from "~/server/site/loaders/project.server";
 import { projectMeta } from "~/lib/seo";
 import {
-  homePath,
   isLocale,
   parseLocale,
   projectPathSegment,
@@ -45,50 +44,39 @@ export function meta({ loaderData }: Route.MetaArgs) {
     loaderData.project.slug,
     loaderData.copy.title,
     loaderData.copy.description,
+    loaderData.brandName,
   );
 }
 
 /**
- * Shell fiche projet — UI Figma Phase 8.
+ * Fiche projet — template Figma (Phase 8).
  */
 export default function ProjectPage({ loaderData }: Route.ComponentProps) {
-  const { copy, counter, locale, next, project } = loaderData;
+  const {
+    copy,
+    counter,
+    locale,
+    next,
+    prev,
+    project,
+    coverSrc,
+    gallery,
+    beforeAfter,
+  } = loaderData;
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-8 px-6 py-16">
-      <div className="flex items-center justify-between text-sm text-msk-text-muted">
-        <CloseLink to={homePath(locale)} label={copy.closeLabel} />
-        <span className="font-mono-msk text-msk-text-subtle">
-          {String(counter.current).padStart(2, "0")} /{" "}
-          {String(counter.total).padStart(2, "0")}
-        </span>
-      </div>
-
-      <header className="flex flex-col items-center gap-4 text-center">
-        <p className="text-[10px] tracking-[3px] text-msk-text-muted uppercase">
-          {project.year}
-        </p>
-        <h1 className="font-display text-4xl font-extrabold tracking-tight uppercase">
-          {copy.title}
-        </h1>
-        <AccentRule />
-        <p className="text-sm leading-relaxed text-msk-text-secondary">
-          {copy.description}
-        </p>
-      </header>
-
-      {next ? (
-        <NextProjectLink
-          to={next.href}
-          nextLabel={copy.nextLabel}
-          title={next.title}
-        />
-      ) : null}
-
-      <BackToWorksLink
-        to={`${homePath(locale)}#travaux`}
-        label={copy.backToWorksLabel}
-      />
-    </div>
+    <ProjectSheetView
+      locale={locale}
+      copy={copy}
+      year={project.year}
+      expertises={project.expertises}
+      counter={counter}
+      coverSrc={coverSrc}
+      coverAlt={copy.title}
+      gallery={gallery}
+      beforeAfter={beforeAfter}
+      next={next}
+      prev={prev}
+    />
   );
 }

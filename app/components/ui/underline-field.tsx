@@ -8,6 +8,7 @@ type UnderlineFieldProps = {
   error?: string;
   /** Force un état visuel (story / réf. Figma). */
   visualState?: UnderlineFieldState;
+  className?: string;
 } & Omit<ComponentProps<"input">, "className">;
 
 /**
@@ -18,6 +19,7 @@ export function UnderlineField({
   error,
   visualState,
   id,
+  className,
   ...inputProps
 }: UnderlineFieldProps) {
   const fieldId = id ?? inputProps.name ?? "field";
@@ -29,7 +31,7 @@ export function UnderlineField({
       : visualState === "focus"
         ? "border-msk-blue"
         : visualState === "filled"
-          ? "border-[color:var(--msk-field-border-filled)]"
+          ? "border-msk-field-filled"
           : "border-msk-border focus-within:border-msk-blue";
 
   const labelClass =
@@ -38,10 +40,10 @@ export function UnderlineField({
       : "text-msk-text group-focus-within:text-msk-blue";
 
   return (
-    <div className="group flex w-full max-w-[272px] flex-col gap-2">
+    <div className={cn("group flex w-full max-w-msk-field flex-col gap-2", className)}>
       <label
         htmlFor={fieldId}
-        className={cn("text-[10px] tracking-[1px] uppercase", labelClass)}
+        className={cn("msk-label", labelClass)}
       >
         {label}
       </label>
@@ -52,13 +54,13 @@ export function UnderlineField({
           aria-invalid={Boolean(error) || undefined}
           aria-describedby={error ? errorId : undefined}
           className={cn(
-            "w-full bg-transparent text-sm text-msk-text outline-none",
+            "w-full bg-transparent font-sans text-sm text-msk-text outline-none",
             "placeholder:text-msk-text-subtle",
           )}
         />
       </div>
       {error ? (
-        <p id={errorId} className="text-[11px] text-msk-error" role="alert">
+        <p id={errorId} className="text-msk-xs text-msk-error" role="alert">
           {error}
         </p>
       ) : null}

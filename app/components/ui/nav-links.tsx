@@ -16,7 +16,7 @@ export function CloseLink({ to, label, className, ...props }: TextLinkProps) {
       {...props}
       to={to}
       className={cn(
-        "inline-flex items-center gap-3 text-[11px] tracking-[2.2px] text-msk-text-secondary uppercase",
+        "inline-flex items-center gap-3 font-sans text-msk-xs tracking-msk-wide text-msk-text-secondary uppercase",
         "hover:text-msk-text",
         className,
       )}
@@ -32,6 +32,7 @@ type NextProjectLinkProps = {
   nextLabel: string;
   title: string;
   subtitle?: string;
+  align?: "start" | "end";
   className?: string;
 };
 
@@ -40,26 +41,37 @@ export function NextProjectLink({
   nextLabel,
   title,
   subtitle,
+  align = "end",
   className,
 }: NextProjectLinkProps) {
+  const Icon = align === "start" ? ArrowLeft : ArrowRight;
   return (
     <Link
       to={to}
       className={cn(
-        "flex flex-col items-end gap-3 px-10 py-12 text-right uppercase",
-        "hover:bg-white/2",
+        "flex flex-col gap-3 px-10 py-12 uppercase hover:bg-white/2",
+        align === "start" ? "items-start text-left" : "items-end text-right",
         className,
       )}
     >
-      <span className="inline-flex items-center gap-2 text-[10px] tracking-[2px] text-msk-text">
-        {nextLabel}
-        <ArrowRight className="size-3.5" aria-hidden strokeWidth={1.75} />
+      <span className="inline-flex items-center gap-2 text-msk-2xs tracking-msk-px text-msk-text">
+        {align === "start" ? (
+          <>
+            <Icon className="size-3.5" aria-hidden strokeWidth={1.75} />
+            {nextLabel}
+          </>
+        ) : (
+          <>
+            {nextLabel}
+            <Icon className="size-3.5" aria-hidden strokeWidth={1.75} />
+          </>
+        )}
       </span>
       <span className="font-display text-lg font-semibold text-msk-text">
         {title}
       </span>
       {subtitle ? (
-        <span className="text-xs tracking-[1.2px] text-msk-text-muted normal-case">
+        <span className="text-xs tracking-wide text-msk-text-muted normal-case">
           {subtitle}
         </span>
       ) : null}
@@ -82,7 +94,7 @@ export function BackToWorksLink({
     <Link
       to={to}
       className={cn(
-        "inline-flex items-center justify-center gap-2 py-10 text-[11px] tracking-[2.75px] text-msk-text uppercase",
+        "inline-flex items-center justify-center gap-2 py-10 msk-btn-label tracking-msk-sheet text-msk-text",
         "hover:text-msk-blue",
         className,
       )}

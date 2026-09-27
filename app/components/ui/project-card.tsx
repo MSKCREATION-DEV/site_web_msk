@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
@@ -6,49 +7,88 @@ export type ProjectCardHeight = "short" | "tall";
 
 type ProjectCardProps = {
   title: string;
+  category: string;
+  year: string;
   href: string;
   imageSrc: string;
   imageAlt: string;
+  seeProjectLabel: string;
+  accentColor?: string;
   height?: ProjectCardHeight;
   className?: string;
 };
 
 /**
- * Carte projet — variantes Figma Hauteur Courte/Haute + Survol.
- * Dimensions maquette Desktop : Courte ~592×489, Haute ~592×669.
- * Overlay survol : structure minimale (titre) — détail pixels PENDING MCP.
+ * Carte projet — légende (titre | année + catégories + lien) puis image
+ * short 400 / tall 580. Accent au survol sur titre + lien.
  */
 export function ProjectCard({
   title,
+  category,
+  year,
   href,
   imageSrc,
   imageAlt,
+  seeProjectLabel,
+  accentColor,
   height = "short",
   className,
 }: ProjectCardProps) {
+  const style = accentColor
+    ? ({ ["--msk-project-accent"]: accentColor } as CSSProperties)
+    : undefined;
+
   return (
     <Link
       to={href}
-      className={cn(
-        "group relative block w-full overflow-hidden bg-msk-placeholder",
-        height === "tall" ? "aspect-[592/669]" : "aspect-[592/489]",
-        className,
-      )}
+      className={cn("group flex w-full flex-col gap-4", className)}
+      style={style}
     >
-      <img
-        src={assetUrl(imageSrc)}
-        alt={imageAlt}
-        className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-      />
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-start justify-between gap-4">
+          <p
+            className={cn(
+              "min-w-0 font-sans text-xl font-semibold leading-msk-tight text-msk-text uppercase transition-colors duration-msk ease-out sm:text-2xl",
+              accentColor && "group-hover:text-(--msk-project-accent)",
+            )}
+          >
+            {title}
+          </p>
+          <span className="shrink-0 pt-1 font-sans text-msk-xs font-medium tracking-msk text-msk-text-subtle">
+            {year}
+          </span>
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-sans text-msk-xs leading-none tracking-msk-wide text-msk-text-muted uppercase">
+            {category}
+          </p>
+          <span
+            className={cn(
+              "shrink-0 font-sans text-xs font-medium tracking-msk-nav uppercase transition-colors duration-msk ease-out",
+              "opacity-0 group-hover:opacity-100",
+              accentColor
+                ? "text-(--msk-project-accent)"
+                : "text-msk-blue",
+            )}
+          >
+            {seeProjectLabel}
+          </span>
+        </div>
+      </div>
+
       <div
         className={cn(
-          "absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-6",
-          "opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+          "relative w-full overflow-hidden bg-msk-placeholder",
+          height === "tall"
+            ? "aspect-4/5 lg:aspect-auto lg:h-msk-card-tall"
+            : "aspect-3/2 lg:aspect-auto lg:h-msk-card-short",
         )}
       >
-        <p className="font-display text-lg font-semibold tracking-tight text-msk-text uppercase">
-          {title}
-        </p>
+        <img
+          src={assetUrl(imageSrc)}
+          alt={imageAlt}
+          className="absolute inset-0 size-full object-cover transition-transform duration-msk ease-out group-hover:scale-msk-hover"
+        />
       </div>
     </Link>
   );

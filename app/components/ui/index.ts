@@ -10,6 +10,7 @@ export {
 } from "./nav-links";
 export { ProjectCard } from "./project-card";
 export type { ProjectCardHeight } from "./project-card";
+export { Reveal } from "./reveal";
 export { SubmitButton } from "./submit-button";
 export type { SubmitButtonState } from "./submit-button";
 export { TeamCard } from "./team-card";

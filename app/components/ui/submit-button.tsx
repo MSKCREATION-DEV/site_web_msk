@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "~/lib/utils";
 
@@ -18,9 +17,10 @@ type SubmitButtonProps = {
 /**
  * Bouton Envoyer pilule — états Figma :
  * Défaut #137dc5 / Survol #2994db / Chargement opacity 80% / Désactivé opacity 40%.
+ * Flèche = dans le label content (pas d’icône Lucide en double).
  */
 export function SubmitButton({
-  label = "Envoyer",
+  label = "Envoyer →",
   loadingLabel = "Envoi en cours…",
   visualState,
   disabled,
@@ -40,8 +40,8 @@ export function SubmitButton({
       disabled={isDisabled}
       aria-busy={isLoading || undefined}
       className={cn(
-        "inline-flex cursor-pointer items-center justify-center rounded-[999px] px-8 py-4",
-        "text-[11px] tracking-[2.2px] text-msk-text uppercase",
+        "msk-btn-label inline-flex h-msk-btn-sm cursor-pointer items-center justify-center rounded-msk-pill px-msk-btn-px",
+        "text-msk-text",
         "bg-msk-blue transition-colors",
         !isHoverForced && !isDisabled && "hover:bg-msk-blue-hover",
         isHoverForced && "bg-msk-blue-hover",
@@ -51,14 +51,7 @@ export function SubmitButton({
         className,
       )}
     >
-      {isLoading ? (
-        loadingLabel
-      ) : (
-        <span className="inline-flex items-center gap-2">
-          {label}
-          <ArrowRight className="size-3.5" aria-hidden strokeWidth={1.75} />
-        </span>
-      )}
+      {isLoading ? loadingLabel : label}
     </button>
   );
 }

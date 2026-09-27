@@ -13,6 +13,8 @@ import { isLocale } from "~/i18n";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  { rel: "apple-touch-icon", href: "/favicon.svg" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -21,7 +23,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=Jost:ital,wght@0,300..800;1,300..800&display=swap",
   },
 ];
 

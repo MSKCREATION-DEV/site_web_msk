@@ -10,8 +10,8 @@ type TeamCardProps = {
 };
 
 /**
- * Carte équipe — Figma Défaut/Survol, portrait Recadrer.
- * Format maquette ~176×331. Survol : léger scale (détail overlay PENDING MCP).
+ * Carte équipe — hover trait bleu + nom/rôle bleus.
+ * Mobile : largeur fluide, portrait proportionnel.
  */
 export function TeamCard({
   name,
@@ -23,20 +23,28 @@ export function TeamCard({
   return (
     <article
       className={cn(
-        "group flex w-full max-w-[176px] flex-col gap-3",
+        "group flex w-full max-w-msk-portrait flex-col gap-3 sm:gap-4",
         className,
       )}
     >
-      <div className="relative aspect-[176/240] overflow-hidden bg-msk-placeholder">
+      <div className="relative aspect-msk-portrait w-full overflow-hidden bg-msk-portrait-bg">
         <img
           src={assetUrl(photoSrc)}
           alt={photoAlt}
-          className="absolute inset-0 size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          className="absolute inset-0 size-full object-cover object-top transition-transform duration-msk ease-out group-hover:scale-msk-portrait"
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-msk-text">{name}</p>
-        <p className="text-xs text-msk-text-muted">{role}</p>
+      <div className="flex flex-col gap-1.5">
+        <span
+          className="block h-px w-0 bg-msk-blue transition-all duration-msk ease-out group-hover:w-6"
+          aria-hidden
+        />
+        <p className="font-sans text-sm font-semibold leading-msk-snug tracking-msk-tight text-msk-text uppercase transition-colors duration-msk ease-out group-hover:text-msk-blue sm:text-msk-card">
+          {name}
+        </p>
+        <p className="font-sans text-msk-xs leading-msk-xs tracking-msk-label text-msk-text-muted uppercase transition-colors duration-msk ease-out group-hover:text-msk-blue">
+          {role}
+        </p>
       </div>
     </article>
   );

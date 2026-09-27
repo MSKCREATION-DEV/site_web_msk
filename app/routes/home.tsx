@@ -1,5 +1,14 @@
 import type { Route } from "./+types/home";
-import { HeroSection } from "~/components/sections";
+import { SectionGap } from "~/components/layout/section-gap";
+import {
+  ApproachSection,
+  ContactSection,
+  HeroSection,
+  ProjectCtaSection,
+  ServicesSection,
+  TeamSection,
+  WorksSection,
+} from "~/components/sections";
 import { loadHomePage } from "~/server/site/loaders/home.server";
 import { homeMeta } from "~/lib/seo";
 import { isLocale, parseLocale } from "~/i18n";
@@ -24,17 +33,38 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { home, nav } = loaderData;
+  const { home, nav, locale, worksProjects, team, contact, approachGallery } =
+    loaderData;
 
   return (
     <>
-      <HeroSection hero={home.hero} nav={nav} />
+      <HeroSection hero={home.hero} nav={nav} locale={locale} />
 
-      <div id="travaux" className="scroll-mt-24" />
-      <div id="services" className="scroll-mt-24" />
-      <div id="equipe" className="scroll-mt-24" />
-      <div id="approche" className="scroll-mt-24" />
-      <div id="contact" className="scroll-mt-24" />
+      <SectionGap />
+      <WorksSection
+        locale={locale}
+        content={home.works}
+        projects={worksProjects}
+      />
+
+      <SectionGap />
+      <ProjectCtaSection content={home.cta} />
+
+      <SectionGap />
+      <ServicesSection content={home.services} />
+
+      <SectionGap />
+      <TeamSection content={home.teamSection} members={team} />
+
+      <SectionGap />
+      <ApproachSection
+        content={home.approach}
+        gallery={approachGallery}
+        valuesTicker={home.contactSection.valuesTicker}
+      />
+
+      <SectionGap />
+      <ContactSection content={home.contactSection} contact={contact} />
     </>
   );
 }

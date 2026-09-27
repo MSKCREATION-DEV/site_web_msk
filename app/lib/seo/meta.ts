@@ -1,14 +1,17 @@
 /**
  * Helpers SEO — meta descriptors React Router.
- * Contenu title/description depuis app/content uniquement.
+ * Contenu title/description depuis app/content uniquement (pas d’invention marketing).
  */
 
 export type PageMetaInput = {
   title: string;
   description: string;
-  canonical?: string;
-  locale?: "fr" | "en";
-  alternateLocales?: Array<{ locale: "fr" | "en"; href: string }>;
+  canonical: string;
+  locale: "fr" | "en";
+  /** URLs absolues FR + EN pour hreflang */
+  alternateLocales: Array<{ locale: "fr" | "en"; href: string }>;
+  /** open graph type */
+  ogType?: "website" | "article";
 };
 
 type MetaDescriptor =
@@ -22,30 +25,51 @@ type MetaDescriptor =
       hrefLang?: string;
     };
 
+const OG_LOCALE: Record<"fr" | "en", string> = {
+  fr: "fr_FR",
+  en: "en_US",
+};
+
 export function buildPageMeta(input: PageMetaInput): MetaDescriptor[] {
+  const ogType = input.ogType ?? "website";
   const meta: MetaDescriptor[] = [
     { title: input.title },
     { name: "description", content: input.description },
+    { property: "og:type", content: ogType },
     { property: "og:title", content: input.title },
     { property: "og:description", content: input.description },
+    { property: "og:url", content: input.canonical },
+    { property: "og:locale", content: OG_LOCALE[input.locale] },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: input.title },
+    { name: "twitter:description", content: input.description },
+    { tagName: "link", rel: "canonical", href: input.canonical },
   ];
 
-  if (input.locale) {
-    meta.push({ property: "og:locale", content: input.locale });
-  }
-
-  if (input.canonical) {
-    meta.push({ tagName: "link", rel: "canonical", href: input.canonical });
-  }
-
-  for (const alt of input.alternateLocales ?? []) {
+  for (const alt of input.alternateLocales) {
     meta.push({
       tagName: "link",
       rel: "alternate",
       hrefLang: alt.locale,
       href: alt.href,
     });
+    if (alt.locale !== input.locale) {
+      meta.push({
+        property: "og:locale:alternate",
+        content: OG_LOCALE[alt.locale],
+      });
+    }
   }
+
+  const defaultHref =
+    input.alternateLocales.find((a) => a.locale === "fr")?.href ??
+    input.canonical;
+  meta.push({
+    tagName: "link",
+    rel: "alternate",
+    hrefLang: "x-default",
+    href: defaultHref,
+  });
 
   return meta;
 }

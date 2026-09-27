@@ -4,12 +4,6 @@ import { cn } from "~/lib/utils";
 
 export type MskLogoVariant = "intro" | "header" | "fiche";
 
-const variantClass: Record<MskLogoVariant, string> = {
-  intro: "h-[172px] w-[492px]",
-  header: "h-11 w-[126px]",
-  fiche: "h-11 w-[126px]",
-};
-
 type MskLogoProps = {
   variant?: MskLogoVariant;
   className?: string;
@@ -18,8 +12,8 @@ type MskLogoProps = {
 
 /**
  * Logo MSK CREATION — asset Figma uniquement.
- * Fichier attendu : /assets/logo/msk-creation.svg
- * Si absent : voir docs/design/ASSETS_INVENTORY.md
+ * intro  : géant centré (footer / rideau), max 730 design.
+ * header : nav / barre footer — ancré à gauche, taille chrome.
  */
 export function MskLogo({
   variant = "header",
@@ -27,20 +21,29 @@ export function MskLogo({
   alt = "MSK Création",
   ...imgProps
 }: MskLogoProps) {
-  return (
-    <span
-      className={cn(
-        "relative inline-block overflow-hidden",
-        variantClass[variant],
-        className,
-      )}
-    >
+  if (variant === "intro") {
+    return (
       <img
         {...imgProps}
         alt={alt}
         src={assetUrl("/assets/logo/msk-creation.svg")}
-        className="absolute inset-0 size-full max-w-none object-contain"
+        className={cn(
+          "mx-auto block h-auto w-full max-w-msk-footer-logo object-contain object-center",
+          className,
+        )}
       />
-    </span>
+    );
+  }
+
+  return (
+    <img
+      {...imgProps}
+      alt={alt}
+      src={assetUrl("/assets/logo/msk-creation.svg")}
+      className={cn(
+        "block h-msk-logo w-msk-logo max-w-full shrink-0 object-contain object-left",
+        className,
+      )}
+    />
   );
 }

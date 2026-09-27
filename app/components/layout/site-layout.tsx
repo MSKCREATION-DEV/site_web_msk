@@ -28,13 +28,28 @@ export function SiteLayout({
   showIntro = true,
   showBackToTop = true,
 }: SiteLayoutProps) {
+  const skipLabel = locale === "en" ? "Skip to content" : "Aller au contenu";
+
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-msk-overlay focus:rounded-md focus:bg-msk-blue focus:px-4 focus:py-2 focus:text-sm focus:text-msk-text"
+      >
+        {skipLabel}
+      </a>
       {showIntro && !hideChrome ? <IntroCurtain /> : null}
       {!hideChrome ? <SiteHeader locale={locale} nav={nav} /> : null}
-      <main id="main">{children}</main>
+      <main id="main" className="w-full max-w-full overflow-x-clip">
+        {children}
+      </main>
       {!hideChrome ? (
-        <SiteFooter locale={locale} footer={footer} contact={contact} />
+        <SiteFooter
+          locale={locale}
+          footer={footer}
+          contact={contact}
+          languageSwitchLabel={nav.languageSwitchLabel}
+        />
       ) : null}
       {showBackToTop && !hideChrome ? <BackToTopControl /> : null}
     </>

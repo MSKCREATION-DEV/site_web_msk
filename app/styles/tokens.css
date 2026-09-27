@@ -1,12 +1,85 @@
 /**
- * Tokens utilitaires MSK (complément @theme dans app.css).
- * Source : docs/design/DESIGN_TOKENS.md
+ * Tokens MSK — gabarit écran + intérieurs proportionnels au Desktop 1440.
+ *
+ * Unité : `--msk-u` = 1 px design à la largeur courante
+ *   = min(100vw, 1440px) / 1440
+ *
+ * Gabarit = largeur d’écran (plafonnée à 1440).
+ * Intérieurs = calc(N_design × --msk-u) — pas de distances « matériel ».
+ * Certains blocs (galerie, cartes) peuvent déborder dans leur parent scrollable.
  */
 :root {
-  --msk-section-gap: 96px;
-  --msk-accent-rule-width: 48px;
-  --msk-button-radius: 999px;
+  --msk-design-w: 1440;
+  --msk-u: calc(min(100vw, 1440px) / 1440);
+
+  /* Layout Figma 1440 */
+  --msk-page-width: calc(1440 * var(--msk-u));
+  --msk-page-px: max(1.25rem, calc(112 * var(--msk-u)));
+  --msk-content-width: calc(1216 * var(--msk-u));
+  --msk-section-gap: max(3rem, calc(96 * var(--msk-u)));
+  --msk-gutter: calc(80 * var(--msk-u));
+  --msk-works-gap: max(1rem, calc(32 * var(--msk-u)));
+  --msk-col: calc(568 * var(--msk-u));
+  --msk-works-col: calc(592 * var(--msk-u));
+
+  --msk-nav-height: max(4.5rem, calc(96 * var(--msk-u))); /* 72px floor — chrome utilisable */
+  --msk-nav-py: max(0.75rem, calc(20 * var(--msk-u)));
+  --msk-nav-links-gap: max(1.25rem, calc(40 * var(--msk-u)));
+  --msk-nav-actions-gap: max(0.75rem, calc(20 * var(--msk-u)));
+  --msk-drawer-link: max(1.75rem, calc(40 * var(--msk-u)));
+  --msk-hero-height: calc(900 * var(--msk-u));
+  --msk-marquee-h: max(2.75rem, calc(52 * var(--msk-u)));
+  --msk-cta-h: max(16rem, calc(470 * var(--msk-u)));
+
+  --msk-logo-header-w: max(6.5rem, calc(126 * var(--msk-u))); /* ~104px floor */
+  --msk-logo-header-h: max(2.25rem, calc(36 * var(--msk-u)));
+  --msk-logo-intro-w: calc(492 * var(--msk-u));
+  --msk-footer-logo-w: min(100%, calc(730 * var(--msk-u)));
+  /* Hauteur dérivée de l’aspect SVG 492×172 si on fixe la largeur — token H pour chrome */
+  --msk-footer-logo-h: auto;
+  --msk-logo-intro-h: calc(172 * var(--msk-u));
+
+  --msk-card-short-img: calc(400 * var(--msk-u));
+  --msk-card-tall-img: calc(580 * var(--msk-u));
+  --msk-team-portrait-w: calc(176 * var(--msk-u));
+  --msk-team-portrait-h: calc(235 * var(--msk-u));
+
+  --msk-gallery-h: max(12rem, calc(588 * var(--msk-u)));
+  --msk-gallery-slide-w: calc(1008 * var(--msk-u));
+  --msk-gallery-slide-h: max(11rem, calc(558 * var(--msk-u)));
+
+  --msk-btn-primary-min: max(12rem, calc(228 * var(--msk-u)));
+  --msk-btn-secondary-min: max(11rem, calc(209 * var(--msk-u)));
+  --msk-btn-see-all-w: max(16rem, calc(297 * var(--msk-u)));
+  --msk-btn-cta-h: max(3rem, calc(53 * var(--msk-u))); /* 48px floor */
+  --msk-btn-sm-h: max(2.75rem, calc(43 * var(--msk-u))); /* 44px floor */
+  --msk-submit-min: max(9rem, calc(145 * var(--msk-u)));
+  --msk-whatsapp-min: max(12rem, calc(220 * var(--msk-u)));
+
+  --msk-hero-title-w: calc(788 * var(--msk-u));
+  --msk-hero-body-w: calc(520 * var(--msk-u));
+  --msk-field-w: calc(272 * var(--msk-u));
+  --msk-cta-title-w: calc(764 * var(--msk-u));
+  --msk-desc-w: calc(576 * var(--msk-u));
+  --msk-service-desc-w: calc(320 * var(--msk-u));
+  --msk-textarea-h: max(6.5rem, calc(104 * var(--msk-u)));
+  --msk-sheet-nav-h: max(3.5rem, calc(84 * var(--msk-u)));
+  --msk-footer-bar-py: max(0.875rem, calc(22 * var(--msk-u)));
+
+  --msk-slide-inset: max(0.75rem, calc(20 * var(--msk-u)));
+  --msk-slide-rail: max(1rem, calc(24 * var(--msk-u)));
+  --msk-slide-dot-w: max(3px, calc(4 * var(--msk-u)));
+  --msk-slide-dot-h: max(10px, calc(12 * var(--msk-u)));
+  --msk-slide-dot-active-h: max(1.25rem, calc(32 * var(--msk-u)));
+  --msk-hero-stack: max(1.25rem, calc(40 * var(--msk-u)));
+  --msk-hero-pb: max(1.5rem, calc(56 * var(--msk-u)));
+  --msk-btn-px: max(1.5rem, calc(40 * var(--msk-u)));
+  --msk-cta-gap: max(0.75rem, calc(16 * var(--msk-u)));
+
+  --msk-accent-rule-width: calc(48 * var(--msk-u));
+  --msk-button-radius: 9999px;
   --msk-field-border-filled: rgb(255 255 255 / 0.3);
   --msk-success-bg: rgb(255 255 255 / 0.04);
   --msk-success-border: rgb(255 255 255 / 0.1);
+  --msk-transition: 350ms;
 }

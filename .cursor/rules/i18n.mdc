@@ -1,5 +1,5 @@
 ---
-description: i18n FR + EN — routes, content, meta
+description: i18n FR + EN, routes, content, meta. Interdit tiret cadratin dans le copy.
 alwaysApply: true
 ---
 
@@ -10,3 +10,9 @@ alwaysApply: true
 - Contenu dupliqué dans `app/content/fr` et `app/content/en`.
 - Meta : title/description par locale + canonical + hreflang.
 - Ne pas mélanger les locales dans un même fichier de copy.
+
+## Ponctuation copy (non négociable)
+
+- **Interdit** dans tout littéral UI (`app/content`, `app/data`) : tiret cadratin `—` et demi-cadratin `–`.
+- **Remplacer par** : point `.`, virgule `,`, deux-points `:`, ou séparateur `·`.
+- Vérifier avec `npm run check:copy` (intégré à `npm run check`).

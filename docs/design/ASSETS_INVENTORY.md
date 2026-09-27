@@ -11,26 +11,24 @@ Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.
 | Asset | Local | Note |
 |-------|-------|------|
 | Logo MSK | OK `logo/msk-creation.svg` | |
+| Favicon | OK `/favicon.svg` | Symbole MSK (export logo) |
 | Hero slides | OK `hero/slide-01.png`, `slide-02.png` | |
-| CTA poster | OK `cta/teaser-poster.png` | |
+| CTA poster | OK `cta/teaser-poster.png` | Aussi réutilisé temporairement bandeau bureau équipe |
 | CTA vidéo | **Absente Figma** | Poster seul en V1 |
+| Fond Contact | **PENDING export** | Section Contact sans photo dédiée (Q12) |
 | Works covers (grille 6) | OK | koundji, thoy-art, ecosol, bomoyi, akwaba, elvi-creation |
-| Galeries fiches | OK (grille + extras designer) | Extras hors grille non exposés en routes |
-| Avant/Après Koundji | OK before/after | |
+| Galeries fiches | **PLACEHOLDERS 1×1** | Re-exporter PNG Figma (Q13) |
+| Avant/Après Koundji | **PLACEHOLDERS 1×1** | Re-exporter before/after (Q13) |
 | Équipe (10) | OK | Portrait Issiaka re-exporté OK |
 
 ---
 
 ## Grille Travaux V1 (Q01 fermée)
 
-Ordre Figma :
+Ordre Figma (colonnes APERÇU) :
 
-1. `koundji-services` (2025)
-2. `thoy-art` (2024)
-3. `ecosol` (2025)
-4. `bomoyi` (2025)
-5. `akwaba` (2024)
-6. `elvi-creation` (2025)
+**Gauche :** `koundji-services` → `ecosol` → `akwaba`  
+**Droite :** `thoy-art` → `bomoyi` → `elvi-creation`
 
 ---
 

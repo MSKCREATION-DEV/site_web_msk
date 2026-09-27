@@ -48,7 +48,7 @@ export function IntroCurtain({ className }: IntroCurtainProps) {
       aria-live="polite"
       aria-label="MSK Création"
       className={cn(
-        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-msk-black",
+        "fixed inset-0 z-msk-overlay flex flex-col items-center justify-center bg-msk-black",
         className,
       )}
     >

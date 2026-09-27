@@ -9,12 +9,13 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | ID | Question | Impact | Statut |
 |----|----------|--------|--------|
 | Q01 | Liste exacte des projets de la grille Travaux (APERÇU 6) | Data + routes fiches | **FERMÉE** — Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
-| Q02 | Hex final `Accent/Ocre` (variable Figma) | Tokens CSS | **PENDING MCP** — fallback `#C4A574` en place |
-| Q03 | Options listes Service / Budget (annotations Dev) | Formulaire Contact | **PENDING** lecture annotations |
-| Q04 | Titles / descriptions SEO marketing absents de Figma | `meta` | **PENDING** validation contenu (dériver des H1/textes ou brief SEO) |
-| Q05 | Motion keyframes exacts (bandeaux, mot, diaporama) | Animations Hero | **PENDING** `get_motion_context` (rate limit) |
-| Q06 | Détail pixel sections Services / Approche / Footer / Nav | Implémentation | **PENDING** MCP — Header/Footer structure minimale livrée Phase 6 |
-| Q09 | Copy exact Hero (titleBefore / mots bleus / titleAfter) + bandeaux | Phase 7.1 | **FERMÉE** — copy + typo depuis captures Figma 02 Hero |
+| Q02 | Hex final `Accent/Ocre` (variable Figma) | Tokens CSS | **FERMÉE** — `#C8742A` (audit 2026-09-25) |
+| Q03 | Options listes Service / Budget | Formulaire Contact | **PENDING** — placeholders OK ; options NON TROUVÉ |
+| Q12 | Fond Contact + bureau équipe | Assets | **PARTIEL** — Contact = vidéo (pas de PNG) ; office équipe NON TROUVÉ |
+| Q13 | Galeries + Avant/Après PNG 1×1 | Fiches | **PENDING export** — mapping prêt, voir `EXPORT_CHECKLIST.md` |
+| Q14 | Hero « Dernièrement » | Hero | **FERMÉE** — Koundji, Ecosol, Beauté Divine (sans lien) |
+| Q15 | Couleur hover Bomoyi | Travaux | **FERMÉE** — `#137DC5` |
+| Q16 | Galerie Approche | Approche | **PARTIEL** — UI ×6 prête ; PNG à exporter (`approach/gallery-01…06`) |
 
 ---
 
@@ -32,11 +33,15 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | C08 | Flèches | Lucide autorisé |
 | C11 | Grille Travaux 6 projets | Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
 | C12 | CTA vidéo | Absente dans Figma — poster seul |
+| Q04 | SEO meta | Home content Figma ; pas d’invention marketing |
+| Q05 | Motion | Mot hero 400ms/3s ; hover 350ms |
+| Q06 | Pixels Desktop | Audit 2026-09-25 appliqué |
+| Q09–Q11 | Hero / Travaux / Services copy | Fermées via captures + audit |
 
 ---
 
 ## Blocage technique
 
-- **Figma MCP rate limit** (seat View) au 2026-09-24 : 1re passe OK ; 2e passe (Phase 0 retry) toujours bloquée — `get_variable_defs`, `get_motion_context`, sous-sections Desktop.
-- Action : réessayer quand le quota se réinitialise, ou export manuel tokens depuis Figma Desktop.
-- Docs Phase 0 rédigés à partir de l’audit déjà capturé + Lisez-moi.
+- **Figma MCP rate limit** (seat View) au 2026-09-25 : toujours bloqué — `get_variable_defs`, `get_design_context`, `get_screenshot` refusés.
+- Checklist détaillée + liens directs : [`FIGMA_HANDOFF_NEEDED.md`](./FIGMA_HANDOFF_NEEDED.md).
+- Action : upgrade seat / attendre reset quota, **ou** fournir captures/exports listés dans le handoff.

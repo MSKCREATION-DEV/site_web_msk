@@ -6,6 +6,7 @@ type WorksFilterProps = {
   value: WorksFilterValue;
   onChange: (value: WorksFilterValue) => void;
   labels: Record<WorksFilterValue, string>;
+  ariaLabel: string;
   className?: string;
 };
 
@@ -18,13 +19,14 @@ export function WorksFilter({
   value,
   onChange,
   labels,
+  ariaLabel,
   className,
 }: WorksFilterProps) {
   return (
     <div
       role="tablist"
-      aria-label="Filtres travaux"
-      className={cn("flex flex-wrap items-center gap-6", className)}
+      aria-label={ariaLabel}
+      className={cn("flex flex-wrap items-center gap-x-5 gap-y-3 sm:gap-6", className)}
     >
       {ORDER.map((key) => {
         const selected = value === key;
@@ -36,10 +38,10 @@ export function WorksFilter({
             aria-selected={selected}
             onClick={() => onChange(key)}
             className={cn(
-              "cursor-pointer text-[11px] tracking-[2px] uppercase transition-colors",
+              "msk-nav-label cursor-pointer transition-colors",
               selected
                 ? "text-msk-text"
-                : "text-msk-text-muted hover:text-msk-text-secondary",
+                : "text-msk-text-subtle hover:text-msk-text-muted",
             )}
           >
             {labels[key]}

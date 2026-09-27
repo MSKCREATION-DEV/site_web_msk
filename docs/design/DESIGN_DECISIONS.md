@@ -53,13 +53,15 @@ Détail pixel overlay Figma (composants `58:2` / `58:28`) = **PENDING** jusqu’
 
 ---
 
-## Accent / Ocre (choix expert)
+## Accent / Ocre (audit 2026-09-25)
 
-1. Priorité : variable Figma `Accent/Ocre` dès export MCP.
-2. Sinon : dériver des fills ocre du canvas Desktop.
-3. **Fallback actuel :** `#C4A574` — ocre chaud désaturé, lisible sur `#080808`, complémentaire au bleu `#137dc5` sans concurrence visuelle.
+**Confirmé Figma :** `#C8742A` (variable `Accent/Ocre`, mode Sombre).  
+Remplace l’ancien fallback expert `#C4A574`.
 
-Toute valeur Figma différente **remplace** le fallback et est notée ici.
+## Typographie (audit 2026-09-25)
+
+Police UI : **Jost**. Display : **Bricolage Grotesque ExtraBold**. Accents : **Instrument Serif Italic**.  
+Travaux : pas de H2 distinct → surtitre 12px.
 
 ---
 
@@ -79,8 +81,11 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 ## SEO
 
 - Meta SSR par locale (`meta` React Router).
-- Canonical + hreflang FR/EN.
+- Canonical + hreflang FR/EN + `x-default` → `/fr`.
 - Contenu meta : dérivé des textes page ou validé — **pas inventé** marketing libre.
+- Open Graph : `og:title`, `og:description`, `og:url`, `og:locale` (+ alternate), `og:type`.
+- Twitter card : `summary_large_image` (sans image OG dédiée tant que non fournie Figma).
+- Origine absolue : `VITE_SITE_ORIGIN` (voir `.env.example`).
 - Sitemap / robots / JSON-LD : phase ultérieure si validé.
 
 ---
@@ -107,3 +112,22 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-09-24 | Phase 4 primitives UI + Phase 5 inventaire assets (export MCP bloqué — dossiers convention prêts) |
 | 2026-09-24 | Phase 6 layout (Intro, Header, Footer, BackToTop) — pixels Nav/Footer PENDING MCP |
 | 2026-09-25 | Exports manuels validés ; grille 6 projets + équipe 10 ; CTA sans vidéo |
+| 2026-09-25 | Copy UI : pas de tiret cadratin (—) ; ponctuation point / virgule |
+| 2026-09-27 | Copy UI : purge `—` / `–` restants (Hero, Équipe, Approche, Contact FR+EN) ; garde-fou `npm run check:copy` |
+| 2026-09-25 | Phase 7.2 Travaux : filtres CSR + grille 6 ; hauteurs Courte/Haute proxy assets (Q10) |
+| 2026-09-25 | APERÇU Grille projets : 2 cols (Koundji/Ecosol/Akwaba \| Thòy/Bomoyi/Elvi), px 112, gap 32, pb 56, légende + image, « Voir tous les projets » |
+| 2026-09-25 | Phase 7.3–7.5 : CTA + Services + Équipe + Approche + Contact + Footer depuis captures Figma ; WhatsApp réel +223 70 68 90 91 ; options Service/Budget encore Q03 |
+| 2026-09-25 | Footer : logo géant + grille 3 cols ; logo SVG fill noir → blanc (lisible sur fond dark) |
+| 2026-09-25 | Phase 8 fiches grille : template KOUNDJI ; galeries/avant-après absents (Q13) |
+| 2026-09-25 | Phase 9 SEO : canonical, hreflang fr/en/x-default, OG/Twitter, skip-link, `lang` html |
+| 2026-09-25 | Phase 10 QA : typecheck/build OK ; smoke SSR routes 200/404 ; meta/H1/landmarks OK — voir `docs/validation/QA_PHASE10.md` |
+| 2026-09-25 | Typo Desktop : Hero 88/110%/-2% ; titres section 64 ; Travaux 56 ; fiche 72/-1.44 ; utilitaires `.msk-*` ; Approche body = copy Figma ; équipe hover bleu + trait ; portrait 176×235 |
+| 2026-09-25 | Audit Figma appliqué : Ocre `#C8742A` ; Jost ; tailles Hero/section/CTA/Contact ; cartes année+hover ; spacing 112/96 ; couleurs projet hover |
+| 2026-09-25 | Ajustements captures scroll : nav transparente ; Travaux titre+filtres+compteur+CTA pilule ; Équipe 3 lignes + hover trait/bleu ; galerie Approche ; cards `#111` ; Contact Nom\|Email ; CTA mediaTabs ; Ecosol 2025/ocre |
+| 2026-09-27 | Spec Desktop complète : gaps 96 dégradés ; Hero indicateurs + Dernièrement + accroche 520 ; Travaux hauteurs 400/580 + années/accents ; galerie Approche draggable ; Contact validation/loading/succès ; Footer dégradé ; BackToTop 32 px ; Reveal scroll ; padding fluide `msk-page-x` (sans inventer UI mobile) |
+| 2026-09-27 | **Hero/Nav purge inventé** : retrait « Dernièrement », retrait switch EN du header (→ footer + drawer), nav Desktop grille 3 cols centrée, séparateurs marquee `·`. **Mobile interim Hero/Nav** : drawer plein écran (mêmes liens Figma), CTAs full-width stack, `100svh` — en attendant frames Figma mobile (`MOBILE_BRIEF.md`) |
+| 2026-09-27 | Design tokens Tailwind `@theme` sémantiques (`max-w-msk`, `w-msk-logo`, `py-msk-x`, `grid-cols-msk-split`…) — zéro classes arbitraires `[Npx]` / warnings `suggestCanonicalClasses` |
+| 2026-09-27 | Nav : fond noir H96 (Figma) ; switch EN dans la nav ; indicateurs slides **bas-droite** au-dessus du marquee. Mobile premium : drawer immersif, stack CTAs, grille Travaux/Équipe/CTA/Approche adaptées |
+| 2026-09-27 | **Scale proportionnel** : `--msk-u = min(100vw, 1440px) / 1440` — gabarit = écran ; paddings/gaps/largeurs/typo display = `N_design × --msk-u` (plus de 20/24 px « téléphone »). Débordements acceptés dans parents scrollables (galerie). Plancher lisibilité UI/body uniquement. |
+| 2026-09-27 | **Nav chrome** : hauteur `max(72px, 96×u)`, logo `max(104px, 126×u)` — le scale pur rendait la barre ~26 px / logo ~34 px inutilisables. Layout flex mobile + grille 3 cols Desktop (logo \| liens gap 40 \| Briefer+EN). |
+| 2026-09-27 | **Boutons / footer mobile** : planchers hauteur CTA/sm ; Envoyer sans double flèche (label content seul) ; boutons Hero/CTA/Travaux en `w-auto` alignés start (plus de full-bleed) ; footer 1 logo géant mobile (petit logo Desktop only). |

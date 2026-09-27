@@ -11,50 +11,193 @@
   color-scheme: dark;
 
   --color-base-100: #080808;
-  --color-base-200: #1a1a1a;
-  --color-base-300: #2a2a2a;
+  --color-base-200: #111111;
+  --color-base-300: #1a1a1a;
   --color-base-content: #ffffff;
   --color-primary: #137dc5;
   --color-primary-content: #ffffff;
-  --color-secondary: #c4a574;
+  --color-secondary: #c8742a;
   --color-secondary-content: #080808;
   --color-accent: #137dc5;
   --color-accent-content: #ffffff;
-  --color-neutral: #1a1a1a;
+  --color-neutral: #111111;
   --color-neutral-content: #ffffff;
   --color-info: #137dc5;
   --color-success: #137dc5;
-  --color-warning: #c4a574;
+  --color-warning: #c8742a;
   --color-error: #e5484d;
   --color-error-content: #ffffff;
 }
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque", "Space Grotesk", ui-sans-serif, system-ui,
-    sans-serif;
-  --font-grotesk: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono-msk: "Space Mono", ui-monospace, monospace;
+  /* Audit Figma 1440 — typo */
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-grotesk: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-msk: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-serif-msk: "Instrument Serif", ui-serif, Georgia, serif;
 
+  /* Couleurs */
   --color-msk-page: #080808;
   --color-msk-black: #000000;
+  --color-msk-card: #111111;
   --color-msk-placeholder: #1a1a1a;
   --color-msk-blue: #137dc5;
   --color-msk-blue-hover: #2994db;
-  --color-msk-ocre: #c4a574;
+  --color-msk-ocre: #c8742a;
   --color-msk-error: #e5484d;
   --color-msk-text: #ffffff;
   --color-msk-text-secondary: rgb(255 255 255 / 0.78);
   --color-msk-text-muted: rgb(255 255 255 / 0.6);
   --color-msk-text-subtle: rgb(255 255 255 / 0.45);
   --color-msk-border: rgb(255 255 255 / 0.08);
+  --color-msk-border-visible: rgb(255 255 255 / 0.2);
+  --color-msk-warm-deep: #100c08;
+  --color-msk-warm-footer: #0e0a06;
+  --color-msk-warm-contact: #12100e;
+  --color-msk-portrait-bg: #d1d5db;
+  --color-msk-field-filled: rgb(255 255 255 / 0.3);
+  --color-msk-success-bg: rgb(255 255 255 / 0.04);
+  --color-msk-success-border: rgb(255 255 255 / 0.1);
+
+  /*
+   * Layout — proportionnel au canvas 1440 via --msk-u (tokens.css).
+   * Gabarit = écran ; intérieurs = N_design × --msk-u.
+   */
+  --spacing-msk-x: var(--msk-page-px);
+  --spacing-msk-gap: var(--msk-section-gap);
+  --spacing-msk-nav: var(--msk-nav-height);
+  --spacing-msk-nav-py: var(--msk-nav-py);
+  --spacing-msk-nav-links: var(--msk-nav-links-gap);
+  --spacing-msk-nav-actions: var(--msk-nav-actions-gap);
+  --spacing-msk-gutter: var(--msk-gutter);
+  --spacing-msk-works-gap: var(--msk-works-gap);
+  --spacing-msk-footer-bar: var(--msk-footer-bar-py);
+  --spacing-msk-slide-inset: var(--msk-slide-inset);
+  --spacing-msk-slide-rail: var(--msk-slide-rail);
+  --spacing-msk-hero-stack: var(--msk-hero-stack);
+  --spacing-msk-hero-pb: var(--msk-hero-pb);
+  --spacing-msk-btn-px: var(--msk-btn-px);
+  --spacing-msk-cta-gap: var(--msk-cta-gap);
+
+  --width-msk-slide-dot: var(--msk-slide-dot-w);
+  --height-msk-slide-dot: var(--msk-slide-dot-h);
+  --height-msk-slide-dot-active: var(--msk-slide-dot-active-h);
+
+  --max-width-msk: var(--msk-page-width);
+  --max-width-msk-col: var(--msk-col);
+  --max-width-msk-works: var(--msk-works-col);
+  --max-width-msk-hero-title: var(--msk-hero-title-w);
+  --max-width-msk-hero-body: var(--msk-hero-body-w);
+  --max-width-msk-field: var(--msk-field-w);
+  --max-width-msk-cta-title: var(--msk-cta-title-w);
+  --max-width-msk-footer-logo: var(--msk-footer-logo-w);
+  --max-width-msk-desc: var(--msk-desc-w);
+  --max-width-msk-service-desc: var(--msk-service-desc-w);
+
+  --width-msk-logo: var(--msk-logo-header-w);
+  --height-msk-logo: var(--msk-logo-header-h);
+  --width-msk-logo-intro: var(--msk-logo-intro-w);
+  --max-width-msk-portrait: var(--msk-team-portrait-w);
+  --aspect-msk-portrait: 176 / 235;
+  --max-width-msk-gallery-slide: var(--msk-gallery-slide-w);
+  --width-msk-gallery-slide: var(--msk-gallery-slide-w);
+  --width-msk-works: var(--msk-works-col);
+  --width-msk-btn-see-all: var(--msk-btn-see-all-w);
+  --max-width-msk-btn-see-all: var(--msk-btn-see-all-w);
+  --width-msk-col: var(--msk-col);
+
+  --min-width-msk-btn-primary: var(--msk-btn-primary-min);
+  --min-width-msk-btn-secondary: var(--msk-btn-secondary-min);
+  --min-width-msk-btn-see-all: var(--msk-btn-see-all-w);
+  --min-width-msk-submit: var(--msk-submit-min);
+  --min-width-msk-whatsapp: var(--msk-whatsapp-min);
+
+  --height-msk-hero: var(--msk-hero-height);
+  --height-msk-nav: var(--msk-nav-height);
+  --height-msk-marquee: var(--msk-marquee-h);
+  --height-msk-cta: var(--msk-cta-h);
+  --height-msk-cta-btn: var(--msk-btn-cta-h);
+  --height-msk-btn-sm: var(--msk-btn-sm-h);
+  --height-msk-card-short: var(--msk-card-short-img);
+  --height-msk-card-tall: var(--msk-card-tall-img);
+  --height-msk-portrait: var(--msk-team-portrait-h);
+  --height-msk-gallery: var(--msk-gallery-h);
+  --height-msk-gallery-slide: var(--msk-gallery-slide-h);
+  --height-msk-textarea: var(--msk-textarea-h);
+  --height-msk-sheet-nav: var(--msk-sheet-nav-h);
+  --height-msk-logo-intro: var(--msk-logo-intro-h);
+  --height-msk-footer-logo: auto;
+
+  --text-msk-2xs: 0.625rem; /* 10px */
+  --text-msk-xs: 0.6875rem; /* 11px */
+  --text-msk-15: 0.9375rem; /* 15px */
+  --text-msk-card: 1.0625rem; /* 17px */
+  --text-msk-success: 1.375rem; /* 22px */
+
+  --tracking-msk: 0.1em;
+  --tracking-msk-nav: 0.15em;
+  --tracking-msk-wide: 0.2em;
+  --tracking-msk-wider: 0.25em;
+  --tracking-msk-widest: 0.3em;
+  --tracking-msk-tight: 0.02em;
+  --tracking-msk-label: 0.08em;
+  --tracking-msk-mobile: 0.12em;
+
+  --leading-msk-tight: 1.1;
+  --leading-msk-snug: 1.2;
+  --leading-msk-body: 1.65;
+  --leading-msk-loose: 1.8;
+
+  --radius-msk-pill: 9999px;
+  --aspect-msk-hero-cover: 1440 / 675;
+  --aspect-msk-gallery: 1440 / 810;
+  --aspect-msk-ba: 720 / 540;
+
+  --grid-template-columns-msk-split: var(--msk-col) var(--msk-gutter) var(--msk-col);
+  --grid-template-columns-msk-services: auto 1fr var(--msk-service-desc-w);
+  --grid-template-columns-msk-footer: var(--msk-logo-header-w) 1fr minmax(
+    calc(200 * var(--msk-u)),
+    calc(280 * var(--msk-u))
+  );
+  --grid-template-columns-msk-contact-row: minmax(
+      calc(140 * var(--msk-u)),
+      calc(200 * var(--msk-u))
+    )
+    1fr;
+  --grid-template-columns-msk-nav: 1fr auto 1fr;
+  --grid-template-columns-msk-nav-compact: 1fr auto;
+
+  --tracking-msk-px: 0.125rem; /* 2px */
+  --tracking-msk-sheet: 0.171875rem; /* 2.75px */
+  --leading-msk-xs: 0.9375rem; /* 15px */
+
+  --transition-duration-msk: 350ms;
+  --transition-duration-350: 350ms;
+  --transition-duration-400: 400ms;
+
+  --z-index-msk-overlay: 100;
+  --scale-msk-hover: 1.02;
+  --scale-msk-portrait: 1.03;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 html,
 body {
-  @apply bg-msk-page text-msk-text antialiased;
+  @apply bg-msk-page font-sans text-msk-text antialiased;
   color-scheme: dark;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+#main,
+main {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 @keyframes msk-marquee {
@@ -68,4 +211,276 @@ body {
 
 .msk-marquee {
   animation: msk-marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .msk-marquee {
+    animation: none;
+  }
+}
+
+/* Apparition progressive au scroll */
+.msk-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.msk-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msk-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Bande de transition entre sections — 96 px, dégradé sombre */
+.msk-section-gap {
+  height: var(--msk-section-gap);
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #080808 0%,
+    #0c0a08 45%,
+    #100c08 70%,
+    #080808 100%
+  );
+  pointer-events: none;
+}
+
+/* Conteneur page — gabarit = largeur écran plafonnée 1440 */
+.msk-container {
+  @apply mx-auto w-full max-w-msk;
+}
+
+/* Padding latéral = 112 design × --msk-u (pas de marge « téléphone ») */
+.msk-page-x {
+  padding-left: var(--msk-page-px);
+  padding-right: var(--msk-page-px);
+}
+
+.msk-edge-right {
+  right: var(--msk-page-px);
+}
+
+/* Indicateurs slides Hero — bas droite, au-dessus du marquee (offsets design) */
+.msk-slide-indicators {
+  right: var(--msk-page-px);
+  bottom: calc(var(--msk-marquee-h) + var(--msk-slide-inset));
+  gap: max(0.375rem, calc(8 * var(--msk-u)));
+}
+
+.msk-watermark-pos {
+  right: 6%;
+}
+
+/* Filigrane logo bleu (CTA / Approche) */
+.msk-logo-watermark {
+  filter: brightness(0) invert(0.35) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
+.msk-scrollbar-none {
+  scrollbar-width: none;
+}
+
+.msk-scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Slides galerie Approche — largeur design proportionnelle (peut déborder → scroll parent) */
+.msk-gallery-slide {
+  width: var(--msk-gallery-slide-w);
+  height: var(--msk-gallery-slide-h);
+}
+
+/* ——— Typo — tailles design × --msk-u ——— */
+
+.msk-eyebrow {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(10px, calc(12 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.msk-label {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(9px, calc(10 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.msk-btn-label {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(11px, calc(13 * var(--msk-u)));
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.msk-btn-label-sm {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(10px, calc(11 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.msk-nav-label {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(10px, calc(11 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.msk-drawer-link {
+  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--msk-drawer-link);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.msk-ticker {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(10px, calc(12 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.msk-hero-line-1 {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(86 * var(--msk-u));
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.msk-hero-line-2 {
+  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-size: calc(96 * var(--msk-u));
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.msk-hero-line-3 {
+  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(86 * var(--msk-u));
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.msk-section-title {
+  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(79 * var(--msk-u));
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.msk-section-accent {
+  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-size: calc(88 * var(--msk-u));
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.msk-cta-title {
+  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(101 * var(--msk-u));
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.msk-cta-accent {
+  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-size: calc(113 * var(--msk-u));
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.msk-contact-title {
+  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(58 * var(--msk-u));
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.msk-contact-accent {
+  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-size: calc(65 * var(--msk-u));
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.msk-sheet-title {
+  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(72 * var(--msk-u));
+  font-weight: 800;
+  letter-spacing: calc(-1.44 * var(--msk-u));
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.msk-body {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(14px, calc(18 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.msk-body-sm {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(13px, calc(16 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.msk-body-xs {
+  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-size: max(12px, calc(15 * var(--msk-u)));
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Hero : réserve la rail indicateurs (design) sans marge matériel fixe */
+.msk-page-x.msk-hero-with-slides {
+  padding-right: calc(var(--msk-page-px) + var(--msk-slide-rail));
 }

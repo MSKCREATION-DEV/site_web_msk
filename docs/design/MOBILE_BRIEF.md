@@ -59,11 +59,13 @@ Pour **chaque** section Desktop, livrer au minimum :
 
 | Phase | Comportement code |
 |-------|-------------------|
-| V1 actuelle | **Desktop-first** selon Figma 1440 ; pas de layout mobile inventé |
-| Après Figma mobile | Implémenter **uniquement** les frames livrés |
-| Brief seul | Document + tickets designer — **zéro CSS responsive spéculatif** |
+| V1 Desktop | **Desktop-first** selon Figma 1440 |
+| Scale fluide | Gabarit = largeur écran ; intérieurs = `N_design × (min(100vw,1440)/1440)` — pas de marges matériel inventées |
+| Hero / Nav (2026-09-27) | Adaptation structurelle interim (drawer + stack CTAs) — à remplacer par frames Figma |
+| Après Figma mobile | Implémenter **uniquement** les frames livrés pour le reste des sections |
+| Brief seul | Document + tickets designer — **zéro CSS responsive spéculatif** hors Hero/Nav validé |
 
-Si un composant nécessite un minimum de fluidité (ex. `max-w`, images `w-full`) sans changer la composition Desktop, c’est acceptable. Changer colonnes / ordre / navigation = **interdit** sans maquette.
+Si un composant nécessite un minimum de fluidité (ex. `max-w`, images `w-full`) sans changer la composition Desktop, c’est acceptable. Changer colonnes / ordre / navigation hors Hero/Nav = **interdit** sans maquette.
 
 ---
 
