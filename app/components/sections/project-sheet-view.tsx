@@ -92,6 +92,8 @@ export function ProjectSheetView({
         <img
           src={assetUrl(coverSrc)}
           alt={coverAlt}
+          fetchPriority="high"
+          decoding="sync"
           className="absolute inset-0 size-full object-cover"
         />
       </div>
@@ -147,6 +149,8 @@ export function ProjectSheetView({
               <img
                 src={assetUrl(beforeAfter.beforeSrc)}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 size-full object-contain p-10"
               />
               <figcaption className="absolute top-6 left-6 font-sans text-msk-2xs font-medium tracking-msk-wide text-msk-text-muted">
@@ -157,6 +161,8 @@ export function ProjectSheetView({
               <img
                 src={assetUrl(beforeAfter.afterSrc)}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 size-full object-cover p-10"
               />
               <figcaption className="absolute top-6 left-6 font-sans text-msk-2xs font-medium tracking-msk-wide text-msk-text-muted">
@@ -177,6 +183,8 @@ export function ProjectSheetView({
               <img
                 src={assetUrl(image.src)}
                 alt={image.alt}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 size-full object-cover"
               />
             </div>

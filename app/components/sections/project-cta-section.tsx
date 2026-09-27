@@ -46,6 +46,8 @@ export function ProjectCtaSection({
           <img
             src={assetUrl(content.posterSrc)}
             alt={content.posterAlt}
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 size-full object-cover"
           />
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/55" />
@@ -53,7 +55,9 @@ export function ProjectCtaSection({
             src={assetUrl("/assets/logo/msk-creation.svg")}
             alt=""
             aria-hidden
-            className="pointer-events-none absolute top-1/2 msk-watermark-pos hidden h-1/2 w-auto max-w-[45%] -translate-y-1/2 opacity-30 msk-logo-watermark sm:block"
+            loading="lazy"
+            decoding="async"
+            className="msk-logo-watermark msk-watermark-pos pointer-events-none absolute top-1/2 hidden h-1/2 w-auto max-w-2/5 -translate-y-1/2 opacity-30 sm:block"
           />
         </div>
 

@@ -1,0 +1,17 @@
+{
+  "name": "MSK Création",
+  "short_name": "MSK",
+  "description": "Agence digitale à Bamako, ACI 2000.",
+  "start_url": "/fr",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

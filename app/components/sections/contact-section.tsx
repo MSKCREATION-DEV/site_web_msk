@@ -93,6 +93,8 @@ export function ContactSection({
           src={assetUrl(content.backgroundSrc)}
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 size-full object-cover"
         />
       ) : (

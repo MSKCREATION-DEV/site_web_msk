@@ -87,6 +87,8 @@ export function ProjectCard({
         <img
           src={assetUrl(imageSrc)}
           alt={imageAlt}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 size-full object-cover transition-transform duration-msk ease-out group-hover:scale-msk-hover"
         />
       </div>

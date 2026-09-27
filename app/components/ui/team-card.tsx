@@ -31,6 +31,8 @@ export function TeamCard({
         <img
           src={assetUrl(photoSrc)}
           alt={photoAlt}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 size-full object-cover object-top transition-transform duration-msk ease-out group-hover:scale-msk-portrait"
         />
       </div>

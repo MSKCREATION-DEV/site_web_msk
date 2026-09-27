@@ -1,22 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="7 46 80 80" fill="none" role="img" aria-label="MSK Création">
-  <rect x="7" y="46" width="80" height="80" rx="14" fill="#080808"/>
-  <path d="M37.6584 63.7048V70.1502L59.9573 86.3001L37.6584 102.121L36.3103 102.194H37.6584V108.859H82.4384V63.7048H37.6584ZM80.1429 86.7396H79.6693V106.222H40.1361V103.366L62.0706 87.8016L64.2204 86.3368L39.9903 68.9783V66.3782H79.6328V86.2635H80.1065V86.7396H80.1429Z" fill="white" stroke="#0000FF" stroke-width="0.851657" stroke-miterlimit="10"/>
-  <path d="M12.1892 66.0849V106.222L46.8399 86.1168L12.1892 66.0483V66.0849ZM14.4482 70.333L41.8482 86.19L14.4482 102.084V70.333Z" fill="#0000FF" stroke="#0000FF" stroke-width="0.851657" stroke-miterlimit="10"/>
-  <path d="M10.6956 63.668V108.822L49.6458 86.19L10.6956 63.668ZM15.833 72.6768L39.1522 86.1168L15.833 99.6667V72.6402V72.6768Z" fill="url(#mskFavGrad0)"/>
-  <path d="M36.2734 62.3501V70.9195L57.5886 86.3004L36.2734 100.729V110.068H83.7132V62.3501H36.2734ZM78.3207 104.867C78.3207 104.867 41.4838 104.721 41.4838 104.867V104.098L66.6247 86.3004L41.3745 68.2827V67.7334H78.3207V104.867Z" fill="url(#mskFavGrad1)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="MSK Création">
+  <rect width="32" height="32" rx="7" fill="#080808"/>
+  <!-- Glyphe >> extrait du logo Figma, centré pour l’onglet navigateur -->
+  <g transform="translate(16 16) scale(0.3) translate(-47.2 -86.2)">
+    <path d="M37.6584 63.7048V70.1502L59.9573 86.3001L37.6584 102.121L36.3103 102.194H37.6584V108.859H82.4384V63.7048H37.6584ZM80.1429 86.7396H79.6693V106.222H40.1361V103.366L62.0706 87.8016L64.2204 86.3368L39.9903 68.9783V66.3782H79.6328V86.2635H80.1065V86.7396H80.1429Z" fill="white"/>
+    <path d="M12.1892 66.0849V106.222L46.8399 86.1168L12.1892 66.0483V66.0849ZM14.4482 70.333L41.8482 86.19L14.4482 102.084V70.333Z" fill="#137DC5"/>
+    <path d="M10.6956 63.668V108.822L49.6458 86.19L10.6956 63.668ZM15.833 72.6768L39.1522 86.1168L15.833 99.6667V72.6402V72.6768Z" fill="url(#f0)"/>
+    <path d="M36.2734 62.3501V70.9195L57.5886 86.3004L36.2734 100.729V110.068H83.7132V62.3501H36.2734ZM78.3207 104.867C78.3207 104.867 41.4838 104.721 41.4838 104.867V104.098L66.6247 86.3004L41.3745 68.2827V67.7334H78.3207V104.867Z" fill="url(#f1)"/>
+  </g>
   <defs>
-    <linearGradient id="mskFavGrad0" x1="10.6956" y1="86.2633" x2="49.6822" y2="86.2633" gradientUnits="userSpaceOnUse">
+    <linearGradient id="f0" x1="10.7" y1="86.3" x2="49.7" y2="86.3" gradientUnits="userSpaceOnUse">
       <stop offset="0.01" stop-color="#2A3D8E"/>
-      <stop offset="0.07" stop-color="#284393"/>
       <stop offset="0.51" stop-color="#1D73BC"/>
-      <stop offset="0.65" stop-color="#1384CB"/>
       <stop offset="1" stop-color="#00ACEE"/>
     </linearGradient>
-    <linearGradient id="mskFavGrad1" x1="36.2734" y1="86.2271" x2="83.7132" y2="86.2271" gradientUnits="userSpaceOnUse">
+    <linearGradient id="f1" x1="36.3" y1="86.2" x2="83.7" y2="86.2" gradientUnits="userSpaceOnUse">
       <stop offset="0.01" stop-color="#2A3D8E"/>
-      <stop offset="0.07" stop-color="#284393"/>
       <stop offset="0.51" stop-color="#1D73BC"/>
-      <stop offset="0.65" stop-color="#1384CB"/>
       <stop offset="1" stop-color="#00ACEE"/>
     </linearGradient>
   </defs>

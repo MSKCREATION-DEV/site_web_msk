@@ -123,6 +123,8 @@ export function ApproachSection({
                   src={assetUrl(slide.src)}
                   alt={slide.alt}
                   draggable={false}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 size-full object-cover select-none"
                 />
                 {slide.label ? (

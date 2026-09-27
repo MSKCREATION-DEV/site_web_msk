@@ -12,19 +12,25 @@ import type { Route } from "./+types/root";
 import { isLocale } from "~/i18n";
 import "./app.css";
 
+/** Fonts : poids strictement utilisés (LCP / poids réseau). */
+const FONTS_CSS =
+  "https://fonts.googleapis.com/css2?" +
+  "family=Bricolage+Grotesque:opsz,wght@12..96,800&" +
+  "family=Instrument+Serif:ital@1&" +
+  "family=Jost:wght@300;400;500;600&" +
+  "display=swap";
+
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
   { rel: "apple-touch-icon", href: "/favicon.svg" },
+  { rel: "manifest", href: "/site.webmanifest" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
     crossOrigin: "anonymous",
   },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=Jost:ital,wght@0,300..800;1,300..800&display=swap",
-  },
+  { rel: "stylesheet", href: FONTS_CSS },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -36,6 +42,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#080808" />
+        <meta name="color-scheme" content="dark" />
         <Meta />
         <Links />
       </head>

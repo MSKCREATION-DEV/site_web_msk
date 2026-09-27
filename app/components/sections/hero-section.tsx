@@ -65,6 +65,11 @@ export function HeroSection({
             key={slide.src}
             src={assetUrl(slide.src)}
             alt=""
+            width={1440}
+            height={900}
+            decoding={index === 0 ? "sync" : "async"}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "low"}
             className={cn(
               "absolute inset-0 size-full object-cover transition-opacity duration-1000",
               index === slideIndex ? "opacity-100" : "opacity-0",
@@ -83,7 +88,7 @@ export function HeroSection({
           hasSlides && "msk-hero-with-slides",
         )}
       >
-        <h1 className="flex max-w-msk-hero-title flex-col break-words text-msk-text">
+        <h1 className="flex max-w-msk-hero-title flex-col wrap-break-word text-msk-text">
           <span className="msk-hero-line-1">{hero.titleLine1}</span>
           <span
             className={cn(

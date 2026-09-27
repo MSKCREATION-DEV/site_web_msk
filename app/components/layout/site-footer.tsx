@@ -55,7 +55,7 @@ export function SiteFooter({
 
           <div className="flex min-w-0 flex-col items-center justify-center gap-1 text-center font-sans text-xs leading-msk-snug text-msk-text-muted">
             <p>{footer.copyright}</p>
-            <p className="max-w-full break-words">{footer.addressLine}</p>
+            <p className="max-w-full wrap-break-word">{footer.addressLine}</p>
             {languageSwitchLabel ? (
               <Link
                 to={alternateHomePath(locale)}
