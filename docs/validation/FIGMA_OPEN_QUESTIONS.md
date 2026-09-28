@@ -10,12 +10,12 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 |----|----------|--------|--------|
 | Q01 | Liste exacte des projets de la grille Travaux (APERÇU 6) | Data + routes fiches | **FERMÉE** — Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
 | Q02 | Hex final `Accent/Ocre` (variable Figma) | Tokens CSS | **FERMÉE** — `#C8742A` (audit 2026-09-25) |
-| Q03 | Options listes Service / Budget | Formulaire Contact | **PENDING** — placeholders OK ; options NON TROUVÉ |
-| Q12 | Fond Contact + bureau équipe | Assets | **PARTIEL** — Contact = vidéo (pas de PNG) ; office équipe NON TROUVÉ |
-| Q13 | Galeries + Avant/Après PNG 1×1 | Fiches | **PENDING export** — mapping prêt, voir `EXPORT_CHECKLIST.md` |
+| Q03 | Options listes Service / Budget | Formulaire Contact | **PENDING** — selects vides ; options NON TROUVÉ |
+| Q12 | Fond Contact + bureau équipe | Assets | **PARTIEL** — Contact `background.png` OK ; office équipe NON TROUVÉ |
+| Q13 | Galeries + Avant/Après | Fiches | **PRESQUE FERMÉE** — grille + before/after OK ; `akwaba/gallery-06` encore 1×1 |
 | Q14 | Hero « Dernièrement » | Hero | **FERMÉE** — Koundji, Ecosol, Beauté Divine (sans lien) |
 | Q15 | Couleur hover Bomoyi | Travaux | **FERMÉE** — `#137DC5` |
-| Q16 | Galerie Approche | Approche | **PARTIEL** — UI ×6 prête ; PNG à exporter (`approach/gallery-01…06`) |
+| Q16 | Galerie Approche | Approche | **FERMÉE** — `approach/gallery-01…06` branchés |
 
 ---
 

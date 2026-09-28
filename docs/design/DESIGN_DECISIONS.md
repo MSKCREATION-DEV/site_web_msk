@@ -115,6 +115,7 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-09-25 | Copy UI : pas de tiret cadratin (—) ; ponctuation point / virgule |
 | 2026-09-27 | Copy UI : purge `—` / `–` restants (Hero, Équipe, Approche, Contact FR+EN) ; garde-fou `npm run check:copy` |
 | 2026-09-27 | Favicon SVG marque MSK (`/favicon.svg` + webmanifest) ; perf : fonts poids réduits, LCP hero `fetchPriority`, images below-fold `loading=lazy` |
+| 2026-09-27 | Assets branchés : Approche ×6, Contact fond, galeries fiches + Avant/Après Koundji ; `isUsableAsset` partagé ; restant Q03 options + `akwaba/gallery-06` |
 | 2026-09-25 | Phase 7.2 Travaux : filtres CSR + grille 6 ; hauteurs Courte/Haute proxy assets (Q10) |
 | 2026-09-25 | APERÇU Grille projets : 2 cols (Koundji/Ecosol/Akwaba \| Thòy/Bomoyi/Elvi), px 112, gap 32, pb 56, légende + image, « Voir tous les projets » |
 | 2026-09-25 | Phase 7.3–7.5 : CTA + Services + Équipe + Approche + Contact + Footer depuis captures Figma ; WhatsApp réel +223 70 68 90 91 ; options Service/Budget encore Q03 |

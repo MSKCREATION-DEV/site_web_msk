@@ -68,7 +68,7 @@ export const projects: Project[] = [
     worksCardHeight: "short",
     cover: { src: "/assets/projects/thoy-art/cover.png" },
     worksCover: { src: "/assets/works/thoy-art/cover.png" },
-    gallery: gallery("thoy-art", 4),
+    gallery: gallery("thoy-art", 5),
     nextSlug: "ecosol",
     filters: ["web", "app", "branding"],
   },

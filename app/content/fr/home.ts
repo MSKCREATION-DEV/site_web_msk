@@ -201,6 +201,7 @@ export const home: HomeContent = {
     titleLine1: "Parlons",
     titleLine2: "de votre",
     titleAccent: "projet.",
+    backgroundSrc: "/assets/contact/background.png",
     valuesTicker: [
       "Impact",
       "Précision",

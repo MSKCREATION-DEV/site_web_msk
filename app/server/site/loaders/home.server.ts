@@ -1,18 +1,7 @@
-import { existsSync, statSync } from "node:fs";
-import path from "node:path";
 import { getLocaleContent } from "~/content";
 import type { Locale } from "~/i18n";
 import { getWorksGridProjects, teamMembers } from "~/data";
-
-function isUsableAsset(publicPath: string): boolean {
-  const absolute = path.join(process.cwd(), "public", publicPath.replace(/^\//, ""));
-  if (!existsSync(absolute)) return false;
-  try {
-    return statSync(absolute).size > 1024;
-  } catch {
-    return false;
-  }
-}
+import { isUsableAsset } from "~/server/site/assets.server";
 
 export function loadHomePage(locale: Locale) {
   const content = getLocaleContent(locale);
@@ -46,9 +35,21 @@ export function loadHomePage(locale: Locale) {
     isUsableAsset(image.src),
   );
 
+  const contactBackground = content.home.contactSection.backgroundSrc;
+  const contactSection = {
+    ...content.home.contactSection,
+    backgroundSrc:
+      contactBackground && isUsableAsset(contactBackground)
+        ? contactBackground
+        : undefined,
+  };
+
   return {
     locale,
-    home: content.home,
+    home: {
+      ...content.home,
+      contactSection,
+    },
     nav: content.nav,
     footer: content.footer,
     contact: content.contact,

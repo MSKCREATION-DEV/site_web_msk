@@ -1,5 +1,3 @@
-import { existsSync, statSync } from "node:fs";
-import path from "node:path";
 import { getLocaleContent } from "~/content";
 import {
   getProjectBySlug,
@@ -8,17 +6,7 @@ import {
 } from "~/data";
 import type { Locale } from "~/i18n";
 import { projectPath } from "~/i18n";
-
-/** Ignore exports 1×1 / vides (placeholders manuels invalidés). */
-function isUsableAsset(publicPath: string): boolean {
-  const absolute = path.join(process.cwd(), "public", publicPath.replace(/^\//, ""));
-  if (!existsSync(absolute)) return false;
-  try {
-    return statSync(absolute).size > 1024;
-  } catch {
-    return false;
-  }
-}
+import { isUsableAsset } from "~/server/site/assets.server";
 
 export function loadProjectPage(locale: Locale, slug: string) {
   const project = getProjectBySlug(slug);
