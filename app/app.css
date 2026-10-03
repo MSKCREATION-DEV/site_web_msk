@@ -4,47 +4,64 @@
   themes: msk --default;
 }
 
+/*
+ * Charte graphique MSK Création v3 (PDF 2026-09-25) — thème daisyUI.
+ * Anciens Figma : base #080808, primary #137DC5, secondary ocre #C8742A.
+ */
 @plugin "daisyui/theme" {
   name: "msk";
   default: true;
   prefersdark: true;
   color-scheme: dark;
 
-  --color-base-100: #080808;
-  --color-base-200: #111111;
-  --color-base-300: #1a1a1a;
+  --color-base-100: #0d1330; /* Encre */
+  --color-base-200: #151b3d;
+  --color-base-300: #1c2448;
   --color-base-content: #ffffff;
-  --color-primary: #137dc5;
+  --color-primary: #1d73bc; /* Bleu de référence */
   --color-primary-content: #ffffff;
-  --color-secondary: #c8742a;
-  --color-secondary-content: #080808;
-  --color-accent: #137dc5;
+  --color-secondary: #ff5a3c; /* Corail — jamais sur le logo */
+  --color-secondary-content: #0d1330;
+  --color-accent: #1d73bc;
   --color-accent-content: #ffffff;
-  --color-neutral: #111111;
+  --color-neutral: #151b3d;
   --color-neutral-content: #ffffff;
-  --color-info: #137dc5;
-  --color-success: #137dc5;
-  --color-warning: #c8742a;
+  --color-info: #1d73bc;
+  --color-success: #1d73bc;
+  --color-warning: #ff5a3c;
   --color-error: #e5484d;
   --color-error-content: #ffffff;
 }
 
 @theme {
-  /* Audit Figma 1440 — typo */
+  /*
+   * Charte v3 — typo (PDF §03). Familles inchangées vs Figma :
+   * Jost · Bricolage Grotesque ExtraBold · Instrument Serif Italic.
+   */
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-grotesk: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-mono-msk: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-serif-msk: "Instrument Serif", ui-serif, Georgia, serif;
 
-  /* Couleurs */
-  --color-msk-page: #080808;
-  --color-msk-black: #000000;
-  --color-msk-card: #111111;
-  --color-msk-placeholder: #1a1a1a;
-  --color-msk-blue: #137dc5;
-  --color-msk-blue-hover: #2994db;
-  --color-msk-ocre: #c8742a;
+  /*
+   * Charte v3 — couleurs (PDF §02).
+   * Mapping ancien Figma → charte : voir docs/design/DESIGN_TOKENS.md
+   */
+  --color-msk-ink: #0d1330; /* Encre — fond sombre autorisé */
+  --color-msk-page: #0d1330;
+  --color-msk-black: #0d1330; /* Alias Encre (plus de noir pur UI) */
+  --color-msk-card: #151b3d; /* Surface carte sur Encre */
+  --color-msk-placeholder: #1c2448;
+  --color-msk-blue: #1d73bc; /* Bleu de référence — ancien #137DC5 */
+  --color-msk-blue-hover: #1384cb; /* Bleu vif (famille) — ancien #2994DB */
+  --color-msk-cyan: #00acee;
+  --color-msk-indigo: #2a3d8e;
+  --color-msk-deep: #284393;
+  --color-msk-coral: #ff5a3c; /* Accent — remplace ocre #C8742A */
+  --color-msk-chalk: #f5f3ef;
+  --color-msk-paper: #dce0e8;
+  --color-msk-gray: #8a93a6;
   --color-msk-error: #e5484d;
   --color-msk-text: #ffffff;
   --color-msk-text-secondary: rgb(255 255 255 / 0.78);
@@ -52,10 +69,11 @@
   --color-msk-text-subtle: rgb(255 255 255 / 0.45);
   --color-msk-border: rgb(255 255 255 / 0.08);
   --color-msk-border-visible: rgb(255 255 255 / 0.2);
-  --color-msk-warm-deep: #100c08;
-  --color-msk-warm-footer: #0e0a06;
-  --color-msk-warm-contact: #12100e;
-  --color-msk-portrait-bg: #d1d5db;
+  /* Nuances Encre pour dégradés de section (ex-warm bruns folkloriques) */
+  --color-msk-ink-deep: #0a1028;
+  --color-msk-ink-footer: #090e24;
+  --color-msk-ink-contact: #11183a;
+  --color-msk-portrait-bg: #dce0e8; /* Gris papier charte */
   --color-msk-field-filled: rgb(255 255 255 / 0.3);
   --color-msk-success-bg: rgb(255 255 255 / 0.04);
   --color-msk-success-border: rgb(255 255 255 / 0.1);
@@ -132,7 +150,8 @@
   --text-msk-2xs: 0.625rem; /* 10px */
   --text-msk-xs: 0.6875rem; /* 11px */
   --text-msk-15: 0.9375rem; /* 15px */
-  --text-msk-card: 1.0625rem; /* 17px */
+  /* Attention : ne pas nommer --text-msk-card (collision avec --color-msk-card → text-msk-card = couleur sombre) */
+  --text-msk-lg: 1.0625rem; /* 17px — noms cartes équipe */
   --text-msk-success: 1.375rem; /* 22px */
 
   --tracking-msk: 0.1em;
@@ -190,6 +209,7 @@ html,
 body {
   @apply bg-msk-page font-sans text-msk-text antialiased;
   color-scheme: dark;
+  width: 100%;
   max-width: 100%;
   overflow-x: clip;
 }
@@ -245,21 +265,21 @@ main {
   }
 }
 
-/* Bande de transition entre sections — 96 px, dégradé sombre */
+/* Charte v3 — bande transition 96 px, dégradé Encre (plus de warm brun) */
 .msk-section-gap {
   height: var(--msk-section-gap);
   width: 100%;
   background: linear-gradient(
     180deg,
-    #080808 0%,
-    #0c0a08 45%,
-    #100c08 70%,
-    #080808 100%
+    #0d1330 0%,
+    #0a1028 45%,
+    #090e24 70%,
+    #0d1330 100%
   );
   pointer-events: none;
 }
 
-/* Conteneur page — gabarit = largeur écran plafonnée 1440 */
+/* Conteneur page — pleine largeur viewport (padding via .msk-page-x) */
 .msk-container {
   @apply mx-auto w-full max-w-msk;
 }
@@ -281,14 +301,30 @@ main {
   gap: max(0.375rem, calc(8 * var(--msk-u)));
 }
 
-.msk-watermark-pos {
-  right: 6%;
+/*
+ * Rythme horizontal (cohérence Desktop) :
+ * - `.msk-page-x` : textes, nav, compteurs, CTA → gutter `--msk-page-px`
+ * - médias / marquees : full-bleed, avec fondu latéral sur les rails texte
+ */
+.msk-marquee-rail {
+  display: flex;
+  height: var(--msk-marquee-h);
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
+  overflow: hidden;
+  border-block: 1px solid rgb(255 255 255 / 0.1);
+  /* Évite la coupure sèche des noms collés au bord */
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 var(--msk-page-px),
+    #000 calc(100% - var(--msk-page-px)),
+    transparent 100%
+  );
 }
 
-/* Filigrane logo bleu (CTA / Approche) */
-.msk-logo-watermark {
-  filter: brightness(0) invert(0.35) sepia(1) saturate(5) hue-rotate(175deg);
-}
+/* Charte v3 — filigrane : /assets/logo/msk-mark.svg + opacity Tailwind (plus de hue-rotate). */
 
 .msk-scrollbar-none {
   scrollbar-width: none;
@@ -298,16 +334,20 @@ main {
   display: none;
 }
 
-/* Slides galerie Approche — largeur design proportionnelle (peut déborder → scroll parent) */
+/*
+ * Galerie Approche — 1 slide = largeur viewport (pas de bandeau sombre
+ * ni d’image suivante qui « se mêle » sur le côté).
+ */
 .msk-gallery-slide {
-  width: var(--msk-gallery-slide-w);
-  height: var(--msk-gallery-slide-h);
+  width: 100%;
+  height: var(--msk-gallery-h);
+  min-width: 100%;
 }
 
-/* ——— Typo — tailles design × --msk-u ——— */
+/* ——— Typo Charte v3 / Figma — tailles design × --msk-u ; familles via var(--font-*) ——— */
 
 .msk-eyebrow {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(10px, calc(12 * var(--msk-u)));
   font-weight: 400;
   line-height: 1;
@@ -316,7 +356,7 @@ main {
 }
 
 .msk-label {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(9px, calc(10 * var(--msk-u)));
   font-weight: 400;
   line-height: 1;
@@ -325,7 +365,7 @@ main {
 }
 
 .msk-btn-label {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(11px, calc(13 * var(--msk-u)));
   font-weight: 500;
   line-height: 1;
@@ -334,7 +374,7 @@ main {
 }
 
 .msk-btn-label-sm {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(10px, calc(11 * var(--msk-u)));
   font-weight: 400;
   line-height: 1;
@@ -343,7 +383,7 @@ main {
 }
 
 .msk-nav-label {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(10px, calc(11 * var(--msk-u)));
   font-weight: 400;
   line-height: 1;
@@ -352,7 +392,7 @@ main {
 }
 
 .msk-drawer-link {
-  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: var(--msk-drawer-link);
   font-weight: 800;
   line-height: 1.1;
@@ -361,7 +401,7 @@ main {
 }
 
 .msk-ticker {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(10px, calc(12 * var(--msk-u)));
   font-weight: 400;
   line-height: 1;
@@ -370,7 +410,7 @@ main {
 }
 
 .msk-hero-line-1 {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: calc(86 * var(--msk-u));
   font-weight: 300;
   line-height: 1.1;
@@ -379,7 +419,7 @@ main {
 }
 
 .msk-hero-line-2 {
-  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-family: var(--font-serif-msk);
   font-size: calc(96 * var(--msk-u));
   font-weight: 400;
   font-style: italic;
@@ -388,7 +428,7 @@ main {
 }
 
 .msk-hero-line-3 {
-  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: calc(86 * var(--msk-u));
   font-weight: 800;
   line-height: 1.1;
@@ -397,7 +437,7 @@ main {
 }
 
 .msk-section-title {
-  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: calc(79 * var(--msk-u));
   font-weight: 800;
   line-height: 1;
@@ -406,7 +446,7 @@ main {
 }
 
 .msk-section-accent {
-  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-family: var(--font-serif-msk);
   font-size: calc(88 * var(--msk-u));
   font-weight: 400;
   font-style: italic;
@@ -415,7 +455,7 @@ main {
 }
 
 .msk-cta-title {
-  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: calc(101 * var(--msk-u));
   font-weight: 800;
   line-height: 1;
@@ -424,7 +464,7 @@ main {
 }
 
 .msk-cta-accent {
-  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-family: var(--font-serif-msk);
   font-size: calc(113 * var(--msk-u));
   font-weight: 400;
   font-style: italic;
@@ -433,7 +473,7 @@ main {
 }
 
 .msk-contact-title {
-  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: calc(58 * var(--msk-u));
   font-weight: 800;
   line-height: 1;
@@ -442,7 +482,7 @@ main {
 }
 
 .msk-contact-accent {
-  font-family: "Instrument Serif", ui-serif, Georgia, serif;
+  font-family: var(--font-serif-msk);
   font-size: calc(65 * var(--msk-u));
   font-weight: 400;
   font-style: italic;
@@ -451,7 +491,7 @@ main {
 }
 
 .msk-sheet-title {
-  font-family: "Bricolage Grotesque", "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: calc(72 * var(--msk-u));
   font-weight: 800;
   letter-spacing: calc(-1.44 * var(--msk-u));
@@ -460,21 +500,21 @@ main {
 }
 
 .msk-body {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(14px, calc(18 * var(--msk-u)));
   font-weight: 400;
   line-height: 1.65;
 }
 
 .msk-body-sm {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(13px, calc(16 * var(--msk-u)));
   font-weight: 400;
   line-height: 1.65;
 }
 
 .msk-body-xs {
-  font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: max(12px, calc(15 * var(--msk-u)));
   font-weight: 400;
   line-height: 1.65;

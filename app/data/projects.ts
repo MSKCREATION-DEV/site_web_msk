@@ -89,7 +89,8 @@ export const projects: Project[] = [
   {
     slug: "bomoyi",
     year: "2025",
-    accentColor: "#137DC5",
+    /* Charte v3 — bleu de référence (ancien Figma #137DC5) */
+    accentColor: "#1D73BC",
     expertises: ["App Mobile", "UX/UI"],
     inWorksGrid: true,
     hasBeforeAfter: false,

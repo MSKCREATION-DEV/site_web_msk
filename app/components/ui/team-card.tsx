@@ -41,10 +41,10 @@ export function TeamCard({
           className="block h-px w-0 bg-msk-blue transition-all duration-msk ease-out group-hover:w-6"
           aria-hidden
         />
-        <p className="font-sans text-sm font-semibold leading-msk-snug tracking-msk-tight text-msk-text uppercase transition-colors duration-msk ease-out group-hover:text-msk-blue sm:text-msk-card">
+        <p className="font-sans text-sm font-semibold leading-msk-snug tracking-msk-tight text-msk-text uppercase transition-colors duration-msk ease-out group-hover:text-msk-blue sm:text-msk-lg">
           {name}
         </p>
-        <p className="font-sans text-msk-xs leading-msk-xs tracking-msk-label text-msk-text-muted uppercase transition-colors duration-msk ease-out group-hover:text-msk-blue">
+        <p className="font-sans text-msk-xs leading-msk-xs tracking-msk-label text-msk-text-secondary uppercase transition-colors duration-msk ease-out group-hover:text-msk-blue">
           {role}
         </p>
       </div>

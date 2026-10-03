@@ -53,15 +53,24 @@ Détail pixel overlay Figma (composants `58:2` / `58:28`) = **PENDING** jusqu’
 
 ---
 
-## Accent / Ocre (audit 2026-09-25)
+## Brand — Charte graphique v3 (2026-10-03)
 
-**Confirmé Figma :** `#C8742A` (variable `Accent/Ocre`, mode Sombre).  
-Remplace l’ancien fallback expert `#C4A574`.
+**Source :** PDF [`docs/brand/CHARTE_GRAPHIQUE_MSK_CREATION_v3.pdf`](../brand/CHARTE_GRAPHIQUE_MSK_CREATION_v3.pdf).  
+**Décision :** les tokens couleur / logo / favicon suivent la charte PDF. Le **layout** Desktop reste Figma.
 
-## Typographie (audit 2026-09-25)
+| Sujet | Choix charte | Ancien Figma |
+|-------|--------------|--------------|
+| Fond sombre | Encre `#0D1330` | `#080808` |
+| Bleu | `#1D73BC` | `#137DC5` |
+| Accent secondaire | Corail `#FF5A3C` | Ocre `#C8742A` |
+| Logo sur sombre | Réservé blanc (intercalé / bloc gauche / signe) | SVG dégradé + `#0000FF` (interdit PDF) |
+
+Index brand : [`docs/brand/README.md`](../brand/README.md).
+
+## Typographie (audit 2026-09-25 + charte v3)
 
 Police UI : **Jost**. Display : **Bricolage Grotesque ExtraBold**. Accents : **Instrument Serif Italic**.  
-Travaux : pas de H2 distinct → surtitre 12px.
+Travaux : pas de H2 distinct → surtitre 12px. Confirmé PDF §03.
 
 ---
 
@@ -133,3 +142,7 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-09-27 | **Scale proportionnel** : `--msk-u = min(100vw, 1440px) / 1440` — gabarit = écran ; paddings/gaps/largeurs/typo display = `N_design × --msk-u` (plus de 20/24 px « téléphone »). Débordements acceptés dans parents scrollables (galerie). Plancher lisibilité UI/body uniquement. |
 | 2026-09-27 | **Nav chrome** : hauteur `max(72px, 96×u)`, logo `max(104px, 126×u)` — le scale pur rendait la barre ~26 px / logo ~34 px inutilisables. Layout flex mobile + grille 3 cols Desktop (logo \| liens gap 40 \| Briefer+EN). |
 | 2026-09-27 | **Boutons / footer mobile** : planchers hauteur CTA/sm ; Envoyer sans double flèche (label content seul) ; boutons Hero/CTA/Travaux en `w-auto` alignés start (plus de full-bleed) ; footer 1 logo géant mobile (petit logo Desktop only). |
+| 2026-10-03 | **Charte graphique v3** : Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C` ; logos pack 2026 (intercalé / bloc gauche / signe) ; favicon signe sur Encre ; docs/brand ; retrait warm brun + ocre tokens. Layout Figma inchangé. |
+| 2026-10-03 | **QA charte** : fond Contact recentré bureau + vignette Encre (masque couture porte/sol) ; logo intercalé recomposé (gaps X) ; nav logo h≥56px / w auto (seuil mot-logo 24px) ; legacy `#0000FF` sorti de `public/`. |
+| 2026-10-03 | **Pleine largeur Desktop** : retrait du plafond 1440 sur `--msk-u` (`100vw / 1440`) et `max-w-msk` = 100 % — plus de bandes vides sur écrans larges. |
+| 2026-10-03 | **Rythme horizontal** : médias/marquees full-bleed ; textes/compteurs/CTA/`BackToTop` calés sur `--msk-page-px`. Galerie Approche = 1 slide / viewport (plus de bandeau sombre ni slide suivante visible). CTA : fond hors gutter. Marquees : mask latéral = gutter. |

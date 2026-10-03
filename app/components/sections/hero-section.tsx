@@ -147,21 +147,19 @@ export function HeroSection({
         </div>
       ) : null}
 
-      <div className="relative z-10 h-msk-marquee w-full max-w-full shrink-0 overflow-hidden border-t border-white/10 bg-black/50 backdrop-blur-sm">
-        <div className="flex h-full w-full items-center overflow-hidden">
-          <div className="msk-marquee flex w-max max-w-none gap-8 whitespace-nowrap will-change-transform">
-            {tickerLoop.map((item, index) => (
-              <span
-                key={`${item}-${index}`}
-                className="msk-ticker inline-flex items-center gap-8 text-msk-text"
-              >
-                {item}
-                <span className="text-msk-text-subtle" aria-hidden>
-                  ·
-                </span>
+      <div className="msk-marquee-rail relative z-10 shrink-0 border-t border-white/10 bg-black/50 backdrop-blur-sm">
+        <div className="msk-marquee flex w-max max-w-none gap-10 whitespace-nowrap will-change-transform">
+          {tickerLoop.map((item, index) => (
+            <span
+              key={`${item}-${index}`}
+              className="msk-ticker inline-flex items-center gap-10 text-msk-text"
+            >
+              {item}
+              <span className="text-msk-text-subtle" aria-hidden>
+                ·
               </span>
-            ))}
-          </div>
+            </span>
+          ))}
         </div>
       </div>
     </section>

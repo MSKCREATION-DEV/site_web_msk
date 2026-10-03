@@ -7,13 +7,13 @@ type ServicesSectionProps = {
   className?: string;
 };
 
-/** Services — dégradé #080808→#100C08, desc 320 px à droite. */
+/** Services — Charte v3 : dégradé Encre → ink-deep, desc 320 px à droite. */
 export function ServicesSection({ content, className }: ServicesSectionProps) {
   return (
     <section
       id="services"
       className={cn(
-        "scroll-mt-24 bg-linear-to-b from-msk-page to-msk-warm-deep",
+        "scroll-mt-24 bg-linear-to-b from-msk-page to-msk-ink-deep",
         className,
       )}
       aria-labelledby="services-heading"

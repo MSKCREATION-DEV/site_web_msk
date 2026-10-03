@@ -1,29 +1,43 @@
 # Design Tokens — MSK Création
 
-Source : **audit design system Desktop 1440** (2026-09-25) — collection `MSK / Couleurs` mode Sombre + instances typo frame.
+**Source brand :** Charte graphique v3 (PDF 2026-09-25) — [`docs/brand/`](../brand/).  
+**Source layout / typo scale Desktop :** Figma MSK-MAQUETTE 1440 (inchangé).
 
 ---
 
-## Couleurs
+## Couleurs (Charte v3)
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| `Fond/Page` | `#080808` | Fond page |
-| `Fond/Noir` | `#000000` | Intro / zones noires |
-| `Fond/Carte` | `#111111` | Surfaces carte |
-| `Fond/Image placeholder` | `#1A1A1A` | Placeholders images |
-| `Accent/Bleu` | `#137DC5` | CTA, accents italic, focus |
-| `Accent/Ocre` | `#C8742A` | Secondaire chaud (confirmé audit) |
-| `Texte/Principal` | `#FFFFFF` | Titres |
-| `Texte/Secondaire` | `rgba(255,255,255,0.78)` | Nav, intros |
-| `Texte/Atténué` | `rgba(255,255,255,0.6)` | Eyebrows, secondaires |
-| `Texte/Discret` | `rgba(255,255,255,0.45)` | Placeholders, années |
-| `Bordure/Subtile` | `rgba(255,255,255,0.08)` | Séparateurs champs |
-| `Bordure/Visible` | `rgba(255,255,255,0.2)` | Contours secondaires |
+| Token CSS | Hex | Rôle charte |
+|-----------|-----|-------------|
+| `--color-msk-ink` / `page` / `black` | `#0D1330` | Encre — fond sombre |
+| `--color-msk-card` | `#151B3D` | Surfaces carte |
+| `--color-msk-placeholder` | `#1C2448` | Placeholders |
+| `--color-msk-blue` | `#1D73BC` | Bleu de référence (CTA, accents, focus) |
+| `--color-msk-blue-hover` | `#1384CB` | Bleu vif — hover |
+| `--color-msk-cyan` | `#00ACEE` | Famille / extrémité dégradé |
+| `--color-msk-indigo` | `#2A3D8E` | Famille / départ dégradé |
+| `--color-msk-deep` | `#284393` | Famille |
+| `--color-msk-coral` | `#FF5A3C` | Accent secondaire (≤10 %, jamais sur logo) |
+| `--color-msk-chalk` | `#F5F3EF` | Craie — fond clair documents |
+| `--color-msk-paper` | `#DCE0E8` | Gris papier |
+| `--color-msk-gray` | `#8A93A6` | Gris moyen |
+| `--color-msk-ink-deep` / `footer` / `contact` | nuances Encre | Dégradés de section |
+| Texte / bordures | blanc + opacités | Inchangé (UI dark) |
 
-**Couleurs projet (hover cartes)** : Koundji `#E87B1A`, Ecosol `#F0A020`, Akwaba `#8FB8D8`, Thòy `#CC2200`, Elvi `#C9A84C`. Bomoyi : NON TROUVÉ.
+**Dégradé logo** `#2A3D8E → #00ACEE` : fond clair uniquement — **interdit** sur Encre.
 
-Survol bouton (hors variables) observé antérieurement : `#2994db`. Erreur form : `#e5484d` (frame états).
+### Mapping ancien Figma → Charte v3
+
+| Ancien (Figma audit) | Nouveau (charte) |
+|----------------------|------------------|
+| `#080808` Fond/Page | `#0D1330` Encre |
+| `#000000` Fond/Noir | `#0D1330` Encre |
+| `#111111` Fond/Carte | `#151B3D` |
+| `#137DC5` Accent/Bleu | `#1D73BC` |
+| `#2994DB` hover | `#1384CB` Bleu vif |
+| `#C8742A` Accent/Ocre | `#FF5A3C` Corail |
+
+**Couleurs projet (hover cartes)** : inchangées (identité client) sauf Bomoyi → `#1D73BC`.
 
 ---
 
@@ -33,9 +47,11 @@ Survol bouton (hors variables) observé antérieurement : `#2994db`. Erreur form
 |---------|------|
 | **Jost** | Corps UI (Light 300 → SemiBold 600) |
 | **Bricolage Grotesque ExtraBold 800** | Titres section, Hero L3, CTA titre |
-| **Instrument Serif Italic 400** | Accents bleus (Hero L2, titres section) |
+| **Instrument Serif Italic 400** | Accents bleus (un mot / expression par titre) |
 
-Échelles clés (Desktop) : voir utilitaires `.msk-*` dans `app/app.css` (Hero 86/96/86, section 79/88, CTA 101/113, Contact 58/65, fiche 72).
+Échelles Desktop : utilitaires `.msk-*` dans `app/app.css` (Hero 86/96/86, section 79/88, CTA 101/113, Contact 58/65, fiche 72) — relevé Figma confirmé PDF §03 numérique.
+
+Sources locales : `docs/brand/fonts/`. Runtime : Google Fonts (`app/root.tsx`).
 
 ---
 
@@ -43,17 +59,18 @@ Survol bouton (hors variables) observé antérieurement : `#2994db`. Erreur form
 
 | Token | Valeur design (1440) | Runtime |
 |-------|----------------------|---------|
-| Unité `--msk-u` | 1 px | `min(100vw, 1440px) / 1440` |
+| Unité `--msk-u` | 1 px | `100vw / 1440` (pleine largeur, sans plafond) |
 | Transition sections | **96 px** | `96 × --msk-u` |
-| Padding horizontal page | **112 px** | `112 × --msk-u` |
+| Padding horizontal page | **112 px** | `112 × --msk-u` (plancher 1.25rem) |
+| Largeur page | 1440 | `100%` / viewport |
 | Largeur utile | **1216 px** | `1216 × --msk-u` |
 | Nav | 96 h | `96 × --msk-u` |
 | Hero | 900 h | `900 × --msk-u` |
 
-**Règle :** gabarit = largeur d’écran (plafonnée 1440). Intérieurs = calcs depuis les tailles Figma — **pas** de distances « matériel » (20/24 px téléphone). Les blocs plus larges que le parent (galerie) débordent dans un scroll interne.
+**Règle :** gabarit = largeur viewport (pleine page Desktop). Intérieurs = calcs depuis les tailles Figma × `--msk-u`.
 
 ---
 
 ## Breakpoints
 
-Desktop 1440 = source. Composition proportionnelle via `--msk-u`. Frames mobile Figma : `MOBILE_BRIEF.md` (stack / drawer interim uniquement).
+Desktop 1440 = source. Composition proportionnelle via `--msk-u`. Frames mobile Figma : `MOBILE_BRIEF.md`.

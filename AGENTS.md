@@ -8,15 +8,17 @@ Reproduire le site vitrine **MSK Création** à partir du Figma validé, avec Re
 
 ## Sources de vérité
 
-1. **Figma** — [MSK-MAQUETTE](https://www.figma.com/design/wn9ZMeW9YwaF3PE8Wqa2WS/MSK-MAQUETTE) : UI, copy Desktop, assets, interactions.
-2. **Plan** — `MSK_CREATION_SITE_REACT_ROUTER_V8_PLAN_COMPLET.md` + plan de suivi Cursor.
-3. **Docs design** — `docs/design/*`, `docs/validation/FIGMA_OPEN_QUESTIONS.md`.
+1. **Figma** — [MSK-MAQUETTE](https://www.figma.com/design/wn9ZMeW9YwaF3PE8Wqa2WS/MSK-MAQUETTE) : layout, copy Desktop, assets photo, interactions.
+2. **Charte graphique v3** — [`docs/brand/`](docs/brand/) (PDF 2026-09-25) : couleurs, logos, typo familles, règles d’usage marque. **Prime sur les anciennes variables couleur Figma.**
+3. **Plan** — `MSK_CREATION_SITE_REACT_ROUTER_V8_PLAN_COMPLET.md` + plan de suivi Cursor.
+4. **Docs design** — `docs/design/*`, `docs/validation/FIGMA_OPEN_QUESTIONS.md`.
 
 ## Règles non négociables
 
-- Ne **jamais** inventer section, texte, image, animation, couleur, espacement ou breakpoint absents de Figma / décisions documentées.
+- Ne **jamais** inventer section, texte, image, animation, couleur, espacement ou breakpoint absents de Figma / charte / décisions documentées.
+- Tokens brand (Encre, bleu `#1D73BC`, corail, logos) : suivre `docs/brand/` + `DESIGN_TOKENS.md`.
 - Si ambigu → documenter dans `FIGMA_OPEN_QUESTIONS.md` → demander validation → seulement ensuite coder.
-- Assets : export Figma uniquement. Jamais Unsplash / image « similaire ». Signalement : `Asset X présent dans Figma mais source non disponible.`
+- Assets photo : export Figma uniquement. Logos marque : pack charte `docs/brand/logos/`. Jamais Unsplash / image « similaire ». Signalement : `Asset X présent dans Figma mais source non disponible.`
 - UI ≠ content ≠ data. Les composants reçoivent le contenu via props / loaders.
 - Contenu principal en **SSR**. CSR seulement : intro, filtres, overlays, animations, formulaire.
 - Mobile : **pas d’UI inventée** — voir `docs/design/MOBILE_BRIEF.md` jusqu’à Figma mobile.

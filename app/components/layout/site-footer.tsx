@@ -26,7 +26,7 @@ export function SiteFooter({
   return (
     <footer
       className={cn(
-        "bg-linear-to-b from-msk-page to-msk-warm-footer",
+        "bg-linear-to-b from-msk-page to-msk-ink-footer",
         className,
       )}
     >

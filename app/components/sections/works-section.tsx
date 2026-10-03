@@ -99,7 +99,7 @@ export function WorksSection({
         </Reveal>
 
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-8">
-          <ul className="flex w-full min-w-0 flex-1 flex-col gap-10 lg:w-msk-works lg:max-w-full lg:gap-8">
+          <ul className="flex w-full min-w-0 flex-1 flex-col gap-10 lg:gap-8">
             {left.map((project, i) => (
               <li key={project.slug}>
                 <Reveal delayMs={i * 80}>
@@ -118,7 +118,7 @@ export function WorksSection({
               </li>
             ))}
           </ul>
-          <ul className="flex w-full min-w-0 flex-1 flex-col gap-10 lg:w-msk-works lg:max-w-full lg:gap-8">
+          <ul className="flex w-full min-w-0 flex-1 flex-col gap-10 lg:gap-8">
             {right.map((project, i) => (
               <li key={project.slug}>
                 <Reveal delayMs={i * 80 + 40}>

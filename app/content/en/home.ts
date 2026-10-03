@@ -249,13 +249,13 @@ export const home: HomeContent = {
       },
       {
         label: "TikTok",
-        value: "@mskcreation.io",
-        href: "https://www.tiktok.com/@mskcreation.io",
+        value: "@msk.creation",
+        href: "https://www.tiktok.com/@msk.creation",
       },
       {
         label: "LinkedIn",
         value: "MSK CREATION",
-        href: "https://www.linkedin.com/company/mskcreation",
+        href: "https://www.linkedin.com/company/msk-creation/",
       },
     ],
     formNote: "* Required fields. Reply within 24 business hours.",

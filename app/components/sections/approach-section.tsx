@@ -11,11 +11,9 @@ type ApproachSectionProps = {
   className?: string;
 };
 
-const SLIDE_W = 1008;
-const SLIDE_GAP = 1;
-
 /**
- * Approche — galerie horizontale draggable 1008×558, process 4 cols, marquee valeurs.
+ * Approche — galerie full-bleed (1 slide = 100vw), process 4 cols, marquee valeurs.
+ * Rythme : média bord à bord ; compteur / copy → `msk-page-x`.
  */
 export function ApproachSection({
   content,
@@ -32,11 +30,16 @@ export function ApproachSection({
     active: false,
   });
 
+  const slideWidthOf = () => {
+    const el = trackRef.current;
+    if (!el) return 0;
+    return el.clientWidth;
+  };
+
   const syncIndexFromScroll = useCallback(() => {
     const el = trackRef.current;
     if (!el || slides.length === 0) return;
-    const first = el.querySelector("figure");
-    const slideWidth = first instanceof HTMLElement ? first.offsetWidth + SLIDE_GAP : SLIDE_W + SLIDE_GAP;
+    const slideWidth = el.clientWidth || 1;
     const next = Math.round(el.scrollLeft / slideWidth);
     setIndex(Math.max(0, Math.min(slides.length - 1, next)));
   }, [slides.length]);
@@ -52,8 +55,7 @@ export function ApproachSection({
   const goTo = (i: number) => {
     const el = trackRef.current;
     if (!el) return;
-    const first = el.querySelector("figure");
-    const slideWidth = first instanceof HTMLElement ? first.offsetWidth + SLIDE_GAP : SLIDE_W + SLIDE_GAP;
+    const slideWidth = slideWidthOf();
     el.scrollTo({
       left: i * slideWidth,
       behavior: "smooth",
@@ -101,7 +103,7 @@ export function ApproachSection({
     >
       {slides.length > 0 ? (
         <div
-          className="relative w-full max-w-full overflow-hidden bg-msk-placeholder"
+          className="relative w-full max-w-full overflow-hidden bg-msk-ink"
           aria-roledescription="carousel"
           aria-label={content.galleryAriaLabel}
         >
@@ -116,8 +118,7 @@ export function ApproachSection({
             {slides.map((slide) => (
               <figure
                 key={slide.src}
-                className="msk-gallery-slide relative shrink-0 snap-center self-center sm:snap-start"
-                style={{ marginRight: SLIDE_GAP }}
+                className="msk-gallery-slide relative shrink-0 snap-start"
               >
                 <img
                   src={assetUrl(slide.src)}
@@ -128,7 +129,7 @@ export function ApproachSection({
                   className="absolute inset-0 size-full object-cover select-none"
                 />
                 {slide.label ? (
-                  <figcaption className="absolute bottom-6 left-8 font-sans text-msk-xs font-medium tracking-msk-wide text-white/80 uppercase">
+                  <figcaption className="msk-page-x absolute inset-x-0 bottom-6 font-sans text-msk-xs font-medium tracking-msk-wide text-msk-text uppercase drop-shadow-[0_1px_2px_rgb(0_0_0_/_0.8)]">
                     {slide.label}
                   </figcaption>
                 ) : null}
@@ -153,7 +154,7 @@ export function ApproachSection({
                 />
               ))}
             </div>
-            <p className="font-sans text-xs font-medium text-msk-text-subtle">
+            <p className="font-sans text-xs font-medium text-msk-text-secondary">
               {String(index + 1).padStart(2, "0")} /{" "}
               {String(slides.length).padStart(2, "0")}
             </p>
@@ -176,11 +177,12 @@ export function ApproachSection({
             </div>
             <div className="hidden lg:block" aria-hidden />
             <div className="relative flex flex-col gap-6 self-end">
+              {/* Charte v3 — filigrane signe seul (pas le mot-logo, pas de dégradé). */}
               <img
-                src={assetUrl("/assets/logo/msk-creation.svg")}
+                src={assetUrl("/assets/logo/msk-mark.svg")}
                 alt=""
                 aria-hidden
-                className="msk-logo-watermark pointer-events-none absolute -top-8 right-0 hidden h-32 w-auto max-w-2/5 opacity-8 sm:block"
+                className="msk-logo-watermark pointer-events-none absolute -top-8 right-0 hidden h-32 w-auto max-w-2/5 opacity-10 sm:block"
               />
               {content.body.map((paragraph) => (
                 <p
@@ -221,21 +223,19 @@ export function ApproachSection({
       </div>
 
       {ticker.length > 0 ? (
-        <div className="h-msk-marquee w-full max-w-full overflow-hidden border-y border-white/10">
-          <div className="flex h-full w-full items-center overflow-hidden">
-            <div className="msk-marquee flex w-max gap-8 whitespace-nowrap will-change-transform">
-              {ticker.map((item, i) => (
-                <span
-                  key={`${item}-${i}`}
-                  className="msk-ticker inline-flex items-center gap-8 text-msk-text"
-                >
-                  {item}
-                  <span className="text-msk-text-subtle" aria-hidden>
-                    ·
-                  </span>
+        <div className="msk-marquee-rail">
+          <div className="msk-marquee flex w-max gap-10 whitespace-nowrap will-change-transform">
+            {ticker.map((item, i) => (
+              <span
+                key={`${item}-${i}`}
+                className="msk-ticker inline-flex items-center gap-10 text-msk-text"
+              >
+                {item}
+                <span className="text-msk-text-subtle" aria-hidden>
+                  ·
                 </span>
-              ))}
-            </div>
+              </span>
+            ))}
           </div>
         </div>
       ) : null}

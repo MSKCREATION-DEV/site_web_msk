@@ -23,8 +23,11 @@ function isValidEmail(value: string) {
 }
 
 /**
- * Contact — fond photo + overlay 70 %, grille 568+80+568,
- * form Nom|Email 272, validation + loading + confirmation.
+ * Contact — fond photo (cadrage bureau) + vignette Encre,
+ * grille 568+80+568, form Nom|Email 272, validation + loading + confirmation.
+ *
+ * Charte v3 §02 : photo uniquement sur zone calme / contrastée.
+ * Vignette Encre pour unifier et éviter l’effet « deux photos » (porte ↔ bureau).
  */
 export function ContactSection({
   content,
@@ -95,15 +98,25 @@ export function ContactSection({
           aria-hidden
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 size-full object-cover"
+          /* Cadrage sur le bureau / laptop (droite) — moins de porte & couture sol */
+          className="absolute inset-0 size-full object-cover object-[72%_42%]"
         />
       ) : (
         <div
-          className="absolute inset-0 bg-linear-to-b from-msk-warm-contact via-msk-page to-msk-black"
+          className="absolute inset-0 bg-linear-to-b from-msk-ink-contact via-msk-page to-msk-ink"
           aria-hidden
         />
       )}
-      <div className="absolute inset-0 bg-black/70" aria-hidden />
+      {/* Scrim + vignettes Encre : unifie la photo, masque les coutures latérales */}
+      <div className="absolute inset-0 bg-msk-ink/72" aria-hidden />
+      <div
+        className="absolute inset-0 bg-linear-to-r from-msk-ink via-msk-ink/35 to-msk-ink/50"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-linear-to-t from-msk-ink via-transparent to-msk-ink/55"
+        aria-hidden
+      />
 
       <div className="msk-page-x relative mx-auto w-full max-w-msk py-msk-x">
         <div className="relative grid grid-cols-1 gap-16 lg:grid-cols-msk-split lg:gap-0">

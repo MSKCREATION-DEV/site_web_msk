@@ -4,8 +4,8 @@
   "description": "Agence digitale à Bamako, ACI 2000.",
   "start_url": "/fr",
   "display": "standalone",
-  "background_color": "#080808",
-  "theme_color": "#080808",
+  "background_color": "#0D1330",
+  "theme_color": "#0D1330",
   "icons": [
     {
       "src": "/favicon.svg",

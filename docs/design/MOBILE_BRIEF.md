@@ -20,7 +20,7 @@ Le design mobile Figma n’existe pas encore (Lisez-moi : « version mobile » �
 - Canvas : **1440 px**
 - One-page : Nav → Hero → Travaux → CTA → Services → Équipe → Approche → Contact → Footer
 - Transitions : **96 px**
-- Dark UI, accent bleu `#137dc5`, typo multi-font (voir `DESIGN_TOKENS.md`)
+- Dark UI Encre `#0D1330`, accent bleu `#1D73BC` (Charte v3), typo multi-font (voir `DESIGN_TOKENS.md`)
 - Intro rideau 1s, filtres Travaux, overlay fiches projet
 
 ---

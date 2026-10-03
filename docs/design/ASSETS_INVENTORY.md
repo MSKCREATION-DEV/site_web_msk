@@ -1,8 +1,9 @@
 # Inventaire assets — MSK Création
 
-Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.
+Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.  
+Brand / logos v3 : **Charte PDF → `docs/brand/` → `public/assets/logo/`**.
 
-**Dernière màj :** 2026-09-27 — exports Approche / Contact / galeries grille.
+**Dernière màj :** 2026-10-03 — Charte graphique v3 (logos + favicons Encre).
 
 ---
 
@@ -10,8 +11,11 @@ Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.
 
 | Asset | Local | Note |
 |-------|-------|------|
-| Logo MSK | OK `logo/msk-creation.svg` | |
-| Favicon | OK `/favicon.svg` + `site.webmanifest` | |
+| Logo intercalé | OK `logo/msk-creation.svg` | Charte v3 réservé blanc |
+| Logo bloc gauche | OK `logo/msk-creation-block.svg` | Header / fiche |
+| Signe seul | OK `logo/msk-mark.svg` | Watermark + source favicon |
+| Favicon | OK `/favicon.svg` + PNG + `site.webmanifest` | Signe blanc sur Encre `#0D1330` |
+| Pack brand | OK `docs/brand/` | PDF + compositions + fonts |
 | Hero slides | OK `hero/slide-01.png`, `slide-02.png` | |
 | CTA poster | OK `cta/teaser-poster.png` | Vidéo CTA absente Figma |
 | Fond Contact | OK `contact/background.png` | |
@@ -36,7 +40,9 @@ Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.
 
 ```
 public/assets/
-  logo/msk-creation.svg
+  logo/msk-creation.svg          # intercalé blanc
+  logo/msk-creation-block.svg    # bloc à gauche (nav)
+  logo/msk-mark.svg              # signe seul
   hero/slide-01.png | slide-02.png
   cta/teaser-poster.png
   contact/background.png
@@ -44,4 +50,6 @@ public/assets/
   works/{slug}/cover.png
   projects/{slug}/cover.png | gallery-NN.png | before.png | after.png
   team/{slug}.png
+
+docs/brand/                      # charte PDF + pack logos/fonts classés
 ```

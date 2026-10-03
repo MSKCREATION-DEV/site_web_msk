@@ -46,9 +46,9 @@ export const teamMembers: TeamMember[] = [
     contentKey: "lidaou-espoir-awesso",
   },
   {
-    slug: "assetou-mangara",
-    photoSrc: "/assets/team/assetou-mangara.png",
-    contentKey: "assetou-mangara",
+    slug: "djoulede-keita",
+    photoSrc: "/assets/team/djoulede-keita.png",
+    contentKey: "djoulede-keita",
   },
   {
     slug: "madina-tall",

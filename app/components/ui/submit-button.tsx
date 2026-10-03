@@ -15,8 +15,8 @@ type SubmitButtonProps = {
 } & Omit<ComponentProps<"button">, "children">;
 
 /**
- * Bouton Envoyer pilule — états Figma :
- * Défaut #137dc5 / Survol #2994db / Chargement opacity 80% / Désactivé opacity 40%.
+ * Bouton Envoyer pilule — états Figma + Charte v3 :
+ * Défaut #1D73BC / Survol #1384CB / Chargement opacity 80% / Désactivé opacity 40%.
  * Flèche = dans le label content (pas d’icône Lucide en double).
  */
 export function SubmitButton({

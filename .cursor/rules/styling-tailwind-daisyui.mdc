@@ -8,5 +8,6 @@ alwaysApply: true
 - Tailwind v4 : `@import "tailwindcss"` + `@theme` (pas de `tailwind.config.js` legacy).
 - daisyUI v5 : `@plugin "daisyui"` — thème `msk` dans `app/app.css`.
 - Tokens MSK (`--color-msk-*`) > defaults daisyUI / Tailwind.
-- Ne pas utiliser couleurs/rayons daisyUI s’ils contredisent Figma.
+- **Brand :** Charte v3 (`docs/brand/`) — Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C`. Layout spacing reste Figma.
+- Ne pas utiliser couleurs/rayons daisyUI s’ils contredisent la charte / Figma layout.
 - Lucide OK pour icônes d’interaction.

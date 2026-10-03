@@ -1,19 +1,20 @@
 /**
- * Tokens MSK — gabarit écran + intérieurs proportionnels au Desktop 1440.
+ * Tokens MSK — gabarit = largeur viewport (pleine page Desktop).
  *
  * Unité : `--msk-u` = 1 px design à la largeur courante
- *   = min(100vw, 1440px) / 1440
+ *   = 100vw / 1440  (réf. Figma 1440, scale sans plafond)
  *
- * Gabarit = largeur d’écran (plafonnée à 1440).
- * Intérieurs = calc(N_design × --msk-u) — pas de distances « matériel ».
- * Certains blocs (galerie, cartes) peuvent déborder dans leur parent scrollable.
+ * Conteneurs `max-w-msk` = 100vw → plus de bandes vides > 1440.
+ * Intérieurs = calc(N_design × --msk-u). Plancher lisibilité via max(...).
+ * Certains blocs (galerie) peuvent déborder dans leur parent scrollable.
  */
 :root {
   --msk-design-w: 1440;
-  --msk-u: calc(min(100vw, 1440px) / 1440);
+  /* Charte / QA 2026-10 : pleine largeur viewport (ancien plafond 1440 retiré) */
+  --msk-u: calc(100vw / 1440);
 
-  /* Layout Figma 1440 */
-  --msk-page-width: calc(1440 * var(--msk-u));
+  /* Layout — largeur utile = écran entier */
+  --msk-page-width: 100%;
   --msk-page-px: max(1.25rem, calc(112 * var(--msk-u)));
   --msk-content-width: calc(1216 * var(--msk-u));
   --msk-section-gap: max(3rem, calc(96 * var(--msk-u)));
@@ -31,22 +32,28 @@
   --msk-marquee-h: max(2.75rem, calc(52 * var(--msk-u)));
   --msk-cta-h: max(16rem, calc(470 * var(--msk-u)));
 
-  --msk-logo-header-w: max(6.5rem, calc(126 * var(--msk-u))); /* ~104px floor */
-  --msk-logo-header-h: max(2.25rem, calc(36 * var(--msk-u)));
-  --msk-logo-intro-w: calc(492 * var(--msk-u));
-  --msk-footer-logo-w: min(100%, calc(730 * var(--msk-u)));
-  /* Hauteur dérivée de l’aspect SVG 492×172 si on fixe la largeur — token H pour chrome */
+  /*
+   * Charte v3 — logos.
+   * Header = bloc à gauche : on fixe la HAUTEUR seule (AR SVG ~3.64).
+   * Plancher 56px → lignes MSK/CREATION ≥ ~24px (seuil mot-logo PDF §01).
+   * Intro = intercalé AR ~6.5 : largeur max, hauteur auto.
+   */
+  --msk-logo-header-h: max(3.5rem, calc(56 * var(--msk-u)));
+  --msk-logo-header-w: max(12.5rem, calc(204 * var(--msk-u))); /* réserve grille ≈ h × 3.64 */
+  --msk-footer-logo-w: min(100%, calc(820 * var(--msk-u)));
   --msk-footer-logo-h: auto;
-  --msk-logo-intro-h: calc(172 * var(--msk-u));
+  --msk-logo-intro-w: var(--msk-footer-logo-w);
+  --msk-logo-intro-h: auto;
 
   --msk-card-short-img: calc(400 * var(--msk-u));
   --msk-card-tall-img: calc(580 * var(--msk-u));
   --msk-team-portrait-w: calc(176 * var(--msk-u));
   --msk-team-portrait-h: calc(235 * var(--msk-u));
 
-  --msk-gallery-h: max(12rem, calc(588 * var(--msk-u)));
-  --msk-gallery-slide-w: calc(1008 * var(--msk-u));
-  --msk-gallery-slide-h: max(11rem, calc(558 * var(--msk-u)));
+  /* Galerie Approche : pleine largeur, ratio proche Figma 1440×588 */
+  --msk-gallery-h: max(16rem, calc(100vw * 588 / 1440));
+  --msk-gallery-slide-w: 100%;
+  --msk-gallery-slide-h: var(--msk-gallery-h);
 
   --msk-btn-primary-min: max(12rem, calc(228 * var(--msk-u)));
   --msk-btn-secondary-min: max(11rem, calc(209 * var(--msk-u)));

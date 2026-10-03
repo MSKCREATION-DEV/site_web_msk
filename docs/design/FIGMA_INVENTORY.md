@@ -126,7 +126,7 @@ Annotation : overlay `/travaux/:slug` ; Fermer / Échap / Retour ; Suivant → f
 
 | Type | Statut |
 |------|--------|
-| Logo MSK SVG | Présent Figma |
+| Logo MSK SVG | **Charte v3** `docs/brand/` → `public/assets/logo/` (Figma legacy archivé) |
 | Images `IMG · …` | Présentes (export Phase 5) |
 | Portraits équipe | Présents — mode Recadrer |
 | CTA vidéo / poster | Prendre tout depuis Figma |

@@ -10,8 +10,12 @@ export const footer: FooterContent = {
       href: "https://www.instagram.com/mskcreation.io",
     },
     {
+      label: "TikTok",
+      href: "https://www.tiktok.com/@msk.creation",
+    },
+    {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/company/mskcreation",
+      href: "https://www.linkedin.com/company/msk-creation/",
     },
     {
       label: "contact@mskcreation.net",

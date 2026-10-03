@@ -3,13 +3,14 @@ description: Fidélité Figma obligatoire — ne rien inventer
 alwaysApply: true
 ---
 
-# Design Figma
+# Design Figma + Charte
 
-Figma est la seule source de vérité visuelle Desktop.
+- **Layout / copy / photos / interactions Desktop :** Figma MSK-MAQUETTE.
+- **Couleurs marque, logos, règles d’usage :** Charte graphique v3 (`docs/brand/`) — prime si conflit avec d’anciennes variables Figma couleur.
 
 Interdit sans validation écrite dans `docs/validation/FIGMA_OPEN_QUESTIONS.md` ou `docs/design/DESIGN_DECISIONS.md` :
 - sections, composants, boutons, textes, icônes, images, animations
-- layouts, interactions, couleurs, spacing, contenu
+- layouts, interactions, spacing, contenu inventés
 
 Si manquant ou ambigu :
 1. ne pas deviner
@@ -17,4 +18,4 @@ Si manquant ou ambigu :
 3. demander validation
 4. implémenter ensuite
 
-Comparer chaque écran livré au frame Figma (layout, typo, couleurs, dimensions, assets).
+Comparer chaque écran livré au frame Figma (layout, typo scale, dimensions, assets) + tokens charte (couleurs, logos).

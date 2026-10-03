@@ -12,7 +12,11 @@ import type { Route } from "./+types/root";
 import { isLocale } from "~/i18n";
 import "./app.css";
 
-/** Fonts : poids strictement utilisés (LCP / poids réseau). */
+/*
+ * Charte v3 (PDF §03) — Jost / Bricolage ExtraBold / Instrument Serif Italic.
+ * Sources locales : docs/brand/fonts/ — runtime Google Fonts (mêmes familles, LCP).
+ * Poids strictement utilisés.
+ */
 const FONTS_CSS =
   "https://fonts.googleapis.com/css2?" +
   "family=Bricolage+Grotesque:opsz,wght@12..96,800&" +
@@ -59,7 +63,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#080808" />
+        {/* Charte v3 — Encre #0D1330 (ancien Figma #080808) */}
+        <meta name="theme-color" content="#0D1330" />
         <meta name="color-scheme" content="dark" />
         <Meta />
         <Links />

@@ -8,7 +8,7 @@ type BackToTopProps = {
 };
 
 /**
- * Retour en haut — 40×40, bordure blanc 20 %, fixed 32 px bas/droite.
+ * Retour en haut — 40×40, aligné sur le gutter page (`--msk-page-px`).
  */
 export function BackToTop({
   onClick,
@@ -21,7 +21,8 @@ export function BackToTop({
       onClick={onClick}
       aria-label={label}
       className={cn(
-        "fixed right-5 bottom-5 z-50 flex size-10 cursor-pointer items-center justify-center sm:right-8 sm:bottom-8",
+        "fixed z-50 flex size-10 cursor-pointer items-center justify-center",
+        "right-[max(1.25rem,var(--msk-page-px))] bottom-[max(1.25rem,var(--msk-page-px))]",
         "rounded-none border border-white/20 bg-transparent text-msk-text",
         "transition-colors duration-350 hover:border-msk-blue hover:text-msk-blue",
         className,

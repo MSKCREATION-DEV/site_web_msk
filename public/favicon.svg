@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#080808"/>
-  <path fill="#137DC5" d="M4.5 7.5h4.2L16.5 16l-7.8 8.5H4.5L12.3 16 4.5 7.5z"/>
-  <path fill="#FFFFFF" d="M11.5 7.5h4.2L23.5 16l-7.8 8.5h-4.2L19.3 16 11.5 7.5z"/>
-  <path fill="#2994DB" d="M18.5 7.5h4.2L30.5 16l-7.8 8.5h-4.2L26.3 16 18.5 7.5z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Charte v3 §05 — favicon : Encre #0D1330, signe seul réservé blanc. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="7.0" fill="#0D1330"/>
+  <polygon fill="#FFFFFF" points="13.533 21.713 24.960 21.713 24.960 10.287 13.533 10.287 13.533 11.949 19.195 16.000 13.533 20.051 13.533 21.713"/>
+  <polygon fill="#FFFFFF" points="7.040 20.986 15.818 16.000 7.040 11.014 7.040 20.986"/>
 </svg>
