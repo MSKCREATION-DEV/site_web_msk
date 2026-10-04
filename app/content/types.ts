@@ -45,22 +45,13 @@ export type HeroContent = {
   slides: HeroSlideContent[];
 };
 
-export type WorksFilterLabels = {
-  all: string;
-  web: string;
-  branding: string;
-  app: string;
-};
-
 export type WorksContent = {
-  /** Surtitre « Travaux sélectionnés » */
+  /** Surtitre « Travaux sélectionnés » (sans brackets) */
   title: string;
-  /** Ex. « 6 projets sur 10 » */
-  counterLabel: string;
-  filterAriaLabel: string;
-  filters: WorksFilterLabels;
-  seeAllLabel: string;
+  /** CTA carte stack */
   seeProjectLabel: string;
+  /** Aria compteur : « Projet {current} sur {total} » */
+  counterAriaLabel: string;
 };
 
 export type CtaContent = {
@@ -180,6 +171,11 @@ export type ProjectCopy = {
   description: string;
   category: string;
   expertiseLabel: string;
+  realizationsLabel: string;
+  approachLabel: string;
+  nextProjectBracketLabel: string;
+  prevProjectBracketLabel: string;
+  worksNavLabel: string;
   beforeAfterEyebrow?: string;
   beforeAfterSubtitle?: string;
   beforeLabel?: string;

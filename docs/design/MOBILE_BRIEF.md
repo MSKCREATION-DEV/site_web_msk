@@ -34,7 +34,7 @@ Pour **chaque** section Desktop, livrer au minimum :
 | Frame mobile | Largeur cible à valider (ex. 390 / 375) — **choix designer** |
 | Navigation | Menu (drawer / full-screen / sticky) — états ouvert/fermé |
 | Hero | Hierarchie titre, CTAs, diaporama / mot rotatif sur petit écran |
-| Travaux | Grille 1 col ? filtres wrap ? hauteur cartes |
+| Travaux | **Exception 2026-10-04** : stack scroll Dagobert (carte colonne image/panneau) — hors attente Figma mobile |
 | CTA 03b | Vidéo / image full-bleed mobile |
 | Équipe | 2×5 Desktop → stacking (combien par rangée) |
 | Contact | Champs full width, bouton, WhatsApp |

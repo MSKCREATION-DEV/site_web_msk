@@ -2,6 +2,11 @@ import type { LocaleContent } from "../types";
 
 export const projectSheet: LocaleContent["projectSheet"] = {
   expertiseLabel: "Expertise",
+  realizationsLabel: "Réalisations",
+  approachLabel: "Approche",
+  nextProjectBracketLabel: "Projet suivant",
+  prevProjectBracketLabel: "Projet précédent",
+  worksNavLabel: "Travaux",
   beforeAfterEyebrow: "AVANT / APRÈS",
   beforeAfterSubtitle:
     "L’identité Koundji Services, avant et après notre intervention.",

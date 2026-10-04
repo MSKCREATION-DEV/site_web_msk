@@ -28,7 +28,7 @@ export const home: HomeContent = {
     ],
     titleLine3: "that convert.",
     subtitle:
-      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco and Mali.",
+      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 11 experts trained in France, Morocco and Mali.",
     recentLabel: "Recently",
     recentProjects: [],
     tickerItems: [
@@ -45,16 +45,8 @@ export const home: HomeContent = {
   },
   works: {
     title: "Selected works",
-    counterLabel: "6 projects of 10",
-    filterAriaLabel: "Works filters",
-    filters: {
-      all: "All",
-      web: "Web",
-      branding: "Branding",
-      app: "App",
-    },
-    seeAllLabel: "See all projects (10) →",
-    seeProjectLabel: "View project →",
+    seeProjectLabel: "View project",
+    counterAriaLabel: "Project {current} of {total}",
   },
   cta: {
     ariaLabel: "Project reminder",
@@ -122,7 +114,7 @@ export const home: HomeContent = {
     titleAccent: "behind",
     titleAfter: "the work.",
     intro:
-      "10 experts with complementary profiles: strategy, design, video, development, community management. Trained in France, Morocco and Mali. Zero outsourcing: the faces below are the ones who really work on your project.",
+      "11 experts with complementary profiles: strategy, design, video, development, community management. Trained in France, Morocco and Mali. Zero outsourcing: the faces below are the ones who really work on your project.",
     officeSrc: "/assets/cta/teaser-poster.png",
     officeAlt: "MSK Creation offices, Bamako",
   },

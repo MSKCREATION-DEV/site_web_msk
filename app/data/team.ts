@@ -36,6 +36,11 @@ export const teamMembers: TeamMember[] = [
     contentKey: "amadou-samba-guiro",
   },
   {
+    slug: "ismael-oussi",
+    photoSrc: "/assets/team/ismael-oussi.png",
+    contentKey: "ismael-oussi",
+  },
+  {
     slug: "fatimatou-diallo",
     photoSrc: "/assets/team/fatimatou-diallo.png",
     contentKey: "fatimatou-diallo",

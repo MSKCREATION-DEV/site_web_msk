@@ -40,7 +40,8 @@ export function SiteLayout({
       </a>
       {showIntro && !hideChrome ? <IntroCurtain /> : null}
       {!hideChrome ? <SiteHeader locale={locale} nav={nav} /> : null}
-      <main id="main" className="w-full max-w-full overflow-x-clip">
+      {/* Pas d’overflow-x ici : clip casse position:sticky (stack Travaux). */}
+      <main id="main" className="w-full max-w-full">
         {children}
       </main>
       {!hideChrome ? (

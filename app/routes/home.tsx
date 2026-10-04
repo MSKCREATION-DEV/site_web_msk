@@ -40,7 +40,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <>
       <HeroSection hero={home.hero} nav={nav} locale={locale} />
 
-      <SectionGap />
       <WorksSection
         locale={locale}
         content={home.works}

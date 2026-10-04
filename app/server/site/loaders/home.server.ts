@@ -16,8 +16,6 @@ export function loadHomePage(locale: Locale) {
       accentColor: project.accentColor,
       imageSrc: project.worksCover.src,
       imageAlt: title,
-      height: project.worksCardHeight,
-      filters: project.filters,
     };
   });
 

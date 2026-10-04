@@ -17,6 +17,7 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | Q15 | Couleur hover Bomoyi | Travaux | **FERMÉE** — `#1D73BC` (charte v3 ; était `#137DC5`) |
 | Q16 | Galerie Approche | Approche | **FERMÉE** — `approach/gallery-01…06` branchés |
 | Q17 | Resync Figma couleurs vs Charte v3 | Design system Figma | **OUVERTE** — code aligné PDF (Encre / `#1D73BC` / Corail) ; fichier Figma encore sur ancien dark `#080808` + ocre |
+| Q18 | Travaux / fiches hors maquette Figma | Layout + motion | **FERMÉE (client)** — pattern Dagobert adapté (stack + case study), couleurs MSK ; voir DESIGN_DECISIONS 2026-10-04 |
 
 ---
 

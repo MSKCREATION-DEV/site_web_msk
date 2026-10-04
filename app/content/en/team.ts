@@ -22,6 +22,10 @@ export const team: Record<string, TeamMemberCopy> = {
     name: "Amadou Samba Guiro",
     role: "Lead developer",
   },
+  "ismael-oussi": {
+    name: "Ismael Oussi",
+    role: "Technical Director · Development",
+  },
   "fatimatou-diallo": {
     name: "Fatimatou Diallo",
     role: "Graphic designer",

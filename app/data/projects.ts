@@ -38,8 +38,7 @@ function gallery(slug: string, count: number): ProjectAsset[] {
 }
 
 /**
- * Ordre tableau = chaîne Suivant fiches.
- * Colonnes grille : voir WorksSection LEFT/RIGHT_COLUMN_SLUGS.
+ * Ordre = deck Travaux (stack scroll) + chaîne Suivant fiches.
  */
 export const projects: Project[] = [
   {

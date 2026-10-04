@@ -265,6 +265,77 @@ main {
   }
 }
 
+/* —— Travaux stack (scroll-driven) —— */
+.msk-works-track {
+  position: relative;
+  height: calc(var(--msk-works-stack-count, 6) * 100svh + var(--msk-works-stack-exit));
+}
+
+.msk-works-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+
+.msk-works-header {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--msk-works-stack-header-h);
+  padding-top: var(--msk-works-stack-gap);
+  padding-inline: var(--msk-works-stack-pad-x);
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.msk-works-header.msk-works-header-gone {
+  opacity: 0;
+  transform: translate3d(0, -0.35rem, 0);
+}
+
+.msk-works-deck {
+  position: absolute;
+  top: calc(var(--msk-works-stack-header-h) + var(--msk-works-stack-gap));
+  right: var(--msk-works-stack-pad-x);
+  bottom: var(--msk-works-stack-gap);
+  left: var(--msk-works-stack-pad-x);
+  overflow: hidden;
+}
+
+.msk-works-card-slot {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.msk-works-reduced {
+  padding-block: 2rem;
+  padding-inline: var(--msk-works-stack-pad-x);
+}
+
+.msk-works-reduced-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: var(--msk-works-stack-gap);
+}
+
+.msk-works-reduced-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--msk-works-stack-gap);
+}
+
 /* Charte v3 — bande transition 96 px, dégradé Encre (plus de warm brun) */
 .msk-section-gap {
   height: var(--msk-section-gap);
