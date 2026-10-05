@@ -1,5 +1,5 @@
 /**
- * Équipe — ordre et libellés Figma section « 05 - Équipe » (screenshot 2026-09-25).
+ * Équipe — ordre Figma `05 · Équipe` (2:19) : rangée 1 (5) puis rangée 2 (6).
  */
 
 export type TeamMember = {
@@ -36,11 +36,6 @@ export const teamMembers: TeamMember[] = [
     contentKey: "amadou-samba-guiro",
   },
   {
-    slug: "ismael-oussi",
-    photoSrc: "/assets/team/ismael-oussi.png",
-    contentKey: "ismael-oussi",
-  },
-  {
     slug: "fatimatou-diallo",
     photoSrc: "/assets/team/fatimatou-diallo.png",
     contentKey: "fatimatou-diallo",
@@ -49,6 +44,11 @@ export const teamMembers: TeamMember[] = [
     slug: "lidaou-espoir-awesso",
     photoSrc: "/assets/team/lidaou-espoir-awesso.png",
     contentKey: "lidaou-espoir-awesso",
+  },
+  {
+    slug: "ismael-oussi",
+    photoSrc: "/assets/team/ismael-oussi.png",
+    contentKey: "ismael-oussi",
   },
   {
     slug: "djoulede-keita",

@@ -15,7 +15,7 @@ type SiteHeaderProps = {
 
 /**
  * Nav Figma — bandeau Encre H96 (plancher 72).
- * Desktop : logo bloc-gauche Charte v3 | liens centrés (gap 40) | Briefer + EN.
+ * Desktop : logo signature horizontale Charte v3 | liens centrés (gap 40) | Briefer + EN.
  * Mobile : logo | EN + burger → drawer.
  */
 export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {

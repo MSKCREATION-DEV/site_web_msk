@@ -37,7 +37,9 @@
 | `#2994DB` hover | `#1384CB` Bleu vif |
 | `#C8742A` Accent/Ocre | `#FF5A3C` Corail |
 
-**Couleurs projet (hover cartes)** : inchangées (identité client) sauf Bomoyi → `#1D73BC`.
+**Couleurs panneau Travaux / fiches** : par projet (audit Figma 2026-10) — hors palette charte OK (identité client). Voir `app/data/projects.ts` (`panel`).
+
+**Logo nav / fiche** : hauteur frame Figma **44 px** (`--msk-logo-header-h`), signature intercalée.
 
 ---
 

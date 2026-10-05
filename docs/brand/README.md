@@ -41,9 +41,9 @@ Fichiers sources : [`fonts/`](./fonts/). Runtime site : Google Fonts (mêmes fam
 
 | Dossier | Composition | Usage web |
 |---------|-------------|-----------|
-| [`logos/intercalated/`](./logos/intercalated/) | MSK · signe · CREATION | Verrouillage principal |
+| [`logos/intercalated/`](./logos/intercalated/) | MSK · signe · CREATION | Verrouillage principal + **nav / fiche** (Figma) |
 | [`logos/stacked/`](./logos/stacked/) | Empilé / empilé intercalé | Intro, formats hauts |
-| [`logos/block-left/`](./logos/block-left/) | Bloc à gauche | Header, bandeaux |
+| [`logos/block-left/`](./logos/block-left/) | Bloc à gauche | Formats bandeaux spéciaux |
 | [`logos/msk-mark/`](./logos/msk-mark/) | MSK + signe | Petites tailles |
 | [`logos/mark-only/`](./logos/mark-only/) | Signe seul | Favicon, watermark &lt; 24 px |
 | [`logos/sources/`](./logos/sources/) | Pack brut non renommé | Archive |
@@ -57,7 +57,7 @@ Fichiers sources : [`fonts/`](./fonts/). Runtime site : Google Fonts (mêmes fam
 ### Runtime app
 
 ```
-public/assets/logo/msk-creation.svg   → block-left (header / fiche) ou intercalé
+public/assets/logo/msk-creation.svg   → signature intercalée (nav / fiche / intro / footer)
 public/assets/logo/msk-mark.svg       → signe seul (watermark, favicon source)
 ```
 
@@ -74,4 +74,5 @@ public/assets/logo/msk-mark.svg       → signe seul (watermark, favicon source)
 | `logo 2026 blancs 1-40.svg` | `mark-only/mark-only-white.svg` |
 | `logos MSK2026 Refonte -25.png` | `intercalated/logo-intercalated-gradient.png` |
 
-L’ancien dossier `docs/charte graphique New/` peut être retiré une fois cette arborescence validée.
+L’ancien dossier `docs/charte graphique New/` a été **supprimé** (2026-10-05) : tout le pack vit dans `docs/brand/`.
+

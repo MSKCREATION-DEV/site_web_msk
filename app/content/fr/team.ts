@@ -3,7 +3,7 @@ export type TeamMemberCopy = {
   role: string;
 };
 
-/** Noms + rôles = Figma « 05 - Équipe » (screenshot 2026-09-25). */
+/** Noms + rôles = Figma `05 · Équipe` (2:19). */
 export const team: Record<string, TeamMemberCopy> = {
   "mathieu-diarra": {
     name: "Mathieu Diarra",
@@ -15,19 +15,15 @@ export const team: Record<string, TeamMemberCopy> = {
   },
   "andile-boussari": {
     name: "Andile Boussari",
-    role: "Responsable opérations",
+    role: "Chef de projet",
   },
   "yahe-bah": {
-    name: "Yahe Bah",
+    name: "Yaye Bah",
     role: "Commerciale",
   },
   "amadou-samba-guiro": {
     name: "Amadou Samba Guiro",
-    role: "Lead développeur",
-  },
-  "ismael-oussi": {
-    name: "Ismael Oussi",
-    role: "Directeur Technique · Développement",
+    role: "Responsable technique",
   },
   "fatimatou-diallo": {
     name: "Fatimatou Diallo",
@@ -37,9 +33,13 @@ export const team: Record<string, TeamMemberCopy> = {
     name: "Lidaou Espoir Awesso",
     role: "Vidéaste & graphiste",
   },
+  "ismael-oussi": {
+    name: "Ismaël Oussi",
+    role: "Lead développeur",
+  },
   "djoulede-keita": {
     name: "Djouldé Keita",
-    role: "Community manager",
+    role: "Stagiaire community",
   },
   "madina-tall": {
     name: "Madina Tall",

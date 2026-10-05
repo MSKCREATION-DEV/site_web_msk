@@ -22,16 +22,18 @@
   --msk-works-gap: max(1rem, calc(32 * var(--msk-u)));
   --msk-col: calc(568 * var(--msk-u));
   --msk-works-col: calc(592 * var(--msk-u));
-  /* Stack Travaux (pattern Dagobert sticky) */
-  --msk-works-stack-radius: 1.5rem;
+  /* Stack Travaux (scroll Dagobert + specs carte Figma audit 2026-10-04) */
+  --msk-works-stack-radius: 1rem; /* 16px */
   --msk-works-stack-peek: 16px;
-  /* Air titre ↔ cartes (= works gap 32) ; marges latérales / bas deck */
-  --msk-works-stack-pad-x: max(0.75rem, calc(20 * var(--msk-u)));
+  /* Marges latérales Figma 112 ; air titre */
+  --msk-works-stack-pad-x: var(--msk-page-px);
   --msk-works-stack-gap: var(--msk-works-gap);
-  /* Réserve titre + gap sous titre (évite jump de hauteur au dernier) */
   --msk-works-stack-header-h: calc(1.25rem + var(--msk-works-stack-gap));
-  /* Air après le track avant le CTA / marquee (= section gap 96) */
   --msk-works-stack-exit: var(--msk-section-gap);
+  /* Carte Figma 1216×640 */
+  --msk-works-card-h: min(640px, calc(100svh - var(--msk-works-stack-header-h) - 3 * var(--msk-works-stack-gap)));
+  --msk-works-card-img-fr: 560;
+  --msk-works-card-panel-fr: 656;
 
   --msk-nav-height: max(4.5rem, calc(96 * var(--msk-u))); /* 72px floor — chrome utilisable */
   --msk-nav-py: max(0.75rem, calc(20 * var(--msk-u)));
@@ -43,13 +45,12 @@
   --msk-cta-h: max(16rem, calc(470 * var(--msk-u)));
 
   /*
-   * Charte v3 — logos.
-   * Header = bloc à gauche : on fixe la HAUTEUR seule (AR SVG ~3.64).
-   * Plancher 56px → lignes MSK/CREATION ≥ ~24px (seuil mot-logo PDF §01).
-   * Intro = intercalé AR ~6.5 : largeur max, hauteur auto.
+   * Logos — Figma barre fiche : frame logo 126×44 (instance interne ≈ 118×16).
+   * Notre SVG intercalé a une zone de protection : on ancre la HAUTEUR au frame 44
+   * pour retrouver la taille visuelle Figma (lettres ≈ seuil charte ≥ 24px).
    */
-  --msk-logo-header-h: max(3.5rem, calc(56 * var(--msk-u)));
-  --msk-logo-header-w: max(12.5rem, calc(204 * var(--msk-u))); /* réserve grille ≈ h × 3.64 */
+  --msk-logo-header-h: max(2.75rem, calc(44 * var(--msk-u)));
+  --msk-logo-header-w: max(11.625rem, calc(186 * var(--msk-u))); /* 44 × AR intercalé ≈ 4.22 */
   --msk-footer-logo-w: min(100%, calc(820 * var(--msk-u)));
   --msk-footer-logo-h: auto;
   --msk-logo-intro-w: var(--msk-footer-logo-w);

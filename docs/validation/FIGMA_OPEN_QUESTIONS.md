@@ -8,16 +8,21 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 
 | ID | Question | Impact | Statut |
 |----|----------|--------|--------|
-| Q01 | Liste exacte des projets de la grille Travaux (APERÇU 6) | Data + routes fiches | **FERMÉE** — Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
-| Q02 | Hex final `Accent/Ocre` (variable Figma) | Tokens CSS | **SUPERSÉDÉE** — Charte v3 : Corail `#FF5A3C` remplace ocre (2026-10-03) |
 | Q03 | Options listes Service / Budget | Formulaire Contact | **PENDING** — selects vides ; options NON TROUVÉ |
-| Q12 | Fond Contact + bureau équipe | Assets | **PARTIEL** — Contact `background.png` OK ; office équipe NON TROUVÉ |
-| Q13 | Galeries + Avant/Après | Fiches | **PRESQUE FERMÉE** — grille + before/after OK ; `akwaba/gallery-06` encore 1×1 |
-| Q14 | Hero « Dernièrement » | Hero | **FERMÉE** — Koundji, Ecosol, Beauté Divine (sans lien) |
-| Q15 | Couleur hover Bomoyi | Travaux | **FERMÉE** — `#1D73BC` (charte v3 ; était `#137DC5`) |
-| Q16 | Galerie Approche | Approche | **FERMÉE** — `approach/gallery-01…06` branchés |
-| Q17 | Resync Figma couleurs vs Charte v3 | Design system Figma | **OUVERTE** — code aligné PDF (Encre / `#1D73BC` / Corail) ; fichier Figma encore sur ancien dark `#080808` + ocre |
-| Q18 | Travaux / fiches hors maquette Figma | Layout + motion | **FERMÉE (client)** — pattern Dagobert adapté (stack + case study), couleurs MSK ; voir DESIGN_DECISIONS 2026-10-04 |
+| Q12 | Bureau équipe dédié | Asset | **PARTIEL** — Contact OK ; `team/office.png` NON TROUVÉ (section Équipe Figma 2:19 sans bandeau bureau) |
+| Q17 | Resync Figma couleurs vs Charte v3 | Design system Figma | **OUVERTE** — code Encre / `#1D73BC` / Corail ; Figma peut encore mélanger anciens tokens |
+
+---
+
+## Fermées récemment
+
+| ID | Décision |
+|----|----------|
+| Q01 / C11 | Deck Travaux **7** : Prosperity → Thòy → Koundji → Bomoyi → Ecosol → Elvi → Akwaba (2026-10-04/05) |
+| Q13 | Galeries + Avant/Après + Prosperity branchés (2026-10-05) |
+| Q18 | Stack scroll Dagobert + fiches case study, couleurs projet Figma (2026-10-04) |
+| Q19 | Covers works + fiches 7 livrés (2026-10-05) |
+| Q02 / Q14 / Q15 / Q16 | Voir historique |
 
 ---
 
@@ -25,25 +30,16 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 
 | ID | Question | Décision |
 |----|----------|----------|
-| C01 | RR 7 vs attendre v8 | **Latest** (`create-react-router@latest`) |
+| C01 | RR 7 vs attendre v8 | **Latest** |
 | C02 | Mobile | Brief séparé ; pas d’UI inventée |
-| C03 | 6 vs 10 projets | **Grille Travaux** ; fiches extras = designer |
-| C04 | WhatsApp | Infos Figma bonnes |
-| C05 | Vidéo CTA | Tout prendre sur Figma |
-| C06 | Avant/Après | Exactement le design par fiche |
-| C07 | Langues | FR + EN créés |
-| C08 | Flèches | Lucide autorisé |
-| C11 | Grille Travaux 6 projets | Koundji, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
-| C12 | CTA vidéo | Absente dans Figma — poster seul |
-| Q04 | SEO meta | Home content Figma ; pas d’invention marketing |
-| Q05 | Motion | Mot hero 400ms/3s ; hover 350ms |
-| Q06 | Pixels Desktop | Audit 2026-09-25 appliqué |
-| Q09–Q11 | Hero / Travaux / Services copy | Fermées via captures + audit |
+| C03 | 6 vs 10 projets | Grille puis **deck 7** (MAJ 2026-10) |
+| C04 | WhatsApp | Infos Figma |
+| C05–C08 / C12 | CTA / Avant-Après / i18n / Lucide | Fermées |
+| Q04–Q06 / Q09–Q11 | SEO / motion / pixels / copy | Fermées |
 
 ---
 
-## Blocage technique
+## Notes MCP
 
-- **Figma MCP rate limit** (seat View) au 2026-09-25 : toujours bloqué — `get_variable_defs`, `get_design_context`, `get_screenshot` refusés.
-- Checklist détaillée + liens directs : [`FIGMA_HANDOFF_NEEDED.md`](./FIGMA_HANDOFF_NEEDED.md).
-- Action : upgrade seat / attendre reset quota, **ou** fournir captures/exports listés dans le handoff.
+- Seat View : quotas limités. Specs Travaux/fiches récupérées via audit agent Figma + `get_design_context` ponctuel (Équipe `2:19`).
+- Prompts historiques : `FIGMA_PROMPT_WORKS_7.md`, `FIGMA_PROMPT_REMAINING.md`, `FIGMA_HANDOFF_NEEDED.md`.

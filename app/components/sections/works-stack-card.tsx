@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import type { ProjectPanelStyle } from "~/data/projects";
 import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
 
@@ -7,7 +8,7 @@ export type WorksStackCardData = {
   title: string;
   category: string;
   year: string;
-  accentColor?: string;
+  panel: ProjectPanelStyle;
   imageSrc: string;
   imageAlt: string;
   href: string;
@@ -20,30 +21,36 @@ type WorksStackCardProps = {
   priority?: boolean;
 };
 
-function categoryTags(category: string): string[] {
-  return category
-    .split("·")
-    .map((part) => part.trim())
-    .filter(Boolean);
-}
-
-/** Carte Travaux — split image / chalk (ombre pour peeks d’empilement). */
+/**
+ * Carte Travaux — split 560/656, radius 16, panneau Figma (audit 2026-10-04).
+ * CTA outline 230×72 ; libellé hors Figma text (frame « Voir le projet »).
+ */
 export function WorksStackCard({
   project,
   seeProjectLabel,
   className,
   priority = false,
 }: WorksStackCardProps) {
-  const tags = categoryTags(project.category);
+  const { panel } = project;
+  const yearLabel = `[ ${project.year} ]`;
+  const titleStyle = panel.titleGradient
+    ? {
+        backgroundImage: panel.titleGradient,
+        WebkitBackgroundClip: "text" as const,
+        backgroundClip: "text" as const,
+        color: "transparent",
+      }
+    : { color: panel.titleColor };
 
   return (
     <article
       className={cn(
-        "flex size-full flex-col overflow-hidden rounded-[var(--msk-works-stack-radius)] bg-msk-chalk text-msk-ink shadow-[0_12px_32px_rgb(0_0_0/0.22)] md:flex-row",
+        "flex size-full flex-col overflow-hidden rounded-[var(--msk-works-stack-radius)] md:flex-row",
         className,
       )}
     >
-      <div className="relative min-h-0 flex-[1.15] bg-msk-card md:flex-1">
+      {/* Image 560 / panneau 656 ≈ 46% / 54% */}
+      <div className="relative min-h-0 flex-[560] bg-msk-placeholder md:flex-[560]">
         <img
           src={assetUrl(project.imageSrc)}
           alt={project.imageAlt}
@@ -54,35 +61,54 @@ export function WorksStackCard({
         />
       </div>
 
-      <div className="relative flex min-h-[40%] flex-1 flex-col items-center justify-between gap-6 bg-msk-chalk px-6 py-8 md:min-h-0 md:px-10 md:py-12">
-        <p className="font-mono-msk text-xs tracking-msk-wider text-msk-ink/70 uppercase md:text-sm">
-          [ {project.year} ]
+      <div
+        className="relative flex min-h-[42%] flex-[656] flex-col items-center justify-between px-6 py-8 md:min-h-0 md:px-12 md:py-12"
+        style={{ background: panel.background }}
+      >
+        <p
+          className="font-mono-msk text-center text-base font-medium tracking-[0.06em]"
+          style={{ color: panel.yearColor }}
+        >
+          {yearLabel}
         </p>
 
         <div className="flex w-full flex-col items-center gap-4 text-center">
-          <h3 className="font-display text-3xl leading-none font-extrabold tracking-msk-tight uppercase md:text-5xl lg:text-6xl">
+          <h3
+            className="font-display text-[clamp(2.5rem,7vw,5.25rem)] leading-none font-extrabold tracking-[-0.01em] uppercase"
+            style={titleStyle}
+          >
             {project.title}
           </h3>
-          {tags.length > 0 ? (
-            <ul className="flex flex-wrap items-center justify-center gap-2">
-              {tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="font-mono-msk text-[0.65rem] tracking-msk-wide text-msk-ink/55 uppercase md:text-xs"
-                >
-                  [ {tag} ]
-                </li>
-              ))}
-            </ul>
+          {project.category.trim() ? (
+            <p
+              className="font-mono-msk max-w-md text-[0.9375rem] font-medium tracking-[0.4em] uppercase"
+              style={{ color: panel.tagsColor }}
+            >
+              {project.category}
+            </p>
           ) : null}
+
+          <div className="h-2.5 w-6 shrink-0" aria-hidden />
+
+          <Link
+            to={project.href}
+            className="relative z-10 inline-flex h-[4.5rem] min-w-[14.375rem] items-center justify-center rounded-full border-2 bg-transparent px-[3.25rem] py-[1.125rem] text-base font-medium transition-colors hover:bg-white/10"
+            style={{
+              borderColor: panel.ctaBorderColor,
+              color: panel.ctaBorderColor,
+            }}
+          >
+            {seeProjectLabel}
+          </Link>
         </div>
 
-        <Link
-          to={project.href}
-          className="relative z-10 inline-flex h-11 items-center justify-center rounded-msk-pill border border-msk-ink/40 bg-transparent px-6 text-sm font-medium text-msk-ink transition-colors hover:border-msk-ink hover:bg-msk-ink hover:text-msk-text"
+        {/* Équilibrage Figma : année dupliquée opacité 0 */}
+        <p
+          className="pointer-events-none font-mono-msk text-base font-medium tracking-[0.06em] opacity-0 select-none"
+          aria-hidden
         >
-          {seeProjectLabel}
-        </Link>
+          {yearLabel}
+        </p>
       </div>
     </article>
   );

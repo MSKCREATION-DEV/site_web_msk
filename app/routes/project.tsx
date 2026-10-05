@@ -48,35 +48,30 @@ export function meta({ loaderData }: Route.MetaArgs) {
   );
 }
 
-/**
- * Fiche projet — template Figma (Phase 8).
- */
+/** Fiche projet — template Figma audit 2026-10-04. */
 export default function ProjectPage({ loaderData }: Route.ComponentProps) {
   const {
     copy,
     counter,
     locale,
     next,
-    prev,
-    project,
     coverSrc,
     gallery,
     beforeAfter,
+    panel,
   } = loaderData;
 
   return (
     <ProjectSheetView
       locale={locale}
       copy={copy}
-      year={project.year}
-      expertises={project.expertises}
       counter={counter}
       coverSrc={coverSrc}
       coverAlt={copy.title}
+      panel={panel}
       gallery={gallery}
       beforeAfter={beforeAfter}
       next={next}
-      prev={prev}
     />
   );
 }

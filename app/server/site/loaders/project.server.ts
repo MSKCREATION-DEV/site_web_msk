@@ -18,19 +18,20 @@ export function loadProjectPage(locale: Locale, slug: string) {
 
   const grid = getWorksGridProjects();
   const index = getProjectIndex(slug);
-  const prevProject = index > 0 ? grid[index - 1] : undefined;
+  /** Figma : prev NON TROUVÉ ; next = chaîne circulaire. */
   const nextProject = project.nextSlug
     ? getProjectBySlug(project.nextSlug)
-    : index >= 0 && index < grid.length - 1
-      ? grid[index + 1]
-      : undefined;
+    : undefined;
 
   const gallery = project.gallery
-    .filter((asset) => isUsableAsset(asset.src))
     .map((asset, i) => ({
       src: asset.src,
       alt: `${copy.title} ${i + 1}`,
-    }));
+      slot: project.galleryLayout[i] ?? ("full" as const),
+      usable: isUsableAsset(asset.src),
+    }))
+    .filter((item) => item.usable)
+    .map(({ src, alt, slot }) => ({ src, alt, slot }));
 
   const beforeOk =
     project.hasBeforeAfter &&
@@ -57,6 +58,7 @@ export function loadProjectPage(locale: Locale, slug: string) {
       ? project.cover.src
       : project.worksCover.src,
     gallery,
+    panel: project.panel,
     beforeAfter:
       beforeOk && afterOk && project.before && project.after
         ? {
@@ -70,20 +72,12 @@ export function loadProjectPage(locale: Locale, slug: string) {
       gallery: project.gallery.length > 0 && gallery.length === 0,
       beforeAfter: Boolean(project.hasBeforeAfter && !(beforeOk && afterOk)),
     },
-    prev: prevProject
-      ? {
-          slug: prevProject.slug,
-          href: projectPath(locale, prevProject.slug),
-          title: content.projects[prevProject.slug]?.title ?? prevProject.slug,
-          subtitle: prevProject.expertises.join(" · "),
-        }
-      : null,
     next: nextProject
       ? {
           slug: nextProject.slug,
           href: projectPath(locale, nextProject.slug),
           title: content.projects[nextProject.slug]?.title ?? nextProject.slug,
-          subtitle: nextProject.expertises.join(" · "),
+          panel: nextProject.panel,
         }
       : null,
   };

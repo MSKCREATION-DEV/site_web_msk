@@ -13,7 +13,7 @@ export function loadHomePage(locale: Locale) {
       title,
       category: copy?.category ?? "",
       year: project.year,
-      accentColor: project.accentColor,
+      panel: project.panel,
       imageSrc: project.worksCover.src,
       imageAlt: title,
     };

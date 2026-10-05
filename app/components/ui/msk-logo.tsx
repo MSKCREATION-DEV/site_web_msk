@@ -11,13 +11,10 @@ type MskLogoProps = {
 } & Omit<ComponentProps<"img">, "src" | "alt" | "width" | "height">;
 
 /**
- * Logo MSK CREATION — Charte v3 (PDF 2026-09-25).
+ * Logo MSK CREATION — Charte v3 / Figma Signature horizontale blanc.
  *
- * - intro  : verrouillage intercalé (MSK · signe · CREATION), réservé blanc.
- * - header / fiche : composition bloc à gauche (en-têtes / bandeaux).
- *
- * Une seule dimension CSS contrainte (hauteur ou max-width) pour respecter
- * l’aspect ratio SVG. Fond Encre → jamais dégradé ni #0000FF.
+ * - intro  : grand format centré (footer géant / rideau)
+ * - header / fiche : signature compacte ≈ 118×16 (Figma barre fiche)
  */
 export function MskLogo({
   variant = "header",
@@ -25,7 +22,6 @@ export function MskLogo({
   alt = "MSK Création",
   ...imgProps
 }: MskLogoProps) {
-  /** Charte v3 — intercalé pour grands formats centrés (footer / intro). */
   if (variant === "intro") {
     return (
       <img
@@ -40,12 +36,11 @@ export function MskLogo({
     );
   }
 
-  /** Charte v3 — bloc à gauche ; hauteur seule (w auto) pour AR correct. */
   return (
     <img
       {...imgProps}
       alt={alt}
-      src={assetUrl("/assets/logo/msk-creation-block.svg")}
+      src={assetUrl("/assets/logo/msk-creation.svg")}
       className={cn(
         "block h-msk-logo w-auto max-w-msk-logo shrink-0 object-contain object-left",
         className,

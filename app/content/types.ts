@@ -46,7 +46,7 @@ export type HeroContent = {
 };
 
 export type WorksContent = {
-  /** Surtitre « Travaux sélectionnés » (sans brackets) */
+  /** Surtitre « PROJETS SÉLECTIONNÉS » (sans brackets) */
   title: string;
   /** CTA carte stack */
   seeProjectLabel: string;
@@ -169,7 +169,14 @@ export type ContactContent = {
 export type ProjectCopy = {
   title: string;
   description: string;
+  /** Légende carte Travaux (chaine ·). */
   category: string;
+  /** Eyebrow ouverture fiche, avec crochets Figma. */
+  eyebrow?: string;
+  /** Métadonnées intro fiche (chaine ·), distincte de la carte. */
+  sheetTags?: string;
+  /** Paragraphe éditorial inséré dans / avant galerie (Prosperity). */
+  galleryNote?: string;
   expertiseLabel: string;
   realizationsLabel: string;
   approachLabel: string;
@@ -193,11 +200,19 @@ export type LocaleContent = {
   contact: ContactContent;
   projectSheet: Omit<
     ProjectCopy,
-    "title" | "description" | "category"
+    "title" | "description" | "category" | "eyebrow" | "sheetTags" | "galleryNote"
   >;
   projects: Record<
     string,
-    Pick<ProjectCopy, "title" | "description" | "category">
+    Pick<
+      ProjectCopy,
+      | "title"
+      | "description"
+      | "category"
+      | "eyebrow"
+      | "sheetTags"
+      | "galleryNote"
+    >
   >;
   team: Record<string, { name: string; role: string }>;
 };

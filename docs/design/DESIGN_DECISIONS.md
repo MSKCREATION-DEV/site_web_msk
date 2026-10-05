@@ -22,7 +22,7 @@ Décisions verrouillées avec le client (2026-09-24) + choix experts documentés
 
 | Décision | Choix |
 |----------|-------|
-| Projets | **Grille Travaux 6** : Koundji Services, Thòy ’Art, Ecosol, Bomoyi, Akwaba, Elvi Creation |
+| Projets | **Deck Travaux 7** : Prosperity, Thòy ’Art, Koundji Services, Bomoyi, Ecosol, Elvi Creation, Akwaba |
 | Avant/Après | Exactement le design : seulement si présent sur la fiche du projet |
 | Articles | Hors V1 |
 | WhatsApp | Reprendre les infos Figma telles quelles |
@@ -150,3 +150,7 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-10-04 | **Travaux + fiches (exception Figma)** : UX/animation inspirée Dagobert (stack scroll + case study split). Couleurs charte MSK inchangées (pas de `#0000FF`). Remplace grille 2 cols + filtres. Mobile autorisé pour ces deux surfaces (override `MOBILE_BRIEF`). Copy V1 = titres/expertises/descriptions existants. |
 | 2026-10-04 | **Stack Travaux** : empilement `position: sticky` + peek ; retrait `overflow-x-clip` sur `<main>`. Sans barre accent ; bandeau titre part avant le dernier projet ; fiche : Fermer + Travaux (pas Agence), nav précédent/suivant. |
 | 2026-10-04 | **Stack Travaux v3** : refonte scroll-driven (track `N×100svh`, stage sticky, transforms). Fin des marginBottom/sticky-header orphelins ; bandeau masqué sur dernier ; peek seulement après scroll. |
+| 2026-10-04 | **Travaux Figma sync** : logo signature horizontale (611:972) en nav/fiche ; deck **7** (Prosperity en tête) ; panneaux couleur Figma par projet ; fiche ouverture deux moitiés accent+cover ; empilement scroll conservé. Covers Prosperity + refresh photos : MCP saturé → `FIGMA_PROMPT_WORKS_7.md`. |
+| 2026-10-04 | **Audit Figma appliqué** : titre `[ PROJETS SÉLECTIONNÉS ]` ; cartes 560/656 radius 16 ; couleurs/texte/CTA par projet (hors charte OK = identité client) ; fiches Encre + intro + galerie paires + next only ; copy FR audit. Empilement scroll conservé malgré liste Figma gap 32. Downloads : `ASSETS_DOWNLOAD_WORKS_SHEETS.md`. |
+| 2026-10-05 | **Équipe (2:19)** : en-tête Figma `justify-between` / `items-end` (titre gauche + intro 320px droite) ; grille 5+6 gap 32/40 ; ordre + rôles Figma ; cartes portrait 176×235 + voile hover. |
+| 2026-10-05 | **Assets Travaux/fiches livrés** ; nettoyage `docs/charte graphique New/` (doublon `docs/brand/`) ; inventaires / Q19 fermée. |

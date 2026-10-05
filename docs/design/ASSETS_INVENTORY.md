@@ -3,7 +3,7 @@
 Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.  
 Brand / logos v3 : **Charte PDF → `docs/brand/` → `public/assets/logo/`**.
 
-**Dernière màj :** 2026-10-03 — Charte graphique v3 (logos + favicons Encre).
+**Dernière màj :** 2026-10-05 — deck Travaux 7 + fiches + covers branchés.
 
 ---
 
@@ -11,28 +11,30 @@ Brand / logos v3 : **Charte PDF → `docs/brand/` → `public/assets/logo/`**.
 
 | Asset | Local | Note |
 |-------|-------|------|
-| Logo intercalé | OK `logo/msk-creation.svg` | Charte v3 réservé blanc |
-| Logo bloc gauche | OK `logo/msk-creation-block.svg` | Header / fiche |
-| Signe seul | OK `logo/msk-mark.svg` | Watermark + source favicon |
-| Favicon | OK `/favicon.svg` + PNG + `site.webmanifest` | Signe blanc sur Encre `#0D1330` |
-| Pack brand | OK `docs/brand/` | PDF + compositions + fonts |
-| Hero slides | OK `hero/slide-01.png`, `slide-02.png` | |
-| CTA poster | OK `cta/teaser-poster.png` | Vidéo CTA absente Figma |
-| Fond Contact | OK `contact/background.png` | |
-| Approche galerie ×6 | OK `approach/gallery-01…06.png` | |
-| Works covers (grille 6) | OK | |
-| Galeries fiches grille | OK (filtre >1 Ko) | `akwaba/gallery-06` encore 1×1 → ignoré loader |
-| Avant/Après Koundji | OK `before.png` / `after.png` | |
-| Équipe (10) | OK | |
-| Options Service / Budget | **PENDING** | Q03 — listes vides volontairement |
-| Projets hors grille | Assets présents, hors V1 routes | Beauté Divine, Delmorian, etc. |
+| Logo signature intercalée | OK `logo/msk-creation.svg` | Nav / fiche / intro / footer géant |
+| Logo bloc gauche | OK `logo/msk-creation-block.svg` | Archive |
+| Signe seul | OK `logo/msk-mark.svg` | Watermark + favicon source |
+| Favicon | OK `/favicon.svg` + PNG + `site.webmanifest` | Encre `#0D1330` |
+| Pack brand | OK `docs/brand/` | PDF + logos + fonts (dossier `charte graphique New` retiré) |
+| Hero slides | OK | |
+| CTA poster | OK | Pas de vidéo Figma |
+| Fond Contact | OK | |
+| Approche galerie ×6 | OK | |
+| Works covers (7) | OK | `works/{slug}/cover.png` — PNG réels (exports ZIP dézippés) |
+| Covers fiches (7) | OK | `projects/{slug}/cover.png` |
+| Galeries fiches | OK | Prosperity 9 · Thòy 8 · Koundji 12 · Bomoyi 8 · Ecosol 9 · Elvi 10 · Akwaba 11 |
+| Avant/Après Koundji | OK | |
+| Équipe (11) | OK | Ordre Figma 5+6 |
+| Options Service / Budget | **PENDING** | Q03 |
+| Projets hors deck | Présents, hors routes V1 | Beauté Divine, Delmorian, etc. |
 
 ---
 
-## Grille Travaux V1 (Q01 fermée)
+## Deck Travaux V1 (7) — ordre Figma
 
-**Gauche :** `koundji-services` → `ecosol` → `akwaba`  
-**Droite :** `thoy-art` → `bomoyi` → `elvi-creation`
+1. `prosperity` → 2. `thoy-art` → 3. `koundji-services` → 4. `bomoyi` → 5. `ecosol` → 6. `elvi-creation` → 7. `akwaba` → Prosperity
+
+Checklist historique : [`ASSETS_DOWNLOAD_WORKS_SHEETS.md`](../validation/ASSETS_DOWNLOAD_WORKS_SHEETS.md) (**livré**).
 
 ---
 
@@ -40,9 +42,9 @@ Brand / logos v3 : **Charte PDF → `docs/brand/` → `public/assets/logo/`**.
 
 ```
 public/assets/
-  logo/msk-creation.svg          # intercalé blanc
-  logo/msk-creation-block.svg    # bloc à gauche (nav)
-  logo/msk-mark.svg              # signe seul
+  logo/msk-creation.svg
+  logo/msk-creation-block.svg
+  logo/msk-mark.svg
   hero/slide-01.png | slide-02.png
   cta/teaser-poster.png
   contact/background.png
@@ -51,5 +53,7 @@ public/assets/
   projects/{slug}/cover.png | gallery-NN.png | before.png | after.png
   team/{slug}.png
 
-docs/brand/                      # charte PDF + pack logos/fonts classés
+docs/brand/
 ```
+
+**Note export Figma :** un fichier nommé `.png` peut être un ZIP. Vérifier avec `file chemin.png` → `PNG image data`.

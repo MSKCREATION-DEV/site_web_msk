@@ -21,7 +21,7 @@ Le design mobile Figma n’existe pas encore (Lisez-moi : « version mobile » �
 - One-page : Nav → Hero → Travaux → CTA → Services → Équipe → Approche → Contact → Footer
 - Transitions : **96 px**
 - Dark UI Encre `#0D1330`, accent bleu `#1D73BC` (Charte v3), typo multi-font (voir `DESIGN_TOKENS.md`)
-- Intro rideau 1s, filtres Travaux, overlay fiches projet
+- Intro rideau 1s, stack Travaux, overlay fiches projet
 
 ---
 
@@ -36,7 +36,7 @@ Pour **chaque** section Desktop, livrer au minimum :
 | Hero | Hierarchie titre, CTAs, diaporama / mot rotatif sur petit écran |
 | Travaux | **Exception 2026-10-04** : stack scroll Dagobert (carte colonne image/panneau) — hors attente Figma mobile |
 | CTA 03b | Vidéo / image full-bleed mobile |
-| Équipe | 2×5 Desktop → stacking (combien par rangée) |
+| Équipe | Desktop **5 + 6** (Figma `2:19`) → stacking mobile à définir |
 | Contact | Champs full width, bouton, WhatsApp |
 | Fiche projet | Overlay vs page pleine ; barre fixe ; galerie |
 | Intro / BackToTop | Comportement tactile |

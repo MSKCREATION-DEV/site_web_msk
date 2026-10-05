@@ -44,7 +44,7 @@ export const home: HomeContent = {
     rotateMs: 3000,
   },
   works: {
-    title: "Selected works",
+    title: "SELECTED PROJECTS",
     seeProjectLabel: "View project",
     counterAriaLabel: "Project {current} of {total}",
   },

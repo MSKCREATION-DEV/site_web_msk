@@ -15,58 +15,78 @@ type TeamSectionProps = {
   className?: string;
 };
 
+/** Figma 2:19 — rangée 1 = 5, rangée 2 = reste (6). */
+function splitRows(members: TeamGridItem[]) {
+  const row1 = members.slice(0, 5);
+  const row2 = members.slice(5);
+  return [row1, row2].filter((row) => row.length > 0);
+}
+
 /**
- * Équipe — py 96 / px 112, grille 5×2, gap 48×40, portraits 176×235.
+ * Équipe — Figma `05 · Équipe` (2:19).
+ * En-tête : titre gauche + intro 320px droite (items-end / justify-between).
+ * Grille : 5 + 6, gap 32 / 40, portraits 176×235.
  */
 export function TeamSection({
   content,
   members,
   className,
 }: TeamSectionProps) {
+  const rows = splitRows(members);
+
   return (
     <section
       id="equipe"
-      className={cn("scroll-mt-24 bg-msk-black", className)}
+      className={cn("scroll-mt-24 bg-msk-ink", className)}
       aria-labelledby="equipe-heading"
     >
-      <div className="msk-page-x mx-auto w-full max-w-msk py-24">
+      <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-20 py-24">
         <Reveal>
-          <div className="mb-20 grid grid-cols-1 items-end gap-10 lg:grid-cols-msk-split lg:gap-0">
-            <div>
-              <p className="msk-eyebrow mb-6 text-msk-text-muted">{content.eyebrow}</p>
+          <div className="flex flex-col items-start justify-between gap-10 overflow-hidden lg:flex-row lg:items-end">
+            <div className="flex flex-col gap-4">
+              <p className="msk-eyebrow text-msk-text-muted">{content.eyebrow}</p>
               <h2
                 id="equipe-heading"
-                className="flex flex-col text-msk-text"
+                className="flex flex-col items-start text-msk-text"
               >
                 <span className="msk-section-title">{content.titleBefore}</span>
-                <span className="msk-section-accent text-msk-blue normal-case">
+                <span className="msk-section-accent text-msk-blue">
                   {content.titleAccent}
                 </span>
                 <span className="msk-section-title">{content.titleAfter}</span>
               </h2>
             </div>
-            <div className="hidden lg:block" aria-hidden />
-            <p className="msk-body-sm self-end text-msk-text-secondary">
+
+            <p className="msk-body-sm max-w-[20rem] text-left text-msk-text lg:shrink-0 lg:text-right">
               {content.intro}
             </p>
           </div>
         </Reveal>
 
-        <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-5 lg:gap-x-12">
-          {members.map((member, i) => (
-            <li key={member.slug} className="min-w-0">
-              <Reveal delayMs={(i % 5) * 50}>
-                <TeamCard
-                  name={member.name}
-                  role={member.role}
-                  photoSrc={member.photoSrc}
-                  photoAlt={member.name}
-                  className="mx-auto max-w-none"
-                />
-              </Reveal>
-            </li>
+        <div className="flex w-full flex-col gap-10">
+          {rows.map((row, rowIndex) => (
+            <ul
+              key={`team-row-${rowIndex}`}
+              className="flex flex-wrap items-start justify-center gap-x-8 gap-y-10"
+            >
+              {row.map((member, i) => (
+                <li
+                  key={member.slug}
+                  className="w-[min(100%,var(--max-width-msk-portrait))] shrink-0"
+                >
+                  <Reveal delayMs={(i % 6) * 40}>
+                    <TeamCard
+                      name={member.name}
+                      role={member.role}
+                      photoSrc={member.photoSrc}
+                      photoAlt={member.name}
+                    />
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
