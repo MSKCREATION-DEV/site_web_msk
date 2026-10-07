@@ -1,5 +1,7 @@
 /**
- * Équipe — ordre Figma `05 · Équipe` (2:19) : rangée 1 (5) puis rangée 2 (6).
+ * Équipe — grille 5+6. Ordre validé client (écarts vs Figma 2:19) :
+ * rangée 1 : Mathieu, Isdalinia, Andile, Ismaël, Amadou
+ * rangée 2 : Madina, Issiaka, Lidaou, Fatimatou, Yaye, Djouldé
  */
 
 export type TeamMember = {
@@ -26,34 +28,14 @@ export const teamMembers: TeamMember[] = [
     contentKey: "andile-boussari",
   },
   {
-    slug: "yahe-bah",
-    photoSrc: "/assets/team/yaye-bah.png",
-    contentKey: "yahe-bah",
-  },
-  {
-    slug: "amadou-samba-guiro",
-    photoSrc: "/assets/team/amadou-samba-guiro.png",
-    contentKey: "amadou-samba-guiro",
-  },
-  {
-    slug: "fatimatou-diallo",
-    photoSrc: "/assets/team/fatimatou-diallo.png",
-    contentKey: "fatimatou-diallo",
-  },
-  {
-    slug: "lidaou-espoir-awesso",
-    photoSrc: "/assets/team/lidaou-espoir-awesso.png",
-    contentKey: "lidaou-espoir-awesso",
-  },
-  {
     slug: "ismael-oussi",
     photoSrc: "/assets/team/ismael-oussi.png",
     contentKey: "ismael-oussi",
   },
   {
-    slug: "djoulede-keita",
-    photoSrc: "/assets/team/djoulede-keita.png",
-    contentKey: "djoulede-keita",
+    slug: "amadou-samba-guiro",
+    photoSrc: "/assets/team/amadou-samba-guiro.png",
+    contentKey: "amadou-samba-guiro",
   },
   {
     slug: "madina-tall",
@@ -64,5 +46,25 @@ export const teamMembers: TeamMember[] = [
     slug: "issiaka-yacouba-traore",
     photoSrc: "/assets/team/issiaka-yacouba-traore.png",
     contentKey: "issiaka-yacouba-traore",
+  },
+  {
+    slug: "lidaou-espoir-awesso",
+    photoSrc: "/assets/team/lidaou-espoir-awesso.png",
+    contentKey: "lidaou-espoir-awesso",
+  },
+  {
+    slug: "fatimatou-diallo",
+    photoSrc: "/assets/team/fatimatou-diallo.png",
+    contentKey: "fatimatou-diallo",
+  },
+  {
+    slug: "yahe-bah",
+    photoSrc: "/assets/team/yaye-bah.png",
+    contentKey: "yahe-bah",
+  },
+  {
+    slug: "djoulede-keita",
+    photoSrc: "/assets/team/djoulede-keita.png",
+    contentKey: "djoulede-keita",
   },
 ];

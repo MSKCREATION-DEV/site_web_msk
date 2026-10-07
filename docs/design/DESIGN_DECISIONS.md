@@ -154,3 +154,4 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-10-04 | **Audit Figma appliqué** : titre `[ PROJETS SÉLECTIONNÉS ]` ; cartes 560/656 radius 16 ; couleurs/texte/CTA par projet (hors charte OK = identité client) ; fiches Encre + intro + galerie paires + next only ; copy FR audit. Empilement scroll conservé malgré liste Figma gap 32. Downloads : `ASSETS_DOWNLOAD_WORKS_SHEETS.md`. |
 | 2026-10-05 | **Équipe (2:19)** : en-tête Figma `justify-between` / `items-end` (titre gauche + intro 320px droite) ; grille 5+6 gap 32/40 ; ordre + rôles Figma ; cartes portrait 176×235 + voile hover. |
 | 2026-10-05 | **Assets Travaux/fiches livrés** ; nettoyage `docs/charte graphique New/` (doublon `docs/brand/`) ; inventaires / Q19 fermée. |
+| 2026-10-07 | **Équipe** : ordre client. Rangée 1 : Mathieu, Isdalinia, Andile, Ismaël (Lead développeur), Amadou. Rangée 2 : Madina, Issiaka, Lidaou, Fatimatou, Yaye (Commerciale), Djouldé. Rôles inchangés. |
