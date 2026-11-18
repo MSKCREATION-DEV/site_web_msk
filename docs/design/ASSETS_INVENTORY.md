@@ -3,7 +3,7 @@
 Pipeline : **Figma → `public/assets/` → `assetUrl()` → (plus tard) R2**.  
 Brand / logos v3 : **Charte PDF → `docs/brand/` → `public/assets/logo/`**.
 
-**Dernière màj :** 2026-10-05 — deck Travaux 7 + fiches + covers branchés.
+**Dernière màj :** 2026-11-18 · deck Travaux 7 + pipeline dérivés WebP/AVIF.
 
 ---
 
@@ -57,3 +57,8 @@ docs/brand/
 ```
 
 **Note export Figma :** un fichier nommé `.png` peut être un ZIP. Vérifier avec `file chemin.png` → `PNG image data`.
+
+## Dérivés perf
+
+Après export Figma, lancer `npm run assets:compress` (détail : [`docs/quality/IMAGE_PIPELINE.md`](../quality/IMAGE_PIPELINE.md)).  
+Les PNG sources restent la source de vérité ; `.webp` / `.avif` sont des dérivés runtime via `OptimizedImg`.

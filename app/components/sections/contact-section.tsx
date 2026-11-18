@@ -5,9 +5,10 @@ import {
   SubmitButton,
   UnderlineField,
 } from "~/components/ui";
+import { OptimizedImg } from "~/components/ui/optimized-img";
 import type { ContactContent, ContactSectionContent } from "~/content/types";
-import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
+import { validateContactFields } from "~/lib/validation";
 
 type ContactSectionProps = {
   content: ContactSectionContent;
@@ -17,10 +18,6 @@ type ContactSectionProps = {
 
 type FormValues = Record<string, string>;
 type FormErrors = Record<string, string>;
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-}
 
 /**
  * Contact — fond photo (cadrage bureau) + vignette Encre,
@@ -51,27 +48,17 @@ export function ContactSection({
     }
   };
 
-  const validate = (): FormErrors => {
-    const next: FormErrors = {};
-    for (const field of content.fields) {
-      const value = (values[field.name] ?? "").trim();
-      if (field.required && !value) {
-        next[field.name] = content.errorRequired;
-        continue;
-      }
-      if (field.type === "email" && value && !isValidEmail(value)) {
-        next[field.name] = content.errorEmail;
-      }
-    }
-    return next;
-  };
-
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const nextErrors = validate();
+    const nextErrors = validateContactFields(content.fields, values, {
+      errorRequired: content.errorRequired,
+      errorEmail: content.errorEmail,
+    });
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
+    // TODO(Q23): remplacer le stub CSR par useFetcher + action serveur
+    // (voir docs/design/CONTACT_BACKEND.md). UX Figma conservée en attendant.
     setLoading(true);
     window.setTimeout(() => {
       setLoading(false);
@@ -92,14 +79,15 @@ export function ContactSection({
       aria-labelledby="contact-heading"
     >
       {content.backgroundSrc ? (
-        <img
-          src={assetUrl(content.backgroundSrc)}
+        <OptimizedImg
+          src={content.backgroundSrc}
           alt=""
           aria-hidden
           loading="lazy"
           decoding="async"
-          /* Cadrage sur le bureau / laptop (droite) — moins de porte & couture sol */
-          className="absolute inset-0 size-full object-cover object-[72%_42%]"
+          /* Cadrage sur le bureau / laptop (droite) : moins de porte & couture sol */
+          pictureClassName="absolute inset-0 size-full"
+          className="size-full object-cover object-[72%_42%]"
         />
       ) : (
         <div

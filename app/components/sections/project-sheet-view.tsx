@@ -1,8 +1,7 @@
 import { useEffect, type CSSProperties } from "react";
 import { Link, useNavigate } from "react-router";
-import { MskLogo, Reveal } from "~/components/ui";
+import { MskLogo, OptimizedImg, Reveal } from "~/components/ui";
 import type { GallerySlot, ProjectPanelStyle } from "~/data/projects";
-import { assetUrl } from "~/lib/assets";
 import { homePath } from "~/i18n";
 
 type ProjectSheetCopy = {
@@ -170,12 +169,13 @@ export function ProjectSheetView({
           </div>
 
           <div className="relative min-h-[50svh] bg-msk-placeholder md:min-h-0">
-            <img
-              src={assetUrl(coverSrc)}
+            <OptimizedImg
+              src={coverSrc}
               alt={coverAlt}
               fetchPriority="high"
               decoding="sync"
-              className="absolute inset-0 size-full object-cover object-center"
+              pictureClassName="absolute inset-0 size-full"
+              className="size-full object-cover object-center"
             />
           </div>
         </section>
@@ -232,8 +232,8 @@ export function ProjectSheetView({
           </Reveal>
           <div className="grid grid-cols-1 gap-px md:grid-cols-2">
             <figure className="relative flex aspect-[719.5/540] items-center justify-center bg-[#1D2B53]">
-              <img
-                src={assetUrl(beforeAfter.beforeSrc)}
+              <OptimizedImg
+                src={beforeAfter.beforeSrc}
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -244,8 +244,8 @@ export function ProjectSheetView({
               </figcaption>
             </figure>
             <figure className="relative flex aspect-[719.5/540] items-center justify-center bg-[#1D2B53]">
-              <img
-                src={assetUrl(beforeAfter.afterSrc)}
+              <OptimizedImg
+                src={beforeAfter.afterSrc}
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -269,8 +269,8 @@ export function ProjectSheetView({
             <Reveal key={`gallery-row-${index}`} delayMs={Math.min(index * 40, 160)}>
               {row.kind === "full" ? (
                 <div className="w-full overflow-hidden rounded-[10px] bg-msk-placeholder">
-                  <img
-                    src={assetUrl(row.item.src)}
+                  <OptimizedImg
+                    src={row.item.src}
                     alt={row.item.alt}
                     loading="lazy"
                     decoding="async"
@@ -284,12 +284,13 @@ export function ProjectSheetView({
                       key={item.src}
                       className="relative aspect-[598/640] w-full overflow-hidden rounded-[10px] bg-msk-placeholder"
                     >
-                      <img
-                        src={assetUrl(item.src)}
+                      <OptimizedImg
+                        src={item.src}
                         alt={item.alt}
                         loading="lazy"
                         decoding="async"
-                        className="absolute inset-0 size-full object-cover"
+                        pictureClassName="absolute inset-0 size-full"
+                        className="size-full object-cover"
                       />
                     </div>
                   ))}

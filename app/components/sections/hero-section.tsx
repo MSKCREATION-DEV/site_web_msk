@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { assetUrl } from "~/lib/assets";
+import { OptimizedImg } from "~/components/ui/optimized-img";
 import { cn } from "~/lib/utils";
 import type { HeroContent, NavContent } from "~/content/types";
 import type { Locale } from "~/i18n";
@@ -61,19 +61,20 @@ export function HeroSection({
     >
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         {hero.slides.map((slide, index) => (
-          <img
+          <OptimizedImg
             key={slide.src}
-            src={assetUrl(slide.src)}
+            src={slide.src}
             alt=""
             width={1440}
             height={900}
             decoding={index === 0 ? "sync" : "async"}
             loading={index === 0 ? "eager" : "lazy"}
             fetchPriority={index === 0 ? "high" : "low"}
-            className={cn(
-              "absolute inset-0 size-full object-cover transition-opacity duration-1000",
+            pictureClassName={cn(
+              "absolute inset-0 size-full transition-opacity duration-1000",
               index === slideIndex ? "opacity-100" : "opacity-0",
             )}
+            className="size-full object-cover"
           />
         ))}
         <div className="absolute inset-0 bg-black/65" />

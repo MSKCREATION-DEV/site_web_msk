@@ -8,6 +8,8 @@ import { index, route } from "@react-router/dev/routes";
  */
 export default [
   index("routes/_index.tsx"),
+  route("robots.txt", "routes/robots.ts"),
+  route("sitemap.xml", "routes/sitemap.ts"),
   route(":lang", "routes/locale-layout.tsx", [
     index("routes/home.tsx"),
     route("travaux/:slug", "routes/project.tsx", {

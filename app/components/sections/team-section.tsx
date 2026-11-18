@@ -7,6 +7,8 @@ export type TeamGridItem = {
   name: string;
   role: string;
   photoSrc: string;
+  /** Pattern SEO : `{name}, {role} · {brand}` */
+  photoAlt: string;
 };
 
 type TeamSectionProps = {
@@ -15,7 +17,7 @@ type TeamSectionProps = {
   className?: string;
 };
 
-/** Figma 2:19 — rangée 1 = 5, rangée 2 = reste (6). */
+/** Figma 2:19 — rangée 1 = 5, rangée 2 = reste. */
 function splitRows(members: TeamGridItem[]) {
   const row1 = members.slice(0, 5);
   const row2 = members.slice(5);
@@ -25,7 +27,7 @@ function splitRows(members: TeamGridItem[]) {
 /**
  * Équipe — Figma `05 · Équipe` (2:19).
  * En-tête : titre gauche + intro 320px droite (items-end / justify-between).
- * Grille : 5 + 6, gap 32 / 40, portraits 176×235.
+ * Grille : 5 + reste, gap 32 / 40, portraits 176×235.
  */
 export function TeamSection({
   content,
@@ -79,7 +81,7 @@ export function TeamSection({
                       name={member.name}
                       role={member.role}
                       photoSrc={member.photoSrc}
-                      photoAlt={member.name}
+                      photoAlt={member.photoAlt}
                     />
                   </Reveal>
                 </li>

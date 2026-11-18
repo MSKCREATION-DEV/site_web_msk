@@ -10,7 +10,12 @@ import {
 
 import type { Route } from "./+types/root";
 import { isLocale } from "~/i18n";
+import { securityHeaders } from "~/lib/security/headers";
 import "./app.css";
+
+export function headers(_: Route.HeadersArgs) {
+  return securityHeaders();
+}
 
 /*
  * Charte v3 (PDF §03) — Jost / Bricolage ExtraBold / Instrument Serif Italic.

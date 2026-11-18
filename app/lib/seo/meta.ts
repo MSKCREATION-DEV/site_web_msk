@@ -12,6 +12,12 @@ export type PageMetaInput = {
   alternateLocales: Array<{ locale: "fr" | "en"; href: string }>;
   /** open graph type */
   ogType?: "website" | "article";
+  /** Nom de marque pour og:site_name */
+  siteName?: string;
+  /** URL absolue og:image / twitter:image */
+  imageUrl?: string;
+  /** JSON-LD (script:ld+json) — objet ou graphe */
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
 type MetaDescriptor =
@@ -23,7 +29,8 @@ type MetaDescriptor =
       rel: string;
       href: string;
       hrefLang?: string;
-    };
+    }
+  | { "script:ld+json": Record<string, unknown> | Array<Record<string, unknown>> };
 
 const OG_LOCALE: Record<"fr" | "en", string> = {
   fr: "fr_FR",
@@ -32,10 +39,12 @@ const OG_LOCALE: Record<"fr" | "en", string> = {
 
 export function buildPageMeta(input: PageMetaInput): MetaDescriptor[] {
   const ogType = input.ogType ?? "website";
+  const siteName = input.siteName ?? "MSK Création";
   const meta: MetaDescriptor[] = [
     { title: input.title },
     { name: "description", content: input.description },
     { property: "og:type", content: ogType },
+    { property: "og:site_name", content: siteName },
     { property: "og:title", content: input.title },
     { property: "og:description", content: input.description },
     { property: "og:url", content: input.canonical },
@@ -45,6 +54,13 @@ export function buildPageMeta(input: PageMetaInput): MetaDescriptor[] {
     { name: "twitter:description", content: input.description },
     { tagName: "link", rel: "canonical", href: input.canonical },
   ];
+
+  if (input.imageUrl) {
+    meta.push(
+      { property: "og:image", content: input.imageUrl },
+      { name: "twitter:image", content: input.imageUrl },
+    );
+  }
 
   for (const alt of input.alternateLocales) {
     meta.push({
@@ -70,6 +86,10 @@ export function buildPageMeta(input: PageMetaInput): MetaDescriptor[] {
     hrefLang: "x-default",
     href: defaultHref,
   });
+
+  if (input.jsonLd) {
+    meta.push({ "script:ld+json": input.jsonLd });
+  }
 
   return meta;
 }

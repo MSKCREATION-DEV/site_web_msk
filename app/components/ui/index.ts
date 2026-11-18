@@ -3,6 +3,8 @@ export { BackToTop } from "./back-to-top";
 export { BriefSuccessMessage } from "./brief-success-message";
 export { MskLogo } from "./msk-logo";
 export type { MskLogoVariant } from "./msk-logo";
+export { OptimizedImg } from "./optimized-img";
+export type { OptimizedImgProps } from "./optimized-img";
 export {
   BackToWorksLink,
   CloseLink,

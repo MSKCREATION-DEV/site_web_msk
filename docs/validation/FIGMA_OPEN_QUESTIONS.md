@@ -11,6 +11,10 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | Q03 | Options listes Service / Budget | Formulaire Contact | **PENDING** — selects vides ; options NON TROUVÉ |
 | Q12 | Bureau équipe dédié | Asset | **PARTIEL** — Contact OK ; `team/office.png` NON TROUVÉ (section Équipe Figma 2:19 sans bandeau bureau) |
 | Q17 | Resync Figma couleurs vs Charte v3 | Design system Figma | **OUVERTE** — code Encre / `#1D73BC` / Corail ; Figma peut encore mélanger anciens tokens |
+| Q20 | Profils sociaux hors footer Figma | SEO Organization | **PARTIEL** — `sameAs` = Instagram / TikTok / LinkedIn déjà dans `footer.social` ; tout ajout = validation |
+| Q21 | Bios / pages Person au-delà de name+role Figma | SEO Person | **PENDING** — roles content seulement |
+| Q22 | Alts projets enrichis (marketing) | A11y / SEO images | **PENDING** — V1 = titre (+ index galerie) |
+| Q23 | Backend contact (Resend / autre) + messages erreur serveur | Formulaire | **PENDING** — design dans `docs/design/CONTACT_BACKEND.md` ; UX Figma CSR stub conservée |
 
 ---
 

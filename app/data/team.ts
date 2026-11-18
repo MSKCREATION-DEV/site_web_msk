@@ -1,7 +1,7 @@
 /**
- * Équipe — grille 5+6. Ordre validé client (écarts vs Figma 2:19) :
+ * Équipe — grille 5+5. Ordre validé client (2026-11-18) :
  * rangée 1 : Mathieu, Isdalinia, Andile, Ismaël, Amadou
- * rangée 2 : Madina, Issiaka, Lidaou, Fatimatou, Yaye, Djouldé
+ * rangée 2 : Lidaou, Fatimatou, Yaye, Djouldé, Eric
  */
 
 export type TeamMember = {
@@ -38,16 +38,6 @@ export const teamMembers: TeamMember[] = [
     contentKey: "amadou-samba-guiro",
   },
   {
-    slug: "madina-tall",
-    photoSrc: "/assets/team/madina-tall.png",
-    contentKey: "madina-tall",
-  },
-  {
-    slug: "issiaka-yacouba-traore",
-    photoSrc: "/assets/team/issiaka-yacouba-traore.png",
-    contentKey: "issiaka-yacouba-traore",
-  },
-  {
     slug: "lidaou-espoir-awesso",
     photoSrc: "/assets/team/lidaou-espoir-awesso.png",
     contentKey: "lidaou-espoir-awesso",
@@ -66,5 +56,10 @@ export const teamMembers: TeamMember[] = [
     slug: "djoulede-keita",
     photoSrc: "/assets/team/djoulede-keita.png",
     contentKey: "djoulede-keita",
+  },
+  {
+    slug: "eric-golo",
+    photoSrc: "/assets/team/eric-golo.png",
+    contentKey: "eric-golo",
   },
 ];

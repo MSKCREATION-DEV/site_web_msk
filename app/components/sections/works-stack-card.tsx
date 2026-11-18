@@ -1,6 +1,6 @@
 import { Link } from "react-router";
+import { OptimizedImg } from "~/components/ui/optimized-img";
 import type { ProjectPanelStyle } from "~/data/projects";
-import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
 
 export type WorksStackCardData = {
@@ -51,13 +51,14 @@ export function WorksStackCard({
     >
       {/* Image 560 / panneau 656 ≈ 46% / 54% */}
       <div className="relative min-h-0 flex-[560] bg-msk-placeholder md:flex-[560]">
-        <img
-          src={assetUrl(project.imageSrc)}
+        <OptimizedImg
+          src={project.imageSrc}
           alt={project.imageAlt}
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : "auto"}
           decoding="async"
-          className="absolute inset-0 size-full object-cover"
+          pictureClassName="absolute inset-0 size-full"
+          className="size-full object-cover"
         />
       </div>
 

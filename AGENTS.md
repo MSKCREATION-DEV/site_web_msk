@@ -6,6 +6,8 @@ Instructions pour tout agent (Cursor / humain) travaillant sur ce dépôt.
 
 Reproduire le site vitrine **MSK Création** à partir du Figma validé, avec React Router Framework Mode (SSR), TypeScript, Tailwind v4, daisyUI v5, Lucide.
 
+Lire [`CONSTRAINTS.md`](./CONSTRAINTS.md) avant d’écrire du code. Ne pas l’affaiblir pour faire passer un changement.
+
 ## Sources de vérité
 
 1. **Figma** — [MSK-MAQUETTE](https://www.figma.com/design/wn9ZMeW9YwaF3PE8Wqa2WS/MSK-MAQUETTE) : layout, copy Desktop, assets photo, interactions.
@@ -67,4 +69,4 @@ npm run build
 
 ## Skills Cursor
 
-Voir `.cursor/skills/*/SKILL.md`. Appliquer la skill pertinente avant d’agir.
+Voir `.cursor/skills/*/SKILL.md` et la gouvernance [`docs/architecture/CURSOR_GOVERNANCE.md`](docs/architecture/CURSOR_GOVERNANCE.md) (MSK primaires + Addy complémentaires). Appliquer la skill pertinente avant d’agir ; rule `.cursor/rules/agent-skills.mdc`.

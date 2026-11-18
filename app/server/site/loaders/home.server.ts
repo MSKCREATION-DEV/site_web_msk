@@ -1,6 +1,7 @@
 import { getLocaleContent } from "~/content";
 import type { Locale } from "~/i18n";
 import { getWorksGridProjects, teamMembers } from "~/data";
+import { teamPhotoAlt } from "~/lib/seo";
 import { isUsableAsset } from "~/server/site/assets.server";
 
 export function loadHomePage(locale: Locale) {
@@ -21,11 +22,14 @@ export function loadHomePage(locale: Locale) {
 
   const team = teamMembers.map((member) => {
     const copy = content.team[member.contentKey];
+    const name = copy?.name ?? member.slug;
+    const role = copy?.role ?? "";
     return {
       slug: member.slug,
-      name: copy?.name ?? member.slug,
-      role: copy?.role ?? "",
+      name,
+      role,
       photoSrc: member.photoSrc,
+      photoAlt: teamPhotoAlt(name, role, content.home.brandName),
     };
   });
 

@@ -1,7 +1,7 @@
 import type { Route } from "./+types/project";
 import { ProjectSheetView } from "~/components/sections/project-sheet-view";
 import { loadProjectPage } from "~/server/site/loaders/project.server";
-import { projectMeta } from "~/lib/seo";
+import { buildProjectJsonLd, projectMeta } from "~/lib/seo";
 import {
   isLocale,
   parseLocale,
@@ -39,12 +39,24 @@ export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) {
     return [{ title: "MSK Création" }];
   }
+
+  const { locale, project, copy, brandName, coverSrc } = loaderData;
+  const jsonLd = buildProjectJsonLd({
+    locale,
+    slug: project.slug,
+    brandName,
+    title: copy.title,
+    description: copy.description,
+    imagePath: coverSrc,
+  });
+
   return projectMeta(
-    loaderData.locale,
-    loaderData.project.slug,
-    loaderData.copy.title,
-    loaderData.copy.description,
-    loaderData.brandName,
+    locale,
+    project.slug,
+    copy.title,
+    copy.description,
+    brandName,
+    { imagePath: coverSrc, jsonLd },
   );
 }
 

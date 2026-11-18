@@ -29,7 +29,7 @@ export const home: HomeContent = {
     ],
     titleLine3: "qui convertissent.",
     subtitle:
-      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 11 experts formés en France, au Maroc et au Mali.",
+      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc et au Mali.",
     recentLabel: "Dernièrement",
     recentProjects: [],
     tickerItems: [
@@ -115,7 +115,7 @@ export const home: HomeContent = {
     titleAccent: "derrière",
     titleAfter: "le travail.",
     intro:
-      "11 experts aux profils complémentaires : stratégie, design, vidéo, développement, community management. Formés entre la France, le Maroc et le Mali. Zéro sous-traitance : les visages ci-dessous sont ceux qui travaillent vraiment sur votre projet.",
+      "10 experts aux profils complémentaires : stratégie, design, vidéo, développement, community management. Formés entre la France, le Maroc et le Mali. Zéro sous-traitance : les visages ci-dessous sont ceux qui travaillent vraiment sur votre projet.",
     officeSrc: "/assets/cta/teaser-poster.png",
     officeAlt: "Bureaux MSK Création, Bamako",
   },

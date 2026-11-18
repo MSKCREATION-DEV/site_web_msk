@@ -10,7 +10,7 @@ import {
   WorksSection,
 } from "~/components/sections";
 import { loadHomePage } from "~/server/site/loaders/home.server";
-import { homeMeta } from "~/lib/seo";
+import { buildHomeJsonLd, homeMeta } from "~/lib/seo";
 import { isLocale, parseLocale } from "~/i18n";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -25,11 +25,24 @@ export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) {
     return [{ title: "MSK Création" }];
   }
-  return homeMeta(
-    loaderData.locale,
-    loaderData.home.meta.title,
-    loaderData.home.meta.description,
-  );
+
+  const { locale, home, team, contact, footer } = loaderData;
+  const jsonLd = buildHomeJsonLd({
+    locale,
+    brandName: home.brandName,
+    description: home.meta.description,
+    email: contact.email,
+    addressLocality: "Bamako",
+    addressRegion: "ACI 2000",
+    addressCountry: "ML",
+    team: team.map((m) => ({ name: m.name, role: m.role })),
+    sameAs: footer.social.map((s) => s.href),
+  });
+
+  return homeMeta(locale, home.meta.title, home.meta.description, {
+    siteName: home.brandName,
+    jsonLd,
+  });
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

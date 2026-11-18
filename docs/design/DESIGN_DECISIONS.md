@@ -85,6 +85,14 @@ Later : ASSET_BASE_URL = https://cdn... (R2)
 Règle : jamais Unsplash / image « similaire ».  
 Signaler : `Asset X présent dans Figma mais source non disponible.`
 
+### Compression / dérivés (perf P1)
+
+- **Sources PNG/JPEG Figma conservées** ; dérivés `.webp` + `.avif` écrits à côté (sharp).
+- Commandes : `npm run assets:compress` / `assets:compress:priority` / `check:images`.
+- Runtime : composant `OptimizedImg` (`<picture>` AVIF → WebP → PNG) sur hero, Travaux, fiches, équipe, contact, CTA, Approche.
+- Logos SVG exclus. Budgets + QA Desktop : [`docs/quality/IMAGE_PIPELINE.md`](../quality/IMAGE_PIPELINE.md).
+- Manifest : `public/assets/.derivatives-manifest.json`.
+
 ---
 
 ## SEO
@@ -92,10 +100,12 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 - Meta SSR par locale (`meta` React Router).
 - Canonical + hreflang FR/EN + `x-default` → `/fr`.
 - Contenu meta : dérivé des textes page ou validé — **pas inventé** marketing libre.
-- Open Graph : `og:title`, `og:description`, `og:url`, `og:locale` (+ alternate), `og:type`.
-- Twitter card : `summary_large_image` (sans image OG dédiée tant que non fournie Figma).
-- Origine absolue : `VITE_SITE_ORIGIN` (voir `.env.example`).
-- Sitemap / robots / JSON-LD : phase ultérieure si validé.
+- Open Graph : `og:title`, `og:description`, `og:url`, `og:locale` (+ alternate), `og:type`, **`og:site_name`**, **`og:image`**.
+- Twitter card : `summary_large_image` + **`twitter:image`**.
+- Image partage default : **`/assets/hero/slide-01.png`** (Figma hero) ; fiches = cover projet. Détail : [`SEO_STRUCTURED_DATA.md`](./SEO_STRUCTURED_DATA.md).
+- Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire — voir README / `.env.example`).
+- JSON-LD SSR (`script:ld+json`) : Organization + WebSite + Person (équipe) sur home ; CreativeWork sur fiches.
+- Sitemap `/sitemap.xml` + robots `/robots.txt` (routes FR/EN existantes uniquement).
 
 ---
 
@@ -152,6 +162,9 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-10-04 | **Stack Travaux v3** : refonte scroll-driven (track `N×100svh`, stage sticky, transforms). Fin des marginBottom/sticky-header orphelins ; bandeau masqué sur dernier ; peek seulement après scroll. |
 | 2026-10-04 | **Travaux Figma sync** : logo signature horizontale (611:972) en nav/fiche ; deck **7** (Prosperity en tête) ; panneaux couleur Figma par projet ; fiche ouverture deux moitiés accent+cover ; empilement scroll conservé. Covers Prosperity + refresh photos : MCP saturé → `FIGMA_PROMPT_WORKS_7.md`. |
 | 2026-10-04 | **Audit Figma appliqué** : titre `[ PROJETS SÉLECTIONNÉS ]` ; cartes 560/656 radius 16 ; couleurs/texte/CTA par projet (hors charte OK = identité client) ; fiches Encre + intro + galerie paires + next only ; copy FR audit. Empilement scroll conservé malgré liste Figma gap 32. Downloads : `ASSETS_DOWNLOAD_WORKS_SHEETS.md`. |
+| 2026-11-18 | **SEO P0** : og/twitter image (hero slide-01 + covers), JSON-LD, robots/sitemap, alts équipe `{name}, {role} · MSK Création`. Spec `SEO_STRUCTURED_DATA.md`. sameAs / bios / alts marketing = Q20–Q22. |
 | 2026-10-05 | **Équipe (2:19)** : en-tête Figma `justify-between` / `items-end` (titre gauche + intro 320px droite) ; grille 5+6 gap 32/40 ; ordre + rôles Figma ; cartes portrait 176×235 + voile hover. |
 | 2026-10-05 | **Assets Travaux/fiches livrés** ; nettoyage `docs/charte graphique New/` (doublon `docs/brand/`) ; inventaires / Q19 fermée. |
 | 2026-10-07 | **Équipe** : ordre client. Rangée 1 : Mathieu, Isdalinia, Andile, Ismaël (Lead développeur), Amadou. Rangée 2 : Madina, Issiaka, Lidaou, Fatimatou, Yaye (Commerciale), Djouldé. Rôles inchangés. |
+| 2026-11-18 | **Équipe** : retrait Madina Tall + Issiaka Yacouba Traoré ; ajout **Eric Golo** (Monteur Vidéo / Video editor) en dernier. Photo `team/eric-golo.png`. Copy « 10 experts ». Service produit fourni : Communication & Marketing (orthographe corrigée depuis « Maketing » ; non affiché en UI). Email `e.golo@mskcreation.net` fourni mais hors schéma cartes (name + role seulement). Grille 5+5. |
+| 2026-11-18 | **Perf images P1** : pipeline sharp (`scripts/compress-assets.mjs`) WebP+AVIF sans destruction des PNG ; `OptimizedImg` branché (hero prioritaire + Travaux/fiches/équipe/contact/CTA/Approche) ; doc `IMAGE_PIPELINE.md` ; retrait JPEG racine inutilisé `ERIC-GOLO.jpeg` (garder `public/assets/team/eric-golo.png`). QA visuelle Desktop vs Figma obligatoire avant merge. |

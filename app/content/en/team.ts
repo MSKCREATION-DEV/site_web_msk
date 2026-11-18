@@ -1,6 +1,6 @@
 import type { TeamMemberCopy } from "../fr/team";
 
-/** Same people as FR — roles translated from Figma labels. */
+/** Same people as FR — roles translated from FR labels. */
 export const team: Record<string, TeamMemberCopy> = {
   "mathieu-diarra": {
     name: "Mathieu Diarra",
@@ -38,12 +38,8 @@ export const team: Record<string, TeamMemberCopy> = {
     name: "Djouldé Keita",
     role: "Community intern",
   },
-  "madina-tall": {
-    name: "Madina Tall",
-    role: "Executive assistant",
-  },
-  "issiaka-yacouba-traore": {
-    name: "Issiaka Yacouba Traoré",
-    role: "Accountant",
+  "eric-golo": {
+    name: "Eric Golo",
+    role: "Video editor",
   },
 };

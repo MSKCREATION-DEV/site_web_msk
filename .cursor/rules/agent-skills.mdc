@@ -1,0 +1,40 @@
+---
+description: Routage skills MSK vs Addy Osmani (primauté Figma/i18n/SEO)
+alwaysApply: true
+---
+
+# Agent skills (MSK + Addy)
+
+## Découverte
+
+1. Lire la méta-skill `using-agent-skills` pour le routage générique par phase.
+2. Appliquer ensuite la **primauté MSK** ci-dessous (ne pas coller le contenu des skills ici).
+
+## Skills MSK — primaires (ne pas remplacer)
+
+| Contexte | Skill |
+|----------|-------|
+| UI / section / composant depuis Figma | `msk-figma-implementation` |
+| Routes, loaders, actions, SSR | `react-router-ssr` |
+| Meta / canonical / hreflang / H1 / alt route MSK | `seo-review` |
+| Responsive / mobile | `responsive-qa` |
+| Comparaison visuelle Desktop vs Figma | `visual-regression` |
+
+## Skills Addy — complémentaires (sync sélective)
+
+Utiliser quand le sujet n’est **pas** déjà couvert par une skill MSK primaire : perf, sécu, hardening, review qualité, shipping, CI, contraintes, DevTools, implémentation incrémentale, source-driven.
+
+Liste et chemins : `docs/architecture/CURSOR_GOVERNANCE.md`.  
+Checklists partagées : `.cursor/references/` (pas `docs/quality/` pour les liens relatifs des skills).
+
+## Conflits
+
+- **Figma / charte / copy MSK** vs best practice générique Addy → **Figma + `FIGMA_OPEN_QUESTIONS.md` / `DESIGN_DECISIONS.md` gagnent**.
+- Ne pas inventer layout, texte, image, animation ou breakpoint « pour la perf / a11y / SEO » hors sources MSK validées.
+- i18n, SEO meta et assets : rules MSK (`.cursor/rules/*`) + content `app/content` restent la source de vérité produit.
+
+## Anti-patterns
+
+- Écraser une skill MSK lors d’un resync Addy.
+- Dupliquer le corps des skills dans les rules.
+- Appliquer `frontend-ui-engineering` à la place de `msk-figma-implementation` pour une section maquettée.

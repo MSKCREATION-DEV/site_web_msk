@@ -3,7 +3,7 @@ export type TeamMemberCopy = {
   role: string;
 };
 
-/** Noms + rôles = Figma `05 · Équipe` (2:19). */
+/** Noms + rôles équipe (source produit / Figma). */
 export const team: Record<string, TeamMemberCopy> = {
   "mathieu-diarra": {
     name: "Mathieu Diarra",
@@ -41,12 +41,8 @@ export const team: Record<string, TeamMemberCopy> = {
     name: "Djouldé Keita",
     role: "Stagiaire community",
   },
-  "madina-tall": {
-    name: "Madina Tall",
-    role: "Assistante de direction",
-  },
-  "issiaka-yacouba-traore": {
-    name: "Issiaka Yacouba Traoré",
-    role: "Comptable",
+  "eric-golo": {
+    name: "Eric Golo",
+    role: "Monteur Vidéo",
   },
 };

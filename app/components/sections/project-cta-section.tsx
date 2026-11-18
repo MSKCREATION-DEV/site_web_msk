@@ -1,3 +1,4 @@
+import { OptimizedImg } from "~/components/ui/optimized-img";
 import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
 import { Reveal } from "~/components/ui";
@@ -43,12 +44,13 @@ export function ProjectCtaSection({
       <div className="relative w-full">
         {/* Média full-bleed (hors gutter) */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden>
-          <img
-            src={assetUrl(content.posterSrc)}
+          <OptimizedImg
+            src={content.posterSrc}
             alt=""
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 size-full object-cover"
+            pictureClassName="absolute inset-0 size-full"
+            className="size-full object-cover"
           />
           <div className="absolute inset-0 bg-linear-to-r from-msk-ink/85 via-msk-ink/45 to-msk-ink/65" />
           {/* Charte v3 — filigrane discret, hors zone CTA */}

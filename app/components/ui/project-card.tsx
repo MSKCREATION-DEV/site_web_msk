@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router";
-import { assetUrl } from "~/lib/assets";
+import { OptimizedImg } from "~/components/ui/optimized-img";
 import { cn } from "~/lib/utils";
 
 export type ProjectCardHeight = "short" | "tall";
@@ -84,12 +84,13 @@ export function ProjectCard({
             : "aspect-3/2 lg:aspect-auto lg:h-msk-card-short",
         )}
       >
-        <img
-          src={assetUrl(imageSrc)}
+        <OptimizedImg
+          src={imageSrc}
           alt={imageAlt}
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 size-full object-cover transition-transform duration-msk ease-out group-hover:scale-msk-hover"
+          pictureClassName="absolute inset-0 size-full"
+          className="size-full object-cover transition-transform duration-msk ease-out group-hover:scale-msk-hover"
         />
       </div>
     </Link>

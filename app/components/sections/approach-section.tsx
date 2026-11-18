@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
-import { Reveal } from "~/components/ui";
+import { OptimizedImg, Reveal } from "~/components/ui";
 import type { ApproachContent } from "~/content/types";
 import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
@@ -120,13 +120,14 @@ export function ApproachSection({
                 key={slide.src}
                 className="msk-gallery-slide relative shrink-0 snap-start"
               >
-                <img
-                  src={assetUrl(slide.src)}
+                <OptimizedImg
+                  src={slide.src}
                   alt={slide.alt}
                   draggable={false}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 size-full object-cover select-none"
+                  pictureClassName="absolute inset-0 size-full"
+                  className="size-full object-cover select-none"
                 />
                 {slide.label ? (
                   <figcaption className="msk-page-x absolute inset-x-0 bottom-6 font-sans text-msk-xs font-medium tracking-msk-wide text-msk-text uppercase drop-shadow-[0_1px_2px_rgb(0_0_0_/_0.8)]">

@@ -8,6 +8,9 @@
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "check:copy": "node scripts/check-copy-dashes.mjs",
+    "check:images": "node scripts/check-image-weights.mjs",
+    "assets:compress": "node scripts/compress-assets.mjs",
+    "assets:compress:priority": "node scripts/compress-assets.mjs --only=hero,works,team,cta,contact,approach",
     "check": "npm run typecheck && npm run check:copy"
   },
   "dependencies": {
@@ -26,6 +29,7 @@
     "@types/node": "^22",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
     "vite": "^8.0.3"

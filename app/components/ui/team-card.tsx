@@ -1,4 +1,4 @@
-import { assetUrl } from "~/lib/assets";
+import { OptimizedImg } from "~/components/ui/optimized-img";
 import { cn } from "~/lib/utils";
 
 type TeamCardProps = {
@@ -40,12 +40,13 @@ export function TeamCard({
       )}
     >
       <div className="relative h-msk-portrait w-full overflow-hidden bg-[#1D2B53]">
-        <img
-          src={assetUrl(photoSrc)}
+        <OptimizedImg
+          src={photoSrc}
           alt={photoAlt}
           loading="lazy"
           decoding="async"
-          className="absolute inset-0 size-full object-cover object-top transition-transform duration-msk ease-out group-hover:scale-msk-portrait"
+          pictureClassName="absolute inset-0 size-full"
+          className="size-full object-cover object-top transition-transform duration-msk ease-out group-hover:scale-msk-portrait"
         />
         <div
           className="pointer-events-none absolute inset-0 bg-black/18 transition-opacity duration-msk ease-out group-hover:opacity-0"
