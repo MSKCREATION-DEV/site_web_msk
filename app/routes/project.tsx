@@ -40,7 +40,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
     return [{ title: "MSK Création" }];
   }
 
-  const { locale, project, copy, brandName, coverSrc } = loaderData;
+  const { locale, project, copy, brandName, coverSrc, gallery } = loaderData;
   const jsonLd = buildProjectJsonLd({
     locale,
     slug: project.slug,
@@ -48,6 +48,10 @@ export function meta({ loaderData }: Route.MetaArgs) {
     title: copy.title,
     description: copy.description,
     imagePath: coverSrc,
+    images: gallery.map((item) => ({
+      path: item.src,
+      caption: item.alt,
+    })),
   });
 
   return projectMeta(
@@ -60,7 +64,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   );
 }
 
-/** Fiche projet — template Figma audit 2026-10-04. */
+/** Fiche projet — template Figma + Q24 Prosperity / Thòy. */
 export default function ProjectPage({ loaderData }: Route.ComponentProps) {
   const {
     copy,
@@ -68,9 +72,11 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
     locale,
     next,
     coverSrc,
+    coverAlt,
     gallery,
     beforeAfter,
     panel,
+    approachAfterIndex,
   } = loaderData;
 
   return (
@@ -79,11 +85,12 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
       copy={copy}
       counter={counter}
       coverSrc={coverSrc}
-      coverAlt={copy.title}
+      coverAlt={coverAlt}
       panel={panel}
       gallery={gallery}
       beforeAfter={beforeAfter}
       next={next}
+      approachAfterIndex={approachAfterIndex}
     />
   );
 }

@@ -1,0 +1,50 @@
+{
+  "defaultKeywords": ["MSK Création", "Bamako"],
+  "assets": [
+    {
+      "file": "public/assets/projects/prosperity/gallery-01.png",
+      "description": "Femme en robe blanche, voile bleu au vent sur un balcon surplombant Bamako au crépuscule, logo Prosperity Management Mali",
+      "keywords": ["Prosperity", "Prosperity Management Mali", "Le voile", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/prosperity/gallery-02.png",
+      "description": "Architecture de marque Prosperity : cinq entités, Management Mali, Travel, Market, Farm et BTP, chacune sur sa couleur",
+      "keywords": ["Prosperity", "Architecture de marque", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/prosperity/gallery-03.png",
+      "description": "Homme en costume regardant la skyline nocturne depuis une baie vitrée, logo Prosperity Management Mali",
+      "keywords": ["Prosperity", "Le regard", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/prosperity/gallery-04.png",
+      "description": "Groupe de trois professionnels marchant dans un hall lumineux, logo Prosperity Management Mali",
+      "keywords": ["Prosperity", "Le groupe", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/prosperity/gallery-05.png",
+      "description": "Papeterie Prosperity Management Mali : cartes de visite, chemise, enveloppe, porte-documents et stylo or sur fond navy",
+      "keywords": ["Prosperity", "Papeterie", "Conran B", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/prosperity/gallery-06.png",
+      "description": "Bannière Prosperity Travel : femme en tenue bleue et or, voile au-dessus du pont de Bamako, slogan Partir en toute sérénité",
+      "keywords": ["Prosperity", "Prosperity Travel", "Banner", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/thoy-art/gallery-01.png",
+      "description": "Portrait de nuit, femme yeux fermés et foulard coloré, logo manuscrit Thòy ’Art",
+      "keywords": ["Thòy ’Art", "Conran A", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/thoy-art/gallery-02.png",
+      "description": "Merchandising Thòy ’Art sur fond rouge : tote, carnet, badge, pinceaux et tanbou",
+      "keywords": ["Thòy ’Art", "Conran B", "Merch", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/thoy-art/gallery-03.png",
+      "description": "Bannière rue Thòy ’Art : bâtiment turquoise et jaune, logo circulaire et moto-taxi",
+      "keywords": ["Thòy ’Art", "Banner rue", "MSK Création", "Bamako"]
+    }
+  ]
+}

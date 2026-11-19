@@ -22,8 +22,8 @@ Brand / logos v3 : **Charte PDF → `docs/brand/` → `public/assets/logo/`**.
 | Approche galerie ×6 | OK | |
 | Works covers (7) | OK | `works/{slug}/cover.png` — PNG réels (exports ZIP dézippés) |
 | Covers fiches (7) | OK | `projects/{slug}/cover.png` |
-| Galeries fiches | OK | Prosperity 9 · Thòy 8 · Koundji 12 · Bomoyi 8 · Ecosol 9 · Elvi 10 · Akwaba 11 |
-| Avant/Après Koundji | OK | |
+| Galeries fiches | PARTIEL | Prosperity **6** · Thòy **3** (Q24) · Koundji **3** · Bomoyi **6** · Ecosol **6** · Elvi **6** · Akwaba **5** · Q25 (QA Desktop vs Figma due) |
+| Avant/Après Koundji | OK | Layout `msk-page-x` + alts (2026-11-19) |
 | Équipe (11) | OK | Ordre Figma 5+6 |
 | Options Service / Budget | **PENDING** | Q03 |
 | Projets hors deck | Présents, hors routes V1 | Beauté Divine, Delmorian, etc. |

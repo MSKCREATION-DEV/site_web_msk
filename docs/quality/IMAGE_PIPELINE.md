@@ -77,8 +77,29 @@ Gain agrégé best format : **~214 Mo** (fichiers dérivés ; PNG sources toujou
 ## Workflow ajout d’asset
 
 ```
-Figma export → public/assets/.../file.png → npm run assets:compress -- --only=<dossier>
-→ vérifier rendu Desktop → commit sources + dérivés ensemble
+Figma export / dépôt racine validé
+→ public/assets/.../file.png (naming cohérent)
+→ npm run assets:stamp-meta -- --manifest=scripts/image-metadata.<scope>.json
+→ npm run assets:compress -- --only=<dossier>
+→ supprimer dépôts racine une fois intégrés
+→ vérifier rendu Desktop → commit sources + dérivés + meta ensemble
 ```
 
 Ne jamais inventer une image « similaire » ni Unsplash.
+
+## Métadonnées EXIF / IPTC / XMP
+
+Script : `scripts/stamp-image-metadata.mjs` (`npm run assets:stamp-meta`).
+
+| Champ | Valeur |
+|-------|--------|
+| Artist / Creator / Copyright / Credit | `MSK Création` |
+| ImageDescription / Description / Caption-Abstract | alt content (FR) |
+| Keywords / Subject | projet · sujet · MSK Création · Bamako |
+
+- **Préféré** : `exiftool` (Homebrew) : écrit EXIF + IPTC/XMP **sans** ré-encoder le PNG.
+- **Fallback** : `sharp.withMetadata` (EXIF seulement ; ré-encode PNG → à éviter si exiftool dispo).
+
+Manifests : `scripts/image-metadata.prosperity-thoy.json` (Q24) · `scripts/image-metadata.q25-five.json` (Koundji / Bomoyi / Ecosol / Elvi / Akwaba).
+
+Côté HTML / SEO : alts FR/EN dans `app/content/*/projects.ts` (`coverAlt`, `galleryAlts`) ; `OptimizedImg` + `width`/`height` loader ; JSON-LD `CreativeWork.image` = cover + ImageObject galerie.

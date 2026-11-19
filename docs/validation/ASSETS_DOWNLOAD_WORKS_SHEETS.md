@@ -18,8 +18,8 @@ slugs : prosperity · thoy-art · koundji-services · bomoyi · ecosol · elvi-c
 ### P2 — galeries
 | Projet | gallery-01 … |
 |--------|----------------|
-| prosperity | 09 |
-| thoy-art | 08 |
+| prosperity | 06 (Figma Q24 : voile · architecture · regard · groupe · papeterie · Travel) |
+| thoy-art | 03 (Figma Q24 : Conran A · Conran B · banner rue) |
 | koundji-services | 12 |
 | bomoyi | 08 |
 | ecosol | 09 |

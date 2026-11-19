@@ -11,6 +11,7 @@
     "check:images": "node scripts/check-image-weights.mjs",
     "assets:compress": "node scripts/compress-assets.mjs",
     "assets:compress:priority": "node scripts/compress-assets.mjs --only=hero,works,team,cta,contact,approach",
+    "assets:stamp-meta": "node scripts/stamp-image-metadata.mjs",
     "check": "npm run typecheck && npm run check:copy"
   },
   "dependencies": {

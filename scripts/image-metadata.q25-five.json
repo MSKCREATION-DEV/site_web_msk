@@ -1,0 +1,170 @@
+{
+  "defaultKeywords": ["MSK Création", "Bamako"],
+  "assets": [
+    {
+      "file": "public/assets/projects/koundji-services/cover.png",
+      "description": "Agent Koundji Services remettant les clés d’un bien devant un immeuble moderne",
+      "keywords": ["Koundji Services", "Koundji", "Immobilier", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/gallery-01.png",
+      "description": "Papeterie Koundji Services : dossier, cartes de visite et clés sur fond marine et orange",
+      "keywords": ["Koundji Services", "Papeterie", "Conran B", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/gallery-02.png",
+      "description": "Accueil clients à la réception Koundji Services, logo sur le mur",
+      "keywords": ["Koundji Services", "Réception", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/gallery-03.png",
+      "description": "Bannière chantier Koundji Services : Votre bien. Votre tranquillité.",
+      "keywords": ["Koundji Services", "Bannière", "Chantier", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/before.png",
+      "description": "Ancien logo Koundji Services, initiales KS sous un toit stylisé",
+      "keywords": ["Koundji Services", "Logo", "Avant", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/after.png",
+      "description": "Nouveau logo Koundji Services, toit marine et orange au-dessus du wordmark",
+      "keywords": ["Koundji Services", "Logo", "Après", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/cover.png",
+      "description": "Ordinateur portable affichant le site Bomoyi devant une salle de classe",
+      "keywords": ["Bomoyi", "Association Bomoyi", "Site web", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/gallery-01.png",
+      "description": "Femme et fillette lisant dehors, logo Bomoyi en overlay blanc",
+      "keywords": ["Bomoyi", "Conran A", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/gallery-02.png",
+      "description": "Flatlay Bomoyi vert : tote bag, cahiers et crayons de couleur",
+      "keywords": ["Bomoyi", "Conran B", "Papeterie", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/gallery-03.png",
+      "description": "Jeune femme au t-shirt Bomoyi entourée d’enfants en uniforme scolaire",
+      "keywords": ["Bomoyi", "Éducation", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/gallery-04.png",
+      "description": "Cahiers Bomoyi sur un pupitre d’école avec crayons et dessin d’enfant",
+      "keywords": ["Bomoyi", "Papeterie", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/gallery-05.png",
+      "description": "Femme souriante au marché portant un tote bag logo Bomoyi",
+      "keywords": ["Bomoyi", "Tote bag", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/bomoyi/gallery-06.png",
+      "description": "Entrée du centre Bomoyi avec enseigne logo et passage d’élèves",
+      "keywords": ["Bomoyi", "Enseigne", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/cover.png",
+      "description": "Technicien Ecosol de dos installant des panneaux solaires sur un toit",
+      "keywords": ["Ecosol", "Énergie solaire", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/gallery-01.png",
+      "description": "Portrait collaboratrice Ecosol au foulard bleu, logo Ecosol en overlay blanc",
+      "keywords": ["Ecosol", "Conran A", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/gallery-02.png",
+      "description": "Flatlay Ecosol bleu et orange : panneau, casque, cartes, carnet et ampoule",
+      "keywords": ["Ecosol", "Conran B", "Papeterie", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/gallery-03.png",
+      "description": "Deux techniciens Ecosol chargeant un panneau solaire sur un pick-up blanc",
+      "keywords": ["Ecosol", "Véhicule", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/gallery-04.png",
+      "description": "Casque blanc Ecosol et gants sur des panneaux solaires",
+      "keywords": ["Ecosol", "Casque", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/gallery-05.png",
+      "description": "Collaboratrice Ecosol en polo navy tenant une tablette devant des panneaux",
+      "keywords": ["Ecosol", "Portrait", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/ecosol/gallery-06.png",
+      "description": "Enseigne Ecosol Énergie Solaire à l’entrée d’une centrale solaire",
+      "keywords": ["Ecosol", "Enseigne", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/cover.png",
+      "description": "Sac shopping noir Elvi Création aux poignées or, accroché à une poignée de porte",
+      "keywords": ["Elvi Création", "Maroquinerie", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-01.png",
+      "description": "Affiche Elvi Création dans une station de métro parisienne",
+      "keywords": ["Elvi Création", "Campagne", "Métropolitain", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-02.png",
+      "description": "Panneau 4x3 Elvi Création à Lomé au coucher du soleil",
+      "keywords": ["Elvi Création", "Lomé", "Affichage", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-03.png",
+      "description": "Coffret noir Elvi Création et sac sur blocs de travertin",
+      "keywords": ["Elvi Création", "Coffret", "Packaging", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-04.png",
+      "description": "Sac rouge Elvi Création et pochon noir siglé sur socle en pierre",
+      "keywords": ["Elvi Création", "Packaging", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-05.png",
+      "description": "Carte et packaging Elvi Création or sur textile wax noir et blanc",
+      "keywords": ["Elvi Création", "Wax", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-06.png",
+      "description": "Écran vitrine Elvi Création dans une boutique parisienne au crépuscule",
+      "keywords": ["Elvi Création", "Vitrine", "Paris", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/cover.png",
+      "description": "Concierge Akwaba à l’aéroport de Lomé tenant une pancarte de bienvenue",
+      "keywords": ["Akwaba", "Lomé", "Conciergerie", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-01.png",
+      "description": "Chauffeur Akwaba plaçant une valise dans le coffre d’un SUV Jetour",
+      "keywords": ["Akwaba", "Jetour", "Transport VIP", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-02.png",
+      "description": "Sac de voyage et étiquette AK devant un jet privé au coucher du soleil",
+      "keywords": ["Akwaba", "Voyage", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-03.png",
+      "description": "Papeterie Akwaba navy et or avec clé, verre et frangipanier",
+      "keywords": ["Akwaba", "Papeterie", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-04.png",
+      "description": "Plaque Akwaba Conciergerie et chauffeur privé Lomé sur mur ensoleillé",
+      "keywords": ["Akwaba", "Signalétique", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-05.png",
+      "description": "Flatlay Akwaba navy et or : carte, enveloppe, étiquette AK et clé de voiture",
+      "keywords": ["Akwaba", "Conran B", "Papeterie", "MSK Création", "Lomé"]
+    }
+  ]
+}

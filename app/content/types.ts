@@ -175,8 +175,23 @@ export type ProjectCopy = {
   eyebrow?: string;
   /** Métadonnées intro fiche (chaine ·), distincte de la carte. */
   sheetTags?: string;
-  /** Paragraphe éditorial inséré dans / avant galerie (Prosperity). */
+  /**
+   * @deprecated Prefer `approach` intercalé en galerie (Figma Q24).
+   * Conservé pour rétrocompat si présent sans `approach`.
+   */
   galleryNote?: string;
+  /** Liste `[ RÉALISATIONS ]` Figma (colonne gauche intro). */
+  realizations?: string[];
+  /** Paragraphe `[ APPROCHE ]` intercalé en galerie après la 1re image. */
+  approach?: string;
+  /** Alt cover fiche (SEO). */
+  coverAlt?: string;
+  /** Alts galerie indexés (parallèles à `data.projects.gallery`). */
+  galleryAlts?: string[];
+  /** Alt logo Avant (Koundji). */
+  beforeAlt?: string;
+  /** Alt logo Après (Koundji). */
+  afterAlt?: string;
   expertiseLabel: string;
   realizationsLabel: string;
   approachLabel: string;
@@ -193,6 +208,22 @@ export type ProjectCopy = {
   backToWorksLabel: string;
 };
 
+type ProjectLocaleFields = Pick<
+  ProjectCopy,
+  | "title"
+  | "description"
+  | "category"
+  | "eyebrow"
+  | "sheetTags"
+  | "galleryNote"
+  | "realizations"
+  | "approach"
+  | "coverAlt"
+  | "galleryAlts"
+  | "beforeAlt"
+  | "afterAlt"
+>;
+
 export type LocaleContent = {
   home: HomeContent;
   nav: NavContent;
@@ -200,19 +231,19 @@ export type LocaleContent = {
   contact: ContactContent;
   projectSheet: Omit<
     ProjectCopy,
-    "title" | "description" | "category" | "eyebrow" | "sheetTags" | "galleryNote"
+    | "title"
+    | "description"
+    | "category"
+    | "eyebrow"
+    | "sheetTags"
+    | "galleryNote"
+    | "realizations"
+    | "approach"
+    | "coverAlt"
+    | "galleryAlts"
+    | "beforeAlt"
+    | "afterAlt"
   >;
-  projects: Record<
-    string,
-    Pick<
-      ProjectCopy,
-      | "title"
-      | "description"
-      | "category"
-      | "eyebrow"
-      | "sheetTags"
-      | "galleryNote"
-    >
-  >;
+  projects: Record<string, ProjectLocaleFields>;
   team: Record<string, { name: string; role: string }>;
 };
