@@ -8,6 +8,24 @@ import type { Locale } from "~/i18n";
 import { projectPath } from "~/i18n";
 import { isUsableAsset } from "~/server/site/assets.server";
 
+/** Covers fiche / fallback works — dimensions intrinsèques pour CLS. */
+const COVER_INTRINSIC: Record<string, { width: number; height: number }> = {
+  "/assets/projects/prosperity/cover.png": { width: 1440, height: 1536 },
+  "/assets/projects/thoy-art/cover.png": { width: 1440, height: 1536 },
+  "/assets/projects/koundji-services/cover.png": { width: 1440, height: 1536 },
+  "/assets/projects/bomoyi/cover.png": { width: 1440, height: 1536 },
+  "/assets/projects/ecosol/cover.png": { width: 1440, height: 1536 },
+  "/assets/projects/elvi-creation/cover.png": { width: 1440, height: 1536 },
+  "/assets/projects/akwaba/cover.png": { width: 1440, height: 1536 },
+  "/assets/works/prosperity/cover.png": { width: 1120, height: 1280 },
+  "/assets/works/thoy-art/cover.png": { width: 1120, height: 1280 },
+  "/assets/works/koundji-services/cover.png": { width: 1120, height: 1280 },
+  "/assets/works/bomoyi/cover.png": { width: 1120, height: 1280 },
+  "/assets/works/ecosol/cover.png": { width: 1120, height: 1280 },
+  "/assets/works/elvi-creation/cover.png": { width: 1120, height: 1280 },
+  "/assets/works/akwaba/cover.png": { width: 1120, height: 1280 },
+};
+
 /** Dimensions intrinsèques connues (exports Figma 2×) pour CLS. */
 const GALLERY_INTRINSIC: Record<string, { width: number; height: number }> = {
   "/assets/projects/prosperity/gallery-01.png": { width: 2432, height: 1280 },
@@ -108,6 +126,7 @@ export function loadProjectPage(locale: Locale, slug: string) {
   const coverSrc = isUsableAsset(project.cover.src)
     ? project.cover.src
     : project.worksCover.src;
+  const coverIntrinsic = COVER_INTRINSIC[coverSrc];
 
   return {
     locale,
@@ -122,6 +141,8 @@ export function loadProjectPage(locale: Locale, slug: string) {
       total: grid.length,
     },
     coverSrc,
+    coverWidth: coverIntrinsic?.width,
+    coverHeight: coverIntrinsic?.height,
     coverAlt: copy.coverAlt ?? copy.title,
     gallery,
     approachAfterIndex: 0,

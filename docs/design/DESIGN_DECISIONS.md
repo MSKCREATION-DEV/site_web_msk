@@ -103,8 +103,9 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 - Open Graph : `og:title`, `og:description`, `og:url`, `og:locale` (+ alternate), `og:type`, **`og:site_name`**, **`og:image`**.
 - Twitter card : `summary_large_image` + **`twitter:image`**.
 - Image partage default : **`/assets/hero/slide-01.png`** (Figma hero) ; fiches = cover projet. Détail : [`SEO_STRUCTURED_DATA.md`](./SEO_STRUCTURED_DATA.md).
-- Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire — voir README / `.env.example`).
-- JSON-LD SSR (`script:ld+json`) : Organization + WebSite + Person (équipe) sur home ; CreativeWork sur fiches.
+- **OG PNG source ~8 Mo** : ne **pas** recompresser / recadrer sans asset Figma OG dédié (1200×630). Les crawlers sociaux utilisent le PNG fallback ; AVIF/WebP servent le LCP navigateur via `OptimizedImg`. Dette documentée.
+- Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire — `npm run check:origin` ; strict prod via `--strict` / `VERCEL_ENV=production`).
+- JSON-LD SSR (`script:ld+json`) : Organization + WebSite + Person (équipe) sur home ; CreativeWork sur fiches. Adresse Organization dérivée de la row contact « Adresse » / « Address ».
 - Sitemap `/sitemap.xml` + robots `/robots.txt` (routes FR/EN existantes uniquement).
 
 ---
@@ -116,7 +117,7 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | Intro curtain | Contenu sections |
 | Filtres Travaux | Meta / HTML initial |
 | Overlays fiches, animations | Texte, images, structure |
-| Formulaire (états) | |
+| Formulaire (états UI / fetcher) | Action contact (validation + stub) |
 
 ---
 
@@ -175,3 +176,4 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-11-19 | **Q25 reste racine** : Elvi vitrine Paris → `elvi-creation/gallery-06` ; Akwaba Conran B → `akwaba/gallery-05` (ajout, sans écraser papeterie lifestyle `gallery-03`). Compteurs finaux Elvi **6** · Akwaba **5**. Doublons `incrustation*` déjà absents / retirés. Stamp meta + WebP/AVIF. |
 | 2026-11-19 | **Q26 mockups UI** : 13 captures racine → mockups browser/iPhone via `npm run assets:mockup` (`scripts/compose-device-mockups.mjs`). Elvi **13** (6 branding + 5 web + 2 mobile half) · Akwaba **9** (5 branding + 2 mobile half + 2 web) · Koundji **5** (3 branding + 2 web). Aucune QA site MSK. Stamp `image-metadata.q26-ui-mockups.json` + WebP/AVIF. Captures brutes racine retirées. QA Desktop vs Figma due. |
 | 2026-11-19 | **Audit assets orphan** : purge `public/assets/projects/{akwaba,bomoyi,ecosol,elvi-creation,koundji-services}/_legacy/` (150 fichiers, ~122,8 Mo). Works covers **conservés** (`worksCover` stack Travaux). Hors deck (`beaute-divine`, `delmorian`, `genesis-sarl`, `melya-beauty`) + logo bloc archive **conservés** (à valider humain). Manifest dérivés reconstruit sans re-encode. |
+| 2026-11-19 | **Revue qualité P0/P1** : H1 hero espaces de linéarisation FR/EN ; gate `VITE_SITE_ORIGIN` (`check:origin`) ; contact = action RR + stub désactivé + copy `unavailable*` (plus de `setTimeout` trompeur) ; runbook `CONTACT_BACKEND.md` ; ErrorBoundary i18n ; JSON-LD adresse depuis content ; `width`/`height` covers fiche ; `:focus-visible` bleu charte ; OG 8 Mo documenté sans recompress. |

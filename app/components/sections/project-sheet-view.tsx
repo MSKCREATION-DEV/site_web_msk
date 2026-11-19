@@ -20,6 +20,8 @@ type ProjectSheetCopy = {
   beforeAfterSubtitle?: string;
   closeLabel: string;
   backToWorksLabel: string;
+  galleryAriaLabel: string;
+  nextNavAriaLabel: string;
 };
 
 type ProjectSheetNavItem = {
@@ -41,6 +43,8 @@ type ProjectSheetViewProps = {
   copy: ProjectSheetCopy;
   counter: { current: number; total: number };
   coverSrc: string;
+  coverWidth?: number;
+  coverHeight?: number;
   coverAlt: string;
   panel: ProjectPanelStyle;
   gallery: GalleryItem[];
@@ -103,6 +107,8 @@ export function ProjectSheetView({
   locale,
   copy,
   coverSrc,
+  coverWidth,
+  coverHeight,
   coverAlt,
   panel,
   gallery,
@@ -213,6 +219,8 @@ export function ProjectSheetView({
             <OptimizedImg
               src={coverSrc}
               alt={coverAlt}
+              width={coverWidth}
+              height={coverHeight}
               fetchPriority="high"
               decoding="sync"
               pictureClassName="absolute inset-0 size-full"
@@ -330,7 +338,7 @@ export function ProjectSheetView({
       {galleryBlocks.length > 0 ? (
         <section
           className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-5 pt-6 pb-[max(4rem,calc(120*var(--msk-u)))]"
-          aria-label="Galerie"
+          aria-label={copy.galleryAriaLabel}
         >
           {galleryBlocks.map((block, index) => (
             <Reveal key={block.key} delayMs={Math.min(index * 40, 160)}>
@@ -382,7 +390,7 @@ export function ProjectSheetView({
       ) : null}
 
       {next ? (
-        <nav aria-label="Projet suivant">
+        <nav aria-label={copy.nextNavAriaLabel}>
           <Link
             to={next.href}
             className="flex min-h-[20.3125rem] flex-col items-center justify-center gap-4 px-6 py-[6.25rem] text-center transition-opacity hover:opacity-90"

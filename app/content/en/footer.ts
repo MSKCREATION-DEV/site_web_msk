@@ -22,4 +22,5 @@ export const footer: FooterContent = {
       href: "mailto:contact@mskcreation.net",
     },
   ],
+  socialAriaLabel: "Social networks",
 };

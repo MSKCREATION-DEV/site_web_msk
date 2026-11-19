@@ -69,7 +69,7 @@ export function SiteFooter({
           </div>
 
           <nav
-            aria-label="Réseaux"
+            aria-label={footer.socialAriaLabel}
             className="flex flex-wrap items-center justify-center gap-5 md:justify-end md:gap-6"
           >
             {footer.social.map((item) => (

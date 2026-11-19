@@ -8,12 +8,13 @@
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "check:copy": "node scripts/check-copy-dashes.mjs",
+    "check:origin": "node scripts/check-site-origin.mjs",
     "check:images": "node scripts/check-image-weights.mjs",
     "assets:compress": "node scripts/compress-assets.mjs",
     "assets:compress:priority": "node scripts/compress-assets.mjs --only=hero,works,team,cta,contact,approach",
     "assets:mockup": "node scripts/compose-device-mockups.mjs",
     "assets:stamp-meta": "node scripts/stamp-image-metadata.mjs",
-    "check": "npm run typecheck && npm run check:copy"
+    "check": "npm run typecheck && npm run check:copy && npm run check:origin"
   },
   "dependencies": {
     "@react-router/node": "^8.4.0",

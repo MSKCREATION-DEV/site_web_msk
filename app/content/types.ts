@@ -13,12 +13,18 @@ export type NavContent = {
   ctaBrief: string;
   ctaWorks: string;
   languageSwitchLabel: string;
+  /** aria-label nav desktop */
+  primaryNavAriaLabel: string;
+  /** aria-label nav drawer mobile */
+  mobileNavAriaLabel: string;
 };
 
 export type FooterContent = {
   copyright: string;
   addressLine: string;
   social: Array<{ label: string; href: string }>;
+  /** aria-label liste réseaux */
+  socialAriaLabel: string;
 };
 
 export type HeroSlideContent = {
@@ -43,6 +49,10 @@ export type HeroContent = {
   tickerItems: string[];
   rotateMs: number;
   slides: HeroSlideContent[];
+  /** aria-label tablist indicateurs hero */
+  slidesAriaLabel: string;
+  /** Préfixe aria-label bouton slide (ex. « Slide » / « Diapositive ») */
+  slideAriaLabelPrefix: string;
 };
 
 export type WorksContent = {
@@ -141,6 +151,15 @@ export type ContactSectionContent = {
   successEyebrow: string;
   successTitle: string;
   successBody: string;
+  /**
+   * État honnête quand l’envoi serveur n’est pas encore branché (Q23).
+   * Affiché à la place du faux succès Figma.
+   */
+  unavailableEyebrow: string;
+  unavailableTitle: string;
+  unavailableBody: string;
+  /** Erreur générique serveur (pas de stack). */
+  errorGeneric: string;
   errorRequired: string;
   errorEmail: string;
   /** Fond contact : PENDING export si absent */
@@ -206,6 +225,10 @@ export type ProjectCopy = {
   nextLabel: string;
   prevLabel: string;
   backToWorksLabel: string;
+  /** aria-label section galerie fiche */
+  galleryAriaLabel: string;
+  /** aria-label nav projet suivant */
+  nextNavAriaLabel: string;
 };
 
 type ProjectLocaleFields = Pick<

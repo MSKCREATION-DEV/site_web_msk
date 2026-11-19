@@ -11,4 +11,6 @@ export const nav: NavContent = {
   ctaBrief: "Brief a project →",
   ctaWorks: "See our work",
   languageSwitchLabel: "FR",
+  primaryNavAriaLabel: "Primary",
+  mobileNavAriaLabel: "Mobile",
 };

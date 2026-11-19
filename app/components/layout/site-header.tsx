@@ -63,7 +63,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
         </Link>
 
         <nav
-          aria-label="Principal"
+          aria-label={nav.primaryNavAriaLabel}
           className="hidden items-center justify-center gap-msk-nav-links justify-self-center lg:flex"
         >
           {nav.links.map((link) => (
@@ -151,7 +151,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
         </div>
 
         <nav
-          aria-label="Mobile"
+          aria-label={nav.mobileNavAriaLabel}
           className="msk-page-x flex flex-1 flex-col justify-center pb-msk-hero-pb"
         >
           {nav.links.map((link, index) => (

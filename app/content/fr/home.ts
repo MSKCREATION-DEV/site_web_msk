@@ -19,7 +19,8 @@ export const home: HomeContent = {
         alt: "MSK Création, visuel hero 2",
       },
     ],
-    titleLine1: "Nous créons",
+    /* Espaces de linéarisation a11y/SEO (H1 flex) : ne pas retirer. */
+    titleLine1: "Nous créons ",
     rotatingWords: [
       "sites web",
       "apps mobile",
@@ -27,7 +28,7 @@ export const home: HomeContent = {
       "campagnes",
       "solutions",
     ],
-    titleLine3: "qui convertissent.",
+    titleLine3: " qui convertissent.",
     subtitle:
       "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc et au Mali.",
     recentLabel: "Dernièrement",
@@ -43,6 +44,8 @@ export const home: HomeContent = {
       "Solutions Sur-Mesure",
     ],
     rotateMs: 3000,
+    slidesAriaLabel: "Diapositives",
+    slideAriaLabelPrefix: "Diapositive",
   },
   works: {
     title: "PROJETS SÉLECTIONNÉS",
@@ -259,6 +262,11 @@ export const home: HomeContent = {
     successTitle: "Merci, votre message est bien arrivé.",
     successBody:
       "Nous vous répondons sous 24 h ouvrées. En urgence, écrivez-nous sur WhatsApp.",
+    unavailableEyebrow: "Envoi bientôt disponible",
+    unavailableTitle: "Le formulaire n’envoie pas encore de message.",
+    unavailableBody:
+      "Écrivez-nous par e-mail ou WhatsApp. L’envoi en ligne sera activé après configuration du serveur (Q23).",
+    errorGeneric: "Envoi impossible pour le moment. Réessayez plus tard ou contactez-nous par e-mail / WhatsApp.",
     errorRequired: "Ce champ est obligatoire.",
     errorEmail: "Indiquez une adresse e-mail valide.",
     fields: [

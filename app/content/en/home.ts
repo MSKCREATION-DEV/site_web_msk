@@ -18,7 +18,8 @@ export const home: HomeContent = {
         alt: "MSK Creation, hero visual 2",
       },
     ],
-    titleLine1: "We create",
+    /* Linearization spaces for a11y/SEO (flex H1): do not strip. */
+    titleLine1: "We create ",
     rotatingWords: [
       "websites",
       "mobile apps",
@@ -26,7 +27,7 @@ export const home: HomeContent = {
       "campaigns",
       "solutions",
     ],
-    titleLine3: "that convert.",
+    titleLine3: " that convert.",
     subtitle:
       "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco and Mali.",
     recentLabel: "Recently",
@@ -42,6 +43,8 @@ export const home: HomeContent = {
       "Custom Solutions",
     ],
     rotateMs: 3000,
+    slidesAriaLabel: "Slides",
+    slideAriaLabelPrefix: "Slide",
   },
   works: {
     title: "SELECTED PROJECTS",
@@ -258,6 +261,12 @@ export const home: HomeContent = {
     successTitle: "Thank you, your message has been received.",
     successBody:
       "We reply within 24 business hours. For urgent matters, message us on WhatsApp.",
+    unavailableEyebrow: "Sending coming soon",
+    unavailableTitle: "This form does not send messages yet.",
+    unavailableBody:
+      "Please email or WhatsApp us. Online sending will be enabled after server setup (Q23).",
+    errorGeneric:
+      "Sending is unavailable right now. Try again later or reach us by email / WhatsApp.",
     errorRequired: "This field is required.",
     errorEmail: "Please enter a valid email address.",
     fields: [

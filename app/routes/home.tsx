@@ -9,8 +9,9 @@ import {
   TeamSection,
   WorksSection,
 } from "~/components/sections";
+import { handleContactAction } from "~/server/site/contact-action.server";
 import { loadHomePage } from "~/server/site/loaders/home.server";
-import { buildHomeJsonLd, homeMeta } from "~/lib/seo";
+import { buildHomeJsonLd, homeMeta, postalAddressFromContactRows } from "~/lib/seo";
 import { isLocale, parseLocale } from "~/i18n";
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -21,20 +22,36 @@ export function loader({ params }: Route.LoaderArgs) {
   return loadHomePage(locale);
 }
 
+export async function action({ request, params }: Route.ActionArgs) {
+  if (!isLocale(params.lang)) {
+    throw new Response("Not Found", { status: 404 });
+  }
+  const locale = parseLocale(params.lang);
+  const formData = await request.formData();
+  return handleContactAction(locale, formData);
+}
+
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) {
     return [{ title: "MSK Création" }];
   }
 
   const { locale, home, team, contact, footer } = loaderData;
+  const address =
+    postalAddressFromContactRows(home.contactSection.rows) ?? {
+      addressLocality: "Bamako",
+      addressRegion: "ACI 2000",
+      addressCountry: "ML",
+    };
+
   const jsonLd = buildHomeJsonLd({
     locale,
     brandName: home.brandName,
     description: home.meta.description,
     email: contact.email,
-    addressLocality: "Bamako",
-    addressRegion: "ACI 2000",
-    addressCountry: "ML",
+    addressLocality: address.addressLocality,
+    addressRegion: address.addressRegion,
+    addressCountry: address.addressCountry,
     team: team.map((m) => ({ name: m.name, role: m.role })),
     sameAs: footer.social.map((s) => s.href),
   });

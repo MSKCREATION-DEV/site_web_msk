@@ -14,8 +14,8 @@ Voir aussi : [`DESIGN_DECISIONS.md`](./DESIGN_DECISIONS.md) § SEO, questions ou
 | **Default site** (`og:image` / `twitter:image` home + fallback) | `/assets/hero/slide-01.png` | Visuel hero Figma Desktop, déjà alt content |
 | **Fiche projet** | Cover fiche `project.cover.src` (fallback `worksCover`) | Asset projet existant, pas d’image inventée |
 
-**Hors scope V1 :** génération d’une OG 1200×630 dédiée, compression WebP du hero (P2, QA Figma).  
-**Poids connu :** `slide-01.png` ~8 Mo — acceptable pour crawl social court terme ; compression = dette documentée.
+**Hors scope V1 :** génération d’une OG 1200×630 dédiée Figma.  
+**Poids connu :** `slide-01.png` source ~8 Mo pour `og:image` (PNG). **Ne pas recompresser / recadrer** ce PNG pour OG sans asset Figma dédié. Les dérivés AVIF/WebP réduisent le LCP navigateur via `OptimizedImg` ; les crawlers sociaux qui tirent `og:image` voient encore le PNG lourd — dette acceptée jusqu’à export OG validé.
 
 Meta associées (code) : `og:site_name`, `og:image`, `twitter:image`, `twitter:card=summary_large_image`.
 
@@ -29,7 +29,7 @@ Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire). Assets CDN : `VITE_ASSE
 
 `@graph` :
 
-1. **Organization** — `name` = brand content, `url` = origin, `logo` = `/assets/logo/msk-creation.svg`, `email` = content contact, `address` dérivé footer/contact (« Bamako, ACI 2000 », pays `ML`). **`sameAs`** = hrefs déjà présents dans `footer.social` (Instagram / TikTok / LinkedIn Figma) — pas d’URL inventée.
+1. **Organization** — `name` = brand content, `url` = origin, `logo` = `/assets/logo/msk-creation.svg`, `email` = content contact, `address` = row contact « Adresse » / « Address » (`postalAddressFromContactRows`, ex. Bamako / ACI 2000 / ML). **`sameAs`** = hrefs déjà présents dans `footer.social` (Instagram / TikTok / LinkedIn Figma) — pas d’URL inventée.
 2. **WebSite** — `url`, `name`, `inLanguage` fr|en, lien `publisher` → Organization.
 3. **Person** (équipe) — pour chaque membre content : `name`, `jobTitle` (= role), `worksFor` → Organization. Liste = `app/data/team.ts` + copy FR/EN (10 personnes, dont **Eric Golo**). **Pas de bio / URL perso / email perso** sans validation éditoriale (schéma UI = name + role uniquement).
 
@@ -80,8 +80,8 @@ Remplacer par `.` `,` `:` ou `·`. Garde-fou : `npm run check:copy`.
 | Bios Person / pages auteur | Q21 | Roles Figma seulement |
 | Alts projets « marketing » riches | Q22 | V1 = titre (+ index galerie) ; enrichissement copy à valider |
 | Options Service / Budget formulaire | Q03 | Selects vides |
-| Backend contact (Resend, etc.) | Q23 | Spec design séparée ; pas de faux envoi trompeur long terme |
-| OG compressée / ratio 1.91:1 | P2 | Pipeline images |
+| Backend contact (Resend, etc.) | Q23 | Runbook `CONTACT_BACKEND.md` ; stub + UX honnête ; provider à choisir |
+| OG 1200×630 Figma dédiée | P2 | Ne pas recompresser le PNG ~8 Mo sans export dédié |
 
 ---
 

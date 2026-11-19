@@ -16,6 +16,8 @@ export const projectSheet: LocaleContent["projectSheet"] = {
   nextLabel: "Next",
   prevLabel: "Previous",
   backToWorksLabel: "Back to works",
+  galleryAriaLabel: "Gallery",
+  nextNavAriaLabel: "Next project",
 };
 
 /** EN — titres Figma ; body / APPROCHE / RÉALISATIONS alignés FR Q24. */

@@ -74,6 +74,8 @@ Si doute qualité → baisser compression (augmenter quality) ou garder PNG pour
 
 Gain agrégé best format : **~214 Mo** (fichiers dérivés ; PNG sources toujours présents pour fallback / OG).
 
+**OG / partage social :** `og:image` pointe encore vers le PNG hero (~8 Mo). Ne pas recompresser ce PNG pour OG sans export Figma 1200×630 dédié (voir `SEO_STRUCTURED_DATA.md`).
+
 ## Workflow ajout d’asset
 
 ```

@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { useFetcher } from "react-router";
 import {
   BriefSuccessMessage,
   Reveal,
@@ -7,6 +8,10 @@ import {
 } from "~/components/ui";
 import { OptimizedImg } from "~/components/ui/optimized-img";
 import type { ContactContent, ContactSectionContent } from "~/content/types";
+import {
+  CONTACT_HONEYPOT_NAME,
+  type ContactActionResult,
+} from "~/lib/contact/types";
 import { cn } from "~/lib/utils";
 import { validateContactFields } from "~/lib/validation";
 
@@ -23,8 +28,10 @@ type FormErrors = Record<string, string>;
  * Contact — fond photo (cadrage bureau) + vignette Encre,
  * grille 568+80+568, form Nom|Email 272, validation + loading + confirmation.
  *
+ * Envoi : action React Router + stub provider (Q23).
+ * Pas de faux succès client : si provider désactivé → message « bientôt disponible ».
+ *
  * Charte v3 §02 : photo uniquement sur zone calme / contrastée.
- * Vignette Encre pour unifier et éviter l’effet « deux photos » (porte ↔ bureau).
  */
 export function ContactSection({
   content,
@@ -34,8 +41,20 @@ export function ContactSection({
   const [nameField, emailField, ...restFields] = content.fields;
   const [values, setValues] = useState<FormValues>({});
   const [errors, setErrors] = useState<FormErrors>({});
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const fetcher = useFetcher<ContactActionResult>();
+
+  const loading = fetcher.state !== "idle";
+  const result = fetcher.data;
+  const showOutcome =
+    fetcher.state === "idle" &&
+    result != null &&
+    (result.ok || result.code === "unavailable" || result.code === "error");
+
+  useEffect(() => {
+    if (result && !result.ok && result.code === "validation" && result.fieldErrors) {
+      setErrors(result.fieldErrors);
+    }
+  }, [result]);
 
   const setValue = (name: string, value: string) => {
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -49,25 +68,46 @@ export function ContactSection({
   };
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     const nextErrors = validateContactFields(content.fields, values, {
       errorRequired: content.errorRequired,
       errorEmail: content.errorEmail,
     });
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
-
-    // TODO(Q23): remplacer le stub CSR par useFetcher + action serveur
-    // (voir docs/design/CONTACT_BACKEND.md). UX Figma conservée en attendant.
-    setLoading(true);
-    window.setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-    }, 900);
+    if (Object.keys(nextErrors).length > 0) {
+      event.preventDefault();
+    }
   };
 
   const fieldClass =
     "w-full border-b border-msk-border bg-transparent pb-3 font-sans text-sm text-msk-text outline-none placeholder:text-msk-text-subtle focus:border-msk-blue";
+
+  let outcome: {
+    eyebrow: string;
+    title: string;
+    body: string;
+  } | null = null;
+
+  if (showOutcome && result) {
+    if (result.ok) {
+      outcome = {
+        eyebrow: content.successEyebrow,
+        title: content.successTitle,
+        body: content.successBody,
+      };
+    } else if (result.code === "unavailable") {
+      outcome = {
+        eyebrow: content.unavailableEyebrow,
+        title: content.unavailableTitle,
+        body: content.unavailableBody,
+      };
+    } else if (result.code === "error") {
+      outcome = {
+        eyebrow: content.unavailableEyebrow,
+        title: content.errorGeneric,
+        body: content.unavailableBody,
+      };
+    }
+  }
 
   return (
     <section
@@ -165,14 +205,33 @@ export function ContactSection({
           <div className="hidden lg:block" aria-hidden />
 
           <Reveal delayMs={80}>
-            {success ? (
+            {outcome ? (
               <BriefSuccessMessage
-                eyebrow={content.successEyebrow}
-                title={content.successTitle}
-                body={content.successBody}
+                eyebrow={outcome.eyebrow}
+                title={outcome.title}
+                body={outcome.body}
               />
             ) : (
-              <form className="flex flex-col gap-6" onSubmit={onSubmit} noValidate>
+              <fetcher.Form
+                method="post"
+                className="relative flex flex-col gap-6"
+                onSubmit={onSubmit}
+                noValidate
+              >
+                {/* Honeypot anti-spam — hors écran, ignoré par les humains */}
+                <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden>
+                  <label htmlFor={`contact-${CONTACT_HONEYPOT_NAME}`}>
+                    Website
+                    <input
+                      id={`contact-${CONTACT_HONEYPOT_NAME}`}
+                      type="text"
+                      name={CONTACT_HONEYPOT_NAME}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </label>
+                </div>
+
                 {nameField && emailField ? (
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <UnderlineField
@@ -301,7 +360,7 @@ export function ContactSection({
                     {content.whatsappLabel}
                   </a>
                 </div>
-              </form>
+              </fetcher.Form>
             )}
           </Reveal>
         </div>

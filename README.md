@@ -17,10 +17,11 @@ npm run dev           # serveur de développement
 npm run build         # build SSR
 npm run typecheck     # typegen + tsc
 npm run check:copy    # pas de tirets cadratin/demi dans content/data
+npm run check:origin  # VITE_SITE_ORIGIN (warning local ; --strict en prod)
 npm run check:images  # liste images public/ > 500 Ko
 npm run assets:compress:priority  # WebP+AVIF hero/works/team/…
 npm run assets:compress           # tous les raster sous public/assets
-npm run check         # typecheck + check:copy
+npm run check         # typecheck + check:copy + check:origin
 npm start             # servir le build
 ```
 
@@ -32,8 +33,13 @@ Voir [`.env.example`](./.env.example).
 |----------|------|
 | `VITE_SITE_ORIGIN` | **Obligatoire en prod** — origine absolue pour canonical, hreflang, `og:image`, JSON-LD, sitemap (ex. `https://www.mskcreation.net`). Local : `http://localhost:5173`. |
 | `VITE_ASSET_BASE_URL` | Préfixe CDN assets (vide = `/public`). |
+| `CONTACT_EMAIL_ENABLED` | `1` seulement après Q23 + provider branché. Absent = stub honnête (pas d’envoi). |
 
-Sans `VITE_SITE_ORIGIN` prod, les URL absolues SEO restent sur localhost.
+Sans `VITE_SITE_ORIGIN` https prod, les URL absolues SEO restent sur localhost.
+
+**Gate origin :** `npm run check:origin` (warning local) ; en prod / CI : `npm run check:origin -- --strict` ou `VERCEL_ENV=production` / `MSK_REQUIRE_PROD_ORIGIN=1` (échec si localhost). Intégré à `npm run check` en mode soft.
+
+**Contact prod :** voir [`docs/design/CONTACT_BACKEND.md`](./docs/design/CONTACT_BACKEND.md).
 
 ## Documentation
 

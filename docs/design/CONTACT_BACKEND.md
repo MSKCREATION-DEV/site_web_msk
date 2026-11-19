@@ -1,46 +1,122 @@
-# Contact — design backend (Q23)
+# Contact — backend & runbook production (Q23)
 
-**Statut :** design documenté, **pas d’envoi réel** en V1.  
-Le formulaire Figma reste CSR (validation + états loading/succès) pour ne pas tromper avec un faux backend productisé.
-
----
-
-## État actuel
-
-- UI : `ContactSection` (Figma Desktop).
-- Validation partagée : `app/lib/validation/contact.ts` (réutilisable dans une `action`).
-- Succès : stub `setTimeout` client — **à remplacer** dès qu’un provider est validé.
-- Options Service / Budget : **vides** jusqu’à Q03.
+**Statut :** architecture prête, **envoi réel désactivé** tant que Q23 n’est pas fermée.  
+L’UI ne ment plus : soumettre le formulaire renvoie un état honnête « envoi bientôt disponible » (content FR/EN), pas un faux « message reçu ».
 
 ---
 
-## Décisions produit à valider (humain)
+## 1. Ce que fait le code aujourd’hui
+
+| Couche | Fichier | Rôle |
+|--------|---------|------|
+| UI | `app/components/sections/contact-section.tsx` | `useFetcher` + `fetcher.Form` → POST same-origin |
+| Action | `app/routes/home.tsx` → `handleContactAction` | Valide, honeypot, appelle le provider |
+| Validation | `app/lib/validation/contact.ts` | Champs requis + e-mail (client + serveur) |
+| Provider | `app/server/api/contact.server.ts` | **Stub** : refuse l’envoi tant que `CONTACT_EMAIL_ENABLED≠1` |
+| Messages | `app/content/{fr,en}/home.ts` (`contactSection`) | Succès Figma **et** `unavailable*` / `errorGeneric` |
+
+Flux :
+
+1. L’utilisateur soumet le formulaire (validation client d’abord).
+2. L’`action` home revalide côté serveur + honeypot `website`.
+3. `sendContactEmail` retourne `disabled` → code `unavailable`.
+4. L’UI affiche `unavailableEyebrow` / `unavailableTitle` / `unavailableBody` (pas le succès Figma).
+
+WhatsApp + e-mail mailto restent les canaux réels en attendant.
+
+---
+
+## 2. Contact en production — comment faire (humain)
+
+Suivre ces étapes **dans l’ordre** avant de publier un formulaire qui envoie vraiment.
+
+### Étape 1 — Choisir le provider (Q23)
+
+Décider un provider e-mail :
+
+- **Resend** (recommandé pour Vercel / Node)  
+- Postmark, SendGrid, SMTP transactionnel, Formspree, etc.
+
+Documenter le choix ici et fermer Q23 dans `FIGMA_OPEN_QUESTIONS.md`.
+
+### Étape 2 — Compte + domaine
+
+1. Créer le compte provider.
+2. Vérifier le domaine d’envoi (SPF / DKIM) pour `mskcreation.net` (ou sous-domaine `mail.`).
+3. Définir l’adresse **From** (ex. `MSK Création <noreply@mskcreation.net>`).
+4. Définir le **destinataire** (défaut content : `contact@mskcreation.net`).
+
+### Étape 3 — Variables d’environnement (jamais dans git)
+
+À poser dans l’env de **build/runtime prod** (Vercel / hôte) :
+
+| Variable | Exemple | Obligatoire |
+|----------|---------|-------------|
+| `CONTACT_EMAIL_ENABLED` | `1` | Oui pour activer l’envoi |
+| `RESEND_API_KEY` (ou équivalent) | `re_…` | Oui selon provider |
+| `CONTACT_EMAIL_TO` | `contact@mskcreation.net` | Recommandé |
+| `CONTACT_EMAIL_FROM` | `MSK Création <noreply@…>` | Recommandé |
+| `VITE_SITE_ORIGIN` | `https://www.mskcreation.net` | **Oui** (SEO + liens absolus) |
+
+Local : laisser `CONTACT_EMAIL_ENABLED` absent → stub honnête.
+
+### Étape 4 — Brancher le provider dans le code
+
+Fichier : `app/server/api/contact.server.ts`
+
+1. Si `CONTACT_EMAIL_ENABLED !== "1"` → garder le retour `disabled` (déjà en place).
+2. Sinon : appeler l’API provider avec le payload normalisé (`name`, `email`, `company`, `service`, `budget`, `message`, …).
+3. Succès → `{ ok: true }` ; échec réseau/API → `{ ok: false, reason: "provider_error" }` (message générique UI, **pas** de stack).
+
+Ne pas inventer de copy marketing : réutiliser `success*` Figma uniquement quand `ok: true`.
+
+### Étape 5 — Anti-spam & abus
+
+Déjà partiel :
+
+- [x] Honeypot champ `website` (caché)
+- [ ] Rate-limit IP (mémoire process ou Upstash Redis) — à ajouter avant trafic public
+- [ ] Option captcha (Turnstile / hCaptcha) si spam réel
+
+Recommandation V1 prod : honeypot + rate-limit 5 req / IP / 15 min.
+
+### Étape 6 — GDPR / privacy (minimal)
+
+1. Ne stocker le message **que** dans l’e-mail reçu (pas de DB) sauf besoin CRM validé.
+2. Mentionner dans la politique de confidentialité : finalité (répondre au brief), durée, destinataire MSK.
+3. Pas de transfert hors UE sans base légale si le provider l’exige (vérifier Resend / région).
+
+### Étape 7 — Checklist go-live formulaire
+
+- [ ] Q23 fermée (provider choisi)
+- [ ] Domaine e-mail vérifié (SPF/DKIM)
+- [ ] Env prod : `CONTACT_EMAIL_ENABLED=1` + clé API + From/To
+- [ ] `VITE_SITE_ORIGIN` https prod (`npm run check:origin -- --strict` OK)
+- [ ] Test manuel FR + EN : succès réel → message Figma « Brief reçu »
+- [ ] Test : clé API absente → `errorGeneric` (pas de faux succès)
+- [ ] WhatsApp / mailto toujours OK en secours
+- [ ] CSP : `form-action 'self'` (déjà dans `app/lib/security/headers.ts`)
+
+### Étape 8 — Options Service / Budget (Q03)
+
+Les `<select>` restent vides jusqu’à validation éditoriale. Ne pas inventer d’options.
+
+---
+
+## 3. Décisions produit encore ouvertes
 
 | Choix | Options | Bloquant |
 |-------|---------|----------|
-| Provider email | Resend, Postmark, SMTP, Formspree, … | Oui |
-| Destinataire | `contact@mskcreation.net` (content) ou autre | Oui |
-| Anti-spam | honeypot, Turnstile/hCaptcha, rate-limit IP | Recommandé |
-| Stockage | email only vs log / CRM | Non |
-| i18n erreurs serveur | messages génériques FR/EN (pas de stack) | Oui |
-
-Ne pas committer de clés API. Utiliser env (`RESEND_API_KEY`, etc.) hors dépôt.
+| Provider e-mail | Resend, Postmark, SMTP, … | **Oui (Q23)** |
+| Destinataire | `contact@mskcreation.net` ou autre | Oui |
+| Rate-limit / captcha | honeypot seul vs Upstash vs Turnstile | Recommandé |
+| Stockage | e-mail only vs CRM | Non |
+| Copy erreurs serveur | déjà `errorGeneric` / `unavailable*` content | Fait (minimal) |
 
 ---
 
-## Cible technique (quand Q23 fermée)
+## 4. Lien SEO / sécu
 
-1. `action` sur route home (ou resource `routes/api.contact.ts`) — Framework Mode SSR.
-2. Valider avec `validateContactFields` + taille max champs.
-3. Rate-limit basique (mémoire / Upstash) si hébergeur le permet.
-4. Envoyer via provider ; répondre `{ ok: true }` ou erreur générique.
-5. UI : `useFetcher` — garder labels / layout Figma ; brancher pending/success sur fetcher.
-
-Hors scope tant que non validé : fake “envoyé” long terme en prod, inventer options selects.
-
----
-
-## Lien SEO / sécu
-
-- Headers sécu déjà sur `root` (`app/lib/security/headers.ts`).
-- `form-action 'self'` en CSP prod : l’action doit rester same-origin.
+- Headers : `app/lib/security/headers.ts` (`form-action 'self'`).
+- L’action reste sur la route home same-origin (`/:lang`).
+- Pas de clés API dans le bundle client (`.server.ts` seulement).

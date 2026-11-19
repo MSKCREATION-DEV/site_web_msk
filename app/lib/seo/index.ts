@@ -18,6 +18,8 @@ export {
   teamPhotoAlt,
 } from "./json-ld";
 export type { JsonLdHomeInput, JsonLdPersonInput, JsonLdProjectInput } from "./json-ld";
+export { postalAddressFromContactRows } from "./postal-address";
+export type { PostalAddressFromContent } from "./postal-address";
 export {
   buildSitemapEntries,
   renderSitemapXml,

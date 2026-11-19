@@ -9,7 +9,8 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import { isLocale } from "~/i18n";
+import { isLocale, parseLocale } from "~/i18n";
+import { errorMessages } from "~/i18n/error-messages";
 import { securityHeaders } from "~/lib/security/headers";
 import "./app.css";
 
@@ -88,15 +89,19 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Erreur";
-  let details = "Une erreur inattendue s’est produite.";
+  const params = useParams();
+  const locale = isLocale(params.lang) ? parseLocale(params.lang) : "fr";
+  const copy = errorMessages(locale);
+
+  let message = copy.title;
+  let details = copy.unexpected;
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Erreur";
+    message = error.status === 404 ? "404" : copy.title;
     details =
       error.status === 404
-        ? "La page demandée est introuvable."
+        ? copy.notFound
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;

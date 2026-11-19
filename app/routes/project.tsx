@@ -72,6 +72,8 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
     locale,
     next,
     coverSrc,
+    coverWidth,
+    coverHeight,
     coverAlt,
     gallery,
     beforeAfter,
@@ -85,6 +87,8 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
       copy={copy}
       counter={counter}
       coverSrc={coverSrc}
+      coverWidth={coverWidth}
+      coverHeight={coverHeight}
       coverAlt={coverAlt}
       panel={panel}
       gallery={gallery}

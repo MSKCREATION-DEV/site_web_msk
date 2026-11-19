@@ -127,7 +127,7 @@ export function HeroSection({
         <div
           className="msk-slide-indicators absolute z-20 flex flex-col items-center gap-2"
           role="tablist"
-          aria-label="Slides"
+          aria-label={hero.slidesAriaLabel}
         >
           {hero.slides.map((slide, i) => (
             <button
@@ -135,7 +135,7 @@ export function HeroSection({
               type="button"
               role="tab"
               aria-selected={i === slideIndex}
-              aria-label={`Slide ${i + 1}`}
+              aria-label={`${hero.slideAriaLabelPrefix} ${i + 1}`}
               onClick={() => setSlideIndex(i)}
               className={cn(
                 "w-msk-slide-dot shrink-0 cursor-pointer rounded-full transition-all duration-msk",

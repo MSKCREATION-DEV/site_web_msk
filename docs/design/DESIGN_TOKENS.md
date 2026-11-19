@@ -12,7 +12,9 @@
 | `--color-msk-ink` / `page` / `black` | `#0D1330` | Encre — fond sombre |
 | `--color-msk-card` | `#151B3D` | Surfaces carte |
 | `--color-msk-placeholder` | `#1C2448` | Placeholders |
-| `--color-msk-blue` | `#1D73BC` | Bleu de référence (CTA, accents, focus) |
+| `--color-msk-blue` | `#1D73BC` | Bleu de référence (CTA, accents, **focus-visible**) |
+
+**Focus clavier :** `:focus-visible { outline: 2px solid var(--color-msk-blue); outline-offset: 2px; }` dans `app/app.css` (pas d’anneau au clic souris).
 | `--color-msk-blue-hover` | `#1384CB` | Bleu vif — hover |
 | `--color-msk-cyan` | `#00ACEE` | Famille / extrémité dégradé |
 | `--color-msk-indigo` | `#2A3D8E` | Famille / départ dégradé |

@@ -16,6 +16,8 @@ export const projectSheet: LocaleContent["projectSheet"] = {
   nextLabel: "Suivant",
   prevLabel: "Précédent",
   backToWorksLabel: "Retour aux travaux",
+  galleryAriaLabel: "Galerie",
+  nextNavAriaLabel: "Projet suivant",
 };
 
 /** Copy = audit Figma fiches + Q24 boards (2026-11-18). */
