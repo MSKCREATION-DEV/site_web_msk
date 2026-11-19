@@ -16,7 +16,7 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | Q22 | Alts projets enrichis (marketing) | A11y / SEO images | **PENDING** — V1 = titre (+ index galerie) |
 | Q23 | Backend contact (Resend / autre) + messages erreur serveur | Formulaire | **PENDING** — design dans `docs/design/CONTACT_BACKEND.md` ; UX Figma CSR stub conservée |
 | Q24 | Fiches Prosperity + Thòy : galerie Figma vs assets locaux | Fiches | **PARTIELLE** — 2026-11-18 : 8 assets racine intégrés (`prosperity` gallery-01…06 full, `thoy-art` gallery-01…03). Travel banner = pixels identiques à l’ancien `gallery-09` (slogan FR « Partir en toute sérénité », pas « Trust in the investment » board). Copy FR/EN eyebrows + RÉALISATIONS + APPROCHE + alts branchés ; UI intro 2 cols + APPROCHE intercalé. QA Desktop vs Figma encore due. Anciennes galeries filiales/mockups retirées des slots fiche. |
-| Q25 | Fiches Koundji · Bomoyi · Ecosol · Elvi · Akwaba : galeries Figma vs locaux | Fiches | **PARTIELLE** — 2026-11-19 : assets racine intégrés en **ajout**. Compteurs : Koundji **3** · Bomoyi **6** · Ecosol **6** · Elvi **6** (vitrine Paris `gallery-06`) · Akwaba **5** (Conran B `gallery-05`). Doublons `incrustation*` racine retirés. Avant/Après Koundji amélioré (hors frame fiche, Q13). **Reste** : QA Desktop vs Figma due. |
+| Q25 | Fiches Koundji · Bomoyi · Ecosol · Elvi · Akwaba : galeries Figma vs locaux | Fiches | **PARTIELLE** — 2026-11-19 : assets branding racine intégrés. Puis **Q26** mockups UI sites/apps (13 captures) : Koundji **5** · Bomoyi **6** · Ecosol **6** · Elvi **13** · Akwaba **9**. Pipeline `assets:mockup`. **Reste** : QA Desktop vs Figma due (layouts Figma historiques + ajouts UI hors board). |
 
 ---
 

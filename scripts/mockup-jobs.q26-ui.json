@@ -1,0 +1,104 @@
+{
+  "jobs": [
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.17.49.png",
+      "output": "public/assets/projects/elvi-creation/gallery-07.png",
+      "type": "browser",
+      "background": "#0A0A0A",
+      "label": "elvi",
+      "urlHint": "elvi-creation.com"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.18.05.png",
+      "output": "public/assets/projects/elvi-creation/gallery-08.png",
+      "type": "browser",
+      "background": "#0A0A0A",
+      "label": "elvi",
+      "urlHint": "elvi-creation.com/boutique"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.18.25.png",
+      "output": "public/assets/projects/elvi-creation/gallery-09.png",
+      "type": "browser",
+      "background": "#0A0A0A",
+      "label": "elvi",
+      "urlHint": "elvi-creation.com"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.18.52.png",
+      "output": "public/assets/projects/elvi-creation/gallery-10.png",
+      "type": "browser",
+      "background": "#0A0A0A",
+      "label": "elvi",
+      "urlHint": "elvi-creation.com/la-maison"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.19.02.png",
+      "output": "public/assets/projects/elvi-creation/gallery-11.png",
+      "type": "browser",
+      "background": "#0A0A0A",
+      "label": "elvi",
+      "urlHint": "elvi-creation.com"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.20.25.png",
+      "output": "public/assets/projects/elvi-creation/gallery-12.png",
+      "type": "phone",
+      "background": "#0A0A0A",
+      "label": "Elvi mobile boutique"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.20.42.png",
+      "output": "public/assets/projects/elvi-creation/gallery-13.png",
+      "type": "phone",
+      "background": "#0A0A0A",
+      "label": "Elvi mobile PDP"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.21.12.png",
+      "output": "public/assets/projects/akwaba/gallery-06.png",
+      "type": "phone",
+      "background": "#0A0E1A",
+      "label": "Akwaba mobile hero"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.21.50.png",
+      "output": "public/assets/projects/akwaba/gallery-07.png",
+      "type": "phone",
+      "background": "#0A0E1A",
+      "label": "Akwaba mobile chauffeur"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.22.32.png",
+      "output": "public/assets/projects/akwaba/gallery-08.png",
+      "type": "browser",
+      "background": "#0A0E1A",
+      "label": "akwaba",
+      "urlHint": "akwaba.tg"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.22.43.png",
+      "output": "public/assets/projects/akwaba/gallery-09.png",
+      "type": "browser",
+      "background": "#0A0E1A",
+      "label": "akwaba",
+      "urlHint": "akwaba.tg/services"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.23.39.png",
+      "output": "public/assets/projects/koundji-services/gallery-04.png",
+      "type": "browser",
+      "background": "#0D1B4B",
+      "label": "koundji",
+      "urlHint": "koundji-services.com"
+    },
+    {
+      "source": "Capture d’écran 2026-11-19 à 09.24.29.png",
+      "output": "public/assets/projects/koundji-services/gallery-05.png",
+      "type": "browser",
+      "background": "#0D1B4B",
+      "label": "koundji",
+      "urlHint": "koundji-services.com/diaspora"
+    }
+  ]
+}

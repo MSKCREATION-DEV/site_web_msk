@@ -85,6 +85,23 @@ Figma export / dépôt racine validé
 → vérifier rendu Desktop → commit sources + dérivés + meta ensemble
 ```
 
+## Mockups UI (captures → device / browser)
+
+Quand des captures brutes de sites/apps clients sont déposées à la racine :
+
+```
+npm run assets:mockup -- --manifest=scripts/mockup-jobs.<scope>.json
+→ PNG mockup dans public/assets/projects/{slug}/gallery-NN.png
+→ stamp-meta + compress comme ci-dessus
+→ supprimer les Capture*.png racine
+```
+
+- Script : `scripts/compose-device-mockups.mjs` (`npm run assets:mockup`)
+- Cadres : browser Chrome-like (canvas 2432×1280) · iPhone Pro (1196×1280 half)
+- Fonds : couleurs panel projet (`#0A0A0A` Elvi, `#0A0E1A` Akwaba, `#0D1B4B` Koundji)
+- Manifest exemple : `scripts/mockup-jobs.q26-ui.json`
+- Ne pas double-cadrer une capture déjà mockupée ; ignorer les QA du site MSK lui-même
+
 Ne jamais inventer une image « similaire » ni Unsplash.
 
 ## Métadonnées EXIF / IPTC / XMP
@@ -100,6 +117,6 @@ Script : `scripts/stamp-image-metadata.mjs` (`npm run assets:stamp-meta`).
 - **Préféré** : `exiftool` (Homebrew) : écrit EXIF + IPTC/XMP **sans** ré-encoder le PNG.
 - **Fallback** : `sharp.withMetadata` (EXIF seulement ; ré-encode PNG → à éviter si exiftool dispo).
 
-Manifests : `scripts/image-metadata.prosperity-thoy.json` (Q24) · `scripts/image-metadata.q25-five.json` (Koundji / Bomoyi / Ecosol / Elvi / Akwaba).
+Manifests : `scripts/image-metadata.prosperity-thoy.json` (Q24) · `scripts/image-metadata.q25-five.json` (Koundji / Bomoyi / Ecosol / Elvi / Akwaba) · `scripts/image-metadata.q26-ui-mockups.json` (mockups UI Elvi / Akwaba / Koundji).
 
 Côté HTML / SEO : alts FR/EN dans `app/content/*/projects.ts` (`coverAlt`, `galleryAlts`) ; `OptimizedImg` + `width`/`height` loader ; JSON-LD `CreativeWork.image` = cover + ImageObject galerie.

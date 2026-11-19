@@ -1,0 +1,70 @@
+{
+  "defaultKeywords": ["MSK Création", "Bamako"],
+  "assets": [
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-07.png",
+      "description": "Mockup navigateur du site Elvi Création, hero Bijoux en rouge",
+      "keywords": ["Elvi Création", "E-commerce", "Mockup navigateur", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-08.png",
+      "description": "Mockup navigateur Elvi Création, grille des pièces phares sacs",
+      "keywords": ["Elvi Création", "Boutique", "Mockup navigateur", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-09.png",
+      "description": "Mockup navigateur Elvi Création, bandeau Instagram @elvicreation",
+      "keywords": ["Elvi Création", "Instagram", "Mockup navigateur", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-10.png",
+      "description": "Mockup navigateur Elvi Création, page La Maison Née à Lomé",
+      "keywords": ["Elvi Création", "La Maison", "Mockup navigateur", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-11.png",
+      "description": "Mockup navigateur Elvi Création, newsletter et pied de page",
+      "keywords": ["Elvi Création", "Newsletter", "Mockup navigateur", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-12.png",
+      "description": "Mockup mobile Elvi Création, boutique sacs en grille",
+      "keywords": ["Elvi Création", "Mobile", "Mockup iPhone", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/elvi-creation/gallery-13.png",
+      "description": "Mockup mobile Elvi Création, fiche produit sac Elsha",
+      "keywords": ["Elvi Création", "Mobile", "Fiche produit", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-06.png",
+      "description": "Mockup mobile Akwaba, accueil chauffeur de luxe à Lomé",
+      "keywords": ["Akwaba", "Mobile", "Lomé", "Mockup iPhone", "MSK Création"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-07.png",
+      "description": "Mockup mobile Akwaba, section Chauffeur Privé de Luxe",
+      "keywords": ["Akwaba", "Mobile", "Chauffeur", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-08.png",
+      "description": "Mockup navigateur Akwaba, hero excellence à Lomé et au-delà",
+      "keywords": ["Akwaba", "Site web", "Mockup navigateur", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/akwaba/gallery-09.png",
+      "description": "Mockup navigateur Akwaba, section Nos services chauffeur et VIP",
+      "keywords": ["Akwaba", "Services", "Mockup navigateur", "MSK Création", "Lomé"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/gallery-04.png",
+      "description": "Mockup navigateur du site Koundji Services, liste des biens disponibles à Bamako",
+      "keywords": ["Koundji Services", "Biens", "Mockup navigateur", "MSK Création", "Bamako"]
+    },
+    {
+      "file": "public/assets/projects/koundji-services/gallery-05.png",
+      "description": "Mockup navigateur Koundji Services, section garanties et sécurité pour la diaspora",
+      "keywords": ["Koundji Services", "Diaspora", "Mockup navigateur", "MSK Création", "Bamako"]
+    }
+  ]
+}
