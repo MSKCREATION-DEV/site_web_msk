@@ -75,14 +75,14 @@ export function WorksStackCard({
 
         <div className="flex w-full flex-col items-center gap-4 text-center">
           <h3
-            className="font-display text-[clamp(2.5rem,7vw,5.25rem)] leading-none font-extrabold tracking-[-0.01em] uppercase"
+            className="max-w-full font-display text-[clamp(2.5rem,7vw,5.25rem)] leading-none font-extrabold tracking-[-0.01em] uppercase wrap-break-word"
             style={titleStyle}
           >
             {project.title}
           </h3>
           {project.category.trim() ? (
             <p
-              className="font-mono-msk max-w-md text-[0.9375rem] font-medium tracking-[0.4em] uppercase"
+              className="font-mono-msk max-w-full text-[0.9375rem] font-medium tracking-[0.4em] uppercase wrap-break-word"
               style={{ color: panel.tagsColor }}
             >
               {project.category}
@@ -93,7 +93,7 @@ export function WorksStackCard({
 
           <Link
             to={project.href}
-            className="relative z-10 inline-flex h-[4.5rem] min-w-[14.375rem] items-center justify-center rounded-full border-2 bg-transparent px-[3.25rem] py-[1.125rem] text-base font-medium transition-colors hover:bg-white/10"
+            className="relative z-10 inline-flex h-[4.5rem] w-full max-w-full min-w-0 items-center justify-center rounded-full border-2 bg-transparent px-8 py-[1.125rem] text-base font-medium transition-colors hover:bg-white/10 sm:w-auto sm:min-w-[14.375rem] sm:px-[3.25rem]"
             style={{
               borderColor: panel.ctaBorderColor,
               color: panel.ctaBorderColor,

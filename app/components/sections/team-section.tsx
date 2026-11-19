@@ -44,7 +44,7 @@ export function TeamSection({
     >
       <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-20 py-24">
         <Reveal>
-          <div className="flex flex-col items-start justify-between gap-10 overflow-hidden lg:flex-row lg:items-end">
+          <div className="flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-end">
             <div className="flex flex-col gap-4">
               <p className="msk-eyebrow text-msk-text-muted">{content.eyebrow}</p>
               <h2
@@ -69,7 +69,7 @@ export function TeamSection({
           {rows.map((row, rowIndex) => (
             <ul
               key={`team-row-${rowIndex}`}
-              className="flex flex-wrap items-start justify-center gap-x-8 gap-y-10"
+              className="flex flex-wrap items-start justify-center gap-x-[max(0.75rem,calc(32*var(--msk-u)))] gap-y-10"
             >
               {row.map((member, i) => (
                 <li

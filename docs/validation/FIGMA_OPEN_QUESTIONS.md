@@ -21,6 +21,7 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | Q28 | Comportement nav au scroll (sticky fixe vs smart hide/show) | UX chrome | **DÉCIDÉ (intermédiaire)** — 2026-11-19 : Figma = barre H96 en haut d’artboard, pas de proto hide-on-scroll. Code : `fixed` + hide-on-scroll-down / show-on-scroll-up (smart header). `prefers-reduced-motion` = toujours visible. Hauteur clamp 72–96 px. À valider designer. |
 | Q29 | Mention GDPR / politique de confidentialité (footer ou Contact) | Conformité | **PENDING** — absente du footer Figma et du content `footer.ts`. Pas de page / lien inventé. Proposition minimale si validation : lien footer « Politique de confidentialité » + page légale (finalité brief, durée, destinataire MSK, provider e-mail). Captcha tiers (Turnstile / hCaptcha) : option documentée dans `CONTACT_BACKEND.md`, **non activée**. |
 | Q30 | Curseur custom + scrollbars marque (hors maquette) | UX chrome | **DÉCIDÉ (intermédiaire)** — 2026-11-19 : aucun frame / proto Figma ni règle charte v3 pour curseur ou scrollbar. Implémenté chrome minimal documenté dans `DESIGN_DECISIONS` (`brand-pointer.css` + `BrandCursor`). À valider designer (garder / retirer / ajuster couleurs). |
+| Q31 | Layout mobile toutes sections (frames absents) | Responsive | **OUVERTE** — 2026-11-19 : hotfix cassures site entier (overflow, planchers `--msk-u`, drawer viewport, prose fiches, CTA Travaux). Pas de stacking / colonnes / chrome mobile inventés. Attente frames Figma (`MOBILE_BRIEF` : Nav, Hero, Équipe, Contact, Fiche, etc.). |
 
 ---
 

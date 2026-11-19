@@ -58,8 +58,9 @@
 
   --msk-card-short-img: calc(400 * var(--msk-u));
   --msk-card-tall-img: calc(580 * var(--msk-u));
-  --msk-team-portrait-w: calc(176 * var(--msk-u));
-  --msk-team-portrait-h: calc(235 * var(--msk-u));
+  /* Plancher lisibilité : à ~390px, 176×u ≈ 48 px → noms illisibles / overflow */
+  --msk-team-portrait-w: max(8rem, calc(176 * var(--msk-u)));
+  --msk-team-portrait-h: max(10.68rem, calc(235 * var(--msk-u))); /* 8rem × 235/176 */
 
   /* Galerie Approche : pleine largeur, ratio proche Figma 1440×588 */
   --msk-gallery-h: max(16rem, calc(100vw * 588 / 1440));
@@ -74,12 +75,13 @@
   --msk-submit-min: max(9rem, calc(145 * var(--msk-u)));
   --msk-whatsapp-min: max(12rem, calc(220 * var(--msk-u)));
 
-  --msk-hero-title-w: calc(788 * var(--msk-u));
-  --msk-hero-body-w: calc(520 * var(--msk-u));
-  --msk-field-w: calc(272 * var(--msk-u));
-  --msk-cta-title-w: calc(764 * var(--msk-u));
-  --msk-desc-w: calc(576 * var(--msk-u));
-  --msk-service-desc-w: calc(320 * var(--msk-u));
+  /* min(100%) évite une colonne artificielle plus étroite que le parent sous 1440 */
+  --msk-hero-title-w: min(100%, max(20rem, calc(788 * var(--msk-u))));
+  --msk-hero-body-w: min(100%, max(16rem, calc(520 * var(--msk-u))));
+  --msk-field-w: min(100%, max(12rem, calc(272 * var(--msk-u))));
+  --msk-cta-title-w: min(100%, max(18rem, calc(764 * var(--msk-u))));
+  --msk-desc-w: min(100%, max(16rem, calc(576 * var(--msk-u))));
+  --msk-service-desc-w: min(100%, max(12rem, calc(320 * var(--msk-u))));
   --msk-textarea-h: max(6.5rem, calc(104 * var(--msk-u)));
   --msk-sheet-nav-h: max(3.5rem, calc(84 * var(--msk-u)));
   --msk-footer-bar-py: max(0.875rem, calc(22 * var(--msk-u)));

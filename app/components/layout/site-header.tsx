@@ -119,87 +119,99 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
     <header
       ref={headerRef}
       className={cn(
-        "fixed inset-x-0 top-0 z-40 h-msk-nav bg-msk-black",
-        "transition-transform duration-msk ease-out motion-reduce:transition-none",
-        hidden && !open ? "-translate-y-full" : "translate-y-0",
+        "fixed inset-x-0 top-0",
+        open ? "z-msk-overlay" : "z-40",
         className,
       )}
     >
+      {/*
+        Smart-hide : transform UNIQUEMENT sur la barre.
+        Un transform sur <header> crée un containing block → le drawer
+        `fixed inset-0` ne couvrait plus le viewport (CTA hero qui perçait).
+      */}
       <div
         className={cn(
-          "msk-page-x mx-auto flex h-full w-full max-w-msk items-center",
-          "lg:grid lg:grid-cols-msk-nav",
+          "h-msk-nav bg-msk-black",
+          "transition-transform duration-msk ease-out motion-reduce:transition-none",
+          hidden && !open ? "-translate-y-full" : "translate-y-0",
         )}
       >
-        <Link
-          to={homePath(locale)}
-          aria-label="MSK Création"
-          className="relative z-10 flex shrink-0 items-center justify-self-start"
-          onClick={() => {
-            reveal();
-            close();
-          }}
+        <div
+          className={cn(
+            "msk-page-x mx-auto flex h-full w-full max-w-msk items-center",
+            "lg:grid lg:grid-cols-msk-nav",
+          )}
         >
-          <MskLogo variant="header" />
-        </Link>
-
-        <nav
-          aria-label={nav.primaryNavAriaLabel}
-          className="hidden items-center justify-center gap-msk-nav-links justify-self-center lg:flex"
-        >
-          {nav.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={reveal}
-              className="msk-nav-label whitespace-nowrap text-msk-text-secondary transition-colors duration-msk ease-out hover:text-msk-text"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex shrink-0 items-center justify-end gap-msk-nav-actions justify-self-end">
-          <a
-            href="#contact"
-            onClick={reveal}
-            className="msk-nav-label hidden whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-blue lg:inline-flex"
-          >
-            {nav.ctaBrief}
-          </a>
           <Link
-            to={alternateHomePath(locale)}
-            hrefLang={locale === "fr" ? "en" : "fr"}
-            lang={locale === "fr" ? "en" : "fr"}
-            onClick={reveal}
-            className="msk-nav-label shrink-0 whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-text"
-          >
-            {nav.languageSwitchLabel}
-          </Link>
-          <button
-            type="button"
-            className="inline-flex size-11 shrink-0 items-center justify-center text-msk-text lg:hidden"
-            aria-expanded={open}
-            aria-controls={panelId}
-            aria-label={open ? nav.menuCloseLabel : nav.menuOpenLabel}
+            to={homePath(locale)}
+            aria-label="MSK Création"
+            className="relative z-10 flex shrink-0 items-center justify-self-start"
             onClick={() => {
               reveal();
-              setOpen((value) => !value);
+              close();
             }}
           >
-            {open ? (
-              <X className="size-5" strokeWidth={1.5} aria-hidden />
-            ) : (
-              <Menu className="size-5" strokeWidth={1.5} aria-hidden />
-            )}
-          </button>
+            <MskLogo variant="header" />
+          </Link>
+
+          <nav
+            aria-label={nav.primaryNavAriaLabel}
+            className="hidden items-center justify-center gap-msk-nav-links justify-self-center lg:flex"
+          >
+            {nav.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={reveal}
+                className="msk-nav-label whitespace-nowrap text-msk-text-secondary transition-colors duration-msk ease-out hover:text-msk-text"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="ml-auto flex shrink-0 items-center justify-end gap-msk-nav-actions justify-self-end">
+            <a
+              href="#contact"
+              onClick={reveal}
+              className="msk-nav-label hidden whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-blue lg:inline-flex"
+            >
+              {nav.ctaBrief}
+            </a>
+            <Link
+              to={alternateHomePath(locale)}
+              hrefLang={locale === "fr" ? "en" : "fr"}
+              lang={locale === "fr" ? "en" : "fr"}
+              onClick={reveal}
+              className="msk-nav-label shrink-0 whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-text"
+            >
+              {nav.languageSwitchLabel}
+            </Link>
+            <button
+              type="button"
+              className="inline-flex size-11 shrink-0 items-center justify-center text-msk-text lg:hidden"
+              aria-expanded={open}
+              aria-controls={panelId}
+              aria-label={open ? nav.menuCloseLabel : nav.menuOpenLabel}
+              onClick={() => {
+                reveal();
+                setOpen((value) => !value);
+              }}
+            >
+              {open ? (
+                <X className="size-5" strokeWidth={1.5} aria-hidden />
+              ) : (
+                <Menu className="size-5" strokeWidth={1.5} aria-hidden />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       <div
         id={panelId}
         className={cn(
-          "fixed inset-0 z-50 flex flex-col bg-msk-black lg:hidden",
+          "fixed inset-0 z-msk-overlay flex flex-col bg-msk-black lg:hidden",
           "transition-[opacity,transform,visibility] duration-400 ease-out motion-reduce:transition-none",
           open
             ? "visible translate-y-0 opacity-100"

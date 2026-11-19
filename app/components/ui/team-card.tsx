@@ -54,17 +54,17 @@ export function TeamCard({
         />
       </div>
 
-      <div className="flex min-h-20 flex-col gap-2.5 overflow-hidden">
+      <div className="flex min-h-20 min-w-0 flex-col gap-2.5">
         <span
           className="block h-px w-0 bg-msk-blue transition-all duration-msk ease-out group-hover:w-6"
           aria-hidden
         />
-        <div className="flex flex-col gap-1 uppercase">
-          <p className="font-sans text-msk-lg leading-[1.2] font-semibold tracking-[0.02em] text-msk-text transition-colors duration-msk ease-out group-hover:text-msk-blue">
+        <div className="flex min-w-0 flex-col gap-1 uppercase">
+          <p className="font-sans text-msk-lg leading-[1.2] font-semibold tracking-[0.02em] text-msk-text wrap-break-word transition-colors duration-msk ease-out group-hover:text-msk-blue">
             <span className="block">{line1}</span>
             {line2 ? <span className="block">{line2}</span> : null}
           </p>
-          <p className="font-sans text-[0.6875rem] leading-[15px] tracking-[0.08em] text-white/75 transition-colors duration-msk ease-out group-hover:text-msk-blue">
+          <p className="font-sans text-[0.6875rem] leading-[15px] tracking-[0.08em] text-white/75 wrap-break-word transition-colors duration-msk ease-out group-hover:text-msk-blue">
             {role}
           </p>
         </div>

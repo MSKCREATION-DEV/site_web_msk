@@ -167,15 +167,15 @@ export function ProjectSheetView({
   return (
     <div className="min-h-dvh bg-msk-ink text-msk-text">
       <div className="flex min-h-dvh flex-col">
-        <header className="sticky top-0 z-20 flex h-[5.25rem] shrink-0 items-center justify-between border-b border-white/[0.08] bg-msk-ink px-4 py-5 md:px-8">
+        <header className="sticky top-0 z-20 flex h-[5.25rem] shrink-0 items-center justify-between gap-3 border-b border-white/[0.08] bg-msk-ink px-4 py-5 md:px-8">
           <Link
             to={worksHref}
-            className="inline-flex items-center gap-3 text-white/78 transition-colors hover:text-white"
+            className="relative z-10 inline-flex min-w-0 shrink items-center gap-2 text-white/78 transition-colors hover:text-white sm:gap-3"
           >
             <span className="font-sans text-xl leading-none font-normal" aria-hidden>
               ←
             </span>
-            <span className="font-sans text-[0.6875rem] leading-none font-normal tracking-[0.2em] uppercase">
+            <span className="truncate font-sans text-[0.6875rem] leading-none font-normal tracking-[0.2em] uppercase">
               {copy.closeLabel}
             </span>
           </Link>
@@ -183,12 +183,12 @@ export function ProjectSheetView({
           <Link
             to={homeHref}
             aria-label="MSK Création"
-            className="absolute left-1/2 -translate-x-1/2"
+            className="pointer-events-auto absolute left-1/2 z-0 max-w-[40%] -translate-x-1/2"
           >
-            <MskLogo variant="fiche" />
+            <MskLogo variant="fiche" className="max-w-full" />
           </Link>
 
-          <span className="font-mono-msk text-xs leading-none font-medium text-white/45">
+          <span className="relative z-10 shrink-0 font-mono-msk text-xs leading-none font-medium text-white/45">
             {String(counter.current).padStart(2, "0")} /{" "}
             {String(counter.total).padStart(2, "0")}
           </span>
@@ -258,7 +258,7 @@ export function ProjectSheetView({
                 ) : null}
               </div>
             ) : (
-              <div className="flex w-full max-w-[calc(790*var(--msk-u))] flex-col gap-7">
+              <div className="flex w-full max-w-full flex-col gap-7 md:max-w-[calc(790*var(--msk-u))]">
                 {copy.eyebrow ? (
                   <p className="font-mono-msk text-base font-medium tracking-[0.06em] text-msk-blue-hover">
                     {copy.eyebrow}
@@ -347,7 +347,7 @@ export function ProjectSheetView({
                   <p className="font-mono-msk text-base font-medium tracking-[0.06em] text-msk-blue-hover">
                     {bracketLabel(copy.approachLabel, "APPROCHE")}
                   </p>
-                  <p className="max-w-[calc(790*var(--msk-u))] font-sans text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.4] font-light text-white">
+                  <p className="w-full max-w-full font-sans text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.4] font-light text-white md:max-w-[calc(790*var(--msk-u))]">
                     {approachText}
                   </p>
                 </div>

@@ -180,7 +180,7 @@ export function ContactSection({
                     <dt className="font-sans text-xs tracking-msk text-msk-text-muted uppercase">
                       {row.label}
                     </dt>
-                    <dd>
+                    <dd className="min-w-0">
                       {row.href ? (
                         <a
                           href={row.href}
@@ -188,14 +188,14 @@ export function ContactSection({
                           rel={
                             row.href.startsWith("http") ? "noreferrer" : undefined
                           }
-                          className="font-sans text-msk-15 font-medium text-msk-blue transition-colors hover:text-msk-blue-hover"
+                          className="font-sans text-msk-15 font-medium break-all text-msk-blue transition-colors hover:text-msk-blue-hover"
                         >
                           {row.value}
                         </a>
                       ) : (
                         <span
                           className={cn(
-                            "font-sans text-msk-15 font-medium",
+                            "font-sans text-msk-15 font-medium wrap-break-word",
                             row.muted ? "text-msk-text" : "text-msk-blue",
                           )}
                         >
