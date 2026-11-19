@@ -33,13 +33,15 @@ Voir [`.env.example`](./.env.example).
 |----------|------|
 | `VITE_SITE_ORIGIN` | **Obligatoire en prod** — origine absolue pour canonical, hreflang, `og:image`, JSON-LD, sitemap (ex. `https://www.mskcreation.net`). Local : `http://localhost:5173`. |
 | `VITE_ASSET_BASE_URL` | Préfixe CDN assets (vide = `/public`). |
-| `CONTACT_EMAIL_ENABLED` | `1` seulement après Q23 + provider branché. Absent = stub honnête (pas d’envoi). |
+| `CONTACT_EMAIL_ENABLED` | `1` pour activer Resend. Absent = stub honnête (pas d’envoi). |
+| `RESEND_API_KEY` | Clé Resend dédiée (jamais dans git). |
+| `CONTACT_EMAIL_FROM` / `CONTACT_EMAIL_TO` | Défauts `noreply@mskcreation.net` → `contact@mskcreation.net`. |
 
 Sans `VITE_SITE_ORIGIN` https prod, les URL absolues SEO restent sur localhost.
 
 **Gate origin :** `npm run check:origin` (warning local) ; en prod / CI : `npm run check:origin -- --strict` ou `VERCEL_ENV=production` / `MSK_REQUIRE_PROD_ORIGIN=1` (échec si localhost). Intégré à `npm run check` en mode soft.
 
-**Contact prod :** voir [`docs/design/CONTACT_BACKEND.md`](./docs/design/CONTACT_BACKEND.md).
+**Contact :** [`docs/design/CONTACT_BACKEND.md`](./docs/design/CONTACT_BACKEND.md) · **Preview Vercel :** [`docs/ops/VERCEL_PREVIEW.md`](./docs/ops/VERCEL_PREVIEW.md).
 
 ## Documentation
 

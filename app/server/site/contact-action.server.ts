@@ -1,5 +1,5 @@
 /**
- * Action Contact home — rate-limit IP, honeypot, validation, stub provider.
+ * Action Contact home — rate-limit IP, honeypot, validation, Resend.
  * Retourne des codes stables pour l’UI (messages depuis content).
  */
 

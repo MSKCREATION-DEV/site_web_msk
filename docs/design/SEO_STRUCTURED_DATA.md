@@ -80,7 +80,7 @@ Remplacer par `.` `,` `:` ou `·`. Garde-fou : `npm run check:copy`.
 | Bios Person / pages auteur | Q21 | Roles Figma seulement |
 | Alts projets « marketing » riches | Q22 | V1 = titre (+ index galerie) ; enrichissement copy à valider |
 | Options Service / Budget formulaire | Q03 | Selects vides |
-| Backend contact (Resend, etc.) | Q23 | Runbook `CONTACT_BACKEND.md` ; stub + UX honnête ; provider à choisir |
+| Backend contact Resend | Q23 fermée | Runbook `CONTACT_BACKEND.md` ; envoi si env activée ; UX honnête sinon |
 | OG 1200×630 Figma dédiée | P2 | Ne pas recompresser le PNG ~8 Mo sans export dédié |
 
 ---

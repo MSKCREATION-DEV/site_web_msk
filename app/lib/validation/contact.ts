@@ -1,6 +1,5 @@
 /**
- * Validation formulaire Contact — côté client aujourd’hui ;
- * réutiliser dans une `action` serveur quand Q23 (backend) sera branché.
+ * Validation formulaire Contact — client + action serveur (Resend).
  * Ne pas inventer d’options Service/Budget (Q03).
  */
 
@@ -40,10 +39,7 @@ export function validateContactFields(
   return errors;
 }
 
-/**
- * Payload normalisé pour une future action serveur (Resend, etc.).
- * Pas d’envoi réel ici.
- */
+/** Payload normalisé pour l’action serveur / Resend. */
 export function normalizeContactPayload(
   fields: ContactFieldDef[],
   values: Record<string, string>,

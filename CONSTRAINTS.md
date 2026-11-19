@@ -48,4 +48,4 @@ Commandes aspirées (pas encore branchées CI) :
 
 | ID | Rule | Path | Reason | Owner | Expires |
 |----|------|------|--------|-------|---------|
-| E1 | Stub succès contact CSR | `contact-section.tsx` | Q23 backend non validé | produit | jusqu’à fermeture Q23 |
+| E1 | ~~Stub succès contact CSR~~ | `contact-section.tsx` | **Levée 2026-11-19** : Q23 Resend ; succès Figma seulement si envoi OK | produit | fermée |

@@ -162,8 +162,8 @@ export type ContactSectionContent = {
   successTitle: string;
   successBody: string;
   /**
-   * État honnête quand l’envoi serveur n’est pas encore branché (Q23).
-   * Affiché à la place du faux succès Figma.
+   * État honnête quand CONTACT_EMAIL_ENABLED≠1 (env locale / preview sans envoi).
+   * Affiché à la place du succès Figma.
    */
   unavailableEyebrow: string;
   unavailableTitle: string;

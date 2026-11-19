@@ -28,8 +28,8 @@ type FormErrors = Record<string, string>;
  * Contact — fond photo (cadrage bureau) + vignette Encre,
  * grille 568+80+568, form Nom|Email 272, validation + loading + confirmation.
  *
- * Envoi : action React Router + stub provider (Q23).
- * Pas de faux succès client : si provider désactivé → message « bientôt disponible ».
+ * Envoi : action React Router + Resend (si CONTACT_EMAIL_ENABLED=1).
+ * Pas de faux succès : désactivé → unavailable* ; erreur API → errorGeneric.
  *
  * Charte v3 §02 : photo uniquement sur zone calme / contrastée.
  */
