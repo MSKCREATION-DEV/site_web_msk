@@ -35,7 +35,8 @@
   --msk-works-card-img-fr: 560;
   --msk-works-card-panel-fr: 656;
 
-  --msk-nav-height: max(4.5rem, calc(96 * var(--msk-u))); /* 72px floor — chrome utilisable */
+  /* Nav Figma H96 : plancher 72 (chrome utilisable) + plafond 96 (ne grossit plus >1440). */
+  --msk-nav-height: clamp(4.5rem, calc(96 * var(--msk-u)), 6rem);
   --msk-nav-py: max(0.75rem, calc(20 * var(--msk-u)));
   --msk-nav-links-gap: max(1.25rem, calc(40 * var(--msk-u)));
   --msk-nav-actions-gap: max(0.75rem, calc(20 * var(--msk-u)));
@@ -46,11 +47,10 @@
 
   /*
    * Logos — Figma barre fiche : frame logo 126×44 (instance interne ≈ 118×16).
-   * Notre SVG intercalé a une zone de protection : on ancre la HAUTEUR au frame 44
-   * pour retrouver la taille visuelle Figma (lettres ≈ seuil charte ≥ 24px).
+   * Plafond = frame 44 / AR intercalé (évite logo + barre disproportionnés >1440).
    */
-  --msk-logo-header-h: max(2.75rem, calc(44 * var(--msk-u)));
-  --msk-logo-header-w: max(11.625rem, calc(186 * var(--msk-u))); /* 44 × AR intercalé ≈ 4.22 */
+  --msk-logo-header-h: clamp(1.75rem, calc(44 * var(--msk-u)), 2.75rem);
+  --msk-logo-header-w: clamp(7.5rem, calc(186 * var(--msk-u)), 11.625rem);
   --msk-footer-logo-w: min(100%, calc(820 * var(--msk-u)));
   --msk-footer-logo-h: auto;
   --msk-logo-intro-w: var(--msk-footer-logo-w);

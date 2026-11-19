@@ -22,7 +22,7 @@ export function ProjectCtaSection({
   return (
     <section
       id="cta"
-      className={cn("scroll-mt-24 w-full bg-msk-black", className)}
+      className={cn("scroll-mt-msk-nav w-full bg-msk-black", className)}
       aria-label={content.ariaLabel}
     >
       <div className="msk-marquee-rail">

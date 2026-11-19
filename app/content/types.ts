@@ -17,6 +17,16 @@ export type NavContent = {
   primaryNavAriaLabel: string;
   /** aria-label nav drawer mobile */
   mobileNavAriaLabel: string;
+  /** aria-label bouton ouvrir menu (mobile) */
+  menuOpenLabel: string;
+  /** aria-label bouton fermer menu (mobile) */
+  menuCloseLabel: string;
+  /** Skip link clavier */
+  skipToContentLabel: string;
+  /** Annonce chargement navigation (barre top + live region) */
+  pageLoadingLabel: string;
+  /** aria-label intro rideau (1re visite) */
+  introAriaLabel: string;
 };
 
 export type FooterContent = {

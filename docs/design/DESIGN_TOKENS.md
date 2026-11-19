@@ -68,7 +68,7 @@ Sources locales : `docs/brand/fonts/`. Runtime : Google Fonts (`app/root.tsx`).
 | Padding horizontal page | **112 px** | `112 × --msk-u` (plancher 1.25rem) |
 | Largeur page | 1440 | `100%` / viewport |
 | Largeur utile | **1216 px** | `1216 × --msk-u` |
-| Nav | 96 h | `96 × --msk-u` |
+| Nav | 96 h | `clamp(72px, 96×u, 96px)` (plafond Figma) |
 | Hero | 900 h | `900 × --msk-u` |
 
 **Règle :** gabarit = largeur viewport (pleine page Desktop). Intérieurs = calcs depuis les tailles Figma × `--msk-u`.

@@ -48,7 +48,10 @@ export function ContactSection({
   const showOutcome =
     fetcher.state === "idle" &&
     result != null &&
-    (result.ok || result.code === "unavailable" || result.code === "error");
+    (result.ok ||
+      result.code === "unavailable" ||
+      result.code === "error" ||
+      result.code === "rate_limited");
 
   useEffect(() => {
     if (result && !result.ok && result.code === "validation" && result.fieldErrors) {
@@ -100,7 +103,11 @@ export function ContactSection({
         title: content.unavailableTitle,
         body: content.unavailableBody,
       };
-    } else if (result.code === "error") {
+    } else if (
+      result.code === "error" ||
+      result.code === "rate_limited"
+    ) {
+      // rate_limited : même message générique (pas de copy Figma dédiée).
       outcome = {
         eyebrow: content.unavailableEyebrow,
         title: content.errorGeneric,
@@ -113,7 +120,7 @@ export function ContactSection({
     <section
       id="contact"
       className={cn(
-        "scroll-mt-24 relative overflow-hidden bg-msk-black",
+        "scroll-mt-msk-nav relative overflow-hidden bg-msk-black",
         className,
       )}
       aria-labelledby="contact-heading"
@@ -217,6 +224,7 @@ export function ContactSection({
                 className="relative flex flex-col gap-6"
                 onSubmit={onSubmit}
                 noValidate
+                aria-busy={loading || undefined}
               >
                 {/* Honeypot anti-spam — hors écran, ignoré par les humains */}
                 <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden>

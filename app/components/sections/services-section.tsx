@@ -13,7 +13,7 @@ export function ServicesSection({ content, className }: ServicesSectionProps) {
     <section
       id="services"
       className={cn(
-        "scroll-mt-24 bg-linear-to-b from-msk-page to-msk-ink-deep",
+        "scroll-mt-msk-nav bg-linear-to-b from-msk-page to-msk-ink-deep",
         className,
       )}
       aria-labelledby="services-heading"

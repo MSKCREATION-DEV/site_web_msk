@@ -29,7 +29,7 @@ export function WorksSection({
   return (
     <section
       id="travaux"
-      className={cn("scroll-mt-24", className)}
+      className={cn("scroll-mt-msk-nav", className)}
       aria-labelledby="travaux-heading"
     >
       <WorksStack

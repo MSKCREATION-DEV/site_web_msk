@@ -1,0 +1,179 @@
+/*
+ * Curseur + scrollbars marque MSK — hors Figma (voir DESIGN_DECISIONS Q30).
+ * Tokens charte v3 : Encre #0D1330 · bleu #1D73BC · corail #FF5A3C.
+ * Curseur custom : activé uniquement si html.msk-brand-pointer (gate JS a11y).
+ */
+
+:root {
+  --msk-scrollbar-size: 8px;
+  --msk-scrollbar-radius: 999px;
+  --msk-scrollbar-track: color-mix(in srgb, var(--color-msk-ink) 92%, #ffffff 8%);
+  --msk-scrollbar-thumb: var(--color-msk-blue);
+  --msk-scrollbar-thumb-hover: color-mix(
+    in srgb,
+    var(--color-msk-blue) 78%,
+    var(--color-msk-coral) 22%
+  );
+  --z-index-msk-cursor: 120;
+}
+
+/* ——— Scrollbars (Firefox + WebKit) ——— */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--msk-scrollbar-thumb) var(--msk-scrollbar-track);
+}
+
+html::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-scroll::-webkit-scrollbar {
+  width: var(--msk-scrollbar-size);
+  height: var(--msk-scrollbar-size);
+}
+
+html::-webkit-scrollbar-track,
+.overflow-auto::-webkit-scrollbar-track,
+.overflow-y-auto::-webkit-scrollbar-track,
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-scroll::-webkit-scrollbar-track {
+  background: var(--msk-scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb,
+.overflow-auto::-webkit-scrollbar-thumb,
+.overflow-y-auto::-webkit-scrollbar-thumb,
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--msk-scrollbar-thumb);
+  border-radius: var(--msk-scrollbar-radius);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+.overflow-auto::-webkit-scrollbar-thumb:hover,
+.overflow-y-auto::-webkit-scrollbar-thumb:hover,
+.overflow-x-auto::-webkit-scrollbar-thumb:hover,
+.overflow-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--msk-scrollbar-thumb-hover);
+}
+
+.overflow-auto,
+.overflow-y-auto,
+.overflow-x-auto,
+.overflow-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--msk-scrollbar-thumb) var(--msk-scrollbar-track);
+}
+
+/* ——— Curseur custom (fine pointer only) ——— */
+
+html.msk-brand-pointer,
+html.msk-brand-pointer * {
+  cursor: none !important;
+}
+
+html.msk-brand-pointer .msk-brand-cursor {
+  display: block;
+}
+
+.msk-brand-cursor {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-msk-cursor);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  will-change: transform;
+}
+
+.msk-brand-cursor.is-visible {
+  opacity: 1;
+}
+
+.msk-brand-cursor__ring,
+.msk-brand-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.msk-brand-cursor__dot {
+  width: 5px;
+  height: 5px;
+  background: #ffffff;
+}
+
+.msk-brand-cursor__ring {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgb(255 255 255 / 0.72);
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.msk-brand-cursor.is-interactive .msk-brand-cursor__ring {
+  width: 38px;
+  height: 38px;
+  border-color: color-mix(in srgb, #ffffff 70%, var(--color-msk-blue) 30%);
+  background-color: rgb(29 115 188 / 0.12);
+}
+
+.msk-brand-cursor.is-interactive .msk-brand-cursor__dot {
+  background: color-mix(in srgb, #ffffff 55%, var(--color-msk-blue) 45%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .msk-brand-cursor {
+    mix-blend-mode: normal;
+  }
+
+  .msk-brand-cursor__dot {
+    background: var(--color-msk-blue);
+  }
+
+  .msk-brand-cursor__ring {
+    border-color: var(--color-msk-blue);
+    background-color: transparent;
+  }
+
+  .msk-brand-cursor.is-interactive .msk-brand-cursor__ring {
+    border-color: var(--color-msk-coral);
+    background-color: transparent;
+  }
+
+  .msk-brand-cursor.is-interactive .msk-brand-cursor__dot {
+    background: var(--color-msk-coral);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msk-brand-cursor,
+  .msk-brand-cursor__ring {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  html.msk-brand-pointer,
+  html.msk-brand-pointer * {
+    cursor: auto !important;
+  }
+
+  .msk-brand-cursor {
+    display: none !important;
+  }
+}

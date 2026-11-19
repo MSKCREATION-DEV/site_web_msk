@@ -1,5 +1,5 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Link } from "react-router";
 import { MskLogo } from "~/components/ui";
 import type { NavContent } from "~/content/types";
@@ -13,16 +13,27 @@ type SiteHeaderProps = {
   className?: string;
 };
 
+/** Seuil bas de page : toujours afficher la barre. */
+const TOP_REVEAL_PX = 8;
+/** Delta minimal pour considérer un sens de scroll (évite le jitter). */
+const SCROLL_DELTA_PX = 6;
+
 /**
- * Nav Figma — bandeau Encre H96 (plancher 72).
+ * Nav Figma — bandeau Encre H96 (clamp 72–96).
  * Desktop : logo signature horizontale Charte v3 | liens centrés (gap 40) | Briefer + EN.
- * Mobile : logo | EN + burger → drawer.
+ * Mobile : logo | EN + burger → drawer (interim MOBILE_BRIEF).
+ *
+ * Scroll : smart header (hide down / show up). Figma ne spécifie pas de hide-on-scroll
+ * → décision documentée DESIGN_DECISIONS + Q28.
  */
 export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const panelId = useId();
-  const closeLabel = locale === "en" ? "Close menu" : "Fermer le menu";
-  const openLabel = locale === "en" ? "Open menu" : "Ouvrir le menu";
+  const headerRef = useRef<HTMLElement>(null);
+  const lastY = useRef(0);
+  const openRef = useRef(open);
+  openRef.current = open;
 
   useEffect(() => {
     if (!open) return;
@@ -38,12 +49,79 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
     };
   }, [open]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    lastY.current = window.scrollY;
+
+    const applyScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+      lastY.current = y;
+
+      // Drawer ouvert ou reduced-motion : barre toujours accessible.
+      if (openRef.current || media.matches) {
+        setHidden(false);
+        return;
+      }
+
+      if (y <= TOP_REVEAL_PX) {
+        setHidden(false);
+        return;
+      }
+
+      if (delta > SCROLL_DELTA_PX) {
+        const active = document.activeElement;
+        if (headerRef.current?.contains(active)) {
+          setHidden(false);
+          return;
+        }
+        setHidden(true);
+        return;
+      }
+
+      if (delta < -SCROLL_DELTA_PX) {
+        setHidden(false);
+      }
+    };
+
+    const onScroll = () => {
+      applyScroll();
+    };
+
+    const onMotionChange = () => {
+      if (media.matches) setHidden(false);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    media.addEventListener("change", onMotionChange);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      media.removeEventListener("change", onMotionChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const onFocusIn = () => setHidden(false);
+    el.addEventListener("focusin", onFocusIn);
+    return () => el.removeEventListener("focusin", onFocusIn);
+  }, []);
+
+  useEffect(() => {
+    if (open) setHidden(false);
+  }, [open]);
+
   const close = () => setOpen(false);
+  const reveal = () => setHidden(false);
 
   return (
     <header
+      ref={headerRef}
       className={cn(
-        "absolute inset-x-0 top-0 z-40 h-msk-nav bg-msk-black",
+        "fixed inset-x-0 top-0 z-40 h-msk-nav bg-msk-black",
+        "transition-transform duration-msk ease-out motion-reduce:transition-none",
+        hidden && !open ? "-translate-y-full" : "translate-y-0",
         className,
       )}
     >
@@ -57,7 +135,10 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
           to={homePath(locale)}
           aria-label="MSK Création"
           className="relative z-10 flex shrink-0 items-center justify-self-start"
-          onClick={close}
+          onClick={() => {
+            reveal();
+            close();
+          }}
         >
           <MskLogo variant="header" />
         </Link>
@@ -70,6 +151,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             <a
               key={link.href}
               href={link.href}
+              onClick={reveal}
               className="msk-nav-label whitespace-nowrap text-msk-text-secondary transition-colors duration-msk ease-out hover:text-msk-text"
             >
               {link.label}
@@ -80,6 +162,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
         <div className="ml-auto flex shrink-0 items-center justify-end gap-msk-nav-actions justify-self-end">
           <a
             href="#contact"
+            onClick={reveal}
             className="msk-nav-label hidden whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-blue lg:inline-flex"
           >
             {nav.ctaBrief}
@@ -88,6 +171,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             to={alternateHomePath(locale)}
             hrefLang={locale === "fr" ? "en" : "fr"}
             lang={locale === "fr" ? "en" : "fr"}
+            onClick={reveal}
             className="msk-nav-label shrink-0 whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-text"
           >
             {nav.languageSwitchLabel}
@@ -97,8 +181,11 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             className="inline-flex size-11 shrink-0 items-center justify-center text-msk-text lg:hidden"
             aria-expanded={open}
             aria-controls={panelId}
-            aria-label={open ? closeLabel : openLabel}
-            onClick={() => setOpen((value) => !value)}
+            aria-label={open ? nav.menuCloseLabel : nav.menuOpenLabel}
+            onClick={() => {
+              reveal();
+              setOpen((value) => !value);
+            }}
           >
             {open ? (
               <X className="size-5" strokeWidth={1.5} aria-hidden />
@@ -113,7 +200,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
         id={panelId}
         className={cn(
           "fixed inset-0 z-50 flex flex-col bg-msk-black lg:hidden",
-          "transition-[opacity,transform,visibility] duration-400 ease-out",
+          "transition-[opacity,transform,visibility] duration-400 ease-out motion-reduce:transition-none",
           open
             ? "visible translate-y-0 opacity-100"
             : "pointer-events-none invisible -translate-y-2 opacity-0",
@@ -142,7 +229,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             <button
               type="button"
               className="inline-flex size-11 items-center justify-center text-msk-text"
-              aria-label={closeLabel}
+              aria-label={nav.menuCloseLabel}
               onClick={close}
             >
               <X className="size-5" strokeWidth={1.5} aria-hidden />

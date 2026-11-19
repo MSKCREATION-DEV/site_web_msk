@@ -13,4 +13,9 @@ export const nav: NavContent = {
   languageSwitchLabel: "FR",
   primaryNavAriaLabel: "Primary",
   mobileNavAriaLabel: "Mobile",
+  menuOpenLabel: "Open menu",
+  menuCloseLabel: "Close menu",
+  skipToContentLabel: "Skip to content",
+  pageLoadingLabel: "Loading page",
+  introAriaLabel: "MSK Création",
 };

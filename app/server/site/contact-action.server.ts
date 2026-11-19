@@ -1,5 +1,5 @@
 /**
- * Action Contact home — validation partagée + stub provider.
+ * Action Contact home — rate-limit IP, honeypot, validation, stub provider.
  * Retourne des codes stables pour l’UI (messages depuis content).
  */
 
@@ -14,15 +14,26 @@ import {
   validateContactFields,
 } from "~/lib/validation";
 import { sendContactEmail } from "~/server/api/contact.server";
+import {
+  clientIpFromRequest,
+  consumeRateLimit,
+} from "~/server/site/rate-limit.server";
 
 export type { ContactActionResult };
 
 export async function handleContactAction(
   locale: Locale,
   formData: FormData,
+  request: Request,
 ): Promise<ContactActionResult> {
   const content = getLocaleContent(locale);
   const fields = content.home.contactSection.fields;
+
+  const ip = clientIpFromRequest(request);
+  const limit = consumeRateLimit("contact", ip);
+  if (!limit.ok) {
+    return { ok: false, code: "rate_limited" };
+  }
 
   // Honeypot : bots remplissent souvent les champs cachés.
   const honeypot = String(formData.get(CONTACT_HONEYPOT_NAME) ?? "").trim();

@@ -28,7 +28,7 @@ export async function action({ request, params }: Route.ActionArgs) {
   }
   const locale = parseLocale(params.lang);
   const formData = await request.formData();
-  return handleContactAction(locale, formData);
+  return handleContactAction(locale, formData, request);
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {

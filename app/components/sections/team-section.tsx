@@ -39,7 +39,7 @@ export function TeamSection({
   return (
     <section
       id="equipe"
-      className={cn("scroll-mt-24 bg-msk-ink", className)}
+      className={cn("scroll-mt-msk-nav bg-msk-ink", className)}
       aria-labelledby="equipe-heading"
     >
       <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-20 py-24">

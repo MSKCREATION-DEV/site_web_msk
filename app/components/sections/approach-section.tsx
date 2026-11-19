@@ -98,7 +98,7 @@ export function ApproachSection({
   return (
     <section
       id="approche"
-      className={cn("scroll-mt-24 bg-msk-black", className)}
+      className={cn("scroll-mt-msk-nav bg-msk-black", className)}
       aria-labelledby="approche-heading"
     >
       {slides.length > 0 ? (

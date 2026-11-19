@@ -6,6 +6,6 @@ export type ContactActionResult =
   | { ok: true }
   | {
       ok: false;
-      code: "validation" | "unavailable" | "error";
+      code: "validation" | "unavailable" | "error" | "rate_limited";
       fieldErrors?: Record<string, string>;
     };

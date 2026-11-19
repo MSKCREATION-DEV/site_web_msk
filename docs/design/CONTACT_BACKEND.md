@@ -10,7 +10,8 @@ L’UI ne ment plus : soumettre le formulaire renvoie un état honnête « envoi
 | Couche | Fichier | Rôle |
 |--------|---------|------|
 | UI | `app/components/sections/contact-section.tsx` | `useFetcher` + `fetcher.Form` → POST same-origin |
-| Action | `app/routes/home.tsx` → `handleContactAction` | Valide, honeypot, appelle le provider |
+| Action | `app/routes/home.tsx` → `handleContactAction` | Rate-limit IP, honeypot, valide, provider |
+| Rate-limit | `app/server/site/rate-limit.server.ts` | 5 req / IP / 15 min (mémoire process) |
 | Validation | `app/lib/validation/contact.ts` | Champs requis + e-mail (client + serveur) |
 | Provider | `app/server/api/contact.server.ts` | **Stub** : refuse l’envoi tant que `CONTACT_EMAIL_ENABLED≠1` |
 | Messages | `app/content/{fr,en}/home.ts` (`contactSection`) | Succès Figma **et** `unavailable*` / `errorGeneric` |
@@ -18,9 +19,10 @@ L’UI ne ment plus : soumettre le formulaire renvoie un état honnête « envoi
 Flux :
 
 1. L’utilisateur soumet le formulaire (validation client d’abord).
-2. L’`action` home revalide côté serveur + honeypot `website`.
+2. L’`action` home : rate-limit IP → honeypot `website` → revalidation serveur.
 3. `sendContactEmail` retourne `disabled` → code `unavailable`.
 4. L’UI affiche `unavailableEyebrow` / `unavailableTitle` / `unavailableBody` (pas le succès Figma).
+5. Dépassement rate-limit → code `rate_limited` (message = `errorGeneric`, pas de copy Figma dédiée).
 
 WhatsApp + e-mail mailto restent les canaux réels en attendant.
 
@@ -72,19 +74,28 @@ Ne pas inventer de copy marketing : réutiliser `success*` Figma uniquement quan
 
 ### Étape 5 — Anti-spam & abus
 
-Déjà partiel :
-
 - [x] Honeypot champ `website` (caché)
-- [ ] Rate-limit IP (mémoire process ou Upstash Redis) — à ajouter avant trafic public
-- [ ] Option captcha (Turnstile / hCaptcha) si spam réel
+- [x] Rate-limit IP mémoire process : **5 req / IP / 15 min** (`app/server/site/rate-limit.server.ts`)
+- [ ] Store partagé multi-instance (Upstash Redis / `@upstash/ratelimit`) si >1 worker Vercel
+- [ ] Option captcha **désactivée** tant que décision produit (voir ci-dessous)
 
-Recommandation V1 prod : honeypot + rate-limit 5 req / IP / 15 min.
+Recommandation V1 prod : honeypot + rate-limit mémoire (OK mono-process). Avant scale-out : Upstash.
+
+#### Option captcha (non branchée)
+
+| Option | Notes | Statut |
+|--------|-------|--------|
+| Cloudflare Turnstile | Gratuit, CSP `challenges.cloudflare.com`, widget invisible/managed | **Pas activé** — attendre spam réel + validation produit |
+| hCaptcha | Alternative ; privacy policy hCaptcha | **Pas activé** |
+
+Ne pas ajouter de script tiers sans fermer la Q captcha + mise à jour CSP (`app/lib/security/headers.ts`).
 
 ### Étape 6 — GDPR / privacy (minimal)
 
 1. Ne stocker le message **que** dans l’e-mail reçu (pas de DB) sauf besoin CRM validé.
 2. Mentionner dans la politique de confidentialité : finalité (répondre au brief), durée, destinataire MSK.
 3. Pas de transfert hors UE sans base légale si le provider l’exige (vérifier Resend / région).
+4. **UI** : aucune mention « politique de confidentialité » / lien GDPR dans le footer Figma ni le content actuel (`app/content/{fr,en}/footer.ts`). Voir **Q29** (`FIGMA_OPEN_QUESTIONS.md`) avant d’inventer copy ou page.
 
 ### Étape 7 — Checklist go-live formulaire
 
@@ -109,7 +120,8 @@ Les `<select>` restent vides jusqu’à validation éditoriale. Ne pas inventer 
 |-------|---------|----------|
 | Provider e-mail | Resend, Postmark, SMTP, … | **Oui (Q23)** |
 | Destinataire | `contact@mskcreation.net` ou autre | Oui |
-| Rate-limit / captcha | honeypot seul vs Upstash vs Turnstile | Recommandé |
+| Rate-limit store | mémoire process (fait) vs Upstash multi-instance | Recommandé avant scale |
+| Captcha | aucun vs Turnstile vs hCaptcha | Non bloquant V1 ; activer si spam |
 | Stockage | e-mail only vs CRM | Non |
 | Copy erreurs serveur | déjà `errorGeneric` / `unavailable*` content | Fait (minimal) |
 

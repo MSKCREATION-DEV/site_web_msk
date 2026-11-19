@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
+@import "./styles/brand-pointer.css";
 @plugin "daisyui" {
   themes: msk --default;
 }
@@ -196,6 +197,7 @@
   --transition-duration-400: 400ms;
 
   --z-index-msk-overlay: 100;
+  --z-index-msk-progress: 110;
   --scale-msk-hover: 1.02;
   --scale-msk-portrait: 1.03;
 }
@@ -246,12 +248,80 @@ main {
   animation: msk-marquee 40s linear infinite;
 }
 
+/* Navigation pending — barre top (bleu charte), indéterminée puis finish */
+@keyframes msk-nav-progress-run {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(0.72);
+  }
+}
+
+@keyframes msk-nav-progress-finish {
+  0% {
+    transform: scaleX(0.72);
+    opacity: 1;
+  }
+  70% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+.msk-nav-progress-run {
+  width: 100%;
+  transform: scaleX(0);
+  animation: msk-nav-progress-run 8s cubic-bezier(0.1, 0.05, 0, 1) forwards;
+}
+
+.msk-nav-progress-finish {
+  width: 100%;
+  animation: msk-nav-progress-finish 280ms ease-out forwards;
+}
+
+/* Intro rideau — trait bas 0→100 % (Figma 9:45) */
+@keyframes msk-intro-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.msk-intro-progress {
+  transform: scaleX(0);
+  animation: msk-intro-progress 1s linear forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .msk-marquee {
+    animation: none;
+  }
+
+  .msk-nav-progress-run {
+    transform: scaleX(1);
+    animation: none;
+    opacity: 1;
+  }
+
+  .msk-nav-progress-finish {
+    animation: none;
+    transform: scaleX(1);
+    opacity: 0;
+  }
+
+  .msk-intro-progress {
+    transform: scaleX(1);
     animation: none;
   }
 }
