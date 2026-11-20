@@ -12,9 +12,9 @@ export type NavContent = {
   links: NavLinkContent[];
   ctaBrief: string;
   ctaWorks: string;
-  /** Libellé visible = langue cible (EN sur FR, FR sur EN). */
+  /** Libellé visible = locale courante (FR sur /fr, EN sur /en). */
   languageSwitchLabel: string;
-  /** aria-label du bouton langue (ex. Passer en anglais). */
+  /** aria-label du bouton langue = action (ex. Passer en anglais). */
   languageSwitchAriaLabel: string;
   /** aria-label nav desktop */
   primaryNavAriaLabel: string;
@@ -88,8 +88,6 @@ export type CtaContent = {
   /** Email sous CTA : optionnel (retiré si redondant avec Contact). */
   email?: string;
   emailHref?: string;
-  /** Libellés bas banner : Vidéo · Teaser 15 s · … */
-  mediaTabs: string[];
 };
 
 export type ServiceItemContent = {

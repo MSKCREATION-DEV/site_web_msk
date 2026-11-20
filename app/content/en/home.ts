@@ -74,7 +74,6 @@ export const home: HomeContent = {
     titleLine1: "Your next",
     titleAccent: "project.",
     ctaLabel: "Start →",
-    mediaTabs: ["Video", "15 s teaser", "Your next project"],
   },
   services: {
     eyebrow: "Services",

@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -9,7 +10,8 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import { isLocale, parseLocale } from "~/i18n";
+import { MskLogo } from "~/components/ui";
+import { homePath, isLocale, parseLocale } from "~/i18n";
 import { errorMessages } from "~/i18n/error-messages";
 import { securityHeaders } from "~/lib/security/headers";
 import "./app.css";
@@ -92,31 +94,74 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const params = useParams();
   const locale = isLocale(params.lang) ? parseLocale(params.lang) : "fr";
   const copy = errorMessages(locale);
+  const home = homePath(locale);
+  const contactHref = `${home}#contact`;
 
-  let message = copy.title;
+  const is404 = isRouteErrorResponse(error) && error.status === 404;
+  let title = copy.title;
   let details = copy.unexpected;
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : copy.title;
-    details =
-      error.status === 404
-        ? copy.notFound
-        : error.statusText || details;
+    title = is404 ? copy.notFoundTitle : copy.title;
+    details = is404
+      ? copy.notFoundBody
+      : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
-    <main className="container mx-auto p-4 pt-16">
-      <h1 className="font-display text-2xl">{message}</h1>
-      <p className="text-msk-text-muted">{details}</p>
-      {stack && (
-        <pre className="w-full overflow-x-auto p-4">
-          <code>{stack}</code>
-        </pre>
-      )}
+    <main className="relative flex min-h-svh flex-col bg-msk-ink text-msk-text">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(29,115,188,0.18),_transparent_55%)]"
+        aria-hidden
+      />
+      <div className="msk-page-x relative z-10 mx-auto flex w-full max-w-msk flex-1 flex-col py-10 sm:py-14">
+        <Link
+          to={home}
+          aria-label="MSK Création"
+          className="w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
+        >
+          <MskLogo variant="header" />
+        </Link>
+
+        <div className="flex flex-1 flex-col justify-center py-16 sm:py-24">
+          <p className="msk-eyebrow text-msk-blue">
+            {is404 ? copy.notFoundEyebrow : copy.title}
+          </p>
+          <h1 className="mt-4 max-w-2xl font-sans text-4xl font-semibold tracking-tight text-msk-text sm:text-5xl lg:text-6xl">
+            {title}
+          </h1>
+          <p className="msk-body-sm mt-6 max-w-xl text-msk-text-secondary">
+            {details}
+          </p>
+
+          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <Link
+              to={home}
+              className="msk-btn-label inline-flex h-msk-cta-btn items-center justify-center rounded-msk-pill bg-msk-blue px-msk-btn-px text-msk-text transition-colors duration-msk ease-out hover:bg-msk-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
+            >
+              {copy.homeCta}
+            </Link>
+            {is404 ? (
+              <a
+                href={contactHref}
+                className="msk-btn-label inline-flex h-msk-cta-btn items-center justify-center rounded-msk-pill border border-white/35 px-msk-btn-px text-msk-text transition-colors duration-msk ease-out hover:border-msk-text hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
+              >
+                {copy.contactCta}
+              </a>
+            ) : null}
+          </div>
+        </div>
+
+        {stack ? (
+          <pre className="mb-8 w-full overflow-x-auto rounded-lg border border-msk-border bg-msk-black/60 p-4 text-xs text-msk-text-muted">
+            <code>{stack}</code>
+          </pre>
+        ) : null}
+      </div>
     </main>
   );
 }

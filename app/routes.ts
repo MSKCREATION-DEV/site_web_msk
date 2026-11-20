@@ -4,6 +4,7 @@ import { index, route } from "@react-router/dev/routes";
 /**
  * / → /fr
  * /:lang → home
+ * /fr/equipe | /en/team → page équipe
  * /fr/travaux/:slug | /en/projects/:slug → fiche projet
  */
 export default [

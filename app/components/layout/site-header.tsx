@@ -27,7 +27,7 @@ function resolveNavHref(href: string, locale: Locale, pathname: string): string 
 
 /**
  * Nav Figma — bandeau Encre H96 (clamp 72–96).
- * Desktop : logo | liens centrés | Briefer + langue.
+ * Desktop : logo | liens centrés | Briefer (pill bleu) + langue.
  * Mobile : logo | langue + burger → drawer.
  */
 export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
@@ -192,7 +192,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             <a
               href={resolveNavHref("#contact", locale, pathname)}
               onClick={reveal}
-              className="msk-nav-label hidden whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink lg:inline-flex"
+              className="msk-btn-label-sm hidden h-9 items-center justify-center rounded-msk-pill bg-msk-blue px-4 text-msk-text transition-colors duration-msk ease-out hover:bg-msk-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink lg:inline-flex"
             >
               {nav.ctaBrief}
             </a>

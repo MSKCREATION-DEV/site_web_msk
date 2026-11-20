@@ -12,6 +12,7 @@ type ProjectCtaSectionProps = {
 /**
  * CTA vidéo — marquee full-bleed, média full-bleed, copy calée sur `msk-page-x`.
  * Règle rythme : fond/média → bord à bord ; textes / CTA → gutter page.
+ * Pas de mediaTabs (répétition titre retirée, validation produit).
  */
 export function ProjectCtaSection({
   content,
@@ -89,25 +90,6 @@ export function ProjectCtaSection({
               ) : null}
             </div>
           </Reveal>
-
-          <nav
-            aria-label={content.ariaLabel}
-            className="relative z-10 mt-10 hidden items-center justify-end gap-6 sm:flex"
-          >
-            {content.mediaTabs.map((tab, index) => (
-              <span
-                key={tab}
-                className={cn(
-                  "font-sans text-msk-2xs font-medium tracking-msk-wide uppercase",
-                  index === content.mediaTabs.length - 1
-                    ? "border-b border-msk-text pb-1 text-msk-text"
-                    : "text-white/55",
-                )}
-              >
-                {tab}
-              </span>
-            ))}
-          </nav>
         </div>
       </div>
     </section>

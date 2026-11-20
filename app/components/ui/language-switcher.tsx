@@ -10,7 +10,7 @@ import { cn } from "~/lib/utils";
 
 type LanguageSwitcherProps = {
   locale: Locale;
-  /** Libellé visible = langue cible (ex. EN sur page FR). */
+  /** Libellé visible = locale courante (FR / EN). */
   label: string;
   /** aria-label explicite (ex. « Passer en anglais »). */
   ariaLabel: string;
@@ -42,7 +42,7 @@ function alternatePathForLocation(locale: Locale, pathname: string): string {
   return alternateHomePath(locale);
 }
 
-/** Bouton locale avec mini drapeau de la langue cible. */
+/** Bouton locale : label + drapeau = langue courante ; clic → autre locale. */
 export function LanguageSwitcher({
   locale,
   label,
@@ -52,14 +52,14 @@ export function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   const { pathname } = useLocation();
   const target: Locale = locale === "fr" ? "en" : "fr";
-  const flag = target === "en" ? "🇬🇧" : "🇫🇷";
+  const flag = locale === "en" ? "🇬🇧" : "🇫🇷";
   const to = alternatePathForLocation(locale, pathname);
 
   return (
     <Link
       to={to}
       hrefLang={target}
-      lang={target}
+      lang={locale}
       aria-label={ariaLabel}
       onClick={onNavigate}
       className={cn(
