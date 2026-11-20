@@ -1,7 +1,9 @@
 import { Link, redirect } from "react-router";
 import type { Route } from "./+types/team";
-import { Reveal, TeamFlipCard } from "~/components/ui";
+import { Reveal } from "~/components/ui/reveal";
+import { TeamFlipCard } from "~/components/ui/team-flip-card";
 import { homePath, isLocale, parseLocale, teamPath } from "~/i18n";
+import { securityHeaders } from "~/lib/security/headers";
 import { buildTeamJsonLd, teamMeta } from "~/lib/seo";
 import { cn } from "~/lib/utils";
 import { loadTeamPage } from "~/server/site/loaders/team.server";
@@ -11,6 +13,19 @@ function normalizedPathname(request: Request): string {
   const raw = new URL(request.url).pathname;
   if (raw.length > 1 && raw.endsWith("/")) return raw.slice(0, -1);
   return raw;
+}
+
+/**
+ * HTML quasi-statique (content + data in-memory). CDN edge cache.
+ * Pas de Runtime Cache `@vercel/functions` getCache : le loader n’a pas d’I/O
+ * externe ; un cache régionnel ajouterait une dep + hop pour un gain nul.
+ * Hobby : Runtime Cache / tag purge peuvent être limités — préférer s-maxage.
+ */
+export function headers(_: Route.HeadersArgs) {
+  return {
+    ...securityHeaders(),
+    "Cache-Control": "public, s-maxage=300, stale-while-revalidate=86400",
+  };
 }
 
 export function loader({ params, request }: Route.LoaderArgs) {
@@ -85,7 +100,7 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
         className="msk-page-x scroll-mt-msk-nav mx-auto w-full max-w-msk pt-[max(6rem,calc(var(--spacing-msk-nav)+2.5rem))] pb-16 sm:pb-20"
         aria-labelledby="team-page-heading"
       >
-        <Reveal>
+        <Reveal immediate>
           <div className="flex max-w-4xl flex-col gap-8">
             <Link
               to={homePath(locale)}
@@ -118,7 +133,7 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
         aria-labelledby="team-collectif-heading"
       >
         <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-8 py-16 sm:flex-row sm:items-end sm:justify-between sm:gap-16 sm:py-20">
-          <Reveal className="max-w-xl">
+          <Reveal immediate className="max-w-xl">
             <p className="msk-eyebrow mb-4 text-msk-text-muted">
               {teamPage.collectif.eyebrow}
             </p>
@@ -129,7 +144,7 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
               {teamPage.collectif.title}
             </h2>
           </Reveal>
-          <Reveal delayMs={80} className="max-w-md">
+          <Reveal immediate className="max-w-md">
             <p className="msk-body-sm text-msk-text-secondary">
               {teamPage.collectif.body}
             </p>
@@ -188,6 +203,7 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
                   service={member.service}
                   email={member.email}
                   labels={flipLabels}
+                  priority={index < 2}
                 />
               </Reveal>
             </li>

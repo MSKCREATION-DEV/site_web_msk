@@ -31,8 +31,20 @@ export type TeamFlipCardProps = {
   service?: string;
   email?: string;
   labels: TeamFlipCardLabels;
+  /**
+   * 1–2 portraits lead above-the-fold max : eager + fetchPriority high.
+   * Les autres restent lazy (évite 10 PNG/AVIF en LCP).
+   */
+  priority?: boolean;
   className?: string;
 };
+
+/** Dimensions intrinsèques portraits équipe (CLS) — majorité 352×470. */
+const TEAM_PHOTO_WIDTH = 352;
+const TEAM_PHOTO_HEIGHT = 470;
+/** Grille magazine : ~50 % du conteneur max-w-msk (1440). */
+const TEAM_PHOTO_SIZES =
+  "(min-width: 1024px) min(50vw, 720px), (min-width: 640px) 50vw, 100vw";
 
 /**
  * Portrait magazine page Équipe — flip 3D.
@@ -54,6 +66,7 @@ export function TeamFlipCard({
   service,
   email,
   labels,
+  priority = false,
   className,
 }: TeamFlipCardProps) {
   const backId = useId();
@@ -97,7 +110,11 @@ export function TeamFlipCard({
               <OptimizedImg
                 src={photoSrc}
                 alt={photoAlt}
-                loading="lazy"
+                width={TEAM_PHOTO_WIDTH}
+                height={TEAM_PHOTO_HEIGHT}
+                sizes={TEAM_PHOTO_SIZES}
+                loading={priority ? "eager" : "lazy"}
+                fetchPriority={priority ? "high" : "auto"}
                 decoding="async"
                 pictureClassName="absolute inset-0 size-full"
                 className="size-full object-cover object-top"

@@ -38,7 +38,7 @@ npm run assets:compress -- --max-width=2880
 |------|-------------------------------|------|
 | Hero LCP (`slide-01`) | ≤ 250–400 Ko | Critique LCP ≤ 2.5 s |
 | Cover Travaux / fiche | ≤ 200–350 Ko | Above-fold stack / sheet |
-| Portrait équipe | ≤ 80–120 Ko | Below-fold lazy |
+| Portrait équipe | ≤ 80–120 Ko | Below-fold lazy ; page `/equipe` : 2 leads `eager`+`fetchPriority=high` max |
 | Galerie fiche | ≤ 300 Ko | Lazy ; QA visuelle obligatoire |
 
 Enforcement CI (`check:images --fail`) = P2.

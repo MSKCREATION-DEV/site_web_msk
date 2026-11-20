@@ -3,6 +3,11 @@ import type { Locale } from "~/i18n";
 import { teamMembers } from "~/data";
 import { postalAddressFromContactRows, teamPhotoAlt } from "~/lib/seo";
 
+/**
+ * Assemblage synchrone content + data (pas d’API).
+ * Cache CDN via `headers` route (`s-maxage`) — pas de getCache Runtime Cache
+ * (coût / complexité sans I/O à amortir ; limites Hobby possibles).
+ */
 export function loadTeamPage(locale: Locale) {
   const content = getLocaleContent(locale);
 
