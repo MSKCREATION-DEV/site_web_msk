@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
 @import "./styles/brand-pointer.css";
-@import "./styles/team-flip.css";
 @plugin "daisyui" {
   themes: msk --default;
 }
@@ -206,6 +205,17 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  /*
+   * Pas de scroll-padding-top ici : les cibles portent déjà
+   * `scroll-mt-msk-nav` (= --msk-nav-height). Les deux s’additionnent
+   * et décaleraient le land de ~2× la hauteur du header.
+   */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 html,

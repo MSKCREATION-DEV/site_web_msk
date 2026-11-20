@@ -1,11 +1,12 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router";
 import { LanguageSwitcher, MskLogo } from "~/components/ui";
 import type { NavContent } from "~/content/types";
 import type { Locale } from "~/i18n";
 import { homePath } from "~/i18n";
 import { cn } from "~/lib/utils";
+import { scrollToAnchorAfterHeaderReveal } from "~/lib/utils/scroll-to-anchor";
 
 type SiteHeaderProps = {
   locale: Locale;
@@ -23,6 +24,28 @@ function resolveNavHref(href: string, locale: Locale, pathname: string): string 
   const home = homePath(locale);
   const onHome = pathname === home || pathname === `${home}/`;
   return onHome ? href : `${home}${href}`;
+}
+
+function hashFromHref(href: string): string | null {
+  const i = href.indexOf("#");
+  if (i < 0) return null;
+  const hash = href.slice(i);
+  return hash.length > 1 ? hash : null;
+}
+
+function isSamePageHash(
+  href: string,
+  locale: Locale,
+  pathname: string,
+): boolean {
+  const hash = hashFromHref(href);
+  if (!hash) return false;
+  if (href.startsWith("#")) {
+    const home = homePath(locale);
+    return pathname === home || pathname === `${home}/`;
+  }
+  const pathOnly = href.slice(0, href.indexOf("#"));
+  return pathname === pathOnly || pathname === `${pathOnly}/`;
 }
 
 /**
@@ -119,6 +142,20 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
   const close = () => setOpen(false);
   const reveal = () => setHidden(false);
 
+  /** Ancre same-page : reveal header puis scroll calibré (évite décalage smart-header). */
+  const onAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    const hash = hashFromHref(href);
+    if (!hash || !isSamePageHash(href, locale, pathname)) {
+      reveal();
+      close();
+      return;
+    }
+    event.preventDefault();
+    reveal();
+    close();
+    scrollToAnchorAfterHeaderReveal(hash);
+  };
+
   const navLinkClass =
     "msk-nav-label whitespace-nowrap text-msk-text-secondary transition-colors duration-msk ease-out hover:text-msk-text focus-visible:outline-none focus-visible:text-msk-blue focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink rounded-sm";
 
@@ -179,7 +216,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
                 <a
                   key={link.href}
                   href={href}
-                  onClick={reveal}
+                  onClick={(event) => onAnchorClick(event, href)}
                   className={navLinkClass}
                 >
                   {link.label}
@@ -191,7 +228,9 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
           <div className="ml-auto flex shrink-0 items-center justify-end gap-msk-nav-actions justify-self-end">
             <a
               href={resolveNavHref("#contact", locale, pathname)}
-              onClick={reveal}
+              onClick={(event) =>
+                onAnchorClick(event, resolveNavHref("#contact", locale, pathname))
+              }
               className="msk-btn-label-sm hidden h-9 items-center justify-center rounded-msk-pill bg-msk-blue px-4 text-msk-text transition-colors duration-msk ease-out hover:bg-msk-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink lg:inline-flex"
             >
               {nav.ctaBrief}
@@ -294,7 +333,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
               <a
                 key={link.href}
                 href={href}
-                onClick={close}
+                onClick={(event) => onAnchorClick(event, href)}
                 className={className}
                 style={style}
               >
@@ -305,7 +344,9 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
 
           <a
             href={resolveNavHref("#contact", locale, pathname)}
-            onClick={close}
+            onClick={(event) =>
+              onAnchorClick(event, resolveNavHref("#contact", locale, pathname))
+            }
             className="msk-btn-label mt-msk-hero-stack inline-flex h-msk-cta-btn w-full items-center justify-center rounded-msk-pill bg-msk-blue px-msk-btn-px text-msk-text transition-colors hover:bg-msk-blue-hover"
           >
             {nav.ctaBrief}

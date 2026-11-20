@@ -42,7 +42,7 @@ export function TeamSection({
       className={cn("scroll-mt-msk-nav bg-msk-ink", className)}
       aria-labelledby="equipe-heading"
     >
-      <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-20 py-24">
+      <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-20 py-msk-x">
         <Reveal>
           <div className="flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-end">
             <div className="flex flex-col gap-4">
