@@ -3,19 +3,28 @@
  * rangée 1 : Mathieu, Isdalinia, Andile, Ismaël, Amadou
  * rangée 2 : Lidaou, Fatimatou, Yaye, Djouldé, Eric
  *
- * `layout` page Équipe : lead (rangée 1, 2× span 6) puis paires (span 6)
- * pour éviter un orphelin en bas (10 talents = 5 rangées de 2).
+ * `tier` page Équipe (hiérarchie éditoriale, source ERP public) :
+ *   founder       → L0 ERP (Mathieu, Isdalinia)
+ *   cadre         → L1 + Responsable technique site (Andile, Ismaël, Amadou)
+ *   collaborator  → L3–L4 (Espoir, Fatimatou, Yaye, Djouldé, Eric)
+ *
+ * Grille : fondateurs + cadres + collabs en paires span 6 (pas d’orphelin).
+ * Voir docs/design/TEAM_PAGE.md § Niveaux visuels.
  */
 
-export type TeamGalleryLayout = "lead" | "feature" | "standard";
+/** Niveau éditorial page `/equipe` (pas un titre affiché). */
+export type TeamTier = "founder" | "cadre" | "collaborator";
 
 export type TeamMember = {
   slug: string;
   photoSrc: string;
   /** Clé pour content FR/EN (name + role). */
   contentKey: string;
-  /** Composition galerie page Équipe. */
-  layout: TeamGalleryLayout;
+  /**
+   * Niveau hiérarchique éditorial (ERP public → UI).
+   * Détermine variante de carte + span galerie.
+   */
+  tier: TeamTier;
 };
 
 export const teamMembers: TeamMember[] = [
@@ -23,60 +32,60 @@ export const teamMembers: TeamMember[] = [
     slug: "mathieu-diarra",
     photoSrc: "/assets/team/mathieu-diarra.png",
     contentKey: "mathieu-diarra",
-    layout: "lead",
+    tier: "founder",
   },
   {
     slug: "isdalinia-boisseaux",
     photoSrc: "/assets/team/isdalinia-boisseaux.png",
     contentKey: "isdalinia-boisseaux",
-    layout: "lead",
+    tier: "founder",
   },
   {
     slug: "andile-boussari",
     photoSrc: "/assets/team/andile-boussari.png",
     contentKey: "andile-boussari",
-    layout: "feature",
+    tier: "cadre",
   },
   {
     slug: "ismael-oussi",
     photoSrc: "/assets/team/ismael-oussi.png",
     contentKey: "ismael-oussi",
-    layout: "feature",
+    tier: "cadre",
   },
   {
     slug: "amadou-samba-guiro",
     photoSrc: "/assets/team/amadou-samba-guiro.png",
     contentKey: "amadou-samba-guiro",
-    layout: "feature",
+    tier: "cadre",
   },
   {
     slug: "lidaou-espoir-awesso",
     photoSrc: "/assets/team/lidaou-espoir-awesso.png",
     contentKey: "lidaou-espoir-awesso",
-    layout: "standard",
+    tier: "collaborator",
   },
   {
     slug: "fatimatou-diallo",
     photoSrc: "/assets/team/fatimatou-diallo.png",
     contentKey: "fatimatou-diallo",
-    layout: "standard",
+    tier: "collaborator",
   },
   {
     slug: "yahe-bah",
     photoSrc: "/assets/team/yaye-bah.png",
     contentKey: "yahe-bah",
-    layout: "standard",
+    tier: "collaborator",
   },
   {
     slug: "djoulede-keita",
     photoSrc: "/assets/team/djoulede-keita.png",
     contentKey: "djoulede-keita",
-    layout: "standard",
+    tier: "collaborator",
   },
   {
     slug: "eric-golo",
     photoSrc: "/assets/team/eric-golo.png",
     contentKey: "eric-golo",
-    layout: "standard",
+    tier: "collaborator",
   },
 ];

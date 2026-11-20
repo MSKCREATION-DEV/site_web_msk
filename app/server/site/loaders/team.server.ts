@@ -17,7 +17,7 @@ export function loadTeamPage(locale: Locale) {
     const role = copy?.role ?? "";
     return {
       slug: member.slug,
-      layout: member.layout,
+      tier: member.tier,
       indexLabel: String(index + 1).padStart(2, "0"),
       name,
       role,

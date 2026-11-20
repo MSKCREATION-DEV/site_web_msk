@@ -18,7 +18,7 @@ Identité MSK : Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C`, Jost / Bricol
 
 1. **Intro** — H1 concept + lead collectif.
 2. **Collectif** — manifeste court (zéro sous-traitance, complémentarité).
-3. **Galerie éditoriale** — lead + paires (2×6 puis 8×6, pas d’orphelin), flip recto-verso.
+3. **Galerie éditoriale** — fondateurs + cadres + collabs en paires (span 6, pas d’orphelin), flip recto-verso, 3 variantes `tier`.
 4. **Complémentarité** — quatre pôles métiers (pas un org chart RH).
 5. **Conclusion** — phrase mémorable + CTA brief (`/#contact`).
 
@@ -30,6 +30,18 @@ Identité MSK : Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C`, Jost / Bricol
 | Verso | Présentation · expertise · contribution · impact · signature (+ email si validé) |
 
 Interaction : hover flip Desktop (pointeur fin) · tap mobile · clavier (`aria-expanded`) · `prefers-reduced-motion` = fade overlay sans `rotateY`.
+
+### Niveaux visuels (`tier` dans `app/data/team.ts`)
+
+Hiérarchie éditoriale page `/equipe` (pas un titre affiché ; rôles UI restent les labels site). Source : ERP `ORG_LEVEL_KEYS` / `MSK_TEAM` + rôles site (Responsable / Lead / Chef).
+
+| `tier` | Personnes | ERP / critère | UI |
+|--------|-----------|---------------|-----|
+| `founder` | Mathieu Diarra, Isdalinia Boisseaux | L0 · Fondateur / Co-fondatrice | Plus grand, filet bleu, double coin corail+bleu, pastille corail, typo display + rôle serif, overlay un peu plus présent sous le texte |
+| `cadre` | Andile Boussari, Ismaël Oussi, Amadou Samba Guiro | L1 (Chef de projet, DT) + Responsable technique (site) | Hauteur médiane, barre latérale bleue, coin corail simple, pastille bleue, rôle teinté bleu |
+| `collaborator` | Lidaou Espoir Awesso, Fatimatou Diallo, Yaye Bah, Djouldé Keita, Eric Golo | L3–L4 | Plus compact, sans coin corail ni pastille, typo plus simple, overlay le plus léger |
+
+**Overlay** : gradient bas ciblé (visage/buste lisibles) + `text-shadow` léger sur nom/rôle. Home `#equipe` (`TeamCard` Figma) inchangée.
 
 ## Sources ERP / organisation (publiques-pro)
 

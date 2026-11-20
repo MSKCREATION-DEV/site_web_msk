@@ -185,11 +185,10 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
               key={member.slug}
               className={cn(
                 "min-h-0",
-                member.layout === "lead" && "msk-team-gallery__item--lead",
-                member.layout === "feature" &&
-                  "msk-team-gallery__item--feature",
-                member.layout === "standard" &&
-                  "msk-team-gallery__item--standard",
+                member.tier === "founder" && "msk-team-gallery__item--founder",
+                member.tier === "cadre" && "msk-team-gallery__item--cadre",
+                member.tier === "collaborator" &&
+                  "msk-team-gallery__item--collaborator",
               )}
             >
               <Reveal delayMs={(index % 5) * 50} className="h-full">
@@ -199,6 +198,7 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
                   photoSrc={member.photoSrc}
                   photoAlt={member.photoAlt}
                   indexLabel={member.indexLabel}
+                  tier={member.tier}
                   presentation={member.presentation}
                   expertise={member.expertise}
                   contribution={member.contribution}
@@ -208,7 +208,7 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
                   service={member.service}
                   email={member.email}
                   labels={flipLabels}
-                  priority={index < 2}
+                  priority={member.tier === "founder"}
                 />
               </Reveal>
             </li>

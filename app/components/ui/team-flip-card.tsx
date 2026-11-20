@@ -1,5 +1,6 @@
 import { useId, useRef, useState } from "react";
 import { OptimizedImg } from "~/components/ui/optimized-img";
+import type { TeamTier } from "~/data/team";
 import { cn } from "~/lib/utils";
 
 export type TeamFlipCardLabels = {
@@ -22,6 +23,8 @@ export type TeamFlipCardProps = {
   photoSrc: string;
   photoAlt: string;
   indexLabel: string;
+  /** Niveau éditorial (ERP) → variante visuelle. */
+  tier: TeamTier;
   presentation?: string;
   expertise?: string;
   contribution?: string;
@@ -48,7 +51,8 @@ const TEAM_PHOTO_SIZES =
 
 /**
  * Portrait magazine page Équipe — flip 3D.
- * Recto : photo, nom, rôle, index graphique, invitation.
+ * Variantes `tier` : founder / cadre / collaborator.
+ * Recto : photo, nom, rôle, index, invitation.
  * Verso : présentation / expertise / contribution / impact / signature.
  */
 export function TeamFlipCard({
@@ -57,6 +61,7 @@ export function TeamFlipCard({
   photoSrc,
   photoAlt,
   indexLabel,
+  tier,
   presentation,
   expertise,
   contribution,
@@ -100,8 +105,14 @@ export function TeamFlipCard({
 
   return (
     <article
-      className={cn("msk-team-flip h-full", flipped && "is-flipped", className)}
+      className={cn(
+        "msk-team-flip h-full",
+        `msk-team-flip--${tier}`,
+        flipped && "is-flipped",
+        className,
+      )}
       data-flipped={flipped ? "true" : "false"}
+      data-tier={tier}
     >
       <div className="msk-team-flip__scene">
         <div className="msk-team-flip__inner">
@@ -124,14 +135,12 @@ export function TeamFlipCard({
             <span className="msk-team-flip__index" aria-hidden>
               {indexLabel}
             </span>
+            {/* Accent décoratif niveau (pas de libellé inventé). */}
+            <span className="msk-team-flip__badge" aria-hidden />
             <span className="msk-team-flip__mark" aria-hidden />
             <div className="msk-team-flip__front-copy">
-              <h3 className="font-sans text-xl font-semibold tracking-wide text-msk-text uppercase sm:text-2xl">
-                {name}
-              </h3>
-              <p className="font-sans text-xs tracking-msk-wide text-msk-text-muted uppercase">
-                {role}
-              </p>
+              <h3 className="msk-team-flip__name">{name}</h3>
+              <p className="msk-team-flip__role">{role}</p>
               <p className="msk-team-flip__invite font-serif-msk text-sm italic text-msk-blue">
                 {labels.revealLabel}
               </p>
