@@ -8,20 +8,20 @@ import {
   projectPathSegment,
 } from "~/i18n";
 
-function segmentFromRequest(request: Request): string {
-  const { pathname } = new URL(request.url);
-  const parts = pathname.split("/").filter(Boolean);
+/** Segment travaux|projects depuis `url` normalisé (sans `.data`). */
+function segmentFromUrl(url: URL): string {
+  const parts = url.pathname.split("/").filter(Boolean);
   return parts[1] ?? "";
 }
 
-export function loader({ params, request }: Route.LoaderArgs) {
+export function loader({ params, url }: Route.LoaderArgs) {
   if (!isLocale(params.lang) || !params.slug) {
     throw new Response("Not Found", { status: 404 });
   }
 
   const locale = parseLocale(params.lang);
   const expected = projectPathSegment(locale);
-  const actual = segmentFromRequest(request);
+  const actual = segmentFromUrl(url);
 
   if (actual !== expected) {
     throw new Response("Not Found", { status: 404 });

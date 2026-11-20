@@ -99,3 +99,9 @@ Retirer `CONTACT_EMAIL_ENABLED` (ou mettre autre chose que `1`) + Redeploy → U
 - Pas de `vercel.json` requis pour le MVP (auto-detect React Router).
 - `@vercel/react-router` non installé : peer `@react-router/dev@7` incompatible avec RR **8.x** du projet. À réévaluer quand Vercel publie un peer RR8.
 - Rate-limit = mémoire process (OK preview mono-instance ; Upstash avant scale).
+
+## CSP et Vercel Toolbar
+
+Sur Preview, la toolbar injecte `https://vercel.live/.../feedback.js`. La CSP MSK (`script-src` / `connect-src`) autorise **uniquement** `vercel.live` (+ `wss://vercel.live`) quand `VERCEL_ENV=preview`. Production reste sans exception.
+
+Si la console CSP gêne encore (ou si on préfère zéro assouplissement) : Dashboard projet → **Settings → Vercel Toolbar** → désactiver sur Preview. Ce bruit console n’est **pas** la cause d’un hang de navigation React Router.

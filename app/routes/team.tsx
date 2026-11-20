@@ -8,9 +8,14 @@ import { buildTeamJsonLd, teamMeta } from "~/lib/seo";
 import { cn } from "~/lib/utils";
 import { loadTeamPage } from "~/server/site/loaders/team.server";
 
-/** Normalise le pathname (trailing slash) pour comparer au canonical locale. */
-function normalizedPathname(request: Request): string {
-  const raw = new URL(request.url).pathname;
+/**
+ * Pathname app (sans trailing slash).
+ * Utiliser `url` (LoaderArgs) — déjà sans suffixe `.data` / params RR —
+ * et non `request.url` brut (sinon nav CSR `/fr/equipe.data` → redirect
+ * vers `/fr/equipe` en boucle = barre progress infinie).
+ */
+function normalizedPathname(url: URL): string {
+  const raw = url.pathname;
   if (raw.length > 1 && raw.endsWith("/")) return raw.slice(0, -1);
   return raw;
 }
@@ -28,13 +33,13 @@ export function headers(_: Route.HeadersArgs) {
   };
 }
 
-export function loader({ params, request }: Route.LoaderArgs) {
+export function loader({ params, url }: Route.LoaderArgs) {
   if (!isLocale(params.lang)) {
     throw new Response("Not Found", { status: 404 });
   }
 
   const locale = parseLocale(params.lang);
-  const pathname = normalizedPathname(request);
+  const pathname = normalizedPathname(url);
   const expected = teamPath(locale);
 
   /**
