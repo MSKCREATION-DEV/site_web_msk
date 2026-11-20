@@ -87,6 +87,12 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
       >
         <Reveal>
           <div className="flex max-w-4xl flex-col gap-8">
+            <Link
+              to={homePath(locale)}
+              className="msk-nav-label w-fit text-msk-blue transition-colors hover:text-msk-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
+            >
+              ← {teamPage.backHomeLabel}
+            </Link>
             <p className="msk-eyebrow text-msk-text-muted">{teamPage.eyebrow}</p>
             <h1
               id="team-page-heading"
@@ -102,12 +108,6 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
             <p className="msk-body-sm max-w-xl text-msk-text-secondary">
               {teamPage.intro}
             </p>
-            <Link
-              to={homePath(locale)}
-              className="msk-nav-label w-fit text-msk-blue transition-colors hover:text-msk-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
-            >
-              ← {teamPage.backHomeLabel}
-            </Link>
           </div>
         </Reveal>
       </section>
