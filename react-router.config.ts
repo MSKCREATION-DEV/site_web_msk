@@ -5,7 +5,7 @@ export default {
   ssr: true,
   /**
    * Manifest initial complet : évite un 404 client si la découverte lazy
-   * `/__manifest` échoue ou est retardée (nav home → /fr/equipe).
+   * `/__manifest` échoue ou est retardée.
    * Site vitrine = peu de routes, coût négligeable.
    */
   routeDiscovery: { mode: "initial" },

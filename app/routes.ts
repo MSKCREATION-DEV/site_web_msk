@@ -4,11 +4,9 @@ import { index, route } from "@react-router/dev/routes";
 /**
  * / → /fr
  * /:lang → home
- * /fr/equipe | /en/team → page équipe (même module, ids uniques obligatoires)
  * /fr/travaux/:slug | /en/projects/:slug → fiche projet
  *
- * Ordre : routes nommées avant tout futur splat ; pas de catch-all qui
- * masquerait equipe/team.
+ * Page `/equipe` / `/team` archivée sur branche `archive/equipe-page`.
  */
 export default [
   index("routes/_index.tsx"),
@@ -16,8 +14,6 @@ export default [
   route("sitemap.xml", "routes/sitemap.ts"),
   route(":lang", "routes/locale-layout.tsx", [
     index("routes/home.tsx"),
-    route("equipe", "routes/team.tsx", { id: "team-fr" }),
-    route("team", "routes/team.tsx", { id: "team-en" }),
     route("travaux/:slug", "routes/project.tsx", {
       id: "project-travaux",
     }),

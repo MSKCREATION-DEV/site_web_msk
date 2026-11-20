@@ -1,15 +1,14 @@
 import type { NavContent } from "../types";
 
 /**
- * Libellés nav. Ancres = sections home ; Équipe = page dédiée.
+ * Libellés nav. Ancres = sections home (Figma one-page).
  * CTAs « Briefer un projet » / « Voir nos travaux » = Lisez-moi prototype.
  */
 export const nav: NavContent = {
   links: [
     { href: "#travaux", label: "Travaux" },
     { href: "#services", label: "Services" },
-    // Route dédiée (pas l’ancre #equipe de la home) — Q32.
-    { href: "/fr/equipe", label: "Équipe" },
+    { href: "#equipe", label: "Équipe" },
     { href: "#approche", label: "Approche" },
     { href: "#contact", label: "Contact" },
   ],

@@ -105,8 +105,6 @@ https://www.mskcreation.net/robots.txt
 https://www.mskcreation.net/sitemap.xml
 https://www.mskcreation.net/fr
 https://www.mskcreation.net/en
-https://www.mskcreation.net/fr/equipe
-https://www.mskcreation.net/en/team
 https://www.mskcreation.net/fr/travaux/{slug}
 https://www.mskcreation.net/en/projects/{slug}
 ```
@@ -117,7 +115,7 @@ Slugs deck (7) : `prosperity`, `thoy-art`, `koundji-services`, `bomoyi`, `ecosol
 
 ## 5. Inspection d’URL (smoke SEO)
 
-Pour chaque locale critique (`/fr`, `/en`, une fiche, `/fr/equipe`) :
+Pour chaque locale critique (`/fr`, `/en`, une fiche) :
 
 1. Outil **Inspection de l’URL** → coller l’URL absolue.
 2. **Tester l’URL en direct** (pas seulement la version indexée).

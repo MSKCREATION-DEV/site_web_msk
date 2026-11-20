@@ -4,7 +4,7 @@ export const nav: NavContent = {
   links: [
     { href: "#travaux", label: "Works" },
     { href: "#services", label: "Services" },
-    { href: "/en/team", label: "Team" },
+    { href: "#equipe", label: "Team" },
     { href: "#approche", label: "Approach" },
     { href: "#contact", label: "Contact" },
   ],

@@ -1,5 +1,5 @@
 import { getWorksGridProjects } from "~/data";
-import { homePath, projectPath, teamPath } from "~/i18n";
+import { homePath, projectPath } from "~/i18n";
 import { absoluteUrl } from "./origin";
 
 export type SitemapEntry = {
@@ -15,13 +15,13 @@ export type SitemapEntry = {
 
 /**
  * Révision content des URLs indexables.
- * Mettre à jour quand home / équipe / fiches deck changent de façon crawlable.
+ * Mettre à jour quand home / fiches deck changent de façon crawlable.
  * Pas de lastmod fake par URL sans source data.
  */
 export const SITEMAP_CONTENT_LASTMOD = "2026-11-20";
 
 /**
- * URLs indexables V1 — home FR/EN + équipe + deck Travaux 7 × 2 locales.
+ * URLs indexables V1 — home FR/EN + deck Travaux 7 × 2 locales.
  * Passer `request` (resource route) pour la même origine que `/robots.txt`.
  */
 export function buildSitemapEntries(request?: Request): SitemapEntry[] {
@@ -30,8 +30,6 @@ export function buildSitemapEntries(request?: Request): SitemapEntry[] {
   const entries: SitemapEntry[] = [
     { loc: abs(homePath("fr")), priority: "1.0", lastmod },
     { loc: abs(homePath("en")), priority: "0.9", lastmod },
-    { loc: abs(teamPath("fr")), priority: "0.85", lastmod },
-    { loc: abs(teamPath("en")), priority: "0.8", lastmod },
   ];
 
   for (const project of getWorksGridProjects()) {

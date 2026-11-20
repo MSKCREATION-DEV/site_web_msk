@@ -21,12 +21,3 @@ export function alternateProjectPath(locale: Locale, slug: string): string {
 export function alternateHomePath(locale: Locale): string {
   return homePath(locale === "fr" ? "en" : "fr");
 }
-
-/** Page équipe dédiée : `/fr/equipe` · `/en/team`. */
-export function teamPath(locale: Locale): string {
-  return locale === "en" ? "/en/team" : "/fr/equipe";
-}
-
-export function alternateTeamPath(locale: Locale): string {
-  return teamPath(locale === "fr" ? "en" : "fr");
-}

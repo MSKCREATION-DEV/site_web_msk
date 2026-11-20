@@ -8,7 +8,7 @@ import {
   ORGANIZATION_LOGO_PATH,
 } from "./assets";
 import { absoluteUrl, siteOrigin } from "./origin";
-import { homePath, projectPath, teamPath, type Locale } from "~/i18n";
+import { homePath, projectPath, type Locale } from "~/i18n";
 
 const ORG_ID = "#organization";
 
@@ -50,12 +50,6 @@ export type JsonLdProjectInput = {
   imagePath: string;
   /** Galerie (+ cover) pour ImageObject associés. */
   images?: JsonLdProjectImage[];
-};
-
-export type JsonLdTeamPageInput = JsonLdHomeInput & {
-  /** Title / description meta page équipe (content). */
-  pageTitle: string;
-  pageDescription: string;
 };
 
 function organizationNode(input: {
@@ -121,52 +115,6 @@ export function buildHomeJsonLd(input: JsonLdHomeInput) {
         },
       },
       ...people,
-    ],
-  };
-}
-
-/**
- * Graphe page équipe : Organization + CollectionPage + Person.
- * Même source équipe que la home (pas de bios inventées).
- */
-export function buildTeamJsonLd(input: JsonLdTeamPageInput) {
-  const pageUrl = absoluteUrl(teamPath(input.locale));
-  const people = input.team
-    .filter((m) => m.name.trim().length > 0)
-    .map((member, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Person",
-        name: member.name,
-        ...(member.role.trim() ? { jobTitle: member.role } : {}),
-        worksFor: { "@id": ORG_ID },
-      },
-    }));
-
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      organizationNode(input),
-      {
-        "@type": "CollectionPage",
-        "@id": "#team-page",
-        name: input.pageTitle,
-        description: input.pageDescription,
-        url: pageUrl,
-        inLanguage: input.locale === "fr" ? "fr-FR" : "en-US",
-        isPartOf: {
-          "@type": "WebSite",
-          name: input.brandName,
-          url: siteOrigin(),
-        },
-        about: { "@id": ORG_ID },
-        mainEntity: {
-          "@type": "ItemList",
-          numberOfItems: people.length,
-          itemListElement: people,
-        },
-      },
     ],
   };
 }

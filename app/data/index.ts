@@ -13,4 +13,4 @@ export type {
   GallerySlot,
 } from "./projects";
 export { teamMembers } from "./team";
-export type { TeamMember, TeamTier } from "./team";
+export type { TeamMember } from "./team";

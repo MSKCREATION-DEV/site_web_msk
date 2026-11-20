@@ -49,7 +49,7 @@ Légende **statut** : `à faire` · `fait` · `N/A` (non applicable tant que con
 |------|----------|-------|--------|
 | Poser / vérifier toutes les env **Production** (tableau §1) puis **Redeploy** | `VITE_*` injecté au build | Cutover | **à faire** |
 | Déployer depuis **`main`** (pas `vercel --prod` depuis un checkout `dev` non mergé) | Alignement git ↔ prod | Cutover | **à faire** |
-| Vérifier live : `/fr`, `/en`, `/fr/equipe`, 1 fiche, formulaire contact réel | Smoke fonctionnel domaine final | Immédiatement après deploy | **à faire** |
+| Vérifier live : `/fr`, `/en`, `/fr#equipe`, 1 fiche, formulaire contact réel | Smoke fonctionnel domaine final | Immédiatement après deploy | **à faire** |
 | `curl` robots + sitemap sur origine prod | Même host que `VITE_SITE_ORIGIN` ; 16 URLs (home×2 + équipe×2 + 7×2 fiches) | Immédiatement après deploy | **à faire** |
 | Rollback contact prêt : retirer `CONTACT_EMAIL_ENABLED` + Redeploy | Stoppe l’envoi sans faux succès UI | Connu avant cutover | **fait** (procédure doc) |
 
@@ -70,7 +70,7 @@ curl -sS "$ORIGIN/sitemap.xml" | head -80
 |------|----------|-------|--------|
 | **Google Search Console** : propriété domaine (ou préfixe URL) vérifiée | Indexation contrôlée | J0–J2 | **à faire** |
 | Soumettre `sitemap.xml` sur la propriété **prod** (pas le preview) | Découverte URLs canoniques | Après vérif propriété | **à faire** |
-| Inspection d’URL live `/fr` + `/en` (+ 1 fiche, `/fr/equipe`) | SSR meta / canonical / pas de `noindex` | J0 | **à faire** |
+| Inspection d’URL live `/fr` + `/en` (+ 1 fiche) | SSR meta / canonical / pas de `noindex` | J0 | **à faire** |
 | Test partage social (LinkedIn / Slack / Facebook debugger) sur home | OG actuel = PNG hero ~8 Mo ; détecter casse / timeout | J0–J1 | **à faire** |
 | Suivi couverture GSC (404, canonical croisés FR↔EN) | Corriger vite les exclusions | J+ quelques jours | **à faire** |
 

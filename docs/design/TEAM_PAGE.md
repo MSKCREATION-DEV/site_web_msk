@@ -1,8 +1,10 @@
 # Page Équipe — magazine de talents
 
+> **ARCHIVÉE** — code retiré de `dev` ; conservation complète sur branche Git `archive/equipe-page` (commit `6f18371`). Sur `dev`, seule la section home `#equipe` (Figma) reste.
+
 **Date** : 2026-11-20 (refonte plaque éditoriale)  
-**Routes** : `/fr/equipe` · `/en/team`  
-**Home** : section `#equipe` (Figma 2:19) **inchangée** (`TeamCard` Figma, pas `TeamFlipCard`).
+**Routes (archive)** : `/fr/equipe` · `/en/team`  
+**Home** : section `#equipe` (Figma 2:19) (`TeamCard` Figma).
 
 ## Direction artistique
 

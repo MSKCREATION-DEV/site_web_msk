@@ -3,7 +3,6 @@ import type { Locale } from "~/i18n";
 import {
   alternateHomePath,
   alternateProjectPath,
-  alternateTeamPath,
   projectPathSegment,
 } from "~/i18n";
 import { cn } from "~/lib/utils";
@@ -19,9 +18,6 @@ type LanguageSwitcherProps = {
 };
 
 function alternatePathForLocation(locale: Locale, pathname: string): string {
-  const teamMatch = pathname.match(/^\/(fr|en)\/(equipe|team)\/?$/);
-  if (teamMatch) return alternateTeamPath(locale);
-
   const projectMatch = pathname.match(
     /^\/(fr|en)\/(travaux|projects)\/([^/]+)\/?$/,
   );

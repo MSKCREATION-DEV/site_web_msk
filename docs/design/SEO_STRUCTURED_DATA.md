@@ -37,14 +37,9 @@ Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire). Assets CDN : `VITE_ASSE
 
 - **CreativeWork** (ou `ImageObject` si cover seule) : `name` = titre content, `description` = copy fiche si non vide, `url` = canonical locale, `image` = cover absolue, `creator` = Organization.
 
-### Page équipe (`/fr/equipe`, `/en/team`)
+### Page équipe (archivée)
 
-`@graph` :
-
-1. **Organization** — même règles que la home (`sameAs` footer uniquement).
-2. **CollectionPage** — `name` / `description` = meta content page équipe, `url` = canonical locale, `mainEntity` = **ItemList** de Person (name + jobTitle + worksFor).
-
-Langue JSON-LD : alignée sur la locale de la page (noms/rôles FR ou EN selon content).
+Routes `/fr/equipe` · `/en/team` retirées de `dev` (branche `archive/equipe-page`). JSON-LD CollectionPage plus émis. Person reste sur la home.
 
 ---
 
@@ -52,7 +47,7 @@ Langue JSON-LD : alignée sur la locale de la page (noms/rôles FR ou EN selon c
 
 - **Pas** de balise `meta name="keywords"` (ignorée / bruit).
 - Signal utile : **intent** dans `title`, **H1**, `meta description`, alts images, copy SSR visible, JSON-LD.
-- Titles / descriptions = dérivés de `app/content` (hero, fiches, page équipe) — pas de stuffing ni slogans inventés hors Figma/content.
+- Titles / descriptions = dérivés de `app/content` (hero, fiches) — pas de stuffing ni slogans inventés hors Figma/content.
 
 ---
 
@@ -74,10 +69,10 @@ Séparateur `·` (conforme règle ponctuation : pas de `—` / `–`).
 | Route | Rôle |
 |-------|------|
 | `/robots.txt` | `Allow: /` + `Sitemap: {origin}/sitemap.xml` |
-| `/sitemap.xml` | Home FR/EN + équipe (`/fr/equipe`, `/en/team`) + 7 fiches FR (`/fr/travaux/:slug`) + 7 EN (`/en/projects/:slug`) |
+| `/sitemap.xml` | Home FR/EN + 7 fiches FR (`/fr/travaux/:slug`) + 7 EN (`/en/projects/:slug`) |
 
 Pas d’URL inventée.  
-`lastmod` : constante documentée `SITEMAP_CONTENT_LASTMOD` dans `app/lib/seo/sitemap.ts` (révision content indexable). Pas de dates inventées par URL sans source data. Mettre à jour la constante quand home / équipe / deck changent de façon crawlable.
+`lastmod` : constante documentée `SITEMAP_CONTENT_LASTMOD` dans `app/lib/seo/sitemap.ts` (révision content indexable). Pas de dates inventées par URL sans source data. Mettre à jour la constante quand home / deck changent de façon crawlable.
 
 Origine (même helper `resolveSiteOrigin` pour les deux routes) :
 

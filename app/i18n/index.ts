@@ -6,6 +6,4 @@ export {
   projectPath,
   alternateHomePath,
   alternateProjectPath,
-  teamPath,
-  alternateTeamPath,
 } from "./paths";
