@@ -14,6 +14,7 @@ Sans ces variables : état honnête « envoi bientôt disponible » (content FR/
 | Rate-limit | `app/server/site/rate-limit.server.ts` | 5 req / IP / 15 min (mémoire process) |
 | Validation | `app/lib/validation/contact.ts` | Champs requis + e-mail (client + serveur) |
 | Provider | `app/server/api/contact.server.ts` | **Resend** si activé ; sinon `disabled` / `provider_error` |
+| Template | `app/server/email/contact-brief-email.ts` | HTML pro (tables / CSS inline) + text/plain ; escape XSS ; logo PNG absolu |
 | Messages | `app/content/{fr,en}/home.ts` (`contactSection`) | Succès Figma **uniquement** si `ok: true` ; sinon `unavailable*` / `errorGeneric` |
 
 Flux :
@@ -27,6 +28,15 @@ Flux :
 4. Dépassement rate-limit → code `rate_limited` (message = `errorGeneric`).
 
 WhatsApp + e-mail mailto restent des canaux de secours.
+
+### Template e-mail brief (Outlook)
+
+- Module : `app/server/email/contact-brief-email.ts` → `subject` + `html` + `text` passés à Resend.
+- Subject : `[MSK] Brief - {nom}` (tiret simple `-`, pas de cadratin).
+- Design : header Encre `#0D1330`, accent bleu `#1D73BC` + bandeau corail `#FF5A3C`, carte champs structurée, footer discret (`mskcreation.net` · ne pas spammer).
+- Logo : `public/assets/logo/msk-creation-email.png` (PNG blanc charte) via `assetUrl` + origine absolue (`VITE_SITE_ORIGIN` / `request.url` / CDN `VITE_ASSET_BASE_URL`). SVG évité : Outlook Desktop ne l’affiche pas.
+- Sécurité : tous les champs utilisateur passent par `escapeHtml` avant injection HTML.
+- Preview : le logo n’apparaît que si l’URL absolue est joignable depuis le client mail (HTTPS public).
 
 ---
 

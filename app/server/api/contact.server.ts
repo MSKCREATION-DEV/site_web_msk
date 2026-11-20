@@ -5,6 +5,7 @@
  */
 
 import { Resend } from "resend";
+import { buildContactBriefEmail } from "~/server/email/contact-brief-email";
 
 export type ContactSendPayload = Record<string, string>;
 
@@ -23,44 +24,6 @@ export function isContactEmailEnabled(): boolean {
   return process.env.CONTACT_EMAIL_ENABLED === "1";
 }
 
-function escapeHtml(value: string): string {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
-
-function buildEmailBodies(payload: ContactSendPayload): {
-  text: string;
-  html: string;
-} {
-  const rows: Array<[string, string]> = [
-    ["Nom", payload.name ?? ""],
-    ["Email", payload.email ?? ""],
-    ["Entreprise", payload.company ?? ""],
-    ["Service", payload.service ?? ""],
-    ["Budget", payload.budget ?? ""],
-    ["Message", payload.message ?? ""],
-  ];
-
-  const text = rows
-    .map(([label, value]) => `${label}: ${value || "(vide)"}`)
-    .join("\n");
-
-  const htmlRows = rows
-    .map(
-      ([label, value]) =>
-        `<tr><th align="left" style="padding:4px 12px 4px 0;vertical-align:top;">${escapeHtml(label)}</th><td style="padding:4px 0;white-space:pre-wrap;">${escapeHtml(value || "(vide)")}</td></tr>`,
-    )
-    .join("");
-
-  const html = `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;color:#0D1330;"><h1 style="font-size:18px;">Nouveau brief · site MSK</h1><table>${htmlRows}</table></body></html>`;
-
-  return { text, html };
-}
-
 /**
  * Envoi via Resend quand activé.
  * Sinon : reason "disabled" (UI unavailable*).
@@ -68,6 +31,7 @@ function buildEmailBodies(payload: ContactSendPayload): {
  */
 export async function sendContactEmail(
   payload: ContactSendPayload,
+  request?: Request,
 ): Promise<ContactSendResult> {
   if (!isContactEmailEnabled()) {
     return { ok: false, reason: "disabled" };
@@ -82,8 +46,7 @@ export async function sendContactEmail(
   const from = process.env.CONTACT_EMAIL_FROM?.trim() || DEFAULT_FROM;
   const to = process.env.CONTACT_EMAIL_TO?.trim() || DEFAULT_TO;
   const replyTo = payload.email?.trim();
-  const subjectName = payload.name?.trim() || "Sans nom";
-  const { text, html } = buildEmailBodies(payload);
+  const { subject, text, html } = buildContactBriefEmail(payload, request);
 
   try {
     const resend = new Resend(apiKey);
@@ -91,7 +54,7 @@ export async function sendContactEmail(
       from,
       to: [to],
       ...(replyTo ? { replyTo: [replyTo] } : {}),
-      subject: `[MSK] Brief · ${subjectName}`,
+      subject,
       text,
       html,
     });

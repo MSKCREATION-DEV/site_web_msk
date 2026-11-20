@@ -57,7 +57,7 @@ export async function handleContactAction(
   }
 
   const payload = normalizeContactPayload(fields, values);
-  const result = await sendContactEmail(payload);
+  const result = await sendContactEmail(payload, request);
 
   if (result.ok) {
     return { ok: true };

@@ -5,6 +5,7 @@ Source pack : `docs/brand/logos/`.
 | Fichier | Composition | Usage |
 |---------|-------------|--------|
 | `msk-creation.svg` | Signature horizontale intercalée (MSK · signe · CREATION) | Nav, fiche, intro, footer géant — **Figma 611:972** |
+| `msk-creation-email.png` | Même signature, blanc PNG | Template e-mail brief (Outlook n’affiche pas le SVG) — source `docs/brand/logos/intercalated/logo-intercalated-white.png` |
 | `msk-creation-block.svg` | Bloc à gauche blanc | Archive / formats spéciaux (plus utilisé comme logo nav) |
 | `msk-mark.svg` | Signe seul blanc | Watermark, source favicon |
 
