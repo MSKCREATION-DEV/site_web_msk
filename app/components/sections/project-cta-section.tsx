@@ -79,12 +79,14 @@ export function ProjectCtaSection({
               >
                 {content.ctaLabel}
               </a>
-              <a
-                href={content.emailHref}
-                className="font-sans text-xs text-msk-text transition-colors hover:text-msk-blue"
-              >
-                {content.email}
-              </a>
+              {content.email && content.emailHref ? (
+                <a
+                  href={content.emailHref}
+                  className="font-sans text-xs text-msk-text transition-colors hover:text-msk-blue"
+                >
+                  {content.email}
+                </a>
+              ) : null}
             </div>
           </Reveal>
 

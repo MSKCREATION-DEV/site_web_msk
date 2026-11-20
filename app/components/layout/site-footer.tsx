@@ -1,8 +1,8 @@
 import { Link } from "react-router";
-import { MskLogo } from "~/components/ui";
+import { LanguageSwitcher, MskLogo } from "~/components/ui";
 import type { ContactContent, FooterContent, NavContent } from "~/content/types";
 import type { Locale } from "~/i18n";
-import { alternateHomePath, homePath } from "~/i18n";
+import { homePath } from "~/i18n";
 import { cn } from "~/lib/utils";
 
 type SiteFooterProps = {
@@ -10,6 +10,7 @@ type SiteFooterProps = {
   footer: FooterContent;
   contact: ContactContent;
   languageSwitchLabel?: NavContent["languageSwitchLabel"];
+  languageSwitchAriaLabel?: NavContent["languageSwitchAriaLabel"];
   className?: string;
 };
 
@@ -21,6 +22,7 @@ export function SiteFooter({
   locale,
   footer,
   languageSwitchLabel,
+  languageSwitchAriaLabel,
   className,
 }: SiteFooterProps) {
   return (
@@ -56,15 +58,13 @@ export function SiteFooter({
           <div className="flex min-w-0 flex-col items-center justify-center gap-1 text-center font-sans text-xs leading-msk-snug text-msk-text-muted">
             <p>{footer.copyright}</p>
             <p className="max-w-full wrap-break-word">{footer.addressLine}</p>
-            {languageSwitchLabel ? (
-              <Link
-                to={alternateHomePath(locale)}
-                hrefLang={locale === "fr" ? "en" : "fr"}
-                lang={locale === "fr" ? "en" : "fr"}
-                className="mt-2 text-msk-text-secondary transition-colors hover:text-msk-blue md:hidden"
-              >
-                {languageSwitchLabel}
-              </Link>
+            {languageSwitchLabel && languageSwitchAriaLabel ? (
+              <LanguageSwitcher
+                locale={locale}
+                label={languageSwitchLabel}
+                ariaLabel={languageSwitchAriaLabel}
+                className="mt-2 md:hidden"
+              />
             ) : null}
           </div>
 

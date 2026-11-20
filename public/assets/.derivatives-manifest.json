@@ -3,10 +3,10 @@
   "webpQuality": 82,
   "avifQuality": 55,
   "maxWidth": 2880,
-  "count": 101,
+  "count": 98,
   "totalSourceBytes": 202430458,
   "totalBestBytes": 8027866,
-  "rebuildNote": "Rebuilt from on-disk PNG/WebP/AVIF after orphan _legacy purge (no re-encode).",
+  "rebuildNote": "Rebuilt from on-disk PNG/WebP/AVIF after orphan _legacy purge (no re-encode). Removed approach gallery-02/04/06 (product feedback 2026-11-20).",
   "items": [
     {
       "source": "public/assets/approach/gallery-01.png",
@@ -20,17 +20,6 @@
       "sourceHash": "a60c678384e3"
     },
     {
-      "source": "public/assets/approach/gallery-02.png",
-      "sourceBytes": 1398187,
-      "webp": "public/assets/approach/gallery-02.webp",
-      "webpBytes": 91938,
-      "avif": "public/assets/approach/gallery-02.avif",
-      "avifBytes": 50741,
-      "bestBytes": 50741,
-      "savedBytes": 1347446,
-      "sourceHash": "8c70cd3b0833"
-    },
-    {
       "source": "public/assets/approach/gallery-03.png",
       "sourceBytes": 180010,
       "webp": "public/assets/approach/gallery-03.webp",
@@ -42,17 +31,6 @@
       "sourceHash": "1f3a962a8b1c"
     },
     {
-      "source": "public/assets/approach/gallery-04.png",
-      "sourceBytes": 611074,
-      "webp": "public/assets/approach/gallery-04.webp",
-      "webpBytes": 144154,
-      "avif": "public/assets/approach/gallery-04.avif",
-      "avifBytes": 94118,
-      "bestBytes": 94118,
-      "savedBytes": 516956,
-      "sourceHash": "74b65edbbca3"
-    },
-    {
       "source": "public/assets/approach/gallery-05.png",
       "sourceBytes": 1392530,
       "webp": "public/assets/approach/gallery-05.webp",
@@ -62,17 +40,6 @@
       "bestBytes": 129568,
       "savedBytes": 1262962,
       "sourceHash": "59b252bc9dc7"
-    },
-    {
-      "source": "public/assets/approach/gallery-06.png",
-      "sourceBytes": 101849,
-      "webp": "public/assets/approach/gallery-06.webp",
-      "webpBytes": 29536,
-      "avif": "public/assets/approach/gallery-06.avif",
-      "avifBytes": 18389,
-      "bestBytes": 18389,
-      "savedBytes": 83460,
-      "sourceHash": "572a22a7a66b"
     },
     {
       "source": "public/assets/contact/background.png",

@@ -99,7 +99,7 @@ Ne pas ajouter de script tiers sans fermer la Q captcha + CSP (`app/lib/security
 
 ### Étape 6 — Options Service / Budget (Q03)
 
-Les `<select>` restent vides jusqu’à validation éditoriale. Ne pas inventer d’options.
+**2026-11-20** : options factuelles livrées en content FR/EN + `CustomSelect` (listbox). À valider designer vs frame Contact ; ajuster libellés si besoin sans réinventer hors brief.
 
 ---
 

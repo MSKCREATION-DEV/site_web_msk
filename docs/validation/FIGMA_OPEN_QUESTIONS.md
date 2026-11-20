@@ -8,11 +8,13 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 
 | ID | Question | Impact | Statut |
 |----|----------|--------|--------|
-| Q03 | Options listes Service / Budget | Formulaire Contact | **PENDING** — selects vides ; options NON TROUVÉ |
+| Q03 | Options listes Service / Budget | Formulaire Contact | **DÉCIDÉ (intermédiaire)** — 2026-11-20 : options factuelles agence (services MSK + fourchettes FCFA) en FR/EN ; custom select listbox. À valider designer vs frame Contact. |
+| Q32 | Page Équipe dédiée (hors one-page Figma) | Routing / SEO | **DÉCIDÉ (produit)** — 2026-11-20 : `/fr/equipe` + `/en/team` ; home section Équipe inchangée ; bios courtes factuelles depuis rôles ; email Eric déjà fourni. QA visuelle hors Figma. |
+| Q33 | Nav carrousel Approche (flèches) | UX Approche | **DÉCIDÉ (intermédiaire)** — 2026-11-20 : hors Figma explicite ; flèches + dots + clavier + reduced-motion (tokens Encre/bleu/corail). |
 | Q12 | Bureau équipe dédié | Asset | **PARTIEL** — Contact OK ; `team/office.png` NON TROUVÉ (section Équipe Figma 2:19 sans bandeau bureau) |
 | Q17 | Resync Figma couleurs vs Charte v3 | Design system Figma | **OUVERTE** — code Encre / `#1D73BC` / Corail ; Figma peut encore mélanger anciens tokens |
 | Q20 | Profils sociaux hors footer Figma | SEO Organization | **PARTIEL** — `sameAs` = Instagram / TikTok / LinkedIn déjà dans `footer.social` ; tout ajout = validation |
-| Q21 | Bios / pages Person au-delà de name+role Figma | SEO Person | **PENDING** — roles content seulement |
+| Q21 | Bios / pages Person au-delà de name+role Figma | SEO Person | **PARTIEL** — 2026-11-20 : page équipe + `focus` court factuel (rôle) ; pas de bios marketing longues. Emails hors Eric = PENDING. |
 | Q22 | Alts projets enrichis (marketing) | A11y / SEO images | **PENDING** — V1 = titre (+ index galerie) |
 | Q24 | Fiches Prosperity + Thòy : galerie Figma vs assets locaux | Fiches | **PARTIELLE** — 2026-11-18 : 8 assets racine intégrés (`prosperity` gallery-01…06 full, `thoy-art` gallery-01…03). Travel banner = pixels identiques à l’ancien `gallery-09` (slogan FR « Partir en toute sérénité », pas « Trust in the investment » board). Copy FR/EN eyebrows + RÉALISATIONS + APPROCHE + alts branchés ; UI intro 2 cols + APPROCHE intercalé. QA Desktop vs Figma encore due. Anciennes galeries filiales/mockups retirées des slots fiche. |
 | Q25 | Fiches Koundji · Bomoyi · Ecosol · Elvi · Akwaba : galeries Figma vs locaux | Fiches | **PARTIELLE** — 2026-11-19 : assets branding racine intégrés. Puis **Q26** mockups UI sites/apps (13 captures) : Koundji **5** · Bomoyi **6** · Ecosol **6** · Elvi **13** · Akwaba **9**. Pipeline `assets:mockup`. **Reste** : QA Desktop vs Figma due (layouts Figma historiques + ajouts UI hors board). |

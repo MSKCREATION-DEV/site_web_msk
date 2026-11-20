@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { OptimizedImg, Reveal } from "~/components/ui";
 import type { ApproachContent } from "~/content/types";
 import { assetUrl } from "~/lib/assets";
@@ -13,7 +21,7 @@ type ApproachSectionProps = {
 
 /**
  * Approche — galerie full-bleed (1 slide = 100vw), process 4 cols, marquee valeurs.
- * Rythme : média bord à bord ; compteur / copy → `msk-page-x`.
+ * Ancre `#approche` sur le bloc copy (pas la galerie) pour corriger le scroll nav.
  */
 export function ApproachSection({
   content,
@@ -29,6 +37,13 @@ export function ApproachSection({
     scrollLeft: 0,
     active: false,
   });
+  const prefersReducedMotion = useRef(false);
+
+  useEffect(() => {
+    prefersReducedMotion.current = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+  }, []);
 
   const slideWidthOf = () => {
     const el = trackRef.current;
@@ -52,16 +67,35 @@ export function ApproachSection({
     return () => el.removeEventListener("scroll", onScroll);
   }, [syncIndexFromScroll]);
 
-  const goTo = (i: number) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const slideWidth = slideWidthOf();
-    el.scrollTo({
-      left: i * slideWidth,
-      behavior: "smooth",
-    });
-    setIndex(i);
-  };
+  const goTo = useCallback(
+    (i: number) => {
+      const el = trackRef.current;
+      if (!el || slides.length === 0) return;
+      const next = Math.max(0, Math.min(slides.length - 1, i));
+      const slideWidth = slideWidthOf();
+      el.scrollTo({
+        left: next * slideWidth,
+        behavior: prefersReducedMotion.current ? "auto" : "smooth",
+      });
+      setIndex(next);
+    },
+    [slides.length],
+  );
+
+  const goPrev = useCallback(() => goTo(index - 1), [goTo, index]);
+  const goNext = useCallback(() => goTo(index + 1), [goTo, index]);
+
+  /** Au clic nav `#approche` : reset galerie au premier slide. */
+  useEffect(() => {
+    const resetIfApproche = () => {
+      if (window.location.hash === "#approche") {
+        goTo(0);
+      }
+    };
+    resetIfApproche();
+    window.addEventListener("hashchange", resetIfApproche);
+    return () => window.removeEventListener("hashchange", resetIfApproche);
+  }, [goTo]);
 
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     const el = trackRef.current;
@@ -93,12 +127,29 @@ export function ApproachSection({
     syncIndexFromScroll();
   };
 
+  const onCarouselKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goPrev();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goNext();
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      goTo(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      goTo(slides.length - 1);
+    }
+  };
+
   const ticker = [...valuesTicker, ...valuesTicker];
+  const canPrev = index > 0;
+  const canNext = index < slides.length - 1;
 
   return (
     <section
-      id="approche"
-      className={cn("scroll-mt-msk-nav bg-msk-black", className)}
+      className={cn("bg-msk-black", className)}
       aria-labelledby="approche-heading"
     >
       {slides.length > 0 ? (
@@ -106,6 +157,7 @@ export function ApproachSection({
           className="relative w-full max-w-full overflow-hidden bg-msk-ink"
           aria-roledescription="carousel"
           aria-label={content.galleryAriaLabel}
+          onKeyDown={onCarouselKeyDown}
         >
           <div
             ref={trackRef}
@@ -114,11 +166,15 @@ export function ApproachSection({
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
+            tabIndex={0}
+            role="group"
+            aria-label={content.galleryAriaLabel}
           >
-            {slides.map((slide) => (
+            {slides.map((slide, i) => (
               <figure
                 key={slide.src}
                 className="msk-gallery-slide relative shrink-0 snap-start"
+                aria-hidden={i !== index}
               >
                 <OptimizedImg
                   src={slide.src}
@@ -138,24 +194,66 @@ export function ApproachSection({
             ))}
           </div>
 
-          <div className="msk-page-x mx-auto flex w-full max-w-msk items-center justify-between pt-5 pb-2">
-            <div className="flex items-center gap-2" role="tablist">
+          {/* Nav flèches : overlay latéral, tokens Encre / bleu / corail */}
+          <div className="pointer-events-none absolute inset-y-0 right-0 left-0 flex items-center justify-between px-3 sm:px-5">
+            <button
+              type="button"
+              onClick={goPrev}
+              disabled={!canPrev}
+              aria-label={content.galleryPrevLabel}
+              className={cn(
+                "pointer-events-auto inline-flex size-11 items-center justify-center rounded-full",
+                "border border-white/30 bg-msk-ink/70 text-msk-text backdrop-blur-sm",
+                "transition-colors duration-msk ease-out motion-reduce:transition-none",
+                "hover:border-msk-blue hover:bg-msk-blue/90 hover:text-msk-text",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-coral focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink",
+                "disabled:pointer-events-none disabled:opacity-30",
+              )}
+            >
+              <ChevronLeft className="size-5" strokeWidth={1.75} aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              disabled={!canNext}
+              aria-label={content.galleryNextLabel}
+              className={cn(
+                "pointer-events-auto inline-flex size-11 items-center justify-center rounded-full",
+                "border border-white/30 bg-msk-ink/70 text-msk-text backdrop-blur-sm",
+                "transition-colors duration-msk ease-out motion-reduce:transition-none",
+                "hover:border-msk-blue hover:bg-msk-blue/90 hover:text-msk-text",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-coral focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink",
+                "disabled:pointer-events-none disabled:opacity-30",
+              )}
+            >
+              <ChevronRight className="size-5" strokeWidth={1.75} aria-hidden />
+            </button>
+          </div>
+
+          <div className="msk-page-x mx-auto flex w-full max-w-msk items-center justify-between gap-4 pt-5 pb-2">
+            <div className="flex items-center gap-1.5" role="tablist" aria-label={content.galleryAriaLabel}>
               {slides.map((slide, i) => (
                 <button
                   key={slide.src}
                   type="button"
                   role="tab"
-                  aria-label={`${i + 1}`}
+                  aria-label={`${i + 1} / ${slides.length}`}
                   aria-selected={i === index}
                   onClick={() => goTo(i)}
                   className={cn(
-                    "h-px transition-all duration-msk ease-out",
-                    i === index ? "w-8 bg-msk-text" : "w-5 bg-white/25",
+                    "h-1.5 rounded-full transition-all duration-msk ease-out motion-reduce:transition-none",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink",
+                    i === index
+                      ? "w-8 bg-msk-blue"
+                      : "w-1.5 bg-white/30 hover:bg-msk-coral/80",
                   )}
                 />
               ))}
             </div>
-            <p className="font-sans text-xs font-medium text-msk-text-secondary">
+            <p
+              className="font-sans text-xs font-medium tabular-nums text-msk-text-secondary"
+              aria-live="polite"
+            >
               {String(index + 1).padStart(2, "0")} /{" "}
               {String(slides.length).padStart(2, "0")}
             </p>
@@ -163,7 +261,11 @@ export function ApproachSection({
         </div>
       ) : null}
 
-      <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-24 py-msk-x">
+      {/* Ancre nav : copy Approche (évite d’atterrir sur une slide galerie). */}
+      <div
+        id="approche"
+        className="msk-page-x scroll-mt-msk-nav mx-auto flex w-full max-w-msk flex-col gap-24 py-msk-x"
+      >
         <Reveal>
           <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-msk-split lg:gap-0">
             <div>
@@ -178,7 +280,6 @@ export function ApproachSection({
             </div>
             <div className="hidden lg:block" aria-hidden />
             <div className="relative flex flex-col gap-6 self-end">
-              {/* Charte v3 — filigrane signe seul (pas le mot-logo, pas de dégradé). */}
               <img
                 src={assetUrl("/assets/logo/msk-mark.svg")}
                 alt=""

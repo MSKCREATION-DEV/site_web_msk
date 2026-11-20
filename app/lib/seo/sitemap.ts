@@ -1,5 +1,5 @@
 import { getWorksGridProjects } from "~/data";
-import { homePath, projectPath } from "~/i18n";
+import { homePath, projectPath, teamPath } from "~/i18n";
 import { absoluteUrl } from "./origin";
 
 export type SitemapEntry = {
@@ -8,11 +8,13 @@ export type SitemapEntry = {
   priority: string;
 };
 
-/** URLs indexables V1 — home FR/EN + deck Travaux 7 × 2 locales. */
+/** URLs indexables V1 — home FR/EN + équipe + deck Travaux 7 × 2 locales. */
 export function buildSitemapEntries(): SitemapEntry[] {
   const entries: SitemapEntry[] = [
     { loc: absoluteUrl(homePath("fr")), priority: "1.0" },
     { loc: absoluteUrl(homePath("en")), priority: "0.9" },
+    { loc: absoluteUrl(teamPath("fr")), priority: "0.85" },
+    { loc: absoluteUrl(teamPath("en")), priority: "0.8" },
   ];
 
   for (const project of getWorksGridProjects()) {

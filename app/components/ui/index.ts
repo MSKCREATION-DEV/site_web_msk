@@ -1,6 +1,8 @@
 export { AccentRule } from "./accent-rule";
 export { BackToTop } from "./back-to-top";
 export { BriefSuccessMessage } from "./brief-success-message";
+export { CustomSelect } from "./custom-select";
+export { LanguageSwitcher } from "./language-switcher";
 export { MskLogo } from "./msk-logo";
 export type { MskLogoVariant } from "./msk-logo";
 export { OptimizedImg } from "./optimized-img";

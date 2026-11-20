@@ -12,7 +12,10 @@ export type NavContent = {
   links: NavLinkContent[];
   ctaBrief: string;
   ctaWorks: string;
+  /** Libellé visible = langue cible (EN sur FR, FR sur EN). */
   languageSwitchLabel: string;
+  /** aria-label du bouton langue (ex. Passer en anglais). */
+  languageSwitchAriaLabel: string;
   /** aria-label nav desktop */
   primaryNavAriaLabel: string;
   /** aria-label nav drawer mobile */
@@ -82,8 +85,9 @@ export type CtaContent = {
   titleLine1: string;
   titleAccent: string;
   ctaLabel: string;
-  email: string;
-  emailHref: string;
+  /** Email sous CTA : optionnel (retiré si redondant avec Contact). */
+  email?: string;
+  emailHref?: string;
   /** Libellés bas banner : Vidéo · Teaser 15 s · … */
   mediaTabs: string[];
 };
@@ -125,9 +129,11 @@ export type ApproachContent = {
   titleLine3: string;
   body: string[];
   steps: ApproachStepContent[];
-  /** Galerie bureaux — 6 images Figma (audit). */
+  /** Galerie bureaux (slides validées produit). */
   gallery: Array<{ src: string; alt: string; label?: string }>;
   galleryAriaLabel: string;
+  galleryPrevLabel: string;
+  galleryNextLabel: string;
 };
 
 export type ContactRowContent = {
@@ -278,5 +284,27 @@ export type LocaleContent = {
     | "afterAlt"
   >;
   projects: Record<string, ProjectLocaleFields>;
-  team: Record<string, { name: string; role: string }>;
+  team: Record<
+    string,
+    {
+      name: string;
+      role: string;
+      /** Phrase courte factuelle (rôle), pas bio marketing. */
+      focus?: string;
+      email?: string;
+      service?: string;
+    }
+  >;
+  teamPage: TeamPageContent;
+};
+
+export type TeamPageContent = {
+  meta: PageMetaContent;
+  eyebrow: string;
+  title: string;
+  intro: string;
+  focusLabel: string;
+  serviceLabel: string;
+  emailLabel: string;
+  backHomeLabel: string;
 };

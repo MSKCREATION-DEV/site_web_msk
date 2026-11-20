@@ -53,6 +53,7 @@ export function SiteLayout({
           footer={footer}
           contact={contact}
           languageSwitchLabel={nav.languageSwitchLabel}
+          languageSwitchAriaLabel={nav.languageSwitchAriaLabel}
         />
       ) : null}
       {showBackToTop && !hideChrome ? <BackToTopControl /> : null}

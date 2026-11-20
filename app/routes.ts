@@ -12,6 +12,8 @@ export default [
   route("sitemap.xml", "routes/sitemap.ts"),
   route(":lang", "routes/locale-layout.tsx", [
     index("routes/home.tsx"),
+    route("equipe", "routes/team.tsx", { id: "team-fr" }),
+    route("team", "routes/team.tsx", { id: "team-en" }),
     route("travaux/:slug", "routes/project.tsx", {
       id: "project-travaux",
     }),

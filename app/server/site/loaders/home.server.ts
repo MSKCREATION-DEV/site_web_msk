@@ -28,6 +28,9 @@ export function loadHomePage(locale: Locale) {
       slug: member.slug,
       name,
       role,
+      focus: copy?.focus,
+      email: copy?.email,
+      service: copy?.service,
       photoSrc: member.photoSrc,
       photoAlt: teamPhotoAlt(name, role, content.home.brandName),
     };

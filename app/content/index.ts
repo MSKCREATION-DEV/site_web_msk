@@ -18,6 +18,8 @@ import {
 } from "./en/projects";
 import { team as teamFr } from "./fr/team";
 import { team as teamEn } from "./en/team";
+import { teamPage as teamPageFr } from "./fr/team-page";
+import { teamPage as teamPageEn } from "./en/team-page";
 
 const catalog: Record<Locale, LocaleContent> = {
   fr: {
@@ -28,6 +30,7 @@ const catalog: Record<Locale, LocaleContent> = {
     projectSheet: projectSheetFr,
     projects: projectsFr,
     team: teamFr,
+    teamPage: teamPageFr,
   },
   en: {
     home: homeEn,
@@ -37,6 +40,7 @@ const catalog: Record<Locale, LocaleContent> = {
     projectSheet: projectSheetEn,
     projects: projectsEn,
     team: teamEn,
+    teamPage: teamPageEn,
   },
 };
 

@@ -75,8 +75,6 @@ export const home: HomeContent = {
     titleLine1: "Votre prochain",
     titleAccent: "projet.",
     ctaLabel: "Démarrer →",
-    email: "contact@mskcreation.net",
-    emailHref: "mailto:contact@mskcreation.net",
     mediaTabs: ["Vidéo", "Teaser 15 s", "Votre prochain projet"],
   },
   services: {
@@ -132,6 +130,8 @@ export const home: HomeContent = {
       "La distance n'a jamais été un frein : nos clients de Paris ou de Lomé ont le même point hebdomadaire, le même accès au planning et les mêmes délais que ceux de Bamako. Une équipe capable de prendre en charge l'intégralité de votre communication digitale.",
     ],
     galleryAriaLabel: "Galerie des bureaux MSK",
+    galleryPrevLabel: "Image précédente",
+    galleryNextLabel: "Image suivante",
     gallery: [
       {
         src: "/assets/approach/gallery-01.png",
@@ -139,29 +139,14 @@ export const home: HomeContent = {
         label: "Entrée",
       },
       {
-        src: "/assets/approach/gallery-02.png",
-        alt: "Bureaux MSK, hall d'accueil",
-        label: "Hall d'accueil",
-      },
-      {
         src: "/assets/approach/gallery-03.png",
         alt: "Bureaux MSK, bureau",
         label: "Bureau",
       },
       {
-        src: "/assets/approach/gallery-04.png",
-        alt: "Bureaux MSK, espace de travail",
-        label: "Espace de travail",
-      },
-      {
         src: "/assets/approach/gallery-05.png",
         alt: "Bureaux MSK, open space",
         label: "Open space",
-      },
-      {
-        src: "/assets/approach/gallery-06.png",
-        alt: "Bureaux MSK, détail",
-        label: "Détail",
       },
     ],
     steps: [
@@ -219,7 +204,7 @@ export const home: HomeContent = {
         href: "tel:+22344907632",
       },
       {
-        label: "Portable · WhatsApp",
+        label: "Portable / WhatsApp",
         value: "+223 70 68 90 91",
         href: "https://wa.me/22370689091",
       },
@@ -240,8 +225,8 @@ export const home: HomeContent = {
       },
       {
         label: "Instagram",
-        value: "@mskcreation.io",
-        href: "https://www.instagram.com/mskcreation.io",
+        value: "@_msk_creation",
+        href: "https://www.instagram.com/_msk_creation",
       },
       {
         label: "TikTok",
@@ -295,14 +280,27 @@ export const home: HomeContent = {
         label: "Service",
         placeholder: "Sélectionnez...",
         type: "select",
-        options: [],
+        options: [
+          "Développement web & mobile",
+          "Solutions sur-mesure",
+          "Branding & design",
+          "Marketing digital",
+          "Plusieurs services",
+          "Autre / à préciser",
+        ],
       },
       {
         name: "budget",
         label: "Budget indicatif",
         placeholder: "Sélectionnez une fourchette...",
         type: "select",
-        options: [],
+        options: [
+          "Moins de 500 000 FCFA",
+          "500 000 à 1 500 000 FCFA",
+          "1 500 000 à 5 000 000 FCFA",
+          "Plus de 5 000 000 FCFA",
+          "Budget à définir",
+        ],
       },
       {
         name: "message",

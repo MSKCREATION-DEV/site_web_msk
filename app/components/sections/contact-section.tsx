@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useFetcher } from "react-router";
 import {
   BriefSuccessMessage,
+  CustomSelect,
   Reveal,
   SubmitButton,
   UnderlineField,
@@ -221,7 +222,7 @@ export function ContactSection({
             ) : (
               <fetcher.Form
                 method="post"
-                className="relative flex flex-col gap-6"
+                className="relative flex w-full min-w-0 flex-col gap-6"
                 onSubmit={onSubmit}
                 noValidate
                 aria-busy={loading || undefined}
@@ -304,32 +305,24 @@ export function ContactSection({
 
                   if (field.type === "select") {
                     return (
-                      <div key={field.name} className="flex flex-col gap-2">
-                        <label htmlFor={fieldId} className="msk-label text-msk-text">
-                          {field.label}
-                        </label>
-                        <select
-                          id={fieldId}
-                          name={field.name}
-                          value={values[field.name] ?? ""}
-                          onChange={(e) => setValue(field.name, e.target.value)}
-                          className={cn(fieldClass, "h-11 appearance-none")}
-                        >
-                          <option value="" disabled>
-                            {field.placeholder}
-                          </option>
-                          {(field.options ?? []).map((option) => (
-                            <option key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <CustomSelect
+                        key={field.name}
+                        id={fieldId}
+                        name={field.name}
+                        label={field.label}
+                        placeholder={field.placeholder}
+                        options={field.options ?? []}
+                        value={values[field.name] ?? ""}
+                        onChange={(next) => setValue(field.name, next)}
+                        error={error}
+                        required={field.required}
+                        className="w-full max-w-none"
+                      />
                     );
                   }
 
                   return (
-                    <div key={field.name} className="flex flex-col gap-2">
+                    <div key={field.name} className="flex w-full min-w-0 flex-col gap-2">
                       <label htmlFor={fieldId} className="msk-label text-msk-text">
                         {field.label}
                       </label>
@@ -341,8 +334,15 @@ export function ContactSection({
                         placeholder={field.placeholder}
                         value={values[field.name] ?? ""}
                         onChange={(e) => setValue(field.name, e.target.value)}
+                        aria-invalid={Boolean(error) || undefined}
+                        aria-describedby={error ? errorId : undefined}
                         className={cn(fieldClass, "h-11")}
                       />
+                      {error ? (
+                        <p id={errorId} className="text-msk-xs text-msk-error" role="alert">
+                          {error}
+                        </p>
+                      ) : null}
                     </div>
                   );
                 })}

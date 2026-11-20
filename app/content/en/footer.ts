@@ -7,7 +7,7 @@ export const footer: FooterContent = {
   social: [
     {
       label: "Instagram",
-      href: "https://www.instagram.com/mskcreation.io",
+      href: "https://www.instagram.com/_msk_creation",
     },
     {
       label: "TikTok",

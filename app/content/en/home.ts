@@ -74,8 +74,6 @@ export const home: HomeContent = {
     titleLine1: "Your next",
     titleAccent: "project.",
     ctaLabel: "Start →",
-    email: "contact@mskcreation.net",
-    emailHref: "mailto:contact@mskcreation.net",
     mediaTabs: ["Video", "15 s teaser", "Your next project"],
   },
   services: {
@@ -131,6 +129,8 @@ export const home: HomeContent = {
       "Distance has never been a barrier: our clients in Paris or Lomé get the same weekly check-in, the same planning access and the same timelines as those in Bamako. A team that can take charge of your entire digital communication.",
     ],
     galleryAriaLabel: "MSK offices gallery",
+    galleryPrevLabel: "Previous image",
+    galleryNextLabel: "Next image",
     gallery: [
       {
         src: "/assets/approach/gallery-01.png",
@@ -138,29 +138,14 @@ export const home: HomeContent = {
         label: "Entrance",
       },
       {
-        src: "/assets/approach/gallery-02.png",
-        alt: "MSK offices, lobby",
-        label: "Lobby",
-      },
-      {
         src: "/assets/approach/gallery-03.png",
         alt: "MSK offices, desk",
         label: "Office",
       },
       {
-        src: "/assets/approach/gallery-04.png",
-        alt: "MSK offices, workspace",
-        label: "Workspace",
-      },
-      {
         src: "/assets/approach/gallery-05.png",
         alt: "MSK offices, open space",
         label: "Open space",
-      },
-      {
-        src: "/assets/approach/gallery-06.png",
-        alt: "MSK offices, detail",
-        label: "Detail",
       },
     ],
     steps: [
@@ -218,7 +203,7 @@ export const home: HomeContent = {
         href: "tel:+22344907632",
       },
       {
-        label: "Mobile · WhatsApp",
+        label: "Mobile / WhatsApp",
         value: "+223 70 68 90 91",
         href: "https://wa.me/22370689091",
       },
@@ -239,8 +224,8 @@ export const home: HomeContent = {
       },
       {
         label: "Instagram",
-        value: "@mskcreation.io",
-        href: "https://www.instagram.com/mskcreation.io",
+        value: "@_msk_creation",
+        href: "https://www.instagram.com/_msk_creation",
       },
       {
         label: "TikTok",
@@ -295,14 +280,27 @@ export const home: HomeContent = {
         label: "Service",
         placeholder: "Select...",
         type: "select",
-        options: [],
+        options: [
+          "Web & mobile development",
+          "Custom solutions",
+          "Branding & design",
+          "Digital marketing",
+          "Several services",
+          "Other / to specify",
+        ],
       },
       {
         name: "budget",
         label: "Indicative budget",
         placeholder: "Select a range...",
         type: "select",
-        options: [],
+        options: [
+          "Under 500,000 XOF",
+          "500,000 to 1,500,000 XOF",
+          "1,500,000 to 5,000,000 XOF",
+          "Over 5,000,000 XOF",
+          "Budget to define",
+        ],
       },
       {
         name: "message",

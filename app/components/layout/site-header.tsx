@@ -1,10 +1,10 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
-import { Link } from "react-router";
-import { MskLogo } from "~/components/ui";
+import { Link, useLocation } from "react-router";
+import { LanguageSwitcher, MskLogo } from "~/components/ui";
 import type { NavContent } from "~/content/types";
 import type { Locale } from "~/i18n";
-import { alternateHomePath, homePath } from "~/i18n";
+import { homePath } from "~/i18n";
 import { cn } from "~/lib/utils";
 
 type SiteHeaderProps = {
@@ -18,15 +18,20 @@ const TOP_REVEAL_PX = 8;
 /** Delta minimal pour considérer un sens de scroll (évite le jitter). */
 const SCROLL_DELTA_PX = 6;
 
+function resolveNavHref(href: string, locale: Locale, pathname: string): string {
+  if (!href.startsWith("#")) return href;
+  const home = homePath(locale);
+  const onHome = pathname === home || pathname === `${home}/`;
+  return onHome ? href : `${home}${href}`;
+}
+
 /**
  * Nav Figma — bandeau Encre H96 (clamp 72–96).
- * Desktop : logo signature horizontale Charte v3 | liens centrés (gap 40) | Briefer + EN.
- * Mobile : logo | EN + burger → drawer (interim MOBILE_BRIEF).
- *
- * Scroll : smart header (hide down / show up). Figma ne spécifie pas de hide-on-scroll
- * → décision documentée DESIGN_DECISIONS + Q28.
+ * Desktop : logo | liens centrés | Briefer + langue.
+ * Mobile : logo | langue + burger → drawer.
  */
 export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const panelId = useId();
@@ -58,7 +63,6 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
       const delta = y - lastY.current;
       lastY.current = y;
 
-      // Drawer ouvert ou reduced-motion : barre toujours accessible.
       if (openRef.current || media.matches) {
         setHidden(false);
         return;
@@ -115,6 +119,9 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
   const close = () => setOpen(false);
   const reveal = () => setHidden(false);
 
+  const navLinkClass =
+    "msk-nav-label whitespace-nowrap text-msk-text-secondary transition-colors duration-msk ease-out hover:text-msk-text focus-visible:outline-none focus-visible:text-msk-blue focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink rounded-sm";
+
   return (
     <header
       ref={headerRef}
@@ -124,11 +131,6 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
         className,
       )}
     >
-      {/*
-        Smart-hide : transform UNIQUEMENT sur la barre.
-        Un transform sur <header> crée un containing block → le drawer
-        `fixed inset-0` ne couvrait plus le viewport (CTA hero qui perçait).
-      */}
       <div
         className={cn(
           "h-msk-nav bg-msk-black",
@@ -145,7 +147,7 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
           <Link
             to={homePath(locale)}
             aria-label="MSK Création"
-            className="relative z-10 flex shrink-0 items-center justify-self-start"
+            className="relative z-10 flex shrink-0 items-center justify-self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
             onClick={() => {
               reveal();
               close();
@@ -158,38 +160,51 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             aria-label={nav.primaryNavAriaLabel}
             className="hidden items-center justify-center gap-msk-nav-links justify-self-center lg:flex"
           >
-            {nav.links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={reveal}
-                className="msk-nav-label whitespace-nowrap text-msk-text-secondary transition-colors duration-msk ease-out hover:text-msk-text"
-              >
-                {link.label}
-              </a>
-            ))}
+            {nav.links.map((link) => {
+              const href = resolveNavHref(link.href, locale, pathname);
+              const isRoute = !href.startsWith("#") && !href.includes("#");
+              if (isRoute) {
+                return (
+                  <Link
+                    key={link.href}
+                    to={href}
+                    onClick={reveal}
+                    className={navLinkClass}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+              return (
+                <a
+                  key={link.href}
+                  href={href}
+                  onClick={reveal}
+                  className={navLinkClass}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           <div className="ml-auto flex shrink-0 items-center justify-end gap-msk-nav-actions justify-self-end">
             <a
-              href="#contact"
+              href={resolveNavHref("#contact", locale, pathname)}
               onClick={reveal}
-              className="msk-nav-label hidden whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-blue lg:inline-flex"
+              className="msk-nav-label hidden whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink lg:inline-flex"
             >
               {nav.ctaBrief}
             </a>
-            <Link
-              to={alternateHomePath(locale)}
-              hrefLang={locale === "fr" ? "en" : "fr"}
-              lang={locale === "fr" ? "en" : "fr"}
-              onClick={reveal}
-              className="msk-nav-label shrink-0 whitespace-nowrap text-msk-text-secondary transition-colors hover:text-msk-text"
-            >
-              {nav.languageSwitchLabel}
-            </Link>
+            <LanguageSwitcher
+              locale={locale}
+              label={nav.languageSwitchLabel}
+              ariaLabel={nav.languageSwitchAriaLabel}
+              onNavigate={reveal}
+            />
             <button
               type="button"
-              className="inline-flex size-11 shrink-0 items-center justify-center text-msk-text lg:hidden"
+              className="inline-flex size-11 shrink-0 items-center justify-center text-msk-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink lg:hidden"
               aria-expanded={open}
               aria-controls={panelId}
               aria-label={open ? nav.menuCloseLabel : nav.menuOpenLabel}
@@ -229,15 +244,12 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
             <MskLogo variant="header" />
           </Link>
           <div className="flex shrink-0 items-center gap-msk-nav-actions">
-            <Link
-              to={alternateHomePath(locale)}
-              hrefLang={locale === "fr" ? "en" : "fr"}
-              lang={locale === "fr" ? "en" : "fr"}
-              onClick={close}
-              className="msk-nav-label whitespace-nowrap text-msk-text"
-            >
-              {nav.languageSwitchLabel}
-            </Link>
+            <LanguageSwitcher
+              locale={locale}
+              label={nav.languageSwitchLabel}
+              ariaLabel={nav.languageSwitchAriaLabel}
+              onNavigate={close}
+            />
             <button
               type="button"
               className="inline-flex size-11 items-center justify-center text-msk-text"
@@ -253,22 +265,46 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
           aria-label={nav.mobileNavAriaLabel}
           className="msk-page-x flex flex-1 flex-col justify-center pb-msk-hero-pb"
         >
-          {nav.links.map((link, index) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={close}
-              className="group border-b border-white/10 py-msk-nav-py transition-colors"
-              style={{ transitionDelay: open ? `${80 + index * 40}ms` : "0ms" }}
-            >
-              <span className="msk-drawer-link text-msk-text transition-colors group-hover:text-msk-blue">
+          {nav.links.map((link, index) => {
+            const href = resolveNavHref(link.href, locale, pathname);
+            const isRoute = !href.startsWith("#") && !href.includes("#");
+            const className = "group border-b border-white/10 py-msk-nav-py transition-colors";
+            const style = {
+              transitionDelay: open ? `${80 + index * 40}ms` : "0ms",
+            };
+            const label = (
+              <span className="msk-drawer-link text-msk-text transition-colors group-hover:text-msk-blue group-focus-visible:text-msk-blue">
                 {link.label}
               </span>
-            </a>
-          ))}
+            );
+            if (isRoute) {
+              return (
+                <Link
+                  key={link.href}
+                  to={href}
+                  onClick={close}
+                  className={className}
+                  style={style}
+                >
+                  {label}
+                </Link>
+              );
+            }
+            return (
+              <a
+                key={link.href}
+                href={href}
+                onClick={close}
+                className={className}
+                style={style}
+              >
+                {label}
+              </a>
+            );
+          })}
 
           <a
-            href="#contact"
+            href={resolveNavHref("#contact", locale, pathname)}
             onClick={close}
             className="msk-btn-label mt-msk-hero-stack inline-flex h-msk-cta-btn w-full items-center justify-center rounded-msk-pill bg-msk-blue px-msk-btn-px text-msk-text transition-colors hover:bg-msk-blue-hover"
           >
