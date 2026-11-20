@@ -37,7 +37,22 @@ Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire). Assets CDN : `VITE_ASSE
 
 - **CreativeWork** (ou `ImageObject` si cover seule) : `name` = titre content, `description` = copy fiche si non vide, `url` = canonical locale, `image` = cover absolue, `creator` = Organization.
 
+### Page équipe (`/fr/equipe`, `/en/team`)
+
+`@graph` :
+
+1. **Organization** — même règles que la home (`sameAs` footer uniquement).
+2. **CollectionPage** — `name` / `description` = meta content page équipe, `url` = canonical locale, `mainEntity` = **ItemList** de Person (name + jobTitle + worksFor).
+
 Langue JSON-LD : alignée sur la locale de la page (noms/rôles FR ou EN selon content).
+
+---
+
+## 2bis. Mots-clés (politique 2024+)
+
+- **Pas** de balise `meta name="keywords"` (ignorée / bruit).
+- Signal utile : **intent** dans `title`, **H1**, `meta description`, alts images, copy SSR visible, JSON-LD.
+- Titles / descriptions = dérivés de `app/content` (hero, fiches, page équipe) — pas de stuffing ni slogans inventés hors Figma/content.
 
 ---
 
@@ -59,9 +74,12 @@ Séparateur `·` (conforme règle ponctuation : pas de `—` / `–`).
 | Route | Rôle |
 |-------|------|
 | `/robots.txt` | `Allow: /` + `Sitemap: {origin}/sitemap.xml` |
-| `/sitemap.xml` | Home FR/EN + 7 fiches FR (`/fr/travaux/:slug`) + 7 EN (`/en/projects/:slug`) |
+| `/sitemap.xml` | Home FR/EN + équipe (`/fr/equipe`, `/en/team`) + 7 fiches FR (`/fr/travaux/:slug`) + 7 EN (`/en/projects/:slug`) |
 
-Pas d’URL inventée. `lastmod` optionnel (omis V1 si pas de date data).
+Pas d’URL inventée.  
+`lastmod` : constante documentée `SITEMAP_CONTENT_LASTMOD` dans `app/lib/seo/sitemap.ts` (révision content indexable). Pas de dates inventées par URL sans source data. Mettre à jour la constante quand home / équipe / deck changent de façon crawlable.
+
+Guide ops Search Console : [`docs/ops/GOOGLE_SEARCH_CONSOLE.md`](../ops/GOOGLE_SEARCH_CONSOLE.md).
 
 ---
 
@@ -90,7 +108,10 @@ Remplacer par `.` `,` `:` ou `·`. Garde-fou : `npm run check:copy`.
 - [x] Spec (ce document)
 - [x] `app/lib/seo` : og/twitter image, site_name, helpers JSON-LD
 - [x] Injection meta home + fiches
-- [x] robots + sitemap
+- [x] Meta + JSON-LD page équipe + OG default
+- [x] robots + sitemap (home + équipe + deck 7×2) + `lastmod` révision content
 - [x] Alts équipe pattern
 - [x] Doc `VITE_SITE_ORIGIN` prod
+- [x] Guide Search Console (`docs/ops/GOOGLE_SEARCH_CONSOLE.md`)
 - [x] Skill `seo-review` étendue
+- [x] Pas de `meta keywords` (intent via title/H1/description/alts)

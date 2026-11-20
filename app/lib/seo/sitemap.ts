@@ -6,15 +6,28 @@ export type SitemapEntry = {
   loc: string;
   /** Priorité indicative 0–1 */
   priority: string;
+  /**
+   * Date W3C (YYYY-MM-DD) si connue.
+   * Une seule révision content indexable (pas de dates inventées par URL).
+   */
+  lastmod?: string;
 };
+
+/**
+ * Révision content des URLs indexables.
+ * Mettre à jour quand home / équipe / fiches deck changent de façon crawlable.
+ * Pas de lastmod fake par URL sans source data.
+ */
+export const SITEMAP_CONTENT_LASTMOD = "2026-11-20";
 
 /** URLs indexables V1 — home FR/EN + équipe + deck Travaux 7 × 2 locales. */
 export function buildSitemapEntries(): SitemapEntry[] {
+  const lastmod = SITEMAP_CONTENT_LASTMOD;
   const entries: SitemapEntry[] = [
-    { loc: absoluteUrl(homePath("fr")), priority: "1.0" },
-    { loc: absoluteUrl(homePath("en")), priority: "0.9" },
-    { loc: absoluteUrl(teamPath("fr")), priority: "0.85" },
-    { loc: absoluteUrl(teamPath("en")), priority: "0.8" },
+    { loc: absoluteUrl(homePath("fr")), priority: "1.0", lastmod },
+    { loc: absoluteUrl(homePath("en")), priority: "0.9", lastmod },
+    { loc: absoluteUrl(teamPath("fr")), priority: "0.85", lastmod },
+    { loc: absoluteUrl(teamPath("en")), priority: "0.8", lastmod },
   ];
 
   for (const project of getWorksGridProjects()) {
@@ -22,10 +35,12 @@ export function buildSitemapEntries(): SitemapEntry[] {
       {
         loc: absoluteUrl(projectPath("fr", project.slug)),
         priority: "0.8",
+        lastmod,
       },
       {
         loc: absoluteUrl(projectPath("en", project.slug)),
         priority: "0.8",
+        lastmod,
       },
     );
   }
@@ -35,12 +50,15 @@ export function buildSitemapEntries(): SitemapEntry[] {
 
 export function renderSitemapXml(entries: SitemapEntry[]): string {
   const urls = entries
-    .map(
-      (e) => `  <url>
-    <loc>${escapeXml(e.loc)}</loc>
+    .map((e) => {
+      const lastmodLine = e.lastmod
+        ? `\n    <lastmod>${escapeXml(e.lastmod)}</lastmod>`
+        : "";
+      return `  <url>
+    <loc>${escapeXml(e.loc)}</loc>${lastmodLine}
     <priority>${e.priority}</priority>
-  </url>`,
-    )
+  </url>`;
+    })
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>

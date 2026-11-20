@@ -106,7 +106,10 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 - **OG PNG source ~8 Mo** : ne **pas** recompresser / recadrer sans asset Figma OG dédié (1200×630). Les crawlers sociaux utilisent le PNG fallback ; AVIF/WebP servent le LCP navigateur via `OptimizedImg`. Dette documentée.
 - Origine absolue : `VITE_SITE_ORIGIN` (prod obligatoire — `npm run check:origin` ; strict prod via `--strict` / `VERCEL_ENV=production`).
 - JSON-LD SSR (`script:ld+json`) : Organization + WebSite + Person (équipe) sur home ; CreativeWork sur fiches. Adresse Organization dérivée de la row contact « Adresse » / « Address ».
-- Sitemap `/sitemap.xml` + robots `/robots.txt` (routes FR/EN existantes uniquement).
+- Sitemap `/sitemap.xml` + robots `/robots.txt` (routes FR/EN existantes uniquement : home, équipe, fiches deck).
+- `lastmod` sitemap = constante `SITEMAP_CONTENT_LASTMOD` (révision content), pas de dates fake par URL.
+- Pas de `meta keywords` : intent via title / H1 / description / alts / JSON-LD.
+- Ops : guide Search Console [`docs/ops/GOOGLE_SEARCH_CONSOLE.md`](../ops/GOOGLE_SEARCH_CONSOLE.md).
 
 ---
 
@@ -186,3 +189,4 @@ Signaler : `Asset X présent dans Figma mais source non disponible.`
 | 2026-11-20 | **Captures QA produit** : retrait slides Approche `gallery-02` (Hall), `gallery-04` (Espace de travail), `gallery-06` (Détail tumbler MSK) ; galerie restante ×3 (Entrée, Bureau, Open space). Nav Approche : `id="approche"` déplacé sous la galerie (scroll vers copy, pas une slide). Carrousel : flèches + dots + clavier + `prefers-reduced-motion` (Q33). |
 | 2026-11-20 | **Contact Q03** : custom select listbox (Service / Budget) FR+EN ; options alignées services MSK + fourchettes FCFA. Label « Portable / WhatsApp ». Alignement champs `w-full`. Email sous CTA « Démarrer » retiré (redondant Contact). Onglets média CTA (Vidéo / Teaser / …) = labels Figma non interactifs, une seule instance code (pas un doublon de section). |
 | 2026-11-20 | **Page Équipe dédiée (Q32, validation produit)** : `/fr/equipe` · `/en/team` ; section home Équipe inchangée ; nav lien route ; `focus` court factuel + email Eric + pôle si data. Instagram `@_msk_creation`. Language switcher = bouton + drapeau langue **cible** (EN sur FR). Sitemap + meta SSR. |
+| 2026-11-20 | **SEO audit P1** : titles/descriptions home enrichis depuis copy hero existante ; `teamMeta` + JSON-LD CollectionPage ; OG default page équipe ; sitemap `lastmod` via `SITEMAP_CONTENT_LASTMOD` ; guide Search Console `docs/ops/GOOGLE_SEARCH_CONSOLE.md`. Pas de meta keywords. |

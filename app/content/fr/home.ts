@@ -3,9 +3,9 @@ import type { HomeContent } from "../types";
 /** Copy = captures Figma Desktop (2026-09-25). Pas de tiret cadratin. */
 export const home: HomeContent = {
   meta: {
-    title: "MSK Création",
+    title: "MSK Création | Agence digitale Bamako, Lomé, Lyon",
     description:
-      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon.",
+      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc et au Mali.",
   },
   brandName: "MSK Création",
   hero: {

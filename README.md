@@ -64,7 +64,7 @@ Sans `VITE_SITE_ORIGIN` https prod, les URL absolues SEO restent sur localhost.
 | `/fr/travaux/:slug` | Fiche projet FR |
 | `/en/projects/:slug` | Fiche projet EN |
 | `/robots.txt` | Crawl rules + lien sitemap |
-| `/sitemap.xml` | Home + fiches FR/EN (deck 7) |
+| `/sitemap.xml` | Home + équipe + fiches FR/EN (deck 7) |
 
 Grille projets : `app/data/projects.ts` (vide jusqu’à validation Q01).
 

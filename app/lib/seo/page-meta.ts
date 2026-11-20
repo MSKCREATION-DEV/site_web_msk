@@ -4,6 +4,7 @@ import { absoluteUrl } from "./origin";
 import {
   homePath,
   projectPath,
+  teamPath,
   type Locale,
 } from "~/i18n";
 
@@ -31,6 +32,33 @@ export function homeMeta(
     alternateLocales: [
       { locale: "fr", href: absoluteUrl(homePath("fr")) },
       { locale: "en", href: absoluteUrl(homePath("en")) },
+    ],
+  });
+}
+
+/** Meta page équipe dédiée (`/fr/equipe`, `/en/team`). */
+export function teamMeta(
+  locale: Locale,
+  title: string,
+  description: string,
+  options?: {
+    siteName?: string;
+    imageUrl?: string;
+    jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  },
+) {
+  return buildPageMeta({
+    title,
+    description,
+    locale,
+    ogType: "website",
+    siteName: options?.siteName,
+    imageUrl: options?.imageUrl ?? defaultOgImageUrl(),
+    jsonLd: options?.jsonLd,
+    canonical: absoluteUrl(teamPath(locale)),
+    alternateLocales: [
+      { locale: "fr", href: absoluteUrl(teamPath("fr")) },
+      { locale: "en", href: absoluteUrl(teamPath("en")) },
     ],
   });
 }

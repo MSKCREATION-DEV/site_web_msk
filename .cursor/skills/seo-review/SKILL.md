@@ -23,9 +23,13 @@ Checklist par page :
   - fiche : CreativeWork (+ ImageObject cover)
 - [ ] `sameAs` uniquement depuis `footer.social` (pas d’URL inventée) ; pas de bios inventées (Q21)
 - [ ] Alts équipe : `{name}, {role} · {brand}`
+- [ ] Pas de `meta keywords` (intent = title / H1 / description / alts)
 - [ ] `/robots.txt` pointe vers `/sitemap.xml`
-- [ ] `/sitemap.xml` liste home FR/EN + fiches deck 7 × 2 locales
+- [ ] `/sitemap.xml` liste home FR/EN + équipe FR/EN + fiches deck 7 × 2 locales
+- [ ] `lastmod` présent si `SITEMAP_CONTENT_LASTMOD` à jour
+- [ ] Page équipe : meta + OG + JSON-LD CollectionPage (si route merge)
 - [ ] `VITE_SITE_ORIGIN` = origine prod en déploiement
+- [ ] Ops Search Console : `docs/ops/GOOGLE_SEARCH_CONSOLE.md`
 
 Outillage :
 

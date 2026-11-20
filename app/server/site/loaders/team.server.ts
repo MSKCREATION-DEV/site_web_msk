@@ -1,7 +1,7 @@
 import { getLocaleContent } from "~/content";
 import type { Locale } from "~/i18n";
 import { teamMembers } from "~/data";
-import { teamPhotoAlt } from "~/lib/seo";
+import { postalAddressFromContactRows, teamPhotoAlt } from "~/lib/seo";
 
 export function loadTeamPage(locale: Locale) {
   const content = getLocaleContent(locale);
@@ -22,6 +22,13 @@ export function loadTeamPage(locale: Locale) {
     };
   });
 
+  const postalAddress =
+    postalAddressFromContactRows(content.home.contactSection.rows) ?? {
+      addressLocality: "Bamako",
+      addressRegion: "ACI 2000",
+      addressCountry: "ML",
+    };
+
   return {
     locale,
     brandName: content.home.brandName,
@@ -30,5 +37,7 @@ export function loadTeamPage(locale: Locale) {
     nav: content.nav,
     footer: content.footer,
     contact: content.contact,
+    /** Adresse Organization JSON-LD (même source que home). */
+    postalAddress,
   };
 }

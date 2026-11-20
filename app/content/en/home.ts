@@ -2,9 +2,9 @@ import type { HomeContent } from "../types";
 
 export const home: HomeContent = {
   meta: {
-    title: "MSK Creation",
+    title: "MSK Creation | Digital agency Bamako, Lomé, Lyon",
     description:
-      "Digital agency in Bamako, ACI 2000. Also in Lomé and Lyon.",
+      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco and Mali.",
   },
   brandName: "MSK Creation",
   hero: {

@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/team";
 import { OptimizedImg, Reveal } from "~/components/ui";
-import { homePath, isLocale, parseLocale, teamPath } from "~/i18n";
-import { absoluteUrl, buildPageMeta } from "~/lib/seo";
+import { homePath, isLocale, parseLocale } from "~/i18n";
+import { buildTeamJsonLd, teamMeta } from "~/lib/seo";
 import { loadTeamPage } from "~/server/site/loaders/team.server";
 
 export function loader({ params, request }: Route.LoaderArgs) {
@@ -24,18 +24,26 @@ export function meta({ loaderData }: Route.MetaArgs) {
     return [{ title: "MSK Création" }];
   }
 
-  const { locale, teamPage, brandName } = loaderData;
-  return buildPageMeta({
-    title: teamPage.meta.title,
-    description: teamPage.meta.description,
+  const { locale, teamPage, brandName, team, contact, footer, postalAddress } =
+    loaderData;
+
+  const jsonLd = buildTeamJsonLd({
     locale,
-    ogType: "website",
+    brandName,
+    description: teamPage.meta.description,
+    pageTitle: teamPage.meta.title,
+    pageDescription: teamPage.meta.description,
+    email: contact.email,
+    addressLocality: postalAddress.addressLocality,
+    addressRegion: postalAddress.addressRegion,
+    addressCountry: postalAddress.addressCountry,
+    team: team.map((m) => ({ name: m.name, role: m.role })),
+    sameAs: footer.social.map((s) => s.href),
+  });
+
+  return teamMeta(locale, teamPage.meta.title, teamPage.meta.description, {
     siteName: brandName,
-    canonical: absoluteUrl(teamPath(locale)),
-    alternateLocales: [
-      { locale: "fr", href: absoluteUrl(teamPath("fr")) },
-      { locale: "en", href: absoluteUrl(teamPath("en")) },
-    ],
+    jsonLd,
   });
 }
 
