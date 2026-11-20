@@ -18,7 +18,7 @@ export const teamPage: TeamPageContent = {
   collectif: {
     eyebrow: "Le collectif",
     title: "Une agence, plusieurs métiers, une seule ligne.",
-    body: "Formés entre la France, le Maroc et le Mali, nous travaillons côte à côte. Ce que vous briefez ici est conçu, produit et livré par les personnes que vous croisez sur cette page.",
+    body: "Formés entre la France, le Maroc, le Mali, le Sénégal et le Togo, nous travaillons côte à côte. Ce que vous briefez ici est conçu, produit et livré par les personnes que vous croisez sur cette page.",
   },
   gallery: {
     eyebrow: "Portraits",

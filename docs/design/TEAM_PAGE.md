@@ -18,7 +18,7 @@ Identité MSK : Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C`, Jost / Bricol
 
 1. **Intro** — H1 concept + lead collectif.
 2. **Collectif** — manifeste court (zéro sous-traitance, complémentarité).
-3. **Galerie éditoriale** — bento asymétrique (lead / feature / standard), flip recto-verso.
+3. **Galerie éditoriale** — lead + paires (2×6 puis 8×6, pas d’orphelin), flip recto-verso.
 4. **Complémentarité** — quatre pôles métiers (pas un org chart RH).
 5. **Conclusion** — phrase mémorable + CTA brief (`/#contact`).
 

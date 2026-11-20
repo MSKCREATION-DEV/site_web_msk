@@ -18,7 +18,7 @@ export const teamPage: TeamPageContent = {
   collectif: {
     eyebrow: "The collective",
     title: "One agency, many crafts, a single line.",
-    body: "Trained across France, Morocco and Mali, we work side by side. What you brief here is designed, produced and shipped by the people on this page.",
+    body: "Trained across France, Morocco, Mali, Senegal and Togo, we work side by side. What you brief here is designed, produced and shipped by the people on this page.",
   },
   gallery: {
     eyebrow: "Portraits",

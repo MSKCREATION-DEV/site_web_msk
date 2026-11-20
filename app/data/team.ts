@@ -3,7 +3,8 @@
  * rangée 1 : Mathieu, Isdalinia, Andile, Ismaël, Amadou
  * rangée 2 : Lidaou, Fatimatou, Yaye, Djouldé, Eric
  *
- * `layout` : variante galerie page Équipe (magazine asymétrique).
+ * `layout` page Équipe : lead (rangée 1, 2× span 6) puis paires (span 6)
+ * pour éviter un orphelin en bas (10 talents = 5 rangées de 2).
  */
 
 export type TeamGalleryLayout = "lead" | "feature" | "standard";

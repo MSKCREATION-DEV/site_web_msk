@@ -1,0 +1,15 @@
+{
+  "defaultKeywords": ["MSK Création", "Bamako", "Équipe"],
+  "assets": [
+    {
+      "file": "public/assets/team/mathieu-diarra.png",
+      "description": "Mathieu Diarra, Fondateur · MSK Création",
+      "keywords": ["Mathieu Diarra", "Fondateur", "MSK Création", "Bamako", "Équipe"]
+    },
+    {
+      "file": "public/assets/team/isdalinia-boisseaux.png",
+      "description": "Isdalinia Boisseaux, Co-fondatrice · MSK Création",
+      "keywords": ["Isdalinia Boisseaux", "Co-fondatrice", "MSK Création", "Bamako", "Équipe"]
+    }
+  ]
+}

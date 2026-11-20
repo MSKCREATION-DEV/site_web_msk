@@ -4,7 +4,7 @@ export const home: HomeContent = {
   meta: {
     title: "MSK Creation | Digital agency Bamako, Lomé, Lyon",
     description:
-      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco and Mali.",
+      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco, Mali, Senegal and Togo.",
   },
   brandName: "MSK Creation",
   hero: {
@@ -29,7 +29,7 @@ export const home: HomeContent = {
     ],
     titleLine3: " that convert.",
     subtitle:
-      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco and Mali.",
+      "Digital agency in Bamako, ACI 2000. Also present in Lomé and Lyon. Brand image, digital presence and growth, no outsourcing, by a team of 10 experts trained in France, Morocco, Mali, Senegal and Togo.",
     recentLabel: "Recently",
     recentProjects: [],
     tickerItems: [
@@ -114,7 +114,7 @@ export const home: HomeContent = {
     titleAccent: "behind",
     titleAfter: "the work.",
     intro:
-      "10 experts with complementary profiles: strategy, design, video, development, community management. Trained in France, Morocco and Mali. Zero outsourcing: the faces below are the ones who really work on your project.",
+      "10 experts with complementary profiles: strategy, design, video, development, community management. Trained in France, Morocco, Mali, Senegal and Togo. Zero outsourcing: the faces below are the ones who really work on your project.",
     officeSrc: "/assets/cta/teaser-poster.png",
     officeAlt: "MSK Creation offices, Bamako",
   },

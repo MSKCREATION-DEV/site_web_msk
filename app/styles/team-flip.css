@@ -29,26 +29,11 @@
     gap: 1.75rem 1.5rem;
   }
 
-  .msk-team-gallery__item--lead {
-    grid-column: span 6;
-  }
-
-  .msk-team-gallery__item--feature {
-    grid-column: span 4;
-  }
-
+  /* Lead + paires : 2×6 puis 8×6 → 5 rangées sans orphelin */
+  .msk-team-gallery__item--lead,
+  .msk-team-gallery__item--feature,
   .msk-team-gallery__item--standard {
-    grid-column: span 3;
-  }
-
-  /* Rythme asymétrique : 5e carte (Amadou) décale sur 4 cols */
-  .msk-team-gallery__item--feature:nth-child(5) {
-    grid-column: span 4;
-  }
-
-  /* Rangée bas : 4 standards → 3+3+3+3 */
-  .msk-team-gallery__item--standard:nth-child(n + 6) {
-    grid-column: span 3;
+    grid-column: span 6;
   }
 }
 

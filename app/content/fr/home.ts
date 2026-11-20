@@ -5,7 +5,7 @@ export const home: HomeContent = {
   meta: {
     title: "MSK Création | Agence digitale Bamako, Lomé, Lyon",
     description:
-      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc et au Mali.",
+      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc, au Mali, au Sénégal et au Togo.",
   },
   brandName: "MSK Création",
   hero: {
@@ -30,7 +30,7 @@ export const home: HomeContent = {
     ],
     titleLine3: " qui convertissent.",
     subtitle:
-      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc et au Mali.",
+      "Agence digitale à Bamako, ACI 2000. Présente aussi à Lomé et Lyon. Image de marque, présence digitale et croissance, sans sous-traitance, par une équipe de 10 experts formés en France, au Maroc, au Mali, au Sénégal et au Togo.",
     recentLabel: "Dernièrement",
     recentProjects: [],
     tickerItems: [
@@ -115,7 +115,7 @@ export const home: HomeContent = {
     titleAccent: "derrière",
     titleAfter: "le travail.",
     intro:
-      "10 experts aux profils complémentaires : stratégie, design, vidéo, développement, community management. Formés entre la France, le Maroc et le Mali. Zéro sous-traitance : les visages ci-dessous sont ceux qui travaillent vraiment sur votre projet.",
+      "10 experts aux profils complémentaires : stratégie, design, vidéo, développement, community management. Formés entre la France, le Maroc, le Mali, le Sénégal et le Togo. Zéro sous-traitance : les visages ci-dessous sont ceux qui travaillent vraiment sur votre projet.",
     officeSrc: "/assets/cta/teaser-poster.png",
     officeAlt: "Bureaux MSK Création, Bamako",
   },
