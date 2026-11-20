@@ -305,4 +305,8 @@ export type TeamPageContent = {
   serviceLabel: string;
   emailLabel: string;
   backHomeLabel: string;
+  /** A11y carte flip : révéler le verso */
+  flipRevealLabel: string;
+  /** A11y carte flip : revenir au recto */
+  flipHideLabel: string;
 };

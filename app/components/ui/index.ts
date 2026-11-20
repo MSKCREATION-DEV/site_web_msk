@@ -18,6 +18,11 @@ export { Reveal } from "./reveal";
 export { SubmitButton } from "./submit-button";
 export type { SubmitButtonState } from "./submit-button";
 export { TeamCard } from "./team-card";
+export { TeamFlipCard } from "./team-flip-card";
+export type {
+  TeamFlipCardLabels,
+  TeamFlipCardProps,
+} from "./team-flip-card";
 export { UnderlineField } from "./underline-field";
 export type { UnderlineFieldState } from "./underline-field";
 export { WorksFilter } from "./works-filter";

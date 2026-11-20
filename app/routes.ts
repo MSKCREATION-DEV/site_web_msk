@@ -4,8 +4,11 @@ import { index, route } from "@react-router/dev/routes";
 /**
  * / → /fr
  * /:lang → home
- * /fr/equipe | /en/team → page équipe
+ * /fr/equipe | /en/team → page équipe (même module, ids uniques obligatoires)
  * /fr/travaux/:slug | /en/projects/:slug → fiche projet
+ *
+ * Ordre : routes nommées avant tout futur splat ; pas de catch-all qui
+ * masquerait equipe/team.
  */
 export default [
   index("routes/_index.tsx"),

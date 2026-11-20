@@ -9,7 +9,7 @@ Suivi des ambiguïtés. Les items **fermés** restent pour historique.
 | ID | Question | Impact | Statut |
 |----|----------|--------|--------|
 | Q03 | Options listes Service / Budget | Formulaire Contact | **DÉCIDÉ (intermédiaire)** — 2026-11-20 : options factuelles agence (services MSK + fourchettes FCFA) en FR/EN ; custom select listbox. À valider designer vs frame Contact. |
-| Q32 | Page Équipe dédiée (hors one-page Figma) | Routing / SEO | **DÉCIDÉ (produit)** — 2026-11-20 : `/fr/equipe` + `/en/team` ; home section Équipe inchangée ; bios courtes factuelles depuis rôles ; email Eric déjà fourni. QA visuelle hors Figma. |
+| Q32 | Page Équipe dédiée (hors one-page Figma) | Routing / SEO | **DÉCIDÉ (produit)** — 2026-11-20 : `/fr/equipe` + `/en/team` ; home section Équipe inchangée ; bios courtes factuelles depuis rôles ; email Eric déjà fourni. **UX 2026-11-20** : cartes flip 3D (inspiration structurelle VdM, tokens MSK) documentée dans `DESIGN_DECISIONS`. QA visuelle hors Figma. |
 | Q33 | Nav carrousel Approche (flèches) | UX Approche | **DÉCIDÉ (intermédiaire)** — 2026-11-20 : hors Figma explicite ; flèches + dots + clavier + reduced-motion (tokens Encre/bleu/corail). |
 | Q12 | Bureau équipe dédié | Asset | **PARTIEL** — Contact OK ; `team/office.png` NON TROUVÉ (section Équipe Figma 2:19 sans bandeau bureau) |
 | Q17 | Resync Figma couleurs vs Charte v3 | Design system Figma | **OUVERTE** — code Encre / `#1D73BC` / Corail ; Figma peut encore mélanger anciens tokens |

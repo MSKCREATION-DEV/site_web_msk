@@ -15,4 +15,6 @@ export const teamPage: TeamPageContent = {
   serviceLabel: "Practice",
   emailLabel: "Email",
   backHomeLabel: "Back to home",
+  flipRevealLabel: "View profile",
+  flipHideLabel: "Back to photo",
 };
