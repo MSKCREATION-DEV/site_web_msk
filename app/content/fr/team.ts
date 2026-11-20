@@ -54,7 +54,7 @@ export const team: Record<string, TeamMemberCopy> = {
   },
   "yahe-bah": {
     name: "Yaye Bah",
-    role: "Commerciale",
+    role: "Stagiaire commerciale",
     focus: "Développement commercial et qualification des briefs.",
     presentation:
       "Développe le portefeuille et qualifie les besoins dès le premier échange.",
@@ -122,7 +122,7 @@ export const team: Record<string, TeamMemberCopy> = {
   },
   "eric-golo": {
     name: "Eric Golo",
-    role: "Monteur Vidéo",
+    role: "Stagiaire monteur vidéo",
     focus: "Montage et finalisation des contenus vidéo.",
     email: "e.golo@mskcreation.net",
     service: "Communication & Marketing",

@@ -75,9 +75,9 @@ Projet : `labs/erp_msk`.
 | Amadou | Responsable technique | Développeur Web & Mobile | Trancher label public |
 | Isdalinia | Co-fondatrice | Co-fondatrice & Designer | Ajouter « Designer » ? |
 | Lidaou / Espoir | Vidéaste & graphiste | Org « Monteur Vidéo » · ops « Vidéaste & Graphisme » | Harmoniser |
-| Yaye | Commerciale | Stagiaire Commerciale | Trancher (stage vs titre) |
-| Djouldé | Stagiaire community | Ops « Community Manager » · org « Stagiaire Community » | Trancher |
-| Eric | Eric Golo · Monteur Vidéo | Eric Wilfried Golo | Afficher second prénom ? |
+| Yaye | ~~Commerciale~~ → **Stagiaire commerciale** | Stagiaire Commerciale | Clos (validation produit 2026-11-20) |
+| Djouldé | Stagiaire community | Ops « Community Manager » · org « Stagiaire Community » | Clos : garder « Stagiaire community » |
+| Eric | ~~Monteur Vidéo~~ → **Stagiaire monteur vidéo** | Eric Wilfried Golo | Stage clos ; second prénom = PENDING |
 | E-mails hors Eric | Non publiés | Pattern `initiale.nom@mskcreation.net` | OK produit pour publier ? |
 | Lieu Espoir (Togo) | Non | Ops CREATE-MARKETING | Mention page ? (tél. perso : non) |
 
