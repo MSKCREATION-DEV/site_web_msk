@@ -1,11 +1,9 @@
-import {
-  absoluteUrl,
-  renderRobotsTxt,
-} from "~/lib/seo";
+import type { Route } from "./+types/robots";
+import { absoluteUrl, renderRobotsTxt } from "~/lib/seo";
 
 /** Resource route — /robots.txt */
-export function loader() {
-  const body = renderRobotsTxt(absoluteUrl("/sitemap.xml"));
+export function loader({ request }: Route.LoaderArgs) {
+  const body = renderRobotsTxt(absoluteUrl("/sitemap.xml", request));
   return new Response(body, {
     status: 200,
     headers: {

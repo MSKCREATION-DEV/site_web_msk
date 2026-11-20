@@ -7,6 +7,7 @@ export {
   absoluteUrl,
   siteOrigin,
 } from "./page-meta";
+export { resolveSiteOrigin, isLocalSiteOrigin } from "./origin";
 export {
   DEFAULT_OG_IMAGE_PATH,
   ORGANIZATION_LOGO_PATH,

@@ -20,25 +20,29 @@ export type SitemapEntry = {
  */
 export const SITEMAP_CONTENT_LASTMOD = "2026-11-20";
 
-/** URLs indexables V1 — home FR/EN + équipe + deck Travaux 7 × 2 locales. */
-export function buildSitemapEntries(): SitemapEntry[] {
+/**
+ * URLs indexables V1 — home FR/EN + équipe + deck Travaux 7 × 2 locales.
+ * Passer `request` (resource route) pour la même origine que `/robots.txt`.
+ */
+export function buildSitemapEntries(request?: Request): SitemapEntry[] {
+  const abs = (path: string) => absoluteUrl(path, request);
   const lastmod = SITEMAP_CONTENT_LASTMOD;
   const entries: SitemapEntry[] = [
-    { loc: absoluteUrl(homePath("fr")), priority: "1.0", lastmod },
-    { loc: absoluteUrl(homePath("en")), priority: "0.9", lastmod },
-    { loc: absoluteUrl(teamPath("fr")), priority: "0.85", lastmod },
-    { loc: absoluteUrl(teamPath("en")), priority: "0.8", lastmod },
+    { loc: abs(homePath("fr")), priority: "1.0", lastmod },
+    { loc: abs(homePath("en")), priority: "0.9", lastmod },
+    { loc: abs(teamPath("fr")), priority: "0.85", lastmod },
+    { loc: abs(teamPath("en")), priority: "0.8", lastmod },
   ];
 
   for (const project of getWorksGridProjects()) {
     entries.push(
       {
-        loc: absoluteUrl(projectPath("fr", project.slug)),
+        loc: abs(projectPath("fr", project.slug)),
         priority: "0.8",
         lastmod,
       },
       {
-        loc: absoluteUrl(projectPath("en", project.slug)),
+        loc: abs(projectPath("en", project.slug)),
         priority: "0.8",
         lastmod,
       },

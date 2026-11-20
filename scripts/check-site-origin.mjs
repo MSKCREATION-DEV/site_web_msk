@@ -38,7 +38,20 @@ function loadDotEnv() {
 
 loadDotEnv();
 
-const origin = (process.env.VITE_SITE_ORIGIN ?? "").replace(/\/$/, "");
+const raw = (process.env.VITE_SITE_ORIGIN ?? "").replace(/\/$/, "");
+
+function parseHttpOrigin(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return null;
+    return url.origin;
+  } catch {
+    return null;
+  }
+}
+
+const origin = parseHttpOrigin(raw);
 const isLocal =
   !origin ||
   /localhost|127\.0\.0\.1|0\.0\.0\.0/i.test(origin) ||
@@ -52,7 +65,20 @@ const strict =
 const hint =
   "Définir VITE_SITE_ORIGIN=https://www.mskcreation.net (ou domaine réel) " +
   "dans l’env de build prod. Local OK : http://localhost:5173. " +
-  "Voir README et .env.example.";
+  "Pas de placeholder (ex. xxxxxx). Voir README et .env.example.";
+
+if (raw && !origin) {
+  const msg = `[check:origin] VITE_SITE_ORIGIN n’est pas une URL http(s) absolue (${raw}). ${hint}`;
+  if (strict) {
+    console.error(msg);
+    process.exit(1);
+  }
+  console.warn(msg);
+  console.warn(
+    "[check:origin] Warning seulement en local. robots/sitemap retombent sur request.url si dispo.",
+  );
+  process.exit(0);
+}
 
 if (isLocal) {
   const msg = origin

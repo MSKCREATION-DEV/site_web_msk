@@ -59,12 +59,15 @@ Dashboard → Project → **Settings → Environment Variables** → scope **Pre
 
 `VITE_*` est injecté au **build** : après modification, **Redeploy** obligatoire.
 
+`robots.txt` / `sitemap.xml` : si `VITE_SITE_ORIGIN` est manquant, local ou invalide (placeholder sans `https://`), l’origine est dérivée de `request.url` (host Preview). Prod : garder `VITE_SITE_ORIGIN=https://www.mskcreation.net`.
+
 ### Astuce URL preview
 
-1. Premier deploy sans `VITE_SITE_ORIGIN` (ou avec placeholder)
+1. Premier deploy sans `VITE_SITE_ORIGIN` (éviter un placeholder non-URL type `xxxxxx`)
 2. Noter l’URL `*.vercel.app`
-3. Poser `VITE_SITE_ORIGIN=https://…` (sans slash final)
+3. Poser `VITE_SITE_ORIGIN=https://…` (sans slash final) pour meta/canonical/OG stables
 4. Redeploy
+5. Vérifier : `curl -sS "$ORIGIN/robots.txt"` et `curl -sS "$ORIGIN/sitemap.xml" | head` → même host
 
 Pour Production plus tard : même jeu de variables en scope **Production**, avec `VITE_SITE_ORIGIN=https://www.mskcreation.net` (ou domaine final).
 

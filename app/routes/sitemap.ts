@@ -1,11 +1,9 @@
-import {
-  buildSitemapEntries,
-  renderSitemapXml,
-} from "~/lib/seo";
+import type { Route } from "./+types/sitemap";
+import { buildSitemapEntries, renderSitemapXml } from "~/lib/seo";
 
 /** Resource route — /sitemap.xml */
-export function loader() {
-  const body = renderSitemapXml(buildSitemapEntries());
+export function loader({ request }: Route.LoaderArgs) {
+  const body = renderSitemapXml(buildSitemapEntries(request));
   return new Response(body, {
     status: 200,
     headers: {

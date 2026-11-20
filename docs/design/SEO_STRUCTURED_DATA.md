@@ -79,6 +79,14 @@ Séparateur `·` (conforme règle ponctuation : pas de `—` / `–`).
 Pas d’URL inventée.  
 `lastmod` : constante documentée `SITEMAP_CONTENT_LASTMOD` dans `app/lib/seo/sitemap.ts` (révision content indexable). Pas de dates inventées par URL sans source data. Mettre à jour la constante quand home / équipe / deck changent de façon crawlable.
 
+Origine (même helper `resolveSiteOrigin` pour les deux routes) :
+
+1. `VITE_SITE_ORIGIN` si URL http(s) absolue valide et non locale (prod)
+2. sinon origine de `request.url` (Preview Vercel, VITE manquant / placeholder type `xxxxxx`)
+3. sinon localhost
+
+Les loaders `/robots.txt` et `/sitemap.xml` passent toujours `request` pour rester alignés.
+
 Guide ops Search Console : [`docs/ops/GOOGLE_SEARCH_CONSOLE.md`](../ops/GOOGLE_SEARCH_CONSOLE.md).
 
 ---
