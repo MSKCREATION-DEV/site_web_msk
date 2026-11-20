@@ -23,7 +23,7 @@ export const teamPage: TeamPageContent = {
   gallery: {
     eyebrow: "Portraits",
     title: "Le magazine des talents",
-    inviteHint: "Survolez ou touchez pour lire le portrait",
+    inviteHint: "Survolez ou touchez une photo pour ouvrir le portrait",
   },
   poles: {
     eyebrow: "Complémentarité",

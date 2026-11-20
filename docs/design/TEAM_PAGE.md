@@ -1,35 +1,38 @@
 # Page Équipe — magazine de talents
 
-**Date** : 2026-11-20  
+**Date** : 2026-11-20 (refonte plaque éditoriale)  
 **Routes** : `/fr/equipe` · `/en/team`  
-**Home** : section `#equipe` (Figma 2:19) **inchangée**.
+**Home** : section `#equipe` (Figma 2:19) **inchangée** (`TeamCard` Figma, pas `TeamFlipCard`).
 
 ## Direction artistique
 
-Refonte radicale hors grille 3 colonnes / annuaire. Concept éditorial :
+Concept éditorial :
 
 > **Derrière chaque idée, des talents…**
 
-Composition asymétrique type magazine, photos full-bleed valorisées, typo expressive (Bricolage display + Instrument Serif pour accents), flip 3D soigné (inspiration structurelle [Voyageurs du Monde / voyage sur-mesure](https://www.voyageursdumonde.fr/voyage-sur-mesure) : cards interactives + storytelling, **sans** copie branding / textes / images).
+Composition magazine, photos **pleine chroma** (sans voile sombre au repos), typo expressive (Bricolage display + Instrument Serif), reveal panneau Encre.
 
-Identité MSK : Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C`, Jost / Bricolage / Instrument Serif.
+Recherche patterns : `docs/design/TEAM_CARD_PATTERNS.md`.
+
+Identité MSK : Encre `#0D1330`, bleu `#1D73BC`, corail `#FF5A3C`, Jost / Bricolage / Instrument Serif. Fond portrait papier `#DCE0E8`.
 
 ### Sections
 
 1. **Intro** — H1 concept + lead collectif.
 2. **Collectif** — manifeste court (zéro sous-traitance, complémentarité).
-3. **Galerie éditoriale** — fondateurs + cadres + collabs en paires (span 6, pas d’orphelin), flip recto-verso, 3 variantes `tier`.
-4. **Complémentarité** — quatre pôles métiers (pas un org chart RH).
+3. **Galerie éditoriale** — fondateurs (span 6) · cadres (span 4) · collabs (3×4 + 2×6).
+4. **Complémentarité** — quatre pôles métiers.
 5. **Conclusion** — phrase mémorable + CTA brief (`/#contact`).
 
-### Carte talent
+### Carte talent (plaque éditoriale)
 
-| Face | Contenu |
+| Zone | Contenu |
 |------|---------|
-| Recto | Photo réelle, nom, rôle, index graphique, invitation discrète |
-| Verso | Présentation · expertise · contribution · impact · signature (+ email si validé) |
+| Photo | Portrait net, fond papier, léger zoom au reveal. **Aucun scrim / gradient sur le visage au repos.** |
+| Légende | Sous la photo : index, nom, rôle, invitation discrète (serif bleu) |
+| Panneau | Slide depuis le bas (Encre) : présentation / expertise / contribution / impact / signature (+ email si data) |
 
-Interaction : hover flip Desktop (pointeur fin) · tap mobile · clavier (`aria-expanded`) · `prefers-reduced-motion` = fade overlay sans `rotateY`.
+Interaction : hover Desktop (pointeur fin) · tap mobile (`.is-open`) · clavier (`aria-expanded`) · `prefers-reduced-motion` = fade sans `translateY`.
 
 ### Niveaux visuels (`tier` dans `app/data/team.ts`)
 
@@ -37,11 +40,11 @@ Hiérarchie éditoriale page `/equipe` (pas un titre affiché ; rôles UI resten
 
 | `tier` | Personnes | ERP / critère | UI |
 |--------|-----------|---------------|-----|
-| `founder` | Mathieu Diarra, Isdalinia Boisseaux | L0 · Fondateur / Co-fondatrice | Plus grand, filet bleu, double coin corail+bleu, pastille corail, typo display + rôle serif, overlay un peu plus présent sous le texte |
-| `cadre` | Andile Boussari, Ismaël Oussi, Amadou Samba Guiro | L1 (Chef de projet, DT) + Responsable technique (site) | Hauteur médiane, barre latérale bleue, coin corail simple, pastille bleue, rôle teinté bleu |
-| `collaborator` | Lidaou Espoir Awesso, Fatimatou Diallo, Yaye Bah, Djouldé Keita, Eric Golo | L3–L4 | Plus compact, sans coin corail ni pastille, typo plus simple, overlay le plus léger |
+| `founder` | Mathieu Diarra, Isdalinia Boisseaux | L0 · Fondateur / Co-fondatrice | Span 6, ratio 3/4, filet bleu sur média, légende bordure bleue + trait corail, nom display, rôle serif |
+| `cadre` | Andile Boussari, Ismaël Oussi, Amadou Samba Guiro | L1 + Responsable technique (site) | Span 4 (triptyque), barre bleue inset média + légende, rôle teinté bleu |
+| `collaborator` | Lidaou Espoir Awesso, Fatimatou Diallo, Yaye Bah, Djouldé Keita, Eric Golo | L3–L4 | Span 4 puis 6×2, typo plus légère, filet subtil, panneau bordure bleue fine |
 
-**Overlay** : gradient bas ciblé (visage/buste lisibles) + `text-shadow` léger sur nom/rôle. Home `#equipe` (`TeamCard` Figma) inchangée.
+Home `#equipe` (`TeamCard` Figma) inchangée.
 
 ## Sources ERP / organisation (publiques-pro)
 
@@ -50,8 +53,8 @@ Projet : `labs/erp_msk`.
 | Source | Usage |
 |--------|--------|
 | `src/lib/org/team.ts` (`MSK_TEAM`, `ORG_LEVEL_KEYS`) | Noms, hiérarchie L0→L4, titres internes, pattern e-mail pro |
-| `docs/ops/CREATE-MARKETING-COLLABS.md` | Postes Marketing (Fatimatou, Espoir, Djouldé, Eric), pôle Communication & Marketing, e-mails pro |
-| `docs/guides/SUIVI-GUIDES.md` (entrée org 2026-11-16) | Hiérarchie à jour (Espoir sous Guiro ; Yaye / Fatimatou / Djouldé / Eric sous Espoir) |
+| `docs/ops/CREATE-MARKETING-COLLABS.md` | Postes Marketing, pôle Communication & Marketing, e-mails pro |
+| `docs/guides/SUIVI-GUIDES.md` (entrée org 2026-11-16) | Hiérarchie à jour |
 | `public/team/*.jpg` / `docs/msk/team` | Confirmation roster photos (site = `public/assets/team`) |
 
 **Non utilisés (privé / sensible)** : salaires, fiches de paie, contrats individuels, absences, documents GED perso, téléphones perso, IDs Auth/RH.

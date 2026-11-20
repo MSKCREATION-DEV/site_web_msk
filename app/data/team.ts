@@ -8,7 +8,7 @@
  *   cadre         → L1 + Responsable technique site (Andile, Ismaël, Amadou)
  *   collaborator  → L3–L4 (Espoir, Fatimatou, Yaye, Djouldé, Eric)
  *
- * Grille : fondateurs + cadres + collabs en paires span 6 (pas d’orphelin).
+ * Grille page Équipe : fondateurs span 6 · cadres span 4 · collabs 3×4 + 2×6.
  * Voir docs/design/TEAM_PAGE.md § Niveaux visuels.
  */
 

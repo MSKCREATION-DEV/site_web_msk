@@ -1,17 +1,17 @@
 /**
- * Page équipe — magazine de talents + flip 3D.
- * 3 niveaux éditoriaux : founder / cadre / collaborator (data `tier`).
- * Overlay allégé : visage + buste lisibles ; texte contrasté (bandeau + ombre).
- * Hover / focus-within (pointeur fin) · .is-flipped (tap / clavier) ·
- * prefers-reduced-motion → overlay fade sans rotateY.
+ * Page équipe — plaques éditoriales (refonte 2026-11-20).
+ * Photo pleine chroma (pas de voile) + légende sous le portrait +
+ * panneau Encre en slide reveal. 3 niveaux : founder / cadre / collaborator.
+ * Hover / focus-within (pointeur fin) · .is-open (tap / clavier) ·
+ * prefers-reduced-motion → fade sans translate.
  */
 
-/* ——— Galerie asymétrique ——— */
+/* ——— Galerie ——— */
 
 .msk-team-gallery {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 2.5rem 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -20,465 +20,483 @@
 @media (min-width: 640px) {
   .msk-team-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 2.75rem 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .msk-team-gallery {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 2rem 1.5rem;
+    column-gap: 1.75rem;
+    row-gap: 3.5rem;
   }
 
-  /* Paires span 6 : fondateurs puis cadres puis collabs (pas d’orphelin) */
-  .msk-team-gallery__item--founder,
-  .msk-team-gallery__item--cadre,
+  /* Fondateurs : demi-page */
+  .msk-team-gallery__item--founder {
+    grid-column: span 6;
+  }
+
+  /* Cadres : triptyque */
+  .msk-team-gallery__item--cadre {
+    grid-column: span 4;
+  }
+
+  /* Collabs : 3 + 2 */
   .msk-team-gallery__item--collaborator {
+    grid-column: span 4;
+  }
+
+  .msk-team-gallery__item--collaborator:nth-child(9),
+  .msk-team-gallery__item--collaborator:nth-child(10) {
     grid-column: span 6;
   }
 }
 
-/* ——— Flip portrait (base) ——— */
+/* ——— Plaque (base) ——— */
 
-.msk-team-flip {
-  --msk-flip-duration: 0.7s;
-  --msk-flip-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --msk-flip-radius: 1.25rem;
-  --msk-flip-scrim-bottom: 0.58;
-  --msk-flip-scrim-mid: 0.14;
-  --msk-flip-copy-pad: 1rem 1.15rem 1.1rem;
-  position: relative;
-  height: 100%;
-  border-radius: var(--msk-flip-radius);
-  perspective: 1600px;
-}
-
-.msk-team-flip__scene {
-  position: relative;
-  height: 100%;
-  min-height: 20rem;
-  border-radius: inherit;
-}
-
-/* ——— Niveaux : taille / ratio / cadre ——— */
-
-.msk-team-flip--founder {
-  --msk-flip-radius: 1.75rem;
-  --msk-flip-scrim-bottom: 0.62;
-  --msk-flip-scrim-mid: 0.16;
-  --msk-flip-copy-pad: 1.25rem 1.35rem 1.3rem;
-}
-
-.msk-team-flip--cadre {
-  --msk-flip-radius: 1.35rem;
-  --msk-flip-scrim-bottom: 0.58;
-  --msk-flip-scrim-mid: 0.14;
-  --msk-flip-copy-pad: 1.05rem 1.2rem 1.15rem;
-}
-
-.msk-team-flip--collaborator {
-  --msk-flip-radius: 1rem;
-  --msk-flip-scrim-bottom: 0.52;
-  --msk-flip-scrim-mid: 0.1;
-  --msk-flip-copy-pad: 0.9rem 1rem 0.95rem;
-}
-
-.msk-team-gallery__item--founder .msk-team-flip__scene {
-  min-height: 28rem;
-}
-
-.msk-team-gallery__item--cadre .msk-team-flip__scene {
-  min-height: 24.5rem;
-}
-
-.msk-team-gallery__item--collaborator .msk-team-flip__scene {
-  min-height: 20.5rem;
-}
-
-@media (min-width: 1024px) {
-  .msk-team-gallery__item--founder .msk-team-flip__scene {
-    min-height: 34rem;
-  }
-
-  .msk-team-gallery__item--cadre .msk-team-flip__scene {
-    min-height: 28rem;
-  }
-
-  .msk-team-gallery__item--collaborator .msk-team-flip__scene {
-    min-height: 22.5rem;
-  }
-}
-
-.msk-team-flip__inner {
-  position: relative;
-  height: 100%;
-  min-height: inherit;
-  border-radius: inherit;
-  transform-style: preserve-3d;
-  transition: transform var(--msk-flip-duration) var(--msk-flip-ease);
-}
-
-.msk-team-flip__face {
-  position: absolute;
-  inset: 0;
+.msk-team-plate {
+  --msk-plate-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --msk-plate-duration: 0.55s;
+  --msk-plate-media-radius: 0;
+  --msk-plate-ratio: 3 / 4;
+  --msk-plate-caption-gap: 0.85rem;
   display: flex;
+  height: 100%;
   flex-direction: column;
+  gap: var(--msk-plate-caption-gap);
+}
+
+.msk-team-plate--founder {
+  --msk-plate-ratio: 3 / 4;
+  --msk-plate-caption-gap: 1.15rem;
+}
+
+.msk-team-plate--cadre {
+  --msk-plate-ratio: 4 / 5;
+  --msk-plate-caption-gap: 0.9rem;
+}
+
+.msk-team-plate--collaborator {
+  --msk-plate-ratio: 4 / 5;
+  --msk-plate-caption-gap: 0.7rem;
+}
+
+/* ——— Média : photo nette, fond papier ——— */
+
+.msk-team-plate__media {
+  position: relative;
+  aspect-ratio: var(--msk-plate-ratio);
   overflow: hidden;
-  border-radius: inherit;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  border-radius: var(--msk-plate-media-radius);
+  background: #dce0e8;
+  isolation: isolate;
 }
 
-.msk-team-flip__face--front {
-  background: #1d2b53;
+.msk-team-plate--founder .msk-team-plate__media {
+  box-shadow: inset 0 0 0 1px rgb(29 115 188 / 0.55);
 }
 
-/* Cadre premium fondateurs : filet bleu + ombre douce */
-.msk-team-flip--founder .msk-team-flip__face--front {
-  box-shadow:
-    inset 0 0 0 1px rgb(29 115 188 / 0.45),
-    inset 0 0 0 3px rgb(13 19 48 / 0.35);
+.msk-team-plate--cadre .msk-team-plate__media {
+  box-shadow: inset 3px 0 0 0 #1d73bc;
 }
 
-/* Cadres : barre latérale bleu */
-.msk-team-flip--cadre .msk-team-flip__face--front::before {
-  content: "";
-  position: absolute;
-  top: 12%;
-  bottom: 12%;
-  left: 0;
-  z-index: 2;
-  width: 3px;
-  background: #1d73bc;
-  border-radius: 0 2px 2px 0;
-  pointer-events: none;
-}
-
-.msk-team-flip__face--back {
-  background: linear-gradient(160deg, #151b3d 0%, #0d1330 55%, #11183a 100%);
-  transform: rotateY(180deg);
-  border: 1px solid rgb(29 115 188 / 0.35);
-}
-
-.msk-team-flip--founder .msk-team-flip__face--back {
-  border-color: rgb(255 90 60 / 0.4);
-  box-shadow: inset 0 0 0 1px rgb(29 115 188 / 0.25);
-}
-
-.msk-team-flip__photo {
+.msk-team-plate__picture {
   position: absolute;
   inset: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
-.msk-team-flip__photo img {
+.msk-team-plate__img {
+  display: block;
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: top;
-  transition: transform 0.8s var(--msk-flip-ease);
+  object-position: top center;
+  transition: transform 0.7s var(--msk-plate-ease);
 }
 
-.msk-team-flip:hover .msk-team-flip__photo img,
-.msk-team-flip:focus-within .msk-team-flip__photo img,
-.msk-team-flip.is-flipped .msk-team-flip__photo img {
-  transform: scale(1.04);
+.msk-team-plate:hover .msk-team-plate__img,
+.msk-team-plate:focus-within .msk-team-plate__img,
+.msk-team-plate.is-open .msk-team-plate__img {
+  transform: scale(1.03);
 }
 
-/* Overlay allégé : haut quasi transparent, bas ciblé sous le texte */
-.msk-team-flip__scrim {
+/* ——— Panneau reveal (Encre, slide depuis le bas) ——— */
+
+.msk-team-plate__panel {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgb(13 19 48 / var(--msk-flip-scrim-bottom)) 0%,
-    rgb(13 19 48 / var(--msk-flip-scrim-mid)) 32%,
-    transparent 58%
-  );
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0d1330;
+  border-top: 2px solid #1d73bc;
+  transform: translateY(102%);
+  transition: transform var(--msk-plate-duration) var(--msk-plate-ease);
   pointer-events: none;
 }
 
-.msk-team-flip__index {
-  position: absolute;
-  top: 1rem;
-  left: 1.05rem;
-  z-index: 1;
-  font-family: var(--font-display);
+.msk-team-plate--founder .msk-team-plate__panel {
+  border-top-color: #ff5a3c;
+  border-top-width: 3px;
+}
+
+.msk-team-plate--collaborator .msk-team-plate__panel {
+  border-top-width: 1px;
+  border-top-color: rgb(29 115 188 / 0.55);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .msk-team-plate:hover .msk-team-plate__panel,
+  .msk-team-plate:focus-within .msk-team-plate__panel {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.msk-team-plate.is-open .msk-team-plate__panel {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.msk-team-plate__panel-inner {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.15rem 1.1rem;
+  overflow-y: auto;
+}
+
+.msk-team-plate--founder .msk-team-plate__panel-inner {
+  padding: 1.5rem 1.35rem 1.25rem;
+}
+
+.msk-team-plate--collaborator .msk-team-plate__panel-inner {
+  padding: 1.05rem 1rem 1rem;
+  gap: 0.75rem;
+}
+
+.msk-team-plate__panel-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.msk-team-plate__panel-name {
+  margin: 0;
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1d73bc;
+}
+
+.msk-team-plate__panel-role {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.msk-team-plate--founder .msk-team-plate__panel-role {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  color: rgb(255 255 255 / 0.7);
-  text-shadow: 0 1px 3px rgb(13 19 48 / 0.55);
-  pointer-events: none;
+  letter-spacing: 0.02em;
 }
 
-.msk-team-flip--founder .msk-team-flip__index {
+.msk-team-plate__block {
+  margin: 0;
+  font-family: var(--font-sans);
   font-size: 0.8125rem;
-  color: rgb(255 255 255 / 0.85);
+  line-height: 1.55;
+  color: rgb(255 255 255 / 0.78);
 }
 
-.msk-team-flip--collaborator .msk-team-flip__index {
+.msk-team-plate__block-label {
+  display: block;
+  margin-bottom: 0.2rem;
   font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.45);
+}
+
+.msk-team-plate__signature {
+  margin: 0;
+  font-family: var(--font-serif-msk, Georgia, serif);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: #f5f3ef;
+}
+
+.msk-team-plate__service {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   color: rgb(255 255 255 / 0.55);
 }
 
-/* Coin corail : fondateurs (double + plus grand) · cadres (simple) · collabs (absent) */
-.msk-team-flip__mark {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-top: 2px solid #ff5a3c;
-  border-right: 2px solid #ff5a3c;
-  pointer-events: none;
+.msk-team-plate__service-label {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.msk-team-flip--founder .msk-team-flip__mark {
-  width: 2.15rem;
-  height: 2.15rem;
-  border-top-width: 3px;
-  border-right-width: 3px;
+.msk-team-plate__service-sep {
+  margin-inline: 0.45rem;
+  color: rgb(255 255 255 / 0.35);
 }
 
-.msk-team-flip--founder .msk-team-flip__mark::after {
-  content: "";
-  position: absolute;
-  top: 0.35rem;
-  right: 0.35rem;
-  width: 1.1rem;
-  height: 1.1rem;
-  border-top: 1.5px solid rgb(29 115 188 / 0.9);
-  border-right: 1.5px solid rgb(29 115 188 / 0.9);
-}
-
-.msk-team-flip--cadre .msk-team-flip__mark {
-  width: 1.35rem;
-  height: 1.35rem;
-}
-
-.msk-team-flip--collaborator .msk-team-flip__mark {
-  display: none;
-}
-
-/* Pastille décorative (sans copy inventée) — fondateurs + cadres */
-.msk-team-flip__badge {
-  position: absolute;
-  top: 1.15rem;
-  left: 50%;
-  z-index: 1;
-  display: none;
+.msk-team-plate__rule {
+  display: block;
   width: 2.5rem;
-  height: 0.25rem;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  pointer-events: none;
+  height: 1px;
+  background: rgb(255 90 60 / 0.7);
 }
 
-.msk-team-flip--founder .msk-team-flip__badge {
-  display: block;
-  width: 3rem;
-  height: 0.3rem;
-  background: #ff5a3c;
-  box-shadow: 0 1px 6px rgb(13 19 48 / 0.4);
-}
-
-.msk-team-flip--cadre .msk-team-flip__badge {
-  display: block;
-  left: auto;
-  right: 3rem;
-  transform: none;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: #1d73bc;
-  box-shadow: 0 1px 4px rgb(13 19 48 / 0.35);
-}
-
-.msk-team-flip--collaborator .msk-team-flip__badge {
-  display: none;
-}
-
-.msk-team-flip__front-copy {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  z-index: 1;
+.msk-team-plate__panel-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: var(--msk-flip-copy-pad);
+  gap: 0.65rem;
+}
+
+.msk-team-plate__email {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: #1d73bc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.msk-team-plate__email:hover {
+  color: #1384cb;
+}
+
+.msk-team-plate__email:focus-visible {
+  outline: 2px solid #1d73bc;
+  outline-offset: 3px;
+}
+
+.msk-team-plate__close {
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.msk-team-plate__close:hover {
+  color: #fff;
+}
+
+.msk-team-plate__close:focus-visible {
+  outline: 2px solid #1d73bc;
+  outline-offset: 3px;
+}
+
+.msk-team-plate__toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.msk-team-plate.is-open .msk-team-plate__toggle,
+.msk-team-plate:hover .msk-team-plate__toggle,
+.msk-team-plate:focus-within .msk-team-plate__toggle {
+  /* Laisse passer clics liens / fermer quand le panneau est ouvert */
   pointer-events: none;
 }
 
-.msk-team-flip__name {
+@media (hover: hover) and (pointer: fine) {
+  .msk-team-plate:not(.is-open):hover .msk-team-plate__toggle {
+    pointer-events: none;
+  }
+}
+
+.msk-team-plate__toggle:focus-visible {
+  outline: 2px solid #1d73bc;
+  outline-offset: 3px;
+  pointer-events: auto;
+}
+
+/* ——— Légende sous photo (magazine) ——— */
+
+.msk-team-plate__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.msk-team-plate--founder .msk-team-plate__caption {
+  padding-top: 0.35rem;
+  border-top: 2px solid #1d73bc;
+}
+
+.msk-team-plate--cadre .msk-team-plate__caption {
+  padding-left: 0.85rem;
+  border-left: 2px solid #1d73bc;
+}
+
+.msk-team-plate--collaborator .msk-team-plate__caption {
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  padding-top: 0.55rem;
+}
+
+.msk-team-plate__caption-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.15rem;
+}
+
+.msk-team-plate__index {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgb(255 255 255 / 0.4);
+}
+
+.msk-team-plate--founder .msk-team-plate__index {
+  font-size: 0.8125rem;
+  color: #1d73bc;
+}
+
+.msk-team-plate--collaborator .msk-team-plate__index {
+  font-size: 0.625rem;
+  color: rgb(255 255 255 / 0.3);
+}
+
+/* Trait corail sous index : fondateurs seulement (pas de « coin ») */
+.msk-team-plate__accent {
+  display: none;
+  height: 2px;
+  width: 2.25rem;
+  background: #ff5a3c;
+}
+
+.msk-team-plate--founder .msk-team-plate__accent {
+  display: block;
+}
+
+.msk-team-plate__name {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #fff;
-  text-shadow:
-    0 1px 2px rgb(13 19 48 / 0.75),
-    0 2px 12px rgb(13 19 48 / 0.45);
 }
 
-.msk-team-flip--founder .msk-team-flip__name {
+.msk-team-plate--founder .msk-team-plate__name {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   font-weight: 800;
-  letter-spacing: 0.02em;
-  line-height: 1.15;
+  letter-spacing: 0.01em;
+  line-height: 1.12;
 }
 
-.msk-team-flip--cadre .msk-team-flip__name {
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+.msk-team-plate--cadre .msk-team-plate__name {
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   line-height: 1.2;
 }
 
-.msk-team-flip--collaborator .msk-team-flip__name {
-  font-size: clamp(0.95rem, 1.5vw, 1.125rem);
+.msk-team-plate--collaborator .msk-team-plate__name {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
   font-weight: 500;
   line-height: 1.25;
 }
 
-.msk-team-flip__role {
+.msk-team-plate__role {
   margin: 0;
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.88);
-  text-shadow: 0 1px 3px rgb(13 19 48 / 0.7);
+  color: rgb(255 255 255 / 0.62);
 }
 
-.msk-team-flip--founder .msk-team-flip__role {
-  font-family: var(--font-serif-msk, var(--font-serif), Georgia, serif);
+.msk-team-plate--founder .msk-team-plate__role {
+  font-family: var(--font-serif-msk, Georgia, serif);
+  font-size: 0.9375rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.msk-team-plate--cadre .msk-team-plate__role {
+  color: rgb(173 216 245 / 0.9);
+}
+
+.msk-team-plate--collaborator .msk-team-plate__role {
+  font-size: 0.625rem;
+  color: rgb(255 255 255 / 0.5);
+}
+
+.msk-team-plate__invite {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-serif-msk, Georgia, serif);
   font-size: 0.8125rem;
   font-style: italic;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  color: rgb(255 255 255 / 0.95);
+  color: #1d73bc;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
 }
 
-.msk-team-flip--cadre .msk-team-flip__role {
-  font-size: 0.6875rem;
-  color: rgb(173 216 245 / 0.95);
-}
-
-.msk-team-flip--collaborator .msk-team-flip__role {
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  color: rgb(255 255 255 / 0.78);
-}
-
-.msk-team-flip__invite {
-  margin-top: 0.3rem;
-  opacity: 0.9;
-  text-shadow: 0 1px 2px rgb(13 19 48 / 0.5);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.msk-team-flip--collaborator .msk-team-flip__invite {
+.msk-team-plate--collaborator .msk-team-plate__invite {
   font-size: 0.75rem;
-  margin-top: 0.2rem;
 }
 
-.msk-team-flip:hover .msk-team-flip__invite,
-.msk-team-flip:focus-within .msk-team-flip__invite {
-  opacity: 1;
-  transform: translateY(-2px);
+.msk-team-plate:hover .msk-team-plate__invite,
+.msk-team-plate:focus-within .msk-team-plate__invite,
+.msk-team-plate.is-open .msk-team-plate__invite {
+  opacity: 0.35;
 }
 
-.msk-team-flip__back-inner {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.35rem 1.25rem 1.25rem;
-  overflow-y: auto;
-}
+/* ——— Reduced motion ——— */
 
-.msk-team-flip--founder .msk-team-flip__back-inner {
-  padding: 1.5rem 1.4rem 1.35rem;
-}
-
-.msk-team-flip--collaborator .msk-team-flip__back-inner {
-  padding: 1.15rem 1.05rem 1.05rem;
-  gap: 0.75rem;
-}
-
-.msk-team-flip__toggle {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  border-radius: inherit;
-}
-
-.msk-team-flip__toggle:focus-visible {
-  outline: 2px solid #1d73bc;
-  outline-offset: 3px;
-}
-
-.msk-team-flip__face--back a {
-  position: relative;
-  z-index: 3;
-}
-
-/* Flip 3D — desktop hover + focus + état JS */
-@media (hover: hover) and (pointer: fine) {
-  .msk-team-flip:hover .msk-team-flip__inner,
-  .msk-team-flip:focus-within .msk-team-flip__inner {
-    transform: rotateY(180deg);
-  }
-
-  .msk-team-flip:hover .msk-team-flip__invite {
-    opacity: 0;
-  }
-}
-
-.msk-team-flip.is-flipped .msk-team-flip__inner {
-  transform: rotateY(180deg);
-}
-
-/* Reduced motion : pas de 3D, reveal overlay */
 @media (prefers-reduced-motion: reduce) {
-  .msk-team-flip {
-    perspective: none;
-  }
-
-  .msk-team-flip__inner {
-    transform: none !important;
+  .msk-team-plate__img {
     transition: none;
+    transform: none !important;
   }
 
-  .msk-team-flip__face--back {
+  .msk-team-plate__panel {
     transform: none;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.2s ease;
   }
 
-  .msk-team-flip:hover .msk-team-flip__face--back,
-  .msk-team-flip:focus-within .msk-team-flip__face--back,
-  .msk-team-flip.is-flipped .msk-team-flip__face--back {
+  .msk-team-plate:hover .msk-team-plate__panel,
+  .msk-team-plate:focus-within .msk-team-plate__panel,
+  .msk-team-plate.is-open .msk-team-plate__panel {
     opacity: 1;
     pointer-events: auto;
   }
 
-  .msk-team-flip__photo img {
+  .msk-team-plate__invite {
     transition: none;
-    transform: none !important;
-  }
-
-  .msk-team-flip__invite {
-    transition: none;
-    transform: none !important;
   }
 }
