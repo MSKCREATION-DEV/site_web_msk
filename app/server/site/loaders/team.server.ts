@@ -6,17 +6,24 @@ import { postalAddressFromContactRows, teamPhotoAlt } from "~/lib/seo";
 export function loadTeamPage(locale: Locale) {
   const content = getLocaleContent(locale);
 
-  const team = teamMembers.map((member) => {
+  const team = teamMembers.map((member, index) => {
     const copy = content.team[member.contentKey];
     const name = copy?.name ?? member.slug;
     const role = copy?.role ?? "";
     return {
       slug: member.slug,
+      layout: member.layout,
+      indexLabel: String(index + 1).padStart(2, "0"),
       name,
       role,
       focus: copy?.focus,
       email: copy?.email,
       service: copy?.service,
+      presentation: copy?.presentation,
+      expertise: copy?.expertise,
+      contribution: copy?.contribution,
+      impact: copy?.impact,
+      signature: copy?.signature,
       photoSrc: member.photoSrc,
       photoAlt: teamPhotoAlt(name, role, content.home.brandName),
     };

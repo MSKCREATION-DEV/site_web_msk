@@ -3,6 +3,7 @@ import type { Route } from "./+types/team";
 import { Reveal, TeamFlipCard } from "~/components/ui";
 import { homePath, isLocale, parseLocale, teamPath } from "~/i18n";
 import { buildTeamJsonLd, teamMeta } from "~/lib/seo";
+import { cn } from "~/lib/utils";
 import { loadTeamPage } from "~/server/site/loaders/team.server";
 
 /** Normalise le pathname (trailing slash) pour comparer au canonical locale. */
@@ -63,8 +64,13 @@ export function meta({ loaderData }: Route.MetaArgs) {
 
 export default function TeamPage({ loaderData }: Route.ComponentProps) {
   const { teamPage, team, locale } = loaderData;
+  const contactHref = `${homePath(locale)}#contact`;
 
   const flipLabels = {
+    presentationLabel: teamPage.presentationLabel,
+    expertiseLabel: teamPage.expertiseLabel,
+    contributionLabel: teamPage.contributionLabel,
+    impactLabel: teamPage.impactLabel,
     focusLabel: teamPage.focusLabel,
     serviceLabel: teamPage.serviceLabel,
     emailLabel: teamPage.emailLabel,
@@ -74,18 +80,24 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className="min-h-svh bg-msk-ink">
+      {/* Intro */}
       <section
-        className="msk-page-x scroll-mt-msk-nav mx-auto w-full max-w-msk pt-[max(6rem,calc(var(--spacing-msk-nav)+2rem))] pb-msk-x"
+        className="msk-page-x scroll-mt-msk-nav mx-auto w-full max-w-msk pt-[max(6rem,calc(var(--spacing-msk-nav)+2.5rem))] pb-16 sm:pb-20"
         aria-labelledby="team-page-heading"
       >
         <Reveal>
-          <div className="mb-14 flex max-w-3xl flex-col gap-6 sm:mb-16">
+          <div className="flex max-w-4xl flex-col gap-8">
             <p className="msk-eyebrow text-msk-text-muted">{teamPage.eyebrow}</p>
             <h1
               id="team-page-heading"
-              className="font-sans text-4xl font-semibold tracking-tight text-msk-text sm:text-5xl lg:text-6xl"
+              className="flex flex-col gap-2 text-msk-text"
             >
-              {teamPage.title}
+              <span className="font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.05] font-extrabold tracking-tight">
+                {teamPage.titleBefore}
+              </span>
+              <span className="font-serif-msk text-[clamp(2rem,5.5vw,3.75rem)] leading-[1.1] italic text-msk-blue">
+                {teamPage.titleAccent}
+              </span>
             </h1>
             <p className="msk-body-sm max-w-xl text-msk-text-secondary">
               {teamPage.intro}
@@ -98,16 +110,80 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
             </Link>
           </div>
         </Reveal>
+      </section>
 
-        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
+      {/* Collectif */}
+      <section
+        className="border-y border-msk-border bg-msk-ink-deep"
+        aria-labelledby="team-collectif-heading"
+      >
+        <div className="msk-page-x mx-auto flex w-full max-w-msk flex-col gap-8 py-16 sm:flex-row sm:items-end sm:justify-between sm:gap-16 sm:py-20">
+          <Reveal className="max-w-xl">
+            <p className="msk-eyebrow mb-4 text-msk-text-muted">
+              {teamPage.collectif.eyebrow}
+            </p>
+            <h2
+              id="team-collectif-heading"
+              className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight font-extrabold tracking-tight text-msk-text"
+            >
+              {teamPage.collectif.title}
+            </h2>
+          </Reveal>
+          <Reveal delayMs={80} className="max-w-md">
+            <p className="msk-body-sm text-msk-text-secondary">
+              {teamPage.collectif.body}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Galerie éditoriale */}
+      <section
+        className="msk-page-x mx-auto w-full max-w-msk py-16 sm:py-24"
+        aria-labelledby="team-gallery-heading"
+      >
+        <Reveal>
+          <div className="mb-12 flex max-w-2xl flex-col gap-4 sm:mb-16">
+            <p className="msk-eyebrow text-msk-text-muted">
+              {teamPage.gallery.eyebrow}
+            </p>
+            <h2
+              id="team-gallery-heading"
+              className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight font-extrabold tracking-tight text-msk-text"
+            >
+              {teamPage.gallery.title}
+            </h2>
+            <p className="font-serif-msk text-base italic text-msk-text-muted">
+              {teamPage.gallery.inviteHint}
+            </p>
+          </div>
+        </Reveal>
+
+        <ul className="msk-team-gallery">
           {team.map((member, index) => (
-            <li key={member.slug} className="min-h-0">
-              <Reveal delayMs={(index % 6) * 40} className="h-full">
+            <li
+              key={member.slug}
+              className={cn(
+                "min-h-0",
+                member.layout === "lead" && "msk-team-gallery__item--lead",
+                member.layout === "feature" &&
+                  "msk-team-gallery__item--feature",
+                member.layout === "standard" &&
+                  "msk-team-gallery__item--standard",
+              )}
+            >
+              <Reveal delayMs={(index % 5) * 50} className="h-full">
                 <TeamFlipCard
                   name={member.name}
                   role={member.role}
                   photoSrc={member.photoSrc}
                   photoAlt={member.photoAlt}
+                  indexLabel={member.indexLabel}
+                  presentation={member.presentation}
+                  expertise={member.expertise}
+                  contribution={member.contribution}
+                  impact={member.impact}
+                  signature={member.signature}
                   focus={member.focus}
                   service={member.service}
                   email={member.email}
@@ -117,6 +193,77 @@ export default function TeamPage({ loaderData }: Route.ComponentProps) {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Complémentarité */}
+      <section
+        className="border-t border-msk-border bg-msk-ink-contact"
+        aria-labelledby="team-poles-heading"
+      >
+        <div className="msk-page-x mx-auto w-full max-w-msk py-16 sm:py-24">
+          <Reveal>
+            <div className="mb-12 max-w-2xl sm:mb-16">
+              <p className="msk-eyebrow mb-4 text-msk-text-muted">
+                {teamPage.poles.eyebrow}
+              </p>
+              <h2
+                id="team-poles-heading"
+                className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight font-extrabold tracking-tight text-msk-text"
+              >
+                {teamPage.poles.title}
+              </h2>
+            </div>
+          </Reveal>
+
+          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+            {teamPage.poles.items.map((pole, i) => (
+              <li key={pole.label}>
+                <Reveal delayMs={i * 60}>
+                  <article className="flex flex-col gap-3 border-t border-msk-blue/40 pt-5">
+                    <span
+                      className="font-display text-xs font-extrabold tracking-msk-wide text-msk-coral"
+                      aria-hidden
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-sans text-lg font-semibold tracking-wide text-msk-text">
+                      {pole.label}
+                    </h3>
+                    <p className="msk-body-sm text-msk-text-secondary">
+                      {pole.description}
+                    </p>
+                  </article>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Conclusion */}
+      <section
+        className="msk-page-x mx-auto w-full max-w-msk py-20 sm:py-28"
+        aria-labelledby="team-closing-heading"
+      >
+        <Reveal>
+          <div className="mx-auto flex max-w-3xl flex-col items-start gap-8 text-left sm:items-center sm:text-center">
+            <h2
+              id="team-closing-heading"
+              className="font-display text-[clamp(1.85rem,4vw,3.25rem)] leading-tight font-extrabold tracking-tight text-msk-text"
+            >
+              {teamPage.closing.title}
+            </h2>
+            <p className="msk-body-sm max-w-xl text-msk-text-secondary">
+              {teamPage.closing.body}
+            </p>
+            <Link
+              to={contactHref}
+              className="inline-flex items-center justify-center rounded-full bg-msk-blue px-8 py-3.5 font-sans text-sm font-medium tracking-wide text-white transition-colors hover:bg-msk-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msk-blue focus-visible:ring-offset-2 focus-visible:ring-offset-msk-ink"
+            >
+              {teamPage.closing.ctaLabel}
+            </Link>
+          </div>
+        </Reveal>
       </section>
     </div>
   );

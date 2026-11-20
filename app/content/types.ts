@@ -291,19 +291,58 @@ export type LocaleContent = {
       focus?: string;
       email?: string;
       service?: string;
+      /** Portrait page Équipe (magazine) — textes factuels rôle + org. */
+      presentation?: string;
+      expertise?: string;
+      contribution?: string;
+      impact?: string;
+      signature?: string;
     }
   >;
   teamPage: TeamPageContent;
 };
 
+export type TeamPagePole = {
+  label: string;
+  description: string;
+};
+
 export type TeamPageContent = {
   meta: PageMetaContent;
   eyebrow: string;
-  title: string;
+  /** Première ligne H1 */
+  titleBefore: string;
+  /** Accent H1 (bleu / serif) */
+  titleAccent: string;
   intro: string;
-  focusLabel: string;
-  serviceLabel: string;
+  collectif: {
+    eyebrow: string;
+    title: string;
+    body: string;
+  };
+  gallery: {
+    eyebrow: string;
+    title: string;
+    inviteHint: string;
+  };
+  poles: {
+    eyebrow: string;
+    title: string;
+    items: TeamPagePole[];
+  };
+  closing: {
+    title: string;
+    body: string;
+    ctaLabel: string;
+  };
+  presentationLabel: string;
+  expertiseLabel: string;
+  contributionLabel: string;
+  impactLabel: string;
   emailLabel: string;
+  serviceLabel: string;
+  /** Legacy / a11y fallback */
+  focusLabel: string;
   backHomeLabel: string;
   /** A11y carte flip : révéler le verso */
   flipRevealLabel: string;

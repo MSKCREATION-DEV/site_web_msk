@@ -3,6 +3,10 @@ import { OptimizedImg } from "~/components/ui/optimized-img";
 import { cn } from "~/lib/utils";
 
 export type TeamFlipCardLabels = {
+  presentationLabel: string;
+  expertiseLabel: string;
+  contributionLabel: string;
+  impactLabel: string;
   focusLabel: string;
   serviceLabel: string;
   emailLabel: string;
@@ -17,6 +21,12 @@ export type TeamFlipCardProps = {
   role: string;
   photoSrc: string;
   photoAlt: string;
+  indexLabel: string;
+  presentation?: string;
+  expertise?: string;
+  contribution?: string;
+  impact?: string;
+  signature?: string;
   focus?: string;
   service?: string;
   email?: string;
@@ -25,16 +35,21 @@ export type TeamFlipCardProps = {
 };
 
 /**
- * Carte membre page Équipe — flip 3D (inspiration structurelle VdM).
- * Recto : photo full-bleed + nom + rôle.
- * Verso : focus factuel, pôle, email si data.
- * A11y : hover/focus desktop, tap/clavier toggle, reduced-motion = overlay.
+ * Portrait magazine page Équipe — flip 3D.
+ * Recto : photo, nom, rôle, index graphique, invitation.
+ * Verso : présentation / expertise / contribution / impact / signature.
  */
 export function TeamFlipCard({
   name,
   role,
   photoSrc,
   photoAlt,
+  indexLabel,
+  presentation,
+  expertise,
+  contribution,
+  impact,
+  signature,
   focus,
   service,
   email,
@@ -60,6 +75,16 @@ export function TeamFlipCard({
     });
   };
 
+  const body =
+    presentation ||
+    expertise ||
+    contribution ||
+    impact ||
+    signature ||
+    focus ||
+    service ||
+    email;
+
   return (
     <article
       className={cn("msk-team-flip h-full", flipped && "is-flipped", className)}
@@ -79,12 +104,19 @@ export function TeamFlipCard({
               />
             </div>
             <div className="msk-team-flip__scrim" aria-hidden />
+            <span className="msk-team-flip__index" aria-hidden>
+              {indexLabel}
+            </span>
+            <span className="msk-team-flip__mark" aria-hidden />
             <div className="msk-team-flip__front-copy">
-              <h2 className="font-sans text-xl font-semibold tracking-wide text-msk-text uppercase">
+              <h3 className="font-sans text-xl font-semibold tracking-wide text-msk-text uppercase sm:text-2xl">
                 {name}
-              </h2>
+              </h3>
               <p className="font-sans text-xs tracking-msk-wide text-msk-text-muted uppercase">
                 {role}
+              </p>
+              <p className="msk-team-flip__invite font-serif-msk text-sm italic text-msk-blue">
+                {labels.revealLabel}
               </p>
             </div>
             <button
@@ -110,19 +142,49 @@ export function TeamFlipCard({
             aria-hidden={!flipped}
           >
             <div className="msk-team-flip__back-inner">
-              <div className="flex flex-col gap-3">
-                <p className="font-sans text-[0.6875rem] tracking-msk-wide text-msk-blue uppercase">
-                  {name}
-                </p>
-                <p className="font-sans text-lg font-semibold tracking-wide text-msk-text uppercase">
-                  {role}
-                </p>
-                {focus ? (
-                  <p className="font-sans text-sm leading-msk-body text-msk-text-secondary">
-                    <span className="sr-only">{labels.focusLabel} : </span>
-                    {focus}
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1">
+                  <p className="font-sans text-[0.6875rem] tracking-msk-wide text-msk-blue uppercase">
+                    {name}
+                  </p>
+                  <p className="font-sans text-lg font-semibold tracking-wide text-msk-text uppercase">
+                    {role}
+                  </p>
+                </div>
+
+                {presentation ? (
+                  <PortraitBlock
+                    label={labels.presentationLabel}
+                    text={presentation}
+                  />
+                ) : focus ? (
+                  <PortraitBlock label={labels.focusLabel} text={focus} />
+                ) : null}
+
+                {expertise ? (
+                  <PortraitBlock
+                    label={labels.expertiseLabel}
+                    text={expertise}
+                  />
+                ) : null}
+
+                {contribution ? (
+                  <PortraitBlock
+                    label={labels.contributionLabel}
+                    text={contribution}
+                  />
+                ) : null}
+
+                {impact ? (
+                  <PortraitBlock label={labels.impactLabel} text={impact} />
+                ) : null}
+
+                {signature ? (
+                  <p className="font-serif-msk text-base italic leading-relaxed text-msk-chalk">
+                    {signature}
                   </p>
                 ) : null}
+
                 {service ? (
                   <p className="font-sans text-xs text-msk-text-muted">
                     <span className="tracking-msk uppercase">
@@ -133,6 +195,10 @@ export function TeamFlipCard({
                     </span>
                     {service}
                   </p>
+                ) : null}
+
+                {!body ? (
+                  <span className="h-px w-10 bg-msk-coral/80" aria-hidden />
                 ) : null}
               </div>
 
@@ -164,5 +230,16 @@ export function TeamFlipCard({
         </div>
       </div>
     </article>
+  );
+}
+
+function PortraitBlock({ label, text }: { label: string; text: string }) {
+  return (
+    <p className="font-sans text-sm leading-msk-body text-msk-text-secondary">
+      <span className="mb-1 block font-sans text-[0.625rem] tracking-msk-wide text-msk-text-muted uppercase">
+        {label}
+      </span>
+      {text}
+    </p>
   );
 }
