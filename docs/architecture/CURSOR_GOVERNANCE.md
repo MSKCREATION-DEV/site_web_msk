@@ -4,6 +4,7 @@
 
 | Élément | Chemin |
 |---------|--------|
+| Guide projet (routing, assets, renommages) | [`PROJECT_GUIDE.md`](./PROJECT_GUIDE.md) |
 | Agents | [`AGENTS.md`](../../AGENTS.md) |
 | Rules | [`.cursor/rules/*.mdc`](../../.cursor/rules/) |
 | Skills MSK + Addy | [`.cursor/skills/*/SKILL.md`](../../.cursor/skills/) |

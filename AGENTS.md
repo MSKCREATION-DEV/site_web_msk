@@ -8,6 +8,8 @@ Reproduire le site vitrine **MSK Création** à partir du Figma validé, avec Re
 
 Lire [`CONSTRAINTS.md`](./CONSTRAINTS.md) avant d’écrire du code. Ne pas l’affaiblir pour faire passer un changement.
 
+Mode d’emploi technique (routing, pages, assets, renommages) : [`docs/architecture/PROJECT_GUIDE.md`](./docs/architecture/PROJECT_GUIDE.md).
+
 ## Sources de vérité
 
 1. **Figma** — [MSK-MAQUETTE](https://www.figma.com/design/wn9ZMeW9YwaF3PE8Wqa2WS/MSK-MAQUETTE) : layout, copy Desktop, assets photo, interactions.
