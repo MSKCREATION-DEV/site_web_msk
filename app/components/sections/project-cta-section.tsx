@@ -1,6 +1,8 @@
+import type { MouseEvent } from "react";
 import { OptimizedImg } from "~/components/ui/optimized-img";
 import { assetUrl } from "~/lib/assets";
 import { cn } from "~/lib/utils";
+import { scrollToAnchorFromNav } from "~/lib/utils/scroll-to-anchor";
 import { Reveal } from "~/components/ui";
 import type { CtaContent } from "~/content/types";
 
@@ -77,6 +79,11 @@ export function ProjectCtaSection({
               <a
                 href="#contact"
                 className="msk-btn-label inline-flex h-msk-cta-btn w-auto max-w-full items-center justify-center rounded-msk-pill bg-msk-blue px-msk-btn-px text-msk-text transition-colors duration-msk ease-out hover:bg-msk-blue-hover"
+                onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+                  event.preventDefault();
+                  event.currentTarget.blur();
+                  scrollToAnchorFromNav("#contact");
+                }}
               >
                 {content.ctaLabel}
               </a>

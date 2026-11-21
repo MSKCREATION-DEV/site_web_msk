@@ -206,9 +206,9 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
   /*
-   * Pas de scroll-padding-top ici : les cibles portent déjà
-   * `scroll-mt-msk-nav` (= --msk-nav-height). Les deux s’additionnent
-   * et décaleraient le land de ~2× la hauteur du header.
+   * Pas de scroll-padding-top ici : les cibles portent `scroll-mt-msk-nav`
+   * (fallback natif). Le land JS (`scroll-to-anchor.ts`) compense en plus
+   * le `py-msk-x` pour cadrer le contenu sous la nav — pas les deux à la fois.
    */
 }
 

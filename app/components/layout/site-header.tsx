@@ -6,7 +6,10 @@ import type { NavContent } from "~/content/types";
 import type { Locale } from "~/i18n";
 import { homePath } from "~/i18n";
 import { cn } from "~/lib/utils";
-import { scrollToAnchorAfterHeaderReveal } from "~/lib/utils/scroll-to-anchor";
+import {
+  isProgrammaticScroll,
+  scrollToAnchorFromNav,
+} from "~/lib/utils/scroll-to-anchor";
 
 type SiteHeaderProps = {
   locale: Locale;
@@ -86,6 +89,9 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
       const delta = y - lastY.current;
       lastY.current = y;
 
+      // Pendant un scroll ancre programmé : ne pas jitter le smart-header.
+      if (isProgrammaticScroll()) return;
+
       if (openRef.current || media.matches) {
         setHidden(false);
         return;
@@ -98,7 +104,12 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
 
       if (delta > SCROLL_DELTA_PX) {
         const active = document.activeElement;
-        if (headerRef.current?.contains(active)) {
+        // Uniquement focus clavier dans la barre (pas un clic souris resté focus).
+        if (
+          active instanceof HTMLElement &&
+          headerRef.current?.contains(active) &&
+          active.matches(":focus-visible")
+        ) {
           setHidden(false);
           return;
         }
@@ -142,7 +153,11 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
   const close = () => setOpen(false);
   const reveal = () => setHidden(false);
 
-  /** Ancre same-page : reveal header puis scroll calibré (évite décalage smart-header). */
+  /**
+   * Ancre same-page : header reste visible (repère nav).
+   * Blur du lien pour ne pas bloquer le hide-on-scroll manuel ensuite.
+   * Cadrage sur eyebrow / titre juste sous la barre.
+   */
   const onAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     const hash = hashFromHref(href);
     if (!hash || !isSamePageHash(href, locale, pathname)) {
@@ -153,7 +168,8 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
     event.preventDefault();
     reveal();
     close();
-    scrollToAnchorAfterHeaderReveal(hash);
+    event.currentTarget.blur();
+    scrollToAnchorFromNav(hash);
   };
 
   const navLinkClass =
@@ -172,7 +188,9 @@ export function SiteHeader({ locale, nav, className }: SiteHeaderProps) {
         className={cn(
           "h-msk-nav bg-msk-black",
           "transition-transform duration-msk ease-out motion-reduce:transition-none",
-          hidden && !open ? "-translate-y-full" : "translate-y-0",
+          hidden && !open
+            ? "pointer-events-none -translate-y-full"
+            : "translate-y-0",
         )}
       >
         <div
